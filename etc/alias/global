@@ -1,0 +1,9 @@
+## Global aliases
+## evil, but rarely messy
+## vim:ft=zsh
+alias -g EG='|egrep'
+alias -g FG='|fgrep'
+alias -g G='|grep'
+alias -g H='|head'
+alias -g L='|less'
+alias -g T='|tail'

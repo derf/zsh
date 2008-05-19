@@ -1,0 +1,62 @@
+## Functions
+## vim:ft=zsh
+# builtin function for archives, see $ZDIR/alias_suffix
+extr () {
+	if [[ -f "$1" ]]; then
+		case "$1" in
+			*.tar.bz2) tar xjvf "$1" ;;
+			*.tar.gz) tar xvzf "$1" ;;
+			*.ace) unace e "$1" ;;
+			*.rar) unrar x "$1" ;;
+			*.deb) ar -x "$1" ;;
+			*.bz2) bzip2 -d "$1" ;;
+			*.lzh) lha x "$1" ;;
+			*.gz) gunzip -d "$1" ;;
+			*.tar) tar xvf "$1" ;;
+			*.tgz) gunzip -d "$1" ;;
+			*.tbz2) tar jxvf "$1" ;;
+			*.zip) unzip "$1" ;;
+			*.Z) uncompress "$1" ;;
+			*.shar) sh "$1" ;;
+			*) echo "I don't know the archive type of '"$1"' :(" ;;
+		esac
+	else
+		echo "Hm. Seems '"$1"' is not a valid file."
+	fi
+}
+
+# self-explaining, I think
+l () {
+	if [[ -f "$1" ]]; then
+		case "$1" in
+			*.bz2) bzless "$1" ;;
+			*.gz) zless "$1" ;;
+			*) less "$1" ;;
+		esac
+	else
+		echo "No such file, dude."
+	fi
+}
+
+cdl () {
+	cd "$1";
+	ls;
+}
+
+world-readable () {
+	chmod -R a+rX .
+}
+
+chpwd () {
+	pstags=''
+	[ -f .todo ] && pstags+='todo '
+	[ -f .fehindex.jpg ] && pstags+='feh '
+	[ -d .hg ] && pstags+='hg '
+	[ -d .git ] && pstags+='git '
+	[ -d .svn ] && pstags+='svn '
+	source $ZDIR/prompt
+}
+
+plonkhost () {
+	sudo iptables -I INPUT -s "$1" -j DROP
+}

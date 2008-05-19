@@ -1,0 +1,52 @@
+## Some useful default options
+## To evade them, use '=foo' instead of 'foo'
+## vim:ft=zsh
+
+# The free/used/total space of encfs type filesystems is broken here
+[ $uname = Linux ] && alias df='df --human-readable --local --exclude-type=fuse.encfs' || alias df='df -hl'
+
+[ $uname = Linux ] && alias du='du --human-readable --summarize' || alias du='du -sh'
+
+alias feh='feh --quiet'
+
+alias fgrep='grep -F --color=auto'
+
+# find does globbing itself
+alias find='noglob find'
+
+alias grep='grep --color=auto'
+
+alias host='host -a'
+
+# I often use it for just *viewing* things, which works fine without root
+alias ifconfig='/sbin/ifconfig'
+
+# This is an export, so that also man() and other apps using less as pager get it
+# clear-screen = much faster scrolling on ttys
+# RAW-CONTROL-CHARS = Don't produce crap if the file contains ANSI color sequences
+export LESS='--silent --clear-screen --RAW-CONTROL-CHARS --quit-if-one-screen --ignore-case --tabs=5'
+
+# classify = "/" after dirs, "*" after executables etc
+[ $uname = Linux ] && alias ls='ls --color=auto --classify --human-readable' || alias ls='ls -Fh'
+
+# Somehow folllowing the 'learn something new every day' ;-)
+[ $uname = Linux ] && alias man='man --all' || alias man='man -a'
+
+# Useful on sshfs or similar
+alias mplayer='mplayer -cache 6000 -cache-min 50'
+
+alias mv='mv -i'
+
+alias mx='mx -aZ'
+
+# Only TCP/TCP6, not sockets and such
+[ $uname = Linux ] && alias netstat='sudo netstat --program --listening --all --tcp --extend' || alias netstat='sudo netstat -latp tcp'
+
+# BSD style
+alias ps='ps aux'
+
+# use unicode, reattach anyway
+alias screen='screen -DUR'
+
+# Don't collapse trees
+alias todo='todo -f +children'

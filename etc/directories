@@ -1,0 +1,21 @@
+## Named directories
+## vim:ft=zsh
+case `hostname` in
+	kraftwerk)
+		music=/data/share/music
+		www=/data/www
+		web=$HOME/public_html
+		export lyrics=/data/wildernet/lyrics
+		export vcs=/data/derf/svn
+	;;
+	saviour)
+		music=$HOME/audio
+		www=/var/www
+		cgi=/usr/lib/cgi-bin
+		export lyrics=$HOME/var/svn/lyrics
+		export vcs=$HOME/var/svn
+	;;
+	nemesis)
+		export vcs=$HOME/var/svn
+		export lyrics=$vcs/lyrics
+esac

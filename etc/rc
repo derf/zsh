@@ -1,0 +1,48 @@
+## vim:ft=zsh
+autoload -Uz compinit
+autoload colors
+autoload zargs
+compinit -C
+colors
+
+bindkey -e # EMACS bindings
+zstyle :compinstall filename "$HOME/.zshrc"
+
+## zsh vars
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=$HISTSIZE
+DIRSTACKSIZE=20
+ZDIR=$HOME/packages/zsh/etc
+uname=$(uname)
+
+## other vars
+export PATH=$HOME/bin:$PATH
+export EDITOR==vim
+export MPD_HOST=saviour
+[ $uname = OpenBSD ] && export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
+export HOST
+
+# Fancy directory colors
+[ $uname = Linux ] && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
+
+## Host completion
+_hosts() { compadd alpha beta gamma kraftwerk delta epsilon zeta eta saviour theta iota kappa nemesis lambda;}
+
+## Show exitcode on failure
+trap 'echo zsh: Program terminated with exit status $?' ZERR
+
+source $ZDIR/colors
+source $ZDIR/functions
+source $ZDIR/options
+source $ZDIR/prompt
+source $ZDIR/directories
+source $ZDIR/alias/suffix
+source $ZDIR/alias/font
+source $ZDIR/alias/default
+source $ZDIR/alias/global
+source $ZDIR/alias/short
+source $ZDIR/completion
+
+mesg n
+umask 077

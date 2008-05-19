@@ -1,0 +1,5 @@
+## Prompt
+## vim:ft=zsh
+# RPS1 is on the right side of the terminal
+export PS1="${ps_yellow}%n@%m${ps_reset} %c %(!.${ps_red}#.${ps_green}%%)${ps_reset} "
+export RPS1="${ps_yellow}[${ps_info}${pstags}${ps_yellow}%T]${ps_reset}"

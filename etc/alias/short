@@ -1,0 +1,95 @@
+## Short aliases
+## vim:ft=zsh
+
+## Debian package system (aptitude/apt-get, apt-cache, dpkg)
+
+# Search the packages list
+alias acse='apt-cache search'
+alias apse='aptitude search'
+
+# Show package information
+alias acsh='apt-cache show'
+alias apsh='aptitude show'
+alias dps='dpkg --status'
+
+# Update packages list
+alias agu='sudo apt-get update'
+alias apu='sudo aptitude update'
+
+# Update packages
+alias ags='sudo apt-get upgrade'
+alias agf='sudo apt-get dist-upgrade'
+alias aps='sudo aptitude safe-upgrade'
+alias apf='sudo aptitude full-upgrade'
+
+# Install packages
+alias agi='sudo apt-get install'
+alias api='sudo aptitude install'
+alias dpi='sudo dpkg --install'
+
+# Clean packages cache
+alias agc='sudo apt-get clean'
+alias apc='sudo aptitude clean'
+
+# Remove/Purge packages
+alias agp='sudo apt-get purge'
+alias agr='sudo apt-get remove'
+alias dpp='sudo dpkg --purge'
+alias dpr='sudo dpkg --remove'
+
+# Configure packages
+alias dprc='sudo dpkg-reconfigure'
+
+
+alias acp='apt-cache policy'
+
+## feh
+alias fehf='feh -Tfull' # Fullscreen
+alias fehi='feh .fehindex.jpg'
+alias fehj='feh -Tjust' # Screensaver-like
+for i in {5,10,15,20}; {
+	alias fehj$i='feh -Tjust'$i
+	alias fehf$i='feh -Tfull'$i
+}
+alias fehjx='feh -Tjust --slideshow-delay'
+alias fehfx='feh -Tjust --slideshow-delay'
+alias feht='feh -Tthumbnail' # List thumbnails
+
+## Mercurial (hg)
+alias hga='hg add'
+alias hgc='hg commit -m'
+alias hgd='hg diff | less'
+alias hgf='hg fetch'
+alias hgg='hg glog | less'
+alias hgh='hg heads'
+alias hgi='hg incoming'
+alias hgl='hg log | less'
+alias hgm='hg merge'
+alias hgp='hg push'
+alias hgrm='hg remove'
+alias hgrv='hg revert'
+alias hgs='hg status'
+alias hgu='hg update'
+alias hgv='hg verify'
+
+# List archive files
+alias lsb='tar tvjf'
+alias lst='tar tvf'
+alias lsz='tar tvzf'
+
+# Automatically upload screenshot plzkthx
+alias putscreen='FILE=$(screenshot); put $FILE; unset FILE'
+
+# Useful when a beamer is connected to my laptop
+alias rplayer='mplayer -vo x11 -zoom -vf scale=1024:-2'
+
+## Suspend
+alias s2d='sudo s2disk'
+alias s2r='sudo s2ram -f'
+
+## Snownews
+alias sn='snownews'
+alias snu='snownews -u'
+
+# start x and log out immediately
+alias x='startx &! exit'

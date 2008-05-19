@@ -1,0 +1,38 @@
+## Sufix aliases
+## Like, enter "somefile.ogg" and zsh will automatically open it using $audio_app
+## vim:ft=zsh
+# part 1: what filetypes to open whith what app?
+# List of filetypes covered by aliases
+filetypes=(archive audio midi video image document raw office emul)
+
+# Formats
+archive_formats=(tar.bz2 tar.gz tar bz2 gz zip rar)
+audio_formats=(flac mp3 ogg wav wma)
+midi_formats=(mid s3m)
+video_formats=(avi divx flv m4v mkv mp4 mpg mpeg ogm wmv)
+image_formats=(bmp jpg jpeg gif png)
+document_formats=(pdf ps)
+raw_formats=(conf ini log txt htm html xhtml c cpp lst)
+office_formats=(doc odt ott rtf sxw)
+emul_formats=(exe)
+
+# Applications
+archive_app='extr'
+audio_app='mplayer'
+video_app='mplayer'
+midi_app='timidity'
+image_app='feh -Tfull'
+document_app='kpdf'
+raw_app='vim'
+office_app='openoffice'
+emul_app='wine'
+
+# part 2: create the aliases
+for meta in $filetypes; do
+	for format in $(eval echo -n "$"${meta}_formats); do 
+		eval alias -s $format="$"${meta}_app
+	done
+	unset ${meta}_{formats,app}
+done
+
+unset filetypes meta

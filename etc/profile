@@ -1,0 +1,2 @@
+source $HOME/etc/zsh/colors
+print -P "${info}>>${reset} this is ${info}`uname -srm`${reset} on ${info}%l${reset}"
