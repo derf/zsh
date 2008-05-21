@@ -20,6 +20,7 @@ uname=$(uname)
 export PATH=$HOME/bin:$PATH
 export EDITOR==vim
 export MPD_HOST=saviour
+export LANG=C
 [ $uname = OpenBSD ] && export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
 export HOST
 
