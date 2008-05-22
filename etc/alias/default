@@ -9,12 +9,12 @@
 
 alias feh='feh --quiet'
 
-alias fgrep='grep -F --color=auto'
+[ $uname = Linux ] && alias fgrep='grep -F --color=auto'
 
 # find does globbing itself
 alias find='noglob find'
 
-alias grep='grep --color=auto'
+[ $uname = Linux ] && alias grep='grep --color=auto'
 
 alias host='host -a'
 
