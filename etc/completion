@@ -1,6 +1,6 @@
 ## vim:ft=zsh
 
-zstyle ':completion:*' list-colors $(dircolors $HOME/packages/zsh/etc/dircolors | head -n 1 | sed -r 's/LS_COLORS=|;$//g')
+[ $uname = Linux ] && zstyle ':completion:*' list-colors $(dircolors $HOME/packages/zsh/etc/dircolors | head -n 1 | sed -r 's/LS_COLORS=|;$//g')
 # Mark the current selection when tabbing through possible completions
 zstyle ':completion:*' menu select=1
 # Also complete uppercase names with lowercase
