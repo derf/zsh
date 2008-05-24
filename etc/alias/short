@@ -43,6 +43,10 @@ alias dprc='sudo dpkg-reconfigure'
 
 alias acp='apt-cache policy'
 
+## fbi
+alias fbif='fbi -a'
+alias fbij='fbi -a -u'
+
 ## feh
 alias fehf='feh -Tfull' # Fullscreen
 alias fehi='feh .fehindex.jpg'
