@@ -7,7 +7,7 @@ alias cp='cp -i'
 # The free/used/total space of encfs type filesystems is broken here
 [ $uname = Linux ] && alias df='df --human-readable --local --exclude-type=fuse.encfs' || alias df='df -hl'
 
-[ $uname = Linux ] && alias du='du --human-readable --summarize' || alias du='du -sh'
+[ $uname = Linux ] && alias du='du --human-readable --summarize --dereference-args' || alias du='du -sh'
 
 alias feh='feh --quiet'
 
