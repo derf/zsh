@@ -5,10 +5,12 @@
 
 # Search the packages list
 alias acse='apt-cache search'
+alias afse='apt-file search'
 alias apse='aptitude search'
 
 # Show package information
 alias acsh='apt-cache show'
+alias afsh='apt-file show'
 alias apsh='aptitude show'
 alias dps='dpkg --status'
 
