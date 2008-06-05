@@ -23,7 +23,7 @@ export MPD_HOST=saviour
 [ $uname = Linux ] && export LANG=en_US.UTF-8
 [ $uname = OpenBSD ] && export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
 export HOST
-[ $uname = Linux ] && export MANPATH=$(manpath):$HOME/packages/.collected/man
+[ $uname = Linux -a -z "$MANPATH" ] && export MANPATH=$(manpath):$HOME/packages/.collected/man
 
 # Fancy directory colors
 [ $uname = Linux ] && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
