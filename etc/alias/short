@@ -1,6 +1,14 @@
 ## Short aliases
 ## vim:ft=zsh
 
+## For Loops
+
+alias allf='for i in *(.);'
+alias alld='for i in *(/);'
+alias alle='for i in *(*);'
+alias alll='for i in *(@);'
+alias all='for i in *;'
+
 ## Debian package system (aptitude/apt-get, apt-cache, dpkg)
 
 # Search the packages list
