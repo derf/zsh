@@ -1,6 +1,6 @@
 ## vim:ft=zsh
 
-## internal stuff
+## mostly internal stuff
 ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
 alias 'linux:'='[ $uname = Linux ] &&'
@@ -31,5 +31,4 @@ umask 077
 ## cleanup
 unalias 'linux:'
 unalias 'openbsd:'
-unset ZDIR
 unset uname
