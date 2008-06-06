@@ -4,6 +4,7 @@
 ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
 alias 'linux:'='[ $uname = Linux ] &&'
+alias 'ls-colors:'='which dircolors &> /dev/null &&'
 alias 'openbsd:'='[ $uname = OpenBSD ] &&'
 
 ## include the actual config
@@ -23,12 +24,13 @@ source $ZDIR/completion
 
 ## misc
 bindkey -e # EMACS bindings
-linux: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
+ls-colors: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
 trap 'echo zsh: Program terminated with exit status $?' ZERR
 mesg n
 umask 077
 
 ## cleanup
 unalias 'linux:'
+unalias 'ls-colors:'
 unalias 'openbsd:'
 unset uname
