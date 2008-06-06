@@ -5,18 +5,18 @@
 alias cp='cp -i'
 
 # The free/used/total space of encfs type filesystems is broken here
-[ $uname = Linux ] && alias df='df --human-readable --local --exclude-type=fuse.encfs' || alias df='df -hl'
+linux: alias df='df --human-readable --local --exclude-type=fuse.encfs' || alias df='df -hl'
 
-[ $uname = Linux ] && alias du='du --human-readable --summarize --dereference-args' || alias du='du -sh'
+linux: alias du='du --human-readable --summarize --dereference-args' || alias du='du -sh'
 
 alias feh='feh --quiet'
 
-[ $uname = Linux ] && alias fgrep='grep -F --color=auto'
+linux: alias fgrep='grep -F --color=auto'
 
 # find does globbing itself
 alias find='noglob find'
 
-[ $uname = Linux ] && alias grep='grep --color=auto'
+linux: alias grep='grep --color=auto'
 
 alias host='host -a'
 
@@ -29,10 +29,10 @@ alias ifconfig='/sbin/ifconfig'
 export LESS='--silent --clear-screen --RAW-CONTROL-CHARS --quit-if-one-screen --ignore-case --tabs=5'
 
 # classify = "/" after dirs, "*" after executables etc
-[ $uname = Linux ] && alias ls='ls --color=auto --classify --human-readable' || alias ls='ls -Fh'
+linux: alias ls='ls --color=auto --classify --human-readable' || alias ls='ls -Fh'
 
 # Somehow folllowing the 'learn something new every day' ;-)
-[ $uname = Linux ] && alias man='man --all' || alias man='man -a'
+linux: alias man='man --all' || alias man='man -a'
 
 # Useful on sshfs or similar
 alias mplayer='mplayer -cache 6000 -cache-min 50'
@@ -42,7 +42,7 @@ alias mv='mv -i'
 alias mx='mx -aZ'
 
 # Only TCP/TCP6, not sockets and such
-[ $uname = Linux ] && alias netstat='sudo netstat --program --listening --all --tcp --extend' || alias netstat='sudo netstat -latp tcp'
+linux: alias netstat='sudo netstat --program --listening --all --tcp --extend' || alias netstat='sudo netstat -latp tcp'
 
 # BSD style
 alias ps='ps aux'

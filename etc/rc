@@ -1,43 +1,14 @@
 ## vim:ft=zsh
-autoload -Uz compinit
-autoload colors
-autoload zargs
-compinit -C
-colors
 
-bindkey -e # EMACS bindings
-zstyle :compinstall filename "$HOME/.zshrc"
-
-## zsh vars
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
-DIRSTACKSIZE=20
+## internal stuff
 ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
-
-## internal aliases
 alias 'linux:'='[ $uname = Linux ] &&'
 alias 'openbsd:'='[ $uname = OpenBSD ] &&'
 
-## other vars
-export PATH=$HOME/bin:$PATH
-export EDITOR==vim
-export MPD_HOST=saviour
-linux: export LANG=en_US.UTF-8
-openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
-export HOST
-linux: [ -z "$MANPATH" ] && export MANPATH=$(manpath):$HOME/packages/.collected/man
-
-# Fancy directory colors
-linux: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
-
-## Host completion
-_hosts() { compadd alpha beta gamma kraftwerk delta epsilon zeta eta saviour theta iota kappa nemesis lambda;}
-
-## Show exitcode on failure
-trap 'echo zsh: Program terminated with exit status $?' ZERR
-
+## include the actual config
+source $ZDIR/modules
+source $ZDIR/variables
 source $ZDIR/colors
 source $ZDIR/functions
 source $ZDIR/options
@@ -50,8 +21,15 @@ source $ZDIR/alias/global
 source $ZDIR/alias/short
 source $ZDIR/completion
 
-unalias 'linux:'
-unalias 'openbsd:'
-
+## misc
+bindkey -e # EMACS bindings
+linux: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
+trap 'echo zsh: Program terminated with exit status $?' ZERR
 mesg n
 umask 077
+
+## cleanup
+unalias 'linux:'
+unalias 'openbsd:'
+unset ZDIR
+unset uname
