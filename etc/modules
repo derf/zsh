@@ -1,0 +1,6 @@
+## vim:ft=zsh
+autoload -Uz compinit
+autoload colors
+autoload zargs
+compinit -C
+colors

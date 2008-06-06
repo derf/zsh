@@ -62,7 +62,7 @@ alias fehf='feh -Tfull' # Fullscreen
 alias fehfr='feh -Tfull --recursive'
 alias fehi='feh .fehindex.jpg'
 alias fehj='feh -Tjust' # Screensaver-like
-alias fejr='feh -Tjust --recursive'
+alias fehjr='feh -Tjust --recursive'
 for i in {5,10,15,20}; {
 	alias fehj$i='feh -Tjust'$i
 	alias fehf$i='feh -Tfull'$i
