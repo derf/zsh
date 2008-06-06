@@ -1,7 +1,10 @@
 ## vim:ft=zsh
 
+zstyle :compinstall filename "$HOME/.zshrc"
 [ $uname = Linux ] && zstyle ':completion:*' list-colors $(dircolors $HOME/packages/zsh/etc/dircolors | head -n 1 | sed -r 's/LS_COLORS=|;$//g')
 # Mark the current selection when tabbing through possible completions
 zstyle ':completion:*' menu select=1
 # Also complete uppercase names with lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' '' 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' ''
+
+_hosts() { compadd alpha beta gamma kraftwerk delta epsilon zeta eta saviour theta iota kappa nemesis lambda;}
