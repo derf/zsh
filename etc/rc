@@ -16,17 +16,21 @@ DIRSTACKSIZE=20
 ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
 
+## internal aliases
+alias 'linux:'='[ $uname = Linux ] &&'
+alias 'openbsd:'='[ $uname = OpenBSD ] &&'
+
 ## other vars
 export PATH=$HOME/bin:$PATH
 export EDITOR==vim
 export MPD_HOST=saviour
-[ $uname = Linux ] && export LANG=en_US.UTF-8
-[ $uname = OpenBSD ] && export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
+linux: export LANG=en_US.UTF-8
+openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
 export HOST
-[ $uname = Linux -a -z "$MANPATH" ] && export MANPATH=$(manpath):$HOME/packages/.collected/man
+linux: [ -z "$MANPATH" ] && export MANPATH=$(manpath):$HOME/packages/.collected/man
 
 # Fancy directory colors
-[ $uname = Linux ] && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
+linux: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
 
 ## Host completion
 _hosts() { compadd alpha beta gamma kraftwerk delta epsilon zeta eta saviour theta iota kappa nemesis lambda;}
@@ -45,6 +49,9 @@ source $ZDIR/alias/default
 source $ZDIR/alias/global
 source $ZDIR/alias/short
 source $ZDIR/completion
+
+unalias 'linux:'
+unalias 'openbsd:'
 
 mesg n
 umask 077
