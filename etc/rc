@@ -4,6 +4,7 @@
 ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
 alias 'linux:'='[ $uname = Linux ] &&'
+alias 'non-linux:'='[ $uname = Linux ] ||'
 alias 'ls-colors:'='which dircolors &> /dev/null &&'
 alias 'openbsd:'='[ $uname = OpenBSD ] &&'
 

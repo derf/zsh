@@ -5,9 +5,11 @@
 alias cp='cp -i'
 
 # The free/used/total space of encfs type filesystems is broken here
-linux: alias df='df --human-readable --local --exclude-type=fuse.encfs' || alias df='df -hl'
+linux: alias df='df --human-readable --local --exclude-type=fuse.encfs'
+non-linux: alias df='df -hl'
 
-linux: alias du='du --human-readable --summarize --dereference-args' || alias du='du -sh'
+linux: alias du='du --human-readable --summarize --dereference-args'
+non-linux: alias du='du -sh'
 
 alias feh='feh --quiet'
 
@@ -29,10 +31,12 @@ alias ifconfig='/sbin/ifconfig'
 export LESS='--silent --clear-screen --RAW-CONTROL-CHARS --quit-if-one-screen --ignore-case --tabs=5'
 
 # classify = "/" after dirs, "*" after executables etc
-linux: alias ls='ls --color=auto --classify --human-readable' || alias ls='ls -Fh'
+linux: alias ls='ls --color=auto --classify --human-readable'
+non-linux: alias ls='ls -Fh'
 
 # Somehow folllowing the 'learn something new every day' ;-)
-linux: alias man='man --all' || alias man='man -a'
+linux: alias man='man --all'
+non-linux: alias man='man -a'
 
 # Useful on sshfs or similar
 alias mplayer='mplayer -cache 6000 -cache-min 50'
@@ -42,7 +46,8 @@ alias mv='mv -i'
 alias mx='mx -aZ'
 
 # Only TCP/TCP6, not sockets and such
-linux: alias netstat='sudo netstat --program --listening --all --tcp --extend' || alias netstat='sudo netstat -latp tcp'
+linux: alias netstat='sudo netstat --program --listening --all --tcp --extend'
+non-linux: alias netstat='sudo netstat -latp tcp'
 
 # BSD style
 alias ps='ps aux'
