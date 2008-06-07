@@ -57,3 +57,6 @@ alias screen='screen -DUR'
 
 # Don't collapse trees
 alias todo='todo -f +children'
+
+# smooth scrolling
+alias xload='xload -jumpscroll 1'
