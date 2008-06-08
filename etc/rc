@@ -32,6 +32,7 @@ umask 077
 
 ## cleanup
 unalias 'linux:'
+unalias 'non-linux:'
 unalias 'ls-colors:'
 unalias 'openbsd:'
 unset uname
