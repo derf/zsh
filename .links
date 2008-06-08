@@ -1,1 +1,2 @@
 soft .zshrc packages/zsh/etc/rc
+soft .zprofile packages/zsh/etc/profile
