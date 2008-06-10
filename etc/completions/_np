@@ -1,0 +1,13 @@
+#compdef np
+## vim:ft=zsh
+
+local values
+
+values=(
+	'album'
+	'artist'
+	'file'
+	'song'
+	''
+)
+_values -w -s ' ' 'now playing' $values
