@@ -1,16 +1,21 @@
 #compdef pkg
 ## vim:ft=zsh
 
-_x_arguments -C -s \
-	'add' \
-	'changelog' \
-	'changeroot' \
-	'delete' \
-	'info' \
-	'install' \
-	'list' \
-	'list-all' \
-	'log' \
-	'status' \
+local values
+
+values=(
+	'add'
+	'changelog'
+	'changeroot'
+	'delete'
+	'info'
+	'install'
+	'list'
+	'list-all'
+	'log'
+	'remove'
+	'status'
 	'update'
-	'*'
+	''
+)
+_values -w -s ' ' 'pkg function' $values
