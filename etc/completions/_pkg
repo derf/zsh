@@ -1,1 +1,16 @@
+#compdef pkg
 ## vim:ft=zsh
+
+_x_arguments -C -s \
+	'add' \
+	'changelog' \
+	'changeroot' \
+	'delete' \
+	'info' \
+	'install' \
+	'list' \
+	'list-all' \
+	'log' \
+	'status' \
+	'update'
+	'*'
