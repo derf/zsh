@@ -1,12 +1,20 @@
 ## vim:ft=zsh
+
+# zsh varirables
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 DIRSTACKSIZE=20
+
+# Paths
 export PATH=$HOME/bin:$PATH
+linux: [ -z "$MANPATH" ] && export MANPATH=$(manpath):$HOME/packages/.collected/man
+
+# Used by other programs
 export EDITOR==vim
 export MPD_HOST=saviour
+export HOST
+
+# others
 linux: export LANG=en_US.UTF-8
 openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
-export HOST
-linux: [ -z "$MANPATH" ] && export MANPATH=$(manpath):$HOME/packages/.collected/man
