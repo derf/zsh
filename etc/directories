@@ -12,7 +12,7 @@ case `hostname` in
 		music=$HOME/audio
 		www=/var/www
 		cgi=/usr/lib/cgi-bin
-		export lyrics=$HOME/var/svn/lyrics
+		export lyrics=$HOME/packages/lyrics
 		export vcs=$HOME/var/svn
 	;;
 	nemesis)
