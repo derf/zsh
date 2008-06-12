@@ -98,7 +98,7 @@ alias lst='tar tvf'
 alias lsz='tar tvzf'
 
 # Automatically upload screenshot plzkthx
-alias putscreen='FILE=$(screenshot); put $FILE; unset FILE'
+alias putscreen='put $(screenshot)'
 
 alias rd='rmdir'
 
