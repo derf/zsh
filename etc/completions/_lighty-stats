@@ -1,9 +1,9 @@
 #compdef lighty-stats
 ## vim:ft=zsh
 
-local options
+local arguments
 
-options=(
+arguments=(
 	'(--no-show-days)--show-days'
 	'(--no-show-ips)--show-ips'
 	'(--no-show-hosts)--show-hosts'
@@ -16,6 +16,7 @@ options=(
 	'--ignore='
 	'--pathlength='
 	'--width='
-	''
+	'*:file:_files'
 )
-_arguments -s $options
+
+_arguments -s $arguments
