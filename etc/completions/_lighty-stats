@@ -1,0 +1,21 @@
+#compdef lighty-stats
+## vim:ft=zsh
+
+local options
+
+options=(
+	'(--no-show-days)--show-days'
+	'(--no-show-ips)--show-ips'
+	'(--no-show-hosts)--show-hosts'
+	'(--no-show-status)--show-status'
+	'(--no-show-sites)--show-sites'
+	'*--format='
+	'--bytes'
+	'--count='
+	'--match='
+	'--ignore='
+	'--pathlength='
+	'--width='
+	''
+)
+_arguments -s $options
