@@ -7,7 +7,7 @@ SAVEHIST=$HISTSIZE
 DIRSTACKSIZE=20
 
 # Paths
-export PATH=$HOME/bin:$PATH
+[ "$path[1]" = "$HOME/bin" ] || export PATH=$HOME/bin:$PATH
 linux: [ -z "$MANPATH" ] && export MANPATH=$(manpath):$HOME/packages/.collected/man
 
 # Used by other programs
