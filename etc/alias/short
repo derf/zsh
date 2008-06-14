@@ -9,6 +9,12 @@ alias alle='for i in *(*);'
 alias alll='for i in *(@);'
 alias all='for i in *;'
 
+alias allfr='for i in **/*(.);'
+alias alldr='for i in **/*(/);'
+alias aller='for i in **/*(*);'
+alias alllr='for i in **/*(@);'
+alias allr='for i in **/*;'
+
 ## Debian package system (aptitude/apt-get, apt-cache, dpkg)
 
 # Search the packages list
