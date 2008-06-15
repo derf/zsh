@@ -3,10 +3,12 @@
 ## mostly internal stuff
 ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
+debian=$(fgrep Debian /proc/version)
 alias 'linux:'='[ $uname = Linux ] &&'
 alias 'non-linux:'='[ $uname = Linux ] ||'
 alias 'ls-colors:'='which dircolors &> /dev/null &&'
 alias 'openbsd:'='[ $uname = OpenBSD ] &&'
+alias 'debian:'='[ -n "$debian" ] &&'
 
 ## include the actual config
 source $ZDIR/modules
