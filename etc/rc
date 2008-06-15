@@ -3,7 +3,7 @@
 ## mostly internal stuff
 ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
-debian=$(fgrep Debian /proc/version)
+debian=$([ -f /proc/version ] && fgrep Debian /proc/version)
 alias 'linux:'='[ $uname = Linux ] &&'
 alias 'non-linux:'='[ $uname = Linux ] ||'
 alias 'ls-colors:'='which dircolors &> /dev/null &&'
