@@ -15,49 +15,50 @@ alias aller='for i in **/*(*);'
 alias alllr='for i in **/*(@);'
 alias allr='for i in **/*;'
 
-## Debian package system (aptitude/apt-get, apt-cache, dpkg)
+debian: {
+	## Debian package system (aptitude/apt-get, apt-cache, dpkg)
 
-# Search the packages list
-alias acse='apt-cache search'
-alias afse='apt-file search'
-alias apse='aptitude search'
+	# Search the packages list
+	alias acse='apt-cache search'
+	alias afse='apt-file search'
+	alias apse='aptitude search'
 
-# Show package information
-alias acsh='apt-cache show'
-alias afsh='apt-file show'
-alias apsh='aptitude show'
-alias dps='dpkg --status'
+	# Show package information
+	alias acsh='apt-cache show'
+	alias afsh='apt-file show'
+	alias apsh='aptitude show'
+	alias dps='dpkg --status'
 
-# Update packages list
-alias agu='sudo apt-get update'
-alias apu='sudo aptitude update'
+	# Update packages list
+	alias agu='sudo apt-get update'
+	alias apu='sudo aptitude update'
 
-# Update packages
-alias ags='sudo apt-get upgrade'
-alias agf='sudo apt-get dist-upgrade'
-alias aps='sudo aptitude safe-upgrade'
-alias apf='sudo aptitude full-upgrade'
+	# Update packages
+	alias ags='sudo apt-get upgrade'
+	alias agf='sudo apt-get dist-upgrade'
+	alias aps='sudo aptitude safe-upgrade'
+	alias apf='sudo aptitude full-upgrade'
 
-# Install packages
-alias agi='sudo apt-get install'
-alias api='sudo aptitude install'
-alias dpi='sudo dpkg --install'
+	# Install packages
+	alias agi='sudo apt-get install'
+	alias api='sudo aptitude install'
+	alias dpi='sudo dpkg --install'
 
-# Clean packages cache
-alias agc='sudo apt-get clean'
-alias apc='sudo aptitude clean'
+	# Clean packages cache
+	alias agc='sudo apt-get clean'
+	alias apc='sudo aptitude clean'
 
-# Remove/Purge packages
-alias agp='sudo apt-get purge'
-alias agr='sudo apt-get remove'
-alias dpp='sudo dpkg --purge'
-alias dpr='sudo dpkg --remove'
+	# Remove/Purge packages
+	alias agp='sudo apt-get purge'
+	alias agr='sudo apt-get remove'
+	alias dpp='sudo dpkg --purge'
+	alias dpr='sudo dpkg --remove'
 
-# Configure packages
-alias dprc='sudo dpkg-reconfigure'
+	# Configure packages
+	alias dprc='sudo dpkg-reconfigure'
 
-
-alias acp='apt-cache policy'
+	alias acp='apt-cache policy'
+}
 
 ## fbi
 alias fbif='fbi -a'
