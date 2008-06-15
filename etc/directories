@@ -19,3 +19,4 @@ case `hostname` in
 		export vcs=$HOME/var/svn
 		export lyrics=$vcs/lyrics
 esac
+svn=$vcs
