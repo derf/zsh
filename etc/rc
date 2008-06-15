@@ -37,4 +37,5 @@ unalias 'linux:'
 unalias 'non-linux:'
 unalias 'ls-colors:'
 unalias 'openbsd:'
+unalias 'debian:'
 unset uname
