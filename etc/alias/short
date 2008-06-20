@@ -123,4 +123,4 @@ alias snu='snownews -u'
 alias unless='if !'
 
 # start x and log out immediately
-alias x='startx &! exit'
+alias x='unsetopt bg_nice; startx &! exit'
