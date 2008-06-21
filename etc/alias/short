@@ -49,10 +49,12 @@ debian: {
 	alias apc='sudo aptitude clean'
 
 	# Remove/Purge packages
+	alias agar='sudo apt-get autoremove'
 	alias agp='sudo apt-get purge'
 	alias agr='sudo apt-get remove'
 	alias dpp='sudo dpkg --purge'
 	alias dpr='sudo dpkg --remove'
+
 
 	# Configure packages
 	alias dprc='sudo dpkg-reconfigure'
@@ -84,6 +86,7 @@ alias feht='feh -Tthumbnail' # List thumbnails
 
 ## Mercurial (hg)
 alias hga='hg add'
+alias hgar='hg addremove'
 alias hgc='hg commit -m'
 alias hgd='hg diff | less'
 alias hgf='hg fetch'
