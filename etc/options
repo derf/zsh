@@ -10,6 +10,8 @@ setopt auto_cd cdable_vars
 setopt correct
 # echo 'foo''bar''' will become foo'bar'
 setopt rc_quotes
+# Alert me in case of non-zero exit status
+setopt print_exit_value
 # Accidently hitting ^s sucks (alternative: `stty -ixon`)
 unsetopt flow_control
 # And having to escape "!" everytime does, too

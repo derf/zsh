@@ -28,7 +28,6 @@ source $ZDIR/completion
 ## misc
 bindkey -e # EMACS bindings
 ls-colors: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
-trap 'echo zsh: Program terminated with exit status $?' ZERR
 mesg n
 umask 077
 
