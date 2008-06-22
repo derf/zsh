@@ -28,6 +28,7 @@ source $ZDIR/completion
 ## misc
 bindkey -e # EMACS bindings
 ls-colors: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
+[ -r /tmp/envstore-raw-$UID ] && . /tmp/envstore-raw-$UID
 mesg n
 umask 077
 
