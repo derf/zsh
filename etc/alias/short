@@ -84,6 +84,15 @@ alias fehjrx='feh -Tjust --recursive --slideshow-delay'
 alias fehfrx='feh -Tfull --recursive --slideshow-delay'
 alias feht='feh -Tthumbnail' # List thumbnails
 
+## Git
+alias gita='git add'
+alias gitc='git commit -m'
+alias gitd='git diff'
+alias gitf='git pull'
+alias gitl='git log'
+alias gitp='git push'
+alias gits='git status'
+
 ## Mercurial (hg)
 alias hga='hg add'
 alias hgar='hg addremove'
