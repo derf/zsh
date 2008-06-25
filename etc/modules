@@ -2,5 +2,5 @@
 autoload -Uz compinit
 autoload colors
 autoload zargs
-compinit -C
+compinit -C -d $HOME/var/cache/zsh/compdump
 colors
