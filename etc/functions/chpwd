@@ -1,0 +1,10 @@
+chpwd () {
+	pstags=''
+	[ -f .todo ] && pstags+='todo '
+	[ -f .fehindex.jpg ] && pstags+='feh '
+	[ -d .hg ] && pstags+='hg '
+	[ -d .git ] && pstags+='git '
+	[ -d .svn ] && pstags+='svn '
+	[ -f Makefile -o -f makefile ] && pstags+='make '
+	source $ZDIR/prompt
+}
