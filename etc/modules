@@ -1,6 +1,6 @@
 ## vim:ft=zsh
-autoload -Uz compinit
+autoload -U compinit
 autoload colors
 autoload zargs
-compinit -C -d $HOME/var/cache/zsh/compdump
+compinit -C -d var/cache/zsh/compdump
 colors
