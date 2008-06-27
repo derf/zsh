@@ -16,6 +16,7 @@ values=(
 	'remove'
 	'status'
 	'update'
+	'upgrade'
 	''
 )
 _values -w -s ' ' 'pkg function' $values
