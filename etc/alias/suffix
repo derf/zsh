@@ -5,7 +5,7 @@
 # List of filetypes covered by aliases
 filetypes=(archive audio midi video image document raw office emul)
 
-# Formats
+# File extensions
 archive_formats=(tar.bz2 tar.gz tar bz2 gz zip rar)
 audio_formats=(flac mp3 ogg wav wma)
 midi_formats=(mid s3m)

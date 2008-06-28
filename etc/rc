@@ -26,7 +26,7 @@ source $ZDIR/alias/short
 source $ZDIR/completion
 
 ## misc
-bindkey -e # EMACS bindings
+bindkey -e
 ls-colors: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
 [ -r /tmp/envstore-raw-$UID ] && . /tmp/envstore-raw-$UID
 mesg n

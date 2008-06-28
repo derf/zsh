@@ -41,7 +41,7 @@ alias man='man -a'
 
 # Useful on sshfs or similar
 # FIXME: this sucks for streams
-alias mplayer='mplayer -cache 6000 -cache-min 50'
+#alias mplayer='mplayer -cache 6000 -cache-min 50'
 
 alias mv='mv -i'
 

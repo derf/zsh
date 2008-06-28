@@ -9,7 +9,7 @@ case `hostname` in
 		export vcs=/data/derf/svn
 	;;
 	saviour)
-		music=$HOME/audio
+		music=$HOME/lib/audio
 		www=/var/www
 		cgi=/usr/lib/cgi-bin
 		export lyrics=$HOME/packages/lyrics
@@ -17,6 +17,6 @@ case `hostname` in
 	;;
 	nemesis)
 		export vcs=$HOME/var/svn
-		export lyrics=$vcs/lyrics
+		export lyrics=$HOME/packages/lyrics
 esac
 svn=$vcs
