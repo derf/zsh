@@ -14,7 +14,7 @@ alias 'debian:'='[ -n "$debian" ] &&'
 source $ZDIR/modules
 source $ZDIR/variables
 source $ZDIR/colors
-source $ZDIR/functions/*
+source $ZDIR/function
 source $ZDIR/options
 source $ZDIR/prompt
 source $ZDIR/directories
