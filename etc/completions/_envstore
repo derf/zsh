@@ -1,0 +1,14 @@
+#compdef envstore
+## vim:ft=zsh
+
+local values
+
+values=(
+	'clear'
+	'eval'
+	'rm'
+	'save'
+	'show'
+	''
+)
+_values -w -s ' ' 'envstore' $values
