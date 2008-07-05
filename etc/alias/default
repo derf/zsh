@@ -54,8 +54,8 @@ linux: alias netstat='sudo netstat --program --listening --all --tcp --extend'
 # BSD style
 alias ps='ps aux'
 
-# use unicode, reattach anyway
-alias screen='screen -DUR'
+# use unicode, reattach anyway, resize if neccessary
+alias screen='screen -ADRUa'
 
 # Don't collapse trees
 alias todo='todo -f +children'
