@@ -6,6 +6,7 @@ case `hostname` in
 		web=$HOME/public_html
 		export vcs=$HOME/var/svn
 		export lyrics=$HOME/packages/lyrics
+	;;
 	kraftwerk)
 		music=/data/share/music
 		www=/data/www
