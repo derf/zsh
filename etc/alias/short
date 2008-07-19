@@ -92,6 +92,7 @@ alias gitf='git pull'
 alias gitl='git log'
 alias gitp='git push'
 alias gits='git status'
+alias git-serve='git-daemon --export-all --base-path=. .'
 
 ## Mercurial (hg)
 alias hga='hg add'
@@ -123,6 +124,8 @@ alias rd='rmdir'
 
 # Useful when a beamer is connected to my laptop
 alias rplayer='mplayer -vo x11 -zoom -vf scale=1024:-2'
+
+alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
 ## Suspend
 alias s2d='sudo s2disk'
