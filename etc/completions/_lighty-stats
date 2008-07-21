@@ -1,5 +1,5 @@
 #compdef lighty-stats
-## vim:ft=-zsh
+## vim:ft=zsh
 
 local arguments
 
@@ -21,6 +21,7 @@ arguments=(
 	'--ignore=-'
 	'--pathlength=-'
 	'--width=-'
+	'--log-format=-'
 	'*:file:_files'
 )
 
