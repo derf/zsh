@@ -135,7 +135,5 @@ alias s2r='sudo s2ram -f'
 alias sn='snownews'
 alias snu='snownews -u'
 
-alias unless='if !'
-
 # start x and log out immediately
 alias x='unsetopt bg_nice; startx &! exit'

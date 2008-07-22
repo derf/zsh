@@ -10,4 +10,4 @@ zstyle ':completion:*' menu select=1
 # Also complete uppercase names with lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' ''
 
-_hosts() { compadd alpha beta gamma kraftwerk delta epsilon zeta eta saviour theta iota kappa nemesis lambda my aneurysm;}
+_hosts() { compadd derf.homelinux.org kraftwerk saviour kappa nemesis aneurysm;}

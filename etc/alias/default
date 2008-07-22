@@ -48,8 +48,8 @@ alias mv='mv -i'
 alias mx='mx -aZ'
 
 # Only TCP/TCP6, not sockets and such
-alias netstat='sudo netstat -latp tcp'
-linux: alias netstat='sudo netstat --program --listening --all --tcp --extend'
+alias netstat='sudo netstat -atp tcp'
+linux: alias netstat='sudo netstat --program --all --tcp --extend'
 
 # BSD style
 alias ps='ps aux'
