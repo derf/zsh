@@ -4,7 +4,7 @@
 local arguments
 
 arguments=(
-	'*:file:_path_files -W /etc/init.d'
+	'*:file:_path_files -W /etc/init.d -g "*(*)"'
 )
 
 _arguments -s $arguments
