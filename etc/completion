@@ -7,7 +7,7 @@ ls-colors: zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # Mark the current selection when tabbing through possible completions
 zstyle ':completion:*' menu select=1
 
-# Also complete uppercase names with lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' ''
+# Complete uppercase names with lowercase and spaces with _
+zstyle ':completion:*' matcher-list 'm:_= m:{a-z}={A-Z}' ''
 
 _hosts() { compadd derf.homelinux.org kraftwerk saviour kappa nemesis aneurysm;}
