@@ -2,7 +2,7 @@
 ## vim:ft=zsh
 
 local values
-#local arguments
+local arguments
 
 values=(
 	'add'
@@ -21,8 +21,8 @@ values=(
 	'update'
 	'upgrade'
 )
-#arguments=(
-#	'*:file:_path_files -W /home/derf/packages'
-#)
+arguments=(
+	'*:file:_path_files -W /home/derf/packages -/'
+)
 _values -w -s ' ' 'pkg function' $values
-#_arguments -s $arguments
+_arguments -s $arguments
