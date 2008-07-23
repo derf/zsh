@@ -1,4 +1,4 @@
-#compdef Start Restart Stop Reload Zap
+#compdef Start Restart Stop Reload
 ## vim:ft=zsh
 
 local arguments
