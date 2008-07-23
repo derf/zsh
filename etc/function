@@ -3,6 +3,6 @@ for i in $ZDIR/functions/*; {
 }
 
 # from https://git.tabularazor.org/~mikael/etc/tree/zsh/functions
-for action in Start Restart Stop Reload Zap; {
+for action in Start Stop Restart Reload; {
 	eval "$action() { sudo /etc/init.d/\$1 ${action:l} ; }"
 }
