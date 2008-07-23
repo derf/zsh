@@ -4,25 +4,27 @@
 local values
 local arguments
 
+#TODO: seperate values that need arguments from those that don't,
+# make this all nicer in general
 values=(
-	'add'
-	'changelog'
-	'changeroot'
-	'delete'
-	'info'
-	'install'
-	'list'
-	'list-all'
-	'local-update'
-	'log'
-	'remote-update'
-	'remove'
-	'status'
-	'update'
-	'upgrade'
+	'add[install package]'
+	'changelog[show changelog of package]'
+	'changeroot[change default url for al packages]'
+	'delete[remove package]'
+	'info[show package info]'
+	'install[install package]'
+	'list[list installed packages]'
+	'list-all[list remote available packages]'
+	'local-update[update local packages list]'
+	'log[show package log]'
+	'remote-update[update remote pckages list]'
+	'remove[remove package]'
+	'status[check packages dependencies etc]'
+	'update[update packages lists]'
+	'upgrade[upgrade packages]'
 )
 arguments=(
 	'*:file:_path_files -W /home/derf/packages -/'
 )
-_values -w -s ' ' 'pkg function' $values
+_values -s ' ' -S ' ' -w 'pkg function' $values
 _arguments -s $arguments

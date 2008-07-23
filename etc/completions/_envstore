@@ -4,11 +4,11 @@
 local values
 
 values=(
-	'clear'
-	'eval'
-	'rm'
-	'save'
-	'show'
-	''
+	# TODO there must be a better solution, like (*)clear...
+	'(eval rm save show)clear[Clear saved variables]'
+	'(clear rm save show)eval[Produce output for evaluation]'
+	'(clear eval save show)rm[Remove variable]:variable'
+	'(clear eval rm show)save[Save variable]:variable'
+	'(clear eval rm save)show[Show saved variables]'
 )
-_values -w -s ' ' 'envstore' $values
+_values -s ' ' -S ' ' -w 'envstore' $values
