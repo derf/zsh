@@ -8,6 +8,6 @@ ls-colors: zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select=1
 
 # Complete uppercase names with lowercase and spaces with _
-zstyle ':completion:*' matcher-list 'm:_= m:{a-z}={A-Z}' ''
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} m:_=\\\ ' ''
 
 _hosts() { compadd derf.homelinux.org kraftwerk saviour kappa nemesis aneurysm;}
