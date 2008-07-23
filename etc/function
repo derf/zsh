@@ -1,3 +1,8 @@
 for i in $ZDIR/functions/*; {
 	autoload $i:t
 }
+
+# from https://git.tabularazor.org/~mikael/etc/tree/zsh/functions
+for action in Start Restart Stop Reload Zap; {
+	eval "$action() { sudo /etc/init.d/\$1 ${action:l} ; }"
+}

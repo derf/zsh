@@ -1,0 +1,10 @@
+#compdef Start Restart Stop Reload Zap
+## vim:ft=zsh
+
+local arguments
+
+arguments=(
+	'*:file:_path_files -W /etc/init.d'
+)
+
+_arguments -s $arguments
