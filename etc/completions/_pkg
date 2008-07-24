@@ -1,30 +1,28 @@
 #compdef pkg
 ## vim:ft=zsh
 
-local values
 local arguments
+local all installed
 
-#TODO: seperate values that need arguments from those that don't,
-# make this all nicer in general
-values=(
-	'add[install package]'
-	'changelog[show changelog of package]'
-	'changeroot[change default url for al packages]'
-	'delete[remove package]'
-	'info[show package info]'
-	'install[install package]'
-	'list[list installed packages]'
-	'list-all[list remote available packages]'
-	'local-update[update local packages list]'
-	'log[show package log]'
-	'remote-update[update remote pckages list]'
-	'remove[remove package]'
-	'status[check packages dependencies etc]'
-	'update[update packages lists]'
-	'upgrade[upgrade packages]'
-)
+all=(pkg -list-all)
+installed=(pkg -list)
+
 arguments=(
-	'*:file:_path_files -W /home/derf/packages -/'
+	'-add[install package]:package:($($all))'
+	'-changelog[show changelog of package]:package:($($installed))'
+	'-changeroot[change default url for al packages]'
+	'-delete[remove package]:package:($($installed))'
+	'-info[show package info]:package:($($installed))'
+	'-install[install package]:package:($($all))'
+	'-list[list installed packages]'
+	'-list-all[list remote available packages]'
+	'-local-update[update local packages list]'
+	'-log[show package log]:package:($($installed))'
+	'-remote-update[update remote pckages list]'
+	'-remove[remove package]:package:($($installed))'
+	'-status[check packages dependencies etc]::package:($($installed))'
+	'-update[update packages lists]'
+	'-upgrade[upgrade packages]::package:($($installed))'
+	''
 )
-_values -s ' ' -S ' ' -w 'pkg function' $values
 _arguments -s $arguments
