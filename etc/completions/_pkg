@@ -1,28 +1,27 @@
 #compdef pkg
 ## vim:ft=zsh
 
-local arguments
+local arguments_action arguments_list arguments_listall
 local all installed
 
-all=(pkg -list-all)
-installed=(pkg -list)
+all=(pkg list-all)
+installed=(pkg list)
 
-arguments=(
-	'-add[install package]:package:($($all))'
-	'-changelog[show changelog of package]:package:($($installed))'
-	'-changeroot[change default url for al packages]'
-	'-delete[remove package]:package:($($installed))'
-	'-info[show package info]:package:($($installed))'
-	'-install[install package]:package:($($all))'
-	'-list[list installed packages]'
-	'-list-all[list remote available packages]'
-	'-local-update[update local packages list]'
-	'-log[show package log]:package:($($installed))'
-	'-remote-update[update remote pckages list]'
-	'-remove[remove package]:package:($($installed))'
-	'-status[check packages dependencies etc]::package:($($installed))'
-	'-update[update packages lists]'
-	'-upgrade[upgrade packages]::package:($($installed))'
-	''
+arguments_action=(
+	'1:action:(add install changelog changeroot delete remove info list list-all local-update log remote-update status update upgrade)'
 )
-_arguments -s $arguments
+arguments_list=(
+	'2:package:($($installed))'
+)
+arguments_listall=(
+	'2:package:($($all))'
+)
+
+if [[ $CURRENT -ge 3 ]] {
+	case ${words[2]} in
+		changelog|delete|remove|status|upgrade) _arguments -s $arguments_list ;;
+		add|info|install) _arguments -s $arguments_listall ;;
+	esac
+} else {
+	_arguments -s $arguments_action
+}
