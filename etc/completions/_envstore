@@ -6,7 +6,6 @@ local arguments
 arguments=(
 	':action:(clear eval rm save show)'
 	':variable:_parameters -g \*-export'
-	''
 )
 
 _arguments -s $arguments
