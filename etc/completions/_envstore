@@ -1,14 +1,12 @@
 #compdef envstore
 ## vim:ft=zsh
 
-local values
+local arguments
 
-values=(
-	# TODO there must be a better solution, like (*)clear...
-	'(eval rm save show)clear[Clear saved variables]'
-	'(clear rm save show)eval[Produce output for evaluation]'
-	'(clear eval save show)rm[Remove variable]:variable'
-	'(clear eval rm show)save[Save variable]:variable'
-	'(clear eval rm save)show[Show saved variables]'
+arguments=(
+	':action:(clear eval rm save show)'
+	':variable:_parameters'
+	''
 )
-_values -s ' ' -S ' ' -w 'envstore' $values
+
+_arguments -s $arguments
