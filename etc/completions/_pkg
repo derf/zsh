@@ -19,7 +19,7 @@ arguments_listall=(
 
 if [[ $CURRENT -ge 3 ]] {
 	case ${words[2]} in
-		changelog|delete|remove|status|upgrade) _arguments -s $arguments_list ;;
+		changelog|delete|log|remove|status|upgrade) _arguments -s $arguments_list ;;
 		add|info|install) _arguments -s $arguments_listall ;;
 	esac
 } else {
