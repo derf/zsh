@@ -6,6 +6,7 @@ HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 DIRSTACKSIZE=20
 LISTMAX=0
+TIMEFMT='%E real  %U user  %S system  %P %J'
 
 # Paths
 fpath=($ZDIR/functions $ZDIR/completions $fpath)
