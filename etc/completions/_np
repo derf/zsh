@@ -1,9 +1,0 @@
-#compdef np
-## vim:ft=zsh
-
-local arguments
-
-arguments=(
-	'1:output:(album artist file song)'
-)
-_arguments -s $arguments
