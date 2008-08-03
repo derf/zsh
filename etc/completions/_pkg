@@ -8,7 +8,7 @@ all=(pkg list-all)
 installed=(pkg list)
 
 arguments_action=(
-	'1:action:(add install changelog changeroot delete remove info list list-all local-update log push remote-update status update upgrade)'
+	'1:action:(add install changelog changeroot check delete remove info list list-all local-update log push remote-update status update upgrade)'
 )
 arguments_list=(
 	'2:package:($($installed))'
