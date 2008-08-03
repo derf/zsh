@@ -1,5 +1,9 @@
 #compdef Start Restart Stop Reload
 ## vim:ft=zsh
+## Completion for /etc/init.d functions
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_initd
+## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/function
 
 local arguments
 

@@ -1,5 +1,9 @@
 #compdef pkg
 ## vim:ft=zsh
+## pkg completion
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_pkg
+## see also: https://derf.homelinux.org/~derf/code/lighty-stats
 
 local arguments_action arguments_list arguments_listall
 local all installed

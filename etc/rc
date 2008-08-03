@@ -1,4 +1,8 @@
 ## vim:ft=zsh
+## zshrc
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/rc
+## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 
 ## mostly internal stuff
 ZDIR=$HOME/packages/zsh/etc

@@ -1,5 +1,9 @@
 #compdef lighty-stats
 ## vim:ft=zsh
+## lighty-stats completion
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_lighty-stats
+## see also: https://derf.homelinux.org/~derf/code/lighty-stats
 
 local arguments
 
