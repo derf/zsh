@@ -2,6 +2,8 @@
 ## To evade them, use '=foo' instead of 'foo'
 ## vim:ft=zsh
 
+alias cal='cal -m'
+
 alias cp='cp -i'
 
 # --human-readable --local
