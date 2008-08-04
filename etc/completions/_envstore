@@ -3,6 +3,7 @@
 ## envstore completion
 ## Daniel Friesel <derf@derf.homelinux.org>
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_envstore
+## see also: http://git.cloudconnected.org/?p=envstore.git;a=summary
 
 local arguments_action arguments_save arguments_rm arguments_eval
 
