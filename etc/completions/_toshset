@@ -13,7 +13,7 @@ arguments=(
 	'-q'
 	'-b[set system beep]:toggle:(on off)'
 	'-lcd[set lcd brightness]:brightness:(semi bright super-bright)'
-	'-inten[set display intensity]:intensity:(1 2 3 4 5 6 7)'
+	'-inten[set display intensity]:intensity:(0 1 2 3 4 5 6 7)'
 	'-pow[set power-up mode]:mode:(boot resume hibernate quick)'
 	'-vol[set beep volume]:volume:(off low medium high)'
 	'-hdd[set minutes until hdd spindown]:spindown time: '
