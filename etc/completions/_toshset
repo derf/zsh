@@ -1,0 +1,48 @@
+#compdef toshset
+## vim:ft=zsh
+## toshset completion (based toshset(1) and a Toshiba Satellite 2670)
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_toshset
+
+local arguments
+
+arguments=(
+	'-l'
+	'-fast'
+	'-v'
+	'-q'
+	'-b[set system beep]:toggle:(on off)'
+	'-lcd[set lcd brightness]:brightness:(semi bright super-bright)'
+	'-inten[set display intensity]:intensity:(1 2 3 4 5 6 7)'
+	'-pow[set power-up mode]:mode:(boot resume hibernate quick)'
+	'-vol[set beep volume]:volume:(off low medium high)'
+	'-hdd[set minutes until hdd spindown]:spindown time: '
+	'-dstrech[set display stretch]:toggle:(on off)'
+	'-d[set minutes until display auto-off]:time: '
+	'-c[set cooling method]:cooling method:(perform quiet other)'
+	'-bs[set battery-save mode]:mode:(user full low economy normal long full)'
+	'-bl[set backlight]:toggle:(on off)'
+	'-bluetooth[set bluetooth]:toggle:(on off)'
+	'-fan[set fan speed]:fan speed:(off 1/4 2/4 3/4 high on low)'
+	'-video[set video device]:video device:(int ext both tv mode5 mode6 mode7'
+	'-cpu[set cpu speed]:cpu speed:(slow fast)'
+	'-cpucache[set cpu cache]:toggle:(on off)'
+	'-sleep[set cpu sleep mode]:toggle:(on off)'
+	'-balarm[set battery alarm]:toggle:(on off)'
+	'-palarm[set lid-closed alarm]:toggle:(on off)'
+	'-walarm[set time/date to wake]:time: '
+	'-ppower[set power-off when lid is closed]:toggle:(on off)'
+	'-parallel[set parallel port mode]:mode:(ecp spp ps2)'
+	'-autooff[minutes of idle until system shuts down]:minutes: '
+	'-ostring[set owner string]:name: '
+	'-upasswd[set user password]'
+	'-spasswd[set supervisor password]'
+	'-usblegacy[toggle usb legacy mode]'
+	'-usbfdd[toggle usb fdd emulation mode]'
+	'-lan[toggle internal lan controller on/off]:toggle:(disable enable)'
+	'-soundlogo[toggle startup sound logo]'
+	'-startlogo[toggle startup logo]'
+	'-trmode[toggle display transflective mode]'
+)
+
+_arguments -s $arguments
