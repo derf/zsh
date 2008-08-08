@@ -1,0 +1,16 @@
+#compdef hm
+## vim:ft=zsh
+## hm completion
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_hm
+## see also: https://derf.homelinux.org/~derf/code/h
+
+local arguments
+
+arguments=(
+	'(-r)-g[grm instead of hm]'
+	'(-g)-r[hrm instead of hm]'
+	'-u[use unicode]'
+)
+
+_arguments -s $arguments
