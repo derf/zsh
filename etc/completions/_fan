@@ -7,7 +7,7 @@
 local arguments_thinkpad arguments_generic
 
 arguments_thinkpad=(
-	':fan level:(low med high auto)'
+	'::fan level:(low med high auto)'
 )
 arguments_generic=(
 	':fan state:(on off)'
