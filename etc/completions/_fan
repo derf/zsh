@@ -1,0 +1,20 @@
+#compdef fan
+## vim:ft=zsh
+## fan completion
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_fan
+
+local arguments_thinkpad arguments_generic
+
+arguments_thinkpad=(
+	':fan level:(low med high auto)'
+)
+arguments_generic=(
+	':fan state:(on off)'
+)
+
+if [[ -w /proc/acpi/ibm/fan ]] {
+	_arguments -s $arguments_thinkpad
+} elif [[ -w /proc/acpi/fan/FAN/state ]] {
+	_arguments -s $arguments_generic
+}
