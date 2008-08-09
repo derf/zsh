@@ -18,6 +18,8 @@ arguments=(
 	'(--show-hosts)--no-show-hosts'
 	'(--show-status)--no-show-status'
 	'(--show-sites)--no-show-sites'
+	'(--no-resolve)--resolve'
+	'(--resolve)--no-resolve'
 #	'*--format:::(title= line_even= line_uneven=)'
 	'*--format[Output format]'
 	'--bytes[Count in bytes instead of hits]'
