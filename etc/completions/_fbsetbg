@@ -1,0 +1,22 @@
+#compdef fbsetbg
+## fluxbox fbsetbg completion
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_fbsetbg
+
+local arguments
+
+arguments=(
+	-{f,F}':file:_files'
+	-{c,C}':file:_files'
+	-{t,T}':file:_files'
+	-{a,A}':file:_files'
+	-{u,U}':wallpapersetter: '
+	-{b,B}':fbsetrootoptions: '
+	-{r,R}':directory:_path_files -/'
+	'-l'
+	'-i'
+	'-p'
+	'-h'
+)
+
+_arguments -s $arguments
