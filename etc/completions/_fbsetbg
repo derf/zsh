@@ -5,18 +5,20 @@
 
 local arguments
 
+# not yet optimal
 arguments=(
+	-{u,U}':wallpapersetter: '
+	-{b,B}':fbsetrootoptions: '
+	- '(exclusive)'
+	'-h'
+	'-i'
+	'-l'
+	'-p'
 	-{f,F}':file:_files'
 	-{c,C}':file:_files'
 	-{t,T}':file:_files'
 	-{a,A}':file:_files'
-	-{u,U}':wallpapersetter: '
-	-{b,B}':fbsetrootoptions: '
 	-{r,R}':directory:_path_files -/'
-	'-l'
-	'-i'
-	'-p'
-	'-h'
 )
 
 _arguments -s $arguments
