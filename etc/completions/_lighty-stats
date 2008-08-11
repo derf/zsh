@@ -29,6 +29,7 @@ arguments=(
 	'--match=-[Only show lines matching this]:regex: '
 	'--ignore=-[Ignore lines matching this]:regex: '
 	'--truncate-url=-[Trim paths]:integer: '
+	'--truncate-referer=-[Trim referer paths]:integer: '
 	'--width=-[Display width]:integer: '
 	'--log-format=-[logfile format]:format:(lighttpd vsftpd)'
 	'*:file:_files'
