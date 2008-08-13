@@ -30,6 +30,8 @@ arguments=(
 	'--ignore=-[Ignore lines matching this]:regex: '
 	'--truncate-url=-[Trim paths]:integer: '
 	'--truncate-referer=-[Trim referer paths]:integer: '
+	'--truncate-client-ipv4=-[Trim client IPs]:integer:(8 16 24)'
+	'--truncate-client-ipv6=-[Trim client IPs]:integer:(48 64)'
 	'--width=-[Display width]:integer: '
 	'--log-format=-[logfile format]:format:(lighttpd vsftpd)'
 	'*:file:_files'
