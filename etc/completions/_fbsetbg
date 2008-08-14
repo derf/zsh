@@ -14,7 +14,7 @@ arguments=(
 	'-i[show wallpapersetter information]'
 	'-l[set previous wallpaper]'
 	'-p[show tips]'
-	-{f,F}'[set fullscreen wallpaper]]file:_files'
+	-{f,F}'[set fullscreen wallpaper]]:file:_files'
 	-{c,C}'[set centered wallpaper]:file:_files'
 	-{t,T}'[set tiled wallpaper]:file:_files'
 	-{a,A}'[set maximized wallpaper]:file:_files'
