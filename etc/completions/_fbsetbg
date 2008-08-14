@@ -7,18 +7,18 @@ local arguments
 
 # not yet optimal
 arguments=(
-	-{u,U}':wallpapersetter: '
-	-{b,B}':fbsetrootoptions: '
+	-{u,U}'[specify wallpapersetter]:wallpapersetter: '
+	-{b,B}'[options for fbsetroot]:fbsetrootoptions: '
 	- '(exclusive)'
-	'-h'
-	'-i'
-	'-l'
-	'-p'
-	-{f,F}':file:_files'
-	-{c,C}':file:_files'
-	-{t,T}':file:_files'
-	-{a,A}':file:_files'
-	-{r,R}':directory:_path_files -/'
+	'-h[show help]'
+	'-i[show wallpapersetter information]'
+	'-l[set previous wallpaper]'
+	'-p[show tips]'
+	-{f,F}'[set fullscreen wallpaper]]file:_files'
+	-{c,C}'[set centered wallpaper]:file:_files'
+	-{t,T}'[set tiled wallpaper]:file:_files'
+	-{a,A}'[set maximized wallpaper]:file:_files'
+	-{r,R}'[set random wallpaper from directory]:directory:_path_files -/'
 )
 
 _arguments -s $arguments
