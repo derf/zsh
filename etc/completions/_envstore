@@ -1,6 +1,6 @@
 #compdef envstore
 ## vim:ft=zsh
-## envstore completion
+## completion for envstore release-3
 ## Daniel Friesel <derf@derf.homelinux.org>
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_envstore
 ## see also: http://git.cloudconnected.org/?p=envstore.git;a=summary

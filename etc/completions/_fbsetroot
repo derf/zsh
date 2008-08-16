@@ -1,5 +1,5 @@
 #compdef fbsetroot
-## fbsetroot completion
+## completion for fbsetroot (fluxbox 1.0.0+deb1-9), based on fbsetroot(1)
 ## Daniel Friesel <derf@derf.homelinux.org>
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_fbsetroot
 

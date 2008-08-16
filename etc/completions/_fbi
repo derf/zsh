@@ -1,5 +1,5 @@
 #compdef fbi
-## fbi completion
+## completion for fbi 2.07-1, based on fbi(1)
 ## Daniel Friesel <derf@derf.homelinux.org>
 
 local arguments

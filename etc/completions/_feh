@@ -1,5 +1,5 @@
 #compdef feh
-## feh completion
+## completion for feh 1.3.4.dfsg.1-1, based on feh(1)
 ## Daniel Friesel <derf@derf.homelinux.org>
 
 local arguments feh_themes

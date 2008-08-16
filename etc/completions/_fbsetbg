@@ -1,5 +1,5 @@
 #compdef fbsetbg
-## fluxbox fbsetbg completion
+## completion for fbsetbg (fluxbox 1.0.0+deb1-9), based on fbsetbg(1)
 ## Daniel Friesel <derf@derf.homelinux.org>
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_fbsetbg
 
