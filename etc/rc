@@ -30,7 +30,7 @@ source $ZDIR/alias/short
 source $ZDIR/completion
 
 # 'outsourced' stuff
-source $ZDIR/provided/includes
+source $ZDIR/../provided/includes
 
 ## misc
 bindkey -e
