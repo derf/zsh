@@ -1,28 +1,37 @@
 #compdef fbi
-## completion for fbi 2.07-1, based on fbi(1)
+## completion for fbi 2.07-1, based on fbi -h
 ## Daniel Friesel <derf@derf.homelinux.org>
 
 local arguments
 
 arguments=(
-	'-h[show help]'
-	'-d[set framebuffer device]:framebuffer device:_path_files -W /dev -g "fb*"'
-	'-m[set video mode]:video mode: '
-	'-v[verbose (show status line)]'
-	'-P[enable textreading mode]'
-	'-t[slideshow timeout]:time: '
-	'-g[gamma correction]:gamma: '
-	'-n[select PhotoCD resolution]:resolution:(1 2 3 4 5)'
-	'-s[set scroll steps]:pixels: '
-	'-f[set font]:font: '
-	'-a[autozoom]'
-	'--autoup[scale up only]'
-	'--autodown[scale down only]'
-	'-u[randomize filename order]'
-	'-e[enable editing]'
-	'-b[editing: create backup files]'
-	'-p[editing: preserve timestamps]'
-	'--comments[Show comment tag instead of filename]'
+	-{1,once}"[don't loop]"
+	-{a,autozoom}'[autozoom]'
+	'-autodown[zoom out only]'
+	'-autoup[zoom in only]'
+	'-backup[editing: create backup files]'
+	'-blend[Blend images]:miliseconds: '
+	'-cachemem[cache size]:megabytes: '
+	'-comments[display image comments]'
+	-{d,device}'[set framebuffer device]:framebuffer device:_path_files -W /dev -g "fb*"'
+	-{e,edit}'[enable editing]'
+	-{f,font}'[set font]:font: '
+	'-fitwidth[zoom to width only]'
+	-{g,gamma}'[gamma correction]:gamma: '
+	-{h,help}'[show help]'
+	-{l,list}'[read imagelist from file]:file:_files'
+	-{m,mode}'[set video mode]:video mode: '
+	'-preserve[editing: preserve timestamps]'
+	-{P,text}'[enable textreading mode]'
+	-{r,resolution}'[select PhotoCD resolution]:resolution:(1 2 3 4 5)'
+	'-readahead[pre-cache images]'
+	-{s,scroll}'[set scroll steps]:pixels: '
+	'-store[write commandline args to config]'
+	-{t,timeout}'[slideshow timeout]:time: '
+	-{T,vt}'[start on virtual console]:virtual console: '
+	-{u,random}'[randomize filename order]'
+	-{v,verbose}'[verbose (show status line)]'
+	-{V,version}'[show version information]'
 	'*:file:_files'
 )
 
