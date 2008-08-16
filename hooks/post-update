@@ -4,6 +4,6 @@ mkdir -p $PDIR/zsh/provided
 rm $HOME/var/cache/zsh/compdump
 echo -n > $PDIR/zsh/provided/includes
 
-for snippet in $PDIR/*/provides/zsh/*(.)(N); {
+for snippet in $PDIR/*/provides/zsh/*(.N); {
 	echo "source $snippet" >> $PDIR/zsh/provided/includes
 }
