@@ -1,0 +1,29 @@
+#compdef fbi
+## fbi completion
+## Daniel Friesel <derf@derf.homelinux.org>
+
+local arguments
+
+arguments=(
+	'-h[show help]'
+	'-d[set framebuffer device]:framebuffer device:_path_files -W /dev -g "fb*"'
+	'-m[set video mode]:video mode: '
+	'-v[verbose (show status line)]'
+	'-P[enable textreading mode]'
+	'-t[slideshow timeout]:time: '
+	'-g[gamma correction]:gamma: '
+	'-n[select PhotoCD resolution]:resolution:(1 2 3 4 5)'
+	'-s[set scroll steps]:pixels: '
+	'-f[set font]:font: '
+	'-a[autozoom]'
+	'--autoup[scale up only]'
+	'--autodown[scale down only]'
+	'-u[randomize filename order]'
+	'-e[enable editing]'
+	'-b[editing: create backup files]'
+	'-p[editing: preserve timestamps]'
+	'--comments[Show comment tag instead of filename]'
+	'*:file:_files'
+)
+
+_arguments -s $arguments
