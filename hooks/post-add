@@ -1,1 +1,2 @@
 mkdir -p $HOME/var/cache/zsh
+mkdir -p $PDIR/zsh/provided

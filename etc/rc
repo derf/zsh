@@ -29,6 +29,9 @@ source $ZDIR/alias/global
 source $ZDIR/alias/short
 source $ZDIR/completion
 
+# 'outsourced' stuff
+source $ZDIR/provided/includes
+
 ## misc
 bindkey -e
 ls-colors: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
