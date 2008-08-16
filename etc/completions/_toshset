@@ -7,10 +7,10 @@
 local arguments
 
 arguments=(
-	'-l'
-	'-fast'
-	'-v'
-	'-q'
+	'-l[long query]'
+	'-fast[fast mode]'
+	'-v[verbose mode]'
+	'-q[query current settings]'
 	'-b[set system beep]:toggle:(on off)'
 	'-lcd[set lcd brightness]:brightness:(semi bright super-bright)'
 	'-inten[set display intensity]:intensity:(0 1 2 3 4 5 6 7)'
