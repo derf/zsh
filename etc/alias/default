@@ -14,6 +14,7 @@ linux: alias df='df -hl --exclude-type=fuse.encfs'
 non-linux: alias du='du -shH'
 linux: alias du='du -shD'
 
+alias fbi='fbi -readahead'
 alias feh='feh --quiet'
 
 linux: alias fgrep='grep -F --color=auto'
