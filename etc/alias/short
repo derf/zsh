@@ -2,7 +2,6 @@
 ## vim:ft=zsh
 
 ## For Loops
-
 alias allf='for i in *(.);'
 alias alld='for i in *(/);'
 alias alle='for i in *(*);'
@@ -18,24 +17,6 @@ alias allr='for i in **/*;'
 ## fbi
 alias fbif='fbi -a'
 alias fbij='fbi -a -u'
-
-## feh
-alias fehf='feh -Tfull' # Fullscreen
-alias fehfr='feh -Tfull --recursive'
-alias fehi='feh .fehindex.jpg'
-alias fehj='feh -Tjust' # Screensaver-like
-alias fehjr='feh -Tjust --recursive'
-for i in {5,10,15,20}; {
-	alias fehj$i='feh -Tjust'$i
-	alias fehf$i='feh -Tfull'$i
-	alias fehjr$i='feh -Tjust'$i' --recursive'
-	alias fehfr$i='feh -Tfull'$i' --recursive'
-}
-alias fehjx='feh -Tjust --slideshow-delay'
-alias fehfx='feh -Tjust --slideshow-delay'
-alias fehjrx='feh -Tjust --recursive --slideshow-delay'
-alias fehfrx='feh -Tfull --recursive --slideshow-delay'
-alias feht='feh -Tthumbnail' # List thumbnails
 
 ## Git
 alias gita='git add'
@@ -70,13 +51,7 @@ alias lsb='tar tvjf'
 alias lst='tar tvf'
 alias lsz='tar tvzf'
 
-# Automatically upload screenshot plzkthx
-alias putscreen='put $(screenshot)'
-
 alias rd='rmdir'
-
-# Useful when a beamer is connected to my laptop
-alias rplayer='mplayer -vo x11 -zoom -vf scale=1024:-2'
 
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
@@ -87,6 +62,3 @@ alias s2r='sudo s2ram -f'
 ## Snownews
 alias sn='snownews'
 alias snu='snownews -u'
-
-# start x and log out immediately
-alias x='unsetopt bg_nice; startx &! exit'
