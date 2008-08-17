@@ -25,10 +25,8 @@ source $ZDIR/alias/font
 source $ZDIR/alias/default
 source $ZDIR/alias/global
 source $ZDIR/alias/short
-source $ZDIR/completion
-
-# 'outsourced' stuff
 source $ZDIR/../provided/includes
+source $ZDIR/completion
 
 ## misc
 bindkey -e
