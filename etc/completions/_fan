@@ -2,7 +2,7 @@
 ## vim:ft=zsh
 ## fan completion
 ## Daniel Friesel <derf@derf.homelinux.org>
-## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_fan
+## https://derf.homelinux.org/~derf/dotfiles/completion/_fan
 ## see also: https://derf.homelinux.org/~derf/code/fan
 
 local arguments_thinkpad arguments_generic

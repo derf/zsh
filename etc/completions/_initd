@@ -2,7 +2,7 @@
 ## vim:ft=zsh
 ## Completion for /etc/init.d functions
 ## Daniel Friesel <derf@derf.homelinux.org>
-## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_initd
+## https://derf.homelinux.org/~derf/dotfiles/completion/_initd
 ## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/function
 
 local arguments
