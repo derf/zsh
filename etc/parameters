@@ -20,6 +20,8 @@ export CALENDAR_DIR=$HOME/packages/calendar/etc
 export HOST
 export COLUMNS
 export LINES
+export LESSOPEN='| /usr/bin/lesspipe %s'
+export LESSCLOSE='/usr/bin/lesspipe %s %s'
 
 # others
 linux: export LANG=en_US.UTF-8
