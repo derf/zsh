@@ -61,7 +61,3 @@ alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin -
 ## Suspend
 alias s2d='sudo s2disk'
 alias s2r='sudo s2ram -f'
-
-## Snownews
-alias sn='snownews'
-alias snu='snownews -u'
