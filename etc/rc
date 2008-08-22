@@ -7,10 +7,10 @@
 ## mostly internal stuff
 ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
-alias 'linux:'='[ $uname = Linux ] &&'
-alias 'non-linux:'='[ $uname = Linux ] ||'
+alias 'linux:'='[[ $uname = Linux ]] &&'
+alias 'non-linux:'='[[ $uname = Linux ]] ||'
 alias 'ls-colors:'='which dircolors &> /dev/null &&'
-alias 'openbsd:'='[ $uname = OpenBSD ] &&'
+alias 'openbsd:'='[[ $uname = OpenBSD ]] &&'
 
 ## include the actual config
 source $ZDIR/modules
@@ -31,7 +31,7 @@ source $ZDIR/completion
 ## misc
 bindkey -e
 ls-colors: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
-[ -r $HOME/var/tmp/envstore-raw-$UID ] && . $HOME/var/tmp/envstore-raw-$UID
+[[ -r $HOME/var/tmp/envstore-raw-$UID ]] && . $HOME/var/tmp/envstore-raw-$UID
 mesg n
 umask 077
 
