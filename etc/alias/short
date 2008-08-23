@@ -20,8 +20,9 @@ alias fbij='fbi -a -u'
 
 ## Git
 alias gita='git add'
-alias gitc='git commit -m'
-#     gitd is a function, see there
+alias gitc='git commit'
+#     gitd  is a function, see there
+alias gitdc='gitd --cached'
 alias gitf='git pull'
 alias gitl='git log'
 alias gitp='git push'
@@ -32,7 +33,7 @@ alias git-serve='git-daemon --export-all --base-path=. .'
 alias hga='hg add'
 alias hgar='hg addremove'
 alias hgc='hg commit -m'
-#     hgd is a function, see there
+#     hgd  is a function, see there
 alias hgf='hg fetch'
 alias hgg='hg glog | less'
 alias hgh='hg heads'
