@@ -2,20 +2,22 @@
 ## vim:ft=zsh
 case `hostname` in
 	aneurysm)
-		www=/var/www
-		web=$HOME/public_html
-		export vcs=$HOME/var/svn
-		export lyrics=$HOME/packages/lyrics
+		hash -d www=/var/www
+		hash -d web=$HOME/public_html
+		hash -d vcs=$HOME/var/svn
+		hash -d lyrics=$HOME/packages/lyrics
 	;;
 	saviour)
-		music=$HOME/lib/audio
-		www=/var/www
-		cgi=/usr/lib/cgi-bin
-		export lyrics=$HOME/packages/lyrics
-		export vcs=$HOME/var/svn
+		hash -d music=$HOME/lib/audio
+		hash -d www=/var/www
+		hash -d cgi=/usr/lib/cgi-bin
+		hash -d lyrics=$HOME/packages/lyrics
+		hash -d vcs=$HOME/var/svn
 	;;
 	nemesis)
-		export vcs=$HOME/var/svn
-		export lyrics=$HOME/packages/lyrics
+		hash -d vcs=$HOME/var/svn
+		hash -d lyrics=$HOME/packages/lyrics
 esac
-svn=$vcs
+
+[[ -n $vcs ]] && export vcs
+[[ -n $lyrics ]] && export lyrics
