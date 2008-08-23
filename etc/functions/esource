@@ -1,0 +1,4 @@
+## vim:ft=zsh
+if [[ -r $1 ]] {
+	source $1
+}

@@ -25,13 +25,14 @@ source $ZDIR/alias/font
 source $ZDIR/alias/default
 source $ZDIR/alias/global
 source $ZDIR/alias/short
-source $ZDIR/../provided/includes
+esource $ZDIR/../provided/includes
+esource $ZDIR/local
+esource $HOME/var/tmp/envstore-raw-$UID
 source $ZDIR/completion
 
 ## misc
 bindkey -e
 ls-colors: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
-[[ -r $HOME/var/tmp/envstore-raw-$UID ]] && . $HOME/var/tmp/envstore-raw-$UID
 mesg n
 umask 077
 
