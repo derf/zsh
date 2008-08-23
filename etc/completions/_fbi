@@ -3,7 +3,11 @@
 ## Daniel Friesel <derf@derf.homelinux.org>
 ## https://derf.homelinux.org/~derf/dotfiles/completion/_fbi
 
-local arguments
+typeset arguments
+typeset IFS=$'\n'
+typeset fonts
+
+fonts='fc-list | cut -d ":" -f 1'
 
 arguments=(
 	-{1,once}"[don't loop]"
@@ -16,7 +20,7 @@ arguments=(
 	'-comments[display image comments]'
 	-{d,device}'[set framebuffer device]:framebuffer device:_path_files -W /dev -g "fb*"'
 	-{e,edit}'[enable editing]'
-	-{f,font}'[set font]:font: '
+	-{f,font}'[set font]:font:($(eval $fonts))'
 	'-fitwidth[zoom to width only]'
 	-{g,gamma}'[gamma correction]:gamma: '
 	-{h,help}'[show help]'
