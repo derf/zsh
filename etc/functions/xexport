@@ -1,0 +1,4 @@
+## vim:ft=zsh
+if [[ -n $1 ]] {
+	export $1
+}

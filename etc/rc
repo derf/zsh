@@ -25,9 +25,9 @@ source $ZDIR/alias/font
 source $ZDIR/alias/default
 source $ZDIR/alias/global
 source $ZDIR/alias/short
-esource $ZDIR/../provided/includes
-esource $ZDIR/local
-esource $HOME/var/tmp/envstore-raw-$UID
+xsource $ZDIR/../provided/includes
+xsource $ZDIR/local
+xsource $HOME/var/tmp/envstore-raw-$UID
 source $ZDIR/completion
 
 ## misc
