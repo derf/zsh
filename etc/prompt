@@ -2,5 +2,7 @@
 ## vim:ft=zsh
 # RPS1 is on the right side of the terminal
 # The \ek\e\\ is for screen's 'shelltitle'
-export PS1="${ps_yellow}%n@%m${ps_reset} %c %(!.${ps_red}#.${ps_green}>)${ps_reset} "$'%{\ek\e\\%}'
-export RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}%T]${ps_reset}"
+PS1="${ps_yellow}%n@%m${ps_reset} %1~ %(!.${ps_red}#.${ps_green}>)${ps_reset} "$'%{\ek\e\\%}'
+RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}%T]${ps_reset}"
+
+PS4="${ps_info}%N${ps_reset}:${ps_yellow}%i${ps_reset}│"
