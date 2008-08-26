@@ -27,7 +27,7 @@ alias gitf='git pull'
 alias gitl='git log'
 alias gitp='git push'
 alias gits='git status'
-alias git-serve='git-daemon --export-all --base-path=. .'
+alias git-serve='git-daemon --verbose --export-all --base-path=. .'
 
 ## Mercurial (hg)
 alias hga='hg add'
