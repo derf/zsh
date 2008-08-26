@@ -9,7 +9,6 @@ LISTMAX=0
 TIMEFMT='%E real  %U user  %S system  %P %J'
 
 # Paths
-fpath=($ZDIR/functions $ZDIR/completions $fpath)
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
 linux: [[ -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
 

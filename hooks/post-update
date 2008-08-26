@@ -3,13 +3,14 @@ mkdir -p $HOME/var/cache/zsh
 mkdir -p $PDIR/zsh/provided
 rm -f $HOME/var/cache/zsh/compdump
 echo -n > $PDIR/zsh/provided/includes
+echo -n > $PDIR/zsh/provided/env
 
 typeset -a futurepath
 for inc in $PDIR/*/provides/zsh/{functions,completions}(N); {
 	futurepath+=$inc
 }
 if [[ -n $futurepath ]] {
-	echo "fpath=($futurepath" '$fpath)' >> $PDIR/zsh/provided/includes
+	echo "fpath=($futurepath" '$fpath)' > $PDIR/zsh/provided/env
 }
 for inc in $PDIR/*/provides/zsh/functions(N); {
 	echo "autoload ${inc:t}" >> $PDIR/zsh/provided/includes

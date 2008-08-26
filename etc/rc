@@ -5,7 +5,6 @@
 ## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 
 ## mostly internal stuff
-ZDIR=$HOME/packages/zsh/etc
 uname=$(uname)
 alias 'linux:'='[[ $uname = Linux ]] &&'
 alias 'non-linux:'='[[ $uname = Linux ]] ||'
