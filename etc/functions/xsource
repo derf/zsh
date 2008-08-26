@@ -1,4 +1,8 @@
 ## vim:ft=zsh
+# Note: This function's behaviour differs hrom source.
+# With source, parameters declared local are available to the sourcing script.
+# With xsource, parameters declared local will NOT be available.
+# Keep that in mind when using this function
 if [[ -r $1 ]] {
 	source $1
 }
