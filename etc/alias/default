@@ -1,58 +1,70 @@
+## vim:ft=zsh
 ## Some useful default options
 ## To evade them, use '=foo' instead of 'foo'
-## vim:ft=zsh
 
-alias cal='cal -m'
 
-alias cp='cp -i'
+#
+#   grep
+#
 
-# --human-readable --local
+linux: alias egrep='grep -E --color=auto'
+linux: alias fgrep='grep -F --color=auto'
+linux: alias grep='grep --color=auto'
+
+
+#
+#   file and filesystem information
+#
+
+# human-readable sizes, local filesystems only
 alias df='df -hl'
 linux: alias df='df -hl --exclude-type=fuse.encfs'
 
-# --summarize --human-readable --dereference-args
+# human-readable sizes, summarize, dereference args
 non-linux: alias du='du -shH'
 linux: alias du='du -shD'
 
-alias fbi='fbi -readahead'
-alias feh='feh --quiet'
+# human-readable sizes, mark executables with '*' etc.
+alias ls='ls -Fh'
+linux: alias ls='ls -Fh --color=auto'
 
-linux: alias fgrep='grep -F --color=auto'
 
-# find does globbing itself
-alias find='noglob find'
-
-linux: alias grep='grep --color=auto'
-
-alias host='host -a'
+#
+#   networking
+#
 
 # I often use it for just *viewing* things, which works fine without root
 alias ifconfig='/sbin/ifconfig'
+
+alias host='host -a'
+alias mx='mx -aZ'
+
+# Only TCP/TCP6, not sockets and such
+alias netstat='sudo netstat -atp tcp'
+linux: alias netstat='sudo netstat --program --all --tcp --extend'
+
+
+#
+#   various other stuff
+#
+
+alias cal='cal -m'
+alias cp='cp -i'
+alias fbi='fbi -readahead'
+alias feh='feh --quiet'
+
+# find does globbing itself
+alias find='noglob find'
 
 # This is an export, so that also man() and other apps using less as pager get it
 # clear-screen = much faster scrolling on ttys
 # RAW-CONTROL-CHARS = Don't produce crap if the file contains ANSI color sequences
 export LESS='--silent --no-init --clear-screen --RAW-CONTROL-CHARS --quit-if-one-screen --ignore-case --tabs=5'
 
-# --classify --human-readable
-# classify = "/" after dirs, "*" after executables etc
-alias ls='ls -Fh'
-linux: alias ls='ls -Fh --color=auto'
-
-# Somehow folllowing the 'learn something new every day' ;-)
+# Show manuals in all sections
 alias man='man -a'
 
-# Useful on sshfs or similar
-# FIXME: this sucks for streams
-#alias mplayer='mplayer -cache 6000 -cache-min 50'
-
 alias mv='mv -i'
-
-alias mx='mx -aZ'
-
-# Only TCP/TCP6, not sockets and such
-alias netstat='sudo netstat -atp tcp'
-linux: alias netstat='sudo netstat --program --all --tcp --extend'
 
 # BSD style
 alias ps='ps aux'
