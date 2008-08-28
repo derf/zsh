@@ -32,7 +32,7 @@ alias git-serve='git-daemon --verbose --export-all --base-path=. .'
 ## Mercurial (hg)
 alias hga='hg add'
 alias hgar='hg addremove'
-alias hgc='hg commit -m'
+alias hgc='hg commit'
 #     hgd  is a function, see there
 alias hgf='hg fetch'
 alias hgg='hg glog | less'
