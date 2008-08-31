@@ -19,5 +19,5 @@ case `hostname` in
 		hash -d lyrics=$HOME/packages/lyrics
 esac
 
-xexport vcs=~vcs
-xexport lyrics=~lyrics
+xexport vcs=${~vcs}
+xexport lyrics=${~lyrics}
