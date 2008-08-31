@@ -19,6 +19,7 @@ source $ZDIR/function
 source $ZDIR/options
 source $ZDIR/prompt
 source $ZDIR/directories
+source $ZDIR/keys
 source $ZDIR/alias/suffix
 source $ZDIR/alias/font
 source $ZDIR/alias/default

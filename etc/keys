@@ -1,0 +1,4 @@
+## vim:ft=zsh
+[[ -z $terminfo[kdch1] ]] || bindkey -M emacs $terminfo[kdch1] delete-char
+[[ -z $terminfo[khome] ]] || bindkey -M emacs $terminfo[khome] beginning-of-line
+[[ -z $terminfo[kend] ]] || bindkey -M emacs $terminfo[kend] end-of-line
