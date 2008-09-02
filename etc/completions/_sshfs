@@ -1,0 +1,82 @@
+#compdef sshfs
+## Since _user_at_host was a little inflexible,
+## I ripped the responsible parts from _ssh.
+## In future, sshfs should be handled by _ssh as well
+
+typeset expl lstate tmp
+
+_arguments \
+  '-V[version]' \
+  '-p:tcp port:' \
+  '-C[compression]' \
+  '-o:options:_values -s , "sshfs or fuse or mount options" reconnect sshfs_sync no_readahead sshfs_debug cache=:cache\ setting:(yes no) cache_timeout=:seconds: cache_stat_timeout=:seconds: cache_dir_timeout=:seconds: cache_link_timeout=:seconds: ssh_command=:ssh\ command:_command_names directport=:port: SSHOPT=:ssh\ option: default_permissions allow_other allow_root kernel_cache large_read direct_io max_read=:size: hard_remove debug fs_name=:name: use_ino readdir_ino' \
+  '-d[debug]' \
+  '-f[foreground]' \
+  '-s[disable multithreaded operation]' \
+  '-r[mount read-only]' \
+  '-h[help]' \
+  ':remote directory:->userhost' \
+  ':mountpoint:_files -/'
+
+_ssh_users () {
+	_combination -s '[:@]' my-accounts users-hosts users "$@"
+}
+
+_ssh_hosts () {
+	local -a config_hosts
+	local config
+	integer ind
+
+	# If users-hosts matches, we shouldn't complete anything else.
+	if [[ "$IPREFIX" == *@ ]]; then
+		_combination -s '[:@]' my-accounts users-hosts "users=${IPREFIX/@}" hosts "$@" && return
+	else
+		_combination -s '[:@]' my-accounts users-hosts \
+		${opt_args[-l]:+"users=${opt_args[-l]:q}"} hosts "$@" && return
+	fi
+	if (( ind = ${words[(I)-F]} )); then
+		config=${~words[ind+1]}
+	else
+		config="$HOME/.ssh/config"
+	fi
+	if [[ -r $config ]]; then
+		local IFS=$'\t ' key hosts host
+		while read key hosts; do
+			if [[ "$key" == (#i)host ]]; then
+				for host in ${(z)hosts}; do
+					case $host in
+						(*[*?]*) ;;
+						(*) config_hosts+=("$host") ;;
+					esac
+				done
+			fi
+		done < "$config"
+		if (( ${#config_hosts} )); then
+			_wanted hosts expl 'remote host name' \
+			compadd -M 'm:{a-zA-Z}={A-Za-z} r:|.=* r:|=*' "$@" $config_hosts
+		fi
+	fi
+}
+
+while [[ -n $state ]]; do
+	lstate=$state
+	state=''
+	case $lstate in
+		userhost)
+			if compset -P '*@'; then
+				_wanted hosts expl 'remote host name' _ssh_hosts
+			elif compset -S '@*'; then
+				_wanted users expl 'login name' _ssh_users -S ''
+			else
+				if (( $+opt_args[-l] )); then
+					tmp=()
+				else
+					tmp=( 'users:login name:_ssh_users -qS@' )
+				fi
+				 _alternative \
+				'hosts:remote host name:_ssh_hosts' \
+				"$tmp[@]"
+			fi
+		;;
+	esac
+done
