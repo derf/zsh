@@ -1,0 +1,55 @@
+#compdef devtodo todo tda tde tdd tdr
+## completion for devtodo 0.1.20
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/completion/_devtodo
+
+typeset -a arg_generic arg_add
+typeset -A arg_pair arg_desc
+
+arg_add=(
+	'-p[priority]:priority:_priority'
+	'-g[parent item]:parent:_index'
+)
+
+arg_generic=(
+	'--remove[remove items]:index:_index'
+	'--database[database file]:file:_files'
+	'--global-database[global database file]:file:_files'
+	'*--colour[item color]:color:_color'
+	'--force-colour[force use of colors]'
+	'--mono[no colors]'
+	'--help[display help]'
+	'--version[display version]'
+	'--title[todo title]:string: '
+	'--date-format[strftime time formet]:time string: '
+	'*--format[define format]:format:_format'
+	'*--use-format[output format]:format:_format'
+	'--sort[sort database]:expression: '
+	'--paranoid[paranoid parmissions etc]'
+	'--database-loaders[loader order]:database loader: '
+	'--backup[backup database]:count: '
+	'--timeout[display timeout]:seconds: '
+	'--purge[purge completed items]:days: '
+)
+
+function _index () {
+	typeset i
+	typeset -a index desc
+	for i in $(todo --format display='%n '); do
+		index+=${i}:$(todo --format display='%t' $i)
+	done
+	_describe index index
+}
+
+function _color () {
+}
+
+function _format () {
+}
+
+case $service in
+	tda)     _arguments -s $arg_add          ;;
+	tde|tdd) _arguments -s ':index:_index'   ;;
+	tdr)     _arguments -s '*:index:_index'  ;;
+	*todo)   _arguments -s $arg_generic      ;;
+esac
