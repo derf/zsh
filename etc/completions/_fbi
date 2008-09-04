@@ -4,7 +4,6 @@
 ## https://derf.homelinux.org/~derf/dotfiles/completion/_fbi
 
 typeset -a arguments
-typeset expl lstate
 
 arguments=(
 	-{1,once}"[don't loop]"
@@ -17,7 +16,7 @@ arguments=(
 	'-comments[display image comments]'
 	-{d,device}'[set framebuffer device]:framebuffer device:_path_files -W /dev -g "fb*"'
 	-{e,edit}'[enable editing]'
-	-{f,font}'[set font]:font:->font'
+	-{f,font}'[set font]:font:_font'
 	'-fitwidth[zoom to width only]'
 	-{g,gamma}'[gamma correction]:gamma: '
 	-{h,help}'[show help]'
@@ -39,15 +38,9 @@ arguments=(
 
 _arguments -s $arguments
 
-while [[ -n $state ]]; do
-	lstate=$state
-	state=''
-	case $lstate in
-		font)
-			typeset IFS=$'\n'
-			typeset -a fonts
-			_wanted font expl 'font' \
-			compadd $(fc-list | cut -d ":" -f 1 2>&1)
-		;;
-	esac
-done
+function _font () {
+	typeset IFS=$'\n'
+	typeset -a fonts
+	_wanted font expl 'font' \
+	compadd $(fc-list | cut -d ":" -f 1 2>&1)
+}
