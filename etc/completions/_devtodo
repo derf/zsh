@@ -32,6 +32,43 @@ arg_generic=(
 	'--purge[purge completed items]:days: '
 )
 
+arg_pair=(
+	'verbose'     'v'
+	'add'         'a'
+	'graft'       'g'
+	'link'        'l'
+	'reparent'    'R'
+	'priority'    'p'
+	'edit'        'e'
+	'done'        'd'
+	'not-done'    'D'
+	'global'      'G'
+	'TODO'        'T'
+	'all'         'A'
+	'filter'      'f'
+)
+
+arg_desc=(
+	'verbose'     '[be verbose]'
+	'add'         '[add item]:item'
+	'graft'       '[parent item]:parent:_index'
+	'link'        '[link file into database]:database:_file'
+	'reparent'    '[change item parent]:index:_index'
+	'priority'    '[item priority]:priority:_priority'
+	'edit'        '[edit item]:index:_index'
+	'done'        '[mark as done]:index:_index'
+	'not-done'    '[mark as undone]:index:_index'
+	'global'      '[use global database]'
+	'TODO'        '[generate TODO file]'
+	'all'         '[show all items]'
+	'filter'      '[show items matching filter]:filter'
+)
+
+for arg in ${(k)arg_pair}; {
+	arg_generic+='(--'$arg')-'${arg_pair[$arg]}${arg_desc[$arg]}
+	arg_generic+='(-'${arg_pair[$arg]}')--'${arg}${arg_desc[$arg]}
+}
+
 function _index () {
 	typeset i
 	typeset -a index desc
@@ -45,6 +82,9 @@ function _color () {
 }
 
 function _format () {
+}
+
+function _priority () {
 }
 
 case $service in
