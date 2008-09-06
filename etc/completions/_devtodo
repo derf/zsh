@@ -88,8 +88,17 @@ function _priority () {
 }
 
 case $service in
-	tda)     _arguments -s $arg_add          ;;
-	tde|tdd) _arguments -s ':index:_index'   ;;
-	tdr)     _arguments -s '*:index:_index'  ;;
-	*todo)   _arguments -s $arg_generic      ;;
+	tda)
+		_arguments -s $arg_add
+	;;
+	tde|tdd)
+		_arguments -s ':index:_index'
+	;;
+	tdr)
+		zstyle ':completion:*:tdr:*' ignore-line yes
+		_arguments -s '*:index:_index'
+	;;
+	*todo)
+		_arguments -s $arg_generic
+	;;
 esac
