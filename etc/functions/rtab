@@ -1,0 +1,31 @@
+## vim:ft=zsh
+## Needs an absolute directory path as argument
+## May not contain ~ or named directories
+## CAVEAT: directory-names containing two or more consecutive spaces
+## are not yet supported
+
+typeset -a tree expn
+typeset result part dir
+typeset -i i
+#typeset IFS='/'
+tree=(${(s:/:)1})
+(
+	cd /
+	for dir in $tree; {
+		expn=(a b)
+		part=''
+		i=0
+		# $i -gt 999 <- See CAVEAT - Onterwise we'd have an endless loop here
+		until [[ (( ${#expn} == 1 )) || $dir = $expn || $i -gt 999 ]]  do
+			(( i++ ))
+			part+=$dir[$i]
+			expn=($(echo ${part}*))
+#			echo "DEBUG: part=$part"
+#			echo "DEBUG: expn=${(j:×:)expn}"
+#			echo "DEBUG: dir=$dir"
+		done
+		result+="/$part"
+		cd $dir
+	}
+	echo $result
+)
