@@ -2,5 +2,16 @@
 ## vim:ft=zsh
 # RPS1 is on the right side of the terminal
 # The \ek\e\\ is for screen's 'shelltitle'
-PS1="${ps_yellow}%n@%m${ps_reset} %25>…>%1~%>> %(!.${ps_red}#.${ps_green}>)${ps_reset} "$'%{\ek\e\\%}'
+
+user="${ps_yellow}%n"
+at="@"
+host="%m"
+dir="${ps_reset}%25>…>%1~%>>"
+sign="%(!.${ps_red}#.${ps_green}>)${ps_reset}"
+screen=$'%{\ek\e\\%}'
+
+PS1="${user}${at}${host} ${dir} ${sign} ${screen}"
 RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}%T]${ps_reset}"
+
+unset user at host
+unset dir sign screen
