@@ -4,5 +4,3 @@
 # The \ek\e\\ is for screen's 'shelltitle'
 PS1="${ps_yellow}%n@%m${ps_reset} %1~ %(!.${ps_red}#.${ps_green}>)${ps_reset} "$'%{\ek\e\\%}'
 RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}%T]${ps_reset}"
-
-PS4="${ps_info}%N${ps_reset}:${ps_yellow}%i${ps_reset}│"
