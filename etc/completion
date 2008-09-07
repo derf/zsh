@@ -13,11 +13,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} m:_=\\\ ' ''
 # Be verbose
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:descriptions' format \
-       "${ps_info}·${ps_reset} %d ${ps_info}·${ps_reset}"
+       "${ps_yellow}·${ps_reset} %d ${ps_yellow}·${ps_reset}"
 zstyle ':completion:*:messages' format \
-       "${ps_info}·${ps_reset} %d ${ps_info}·${ps_reset}"
+       "${ps_yellow}·${ps_reset} %d ${ps_yellow}·${ps_reset}"
 zstyle ':completion:*:corrections' format \
-       "${ps_info}·${ps_reset} %d ${ps_info}·${ps_reset}"
+       "${ps_yellow}·${ps_reset} %d ${ps_yellow}·${ps_reset}"
 zstyle ':completion:*:warnings' format \
        "${ps_red}no match:${ps_reset} %d"
 
