@@ -10,7 +10,13 @@ typeset -i i
 #typeset IFS='/'
 tree=(${(s:/:)1})
 (
-	cd /
+	if [[ $tree[1] = '~' ]] {
+		shift tree
+		cd ~
+		result='~'
+	} else {
+		cd /
+	}
 	for dir in $tree; {
 		expn=(a b)
 		part=''
