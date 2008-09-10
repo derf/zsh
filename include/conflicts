@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 ## vim:ft=zsh
-typeset file dir conflict i
+typeset file dir i
 typeset PDIR=$HOME/packages
-typeset -a sfpath spath
+typeset -a sfpath spath conflict
 
 is_in_path () {
 	typeset -i ret=1
@@ -27,15 +27,15 @@ for i in ${path:#/home/derf*}; {
 }
 
 for file in $PDIR/{*/provides/zsh/completions/*(N),zsh/etc/completions/*(N)}; {
-	conflict=$(is_in_path ${file:t} $sfpath)
+	conflict=($(is_in_path ${file:t} $sfpath))
 	if (( ? == 0 )) {
-		echo "conflict: $file <-> $conflict"
+		echo "conflict: $file <-> ${(j:, :)conflict}"
 	}
 }
 
 for file in $PDIR/*/bin/*(N); {
-	conflict=$(is_in_path ${file:t} $spath)
+	conflict=($(is_in_path ${file:t} $spath))
 	if (( ? == 0 )) {
-		echo "conflict: $file <-> $conflict"
+		echo "conflict: $file <-> ${(j:, :)conflict}"
 	}
 }
