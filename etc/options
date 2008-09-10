@@ -7,7 +7,7 @@
 setopt auto_pushd pushd_ignore_dups pushd_minus pushd_silent
 
 # enter "foobar" to cd foobar, and "derf" to cd ~derf
-setopt auto_cd cdable_vars
+setopt auto_cd
 
 # Try to correct typos in command names
 setopt correct
