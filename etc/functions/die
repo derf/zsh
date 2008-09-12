@@ -1,0 +1,2 @@
+echo -e "${fail}${*}${reset}"
+exit 1

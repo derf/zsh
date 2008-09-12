@@ -1,6 +1,6 @@
-for i in $ZDIR/functions/*; {
-	autoload $i:t
-}
+autoload chpwd extr plonkhost world-readable youtube-watch
+autoload gitd hgd
+autoload xexport xsource
 
 autoload throw catch
 
