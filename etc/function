@@ -1,4 +1,5 @@
 autoload chpwd extr plonkhost world-readable youtube-watch
+autoload reload
 autoload gitd hgd
 autoload xexport xsource
 

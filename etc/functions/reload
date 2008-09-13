@@ -1,0 +1,11 @@
+## vim:ft=zsh
+if [[ ${#*} == 0 ]] {
+	autoload xsource
+	xsource ~/.zshrc
+} else {
+	local function
+	for function in $@; {
+		unfunction $function
+		autoload $function
+	}
+}
