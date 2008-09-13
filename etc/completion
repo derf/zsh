@@ -1,6 +1,8 @@
 ## vim:ft=zsh
 
-zstyle :compinstall filename "$HOME/.zshrc"
+zstyle :compinstall filename ~/.zshrc
+zstyle ':completion:*' cache-path ~/var/cache/zsh
+zstyle ':completion:*' use-cache true
 
 ls-colors: zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
