@@ -41,4 +41,6 @@ unalias 'linux:'
 unalias 'non-linux:'
 unalias 'ls-colors:'
 unalias 'openbsd:'
+unfunction xexport
+unfunction xsource
 unset uname
