@@ -7,6 +7,7 @@ echo -n > $PDIR/zsh/provided/env
 
 typeset -a futurepath
 for inc in $PDIR/*/provides/zsh/{functions,completions}(N); {
+	inc=${inc/$HOME/\$HOME}
 	futurepath+=$inc
 }
 if [[ -n $futurepath ]] {
@@ -17,7 +18,7 @@ for inc in $PDIR/*/provides/zsh/functions(N); {
 }
 
 for snippet in $PDIR/*/provides/zsh/*(.N); {
-	echo "source $snippet" >> $PDIR/zsh/provided/includes
+	echo "source ${snippet/$HOME/\$HOME}" >> $PDIR/zsh/provided/includes
 }
 
 cd $PDIR/zsh/etc
