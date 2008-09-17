@@ -1,4 +1,8 @@
 ## vim:ft=zsh
+## reverse tabbing
+## written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/functions/rtab
+
 ## Needs an absolute directory path as argument
 ## May not contain ~ or named directories
 ## CAVEAT: directory-names containing two or more consecutive spaces
