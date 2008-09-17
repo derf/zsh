@@ -21,7 +21,7 @@ alias fbij='fbi -a -u'
 ## Git
 alias gita='git add'
 alias gitc='git commit'
-#     gitd  is a function, see there
+alias gitd='git diff --color-words'
 alias gitdc='gitd --cached'
 alias gitf='git pull'
 alias gitl='git log'
@@ -33,7 +33,7 @@ alias git-serve='git-daemon --verbose --export-all --base-path=. .'
 alias hga='hg add'
 alias hgar='hg addremove'
 alias hgc='hg commit'
-#     hgd  is a function, see there
+alias hgd='hg diff | less'
 alias hgf='hg fetch'
 alias hgg='hg glog | less'
 alias hgh='hg heads'

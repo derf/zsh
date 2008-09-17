@@ -1,1 +1,0 @@
-hg diff $* | highlight diff | less
