@@ -53,12 +53,12 @@ arg_desc=(
 	'verbose'     '[be verbose]'
 	'add'         '[add item]:item'
 	'graft'       '[parent item]:parent:_index'
-	'link'        '[link file into database]:database:_file'
+	'link'        '[link file into database]:database:_files'
 	'reparent'    '[change item parent]:index:_index'
 	'priority'    '[item priority]:priority:_priority'
 	'edit'        '[edit item]:index:_index'
 	'done'        '[mark as done]:index:_index'
-	'not-done'    '[mark as undone]:index:_index'
+	'not-done'    '[mark as undone]:index:_index -u'
 	'global'      '[use global database]'
 	'TODO'        '[generate TODO file]'
 	'all'         '[show all items]'
@@ -72,21 +72,25 @@ for arg in ${(k)arg_pair}; {
 
 function _index () {
 	typeset i
-	typeset -a index desc
-	for i in $(todo --format display='%n '); do
-		index+=${i}:$(todo --format display='%t' $i)
+	typeset -a index desc tdoptions
+	for i in $*; do
+		case $i in
+			-u) tdoptions=(--filter done)
+		esac
+	done
+	for i in $(todo $tdoptions --format display='%n '); do
+		index+=${i}:$(todo $tdoptions --format display='%t' $i)
 	done
 	_describe index index
 }
 
 function _color () {
-	typeset suf
 	if compset -P '*='; then
 		_wanted color expl 'color' \
 		compadd black red green yellow blue magenta cyan white default
 	else
 		_wanted item expl 'item' \
-		compadd -S'=' veryhigh high medium low verylow title info
+		compadd -S '=' veryhigh high medium low verylow title info
 	fi
 }
 
