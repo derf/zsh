@@ -20,10 +20,10 @@ while [[ $1 == -* ]]; do
 		;;
 		-h|--help)
 			print 'Usage: rtab [-f -l -s -t] [directory]'
-			print ' -t, --tilde   Print ~ for the home directory'
-			print ' -f, --fish    fish-simulation, like -l -s'
+			print ' -f, --fish    fish-simulation, like -l -s -t'
 			print ' -l, --last    Print the last directory''s full name'
 			print ' -s, --short   Truncate directory names to the first character'
+			print ' -t, --tilde   Print ~ for the home directory'
 			return 0
 		;;
 		-l|--last) lastfull=1 ;;
@@ -36,8 +36,6 @@ done
 typeset -a tree expn
 typeset result part dir=${1-$PWD}
 typeset -i i
-
-(( pwd )) && dir=$PWD
 
 [[ -d $dir ]] || return 0
 
