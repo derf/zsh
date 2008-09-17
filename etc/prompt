@@ -6,7 +6,7 @@
 user="${ps_yellow}%n"
 at="@"
 host="%m"
-dir="${ps_reset}%25>…>%1~%>>"
+dir="${ps_reset}%25>…>\$(rtab -f)%>>"
 sign="%(!.${ps_red}#.${ps_green}>)${ps_reset}"
 screen=$'%{\ek\e\\%}'
 

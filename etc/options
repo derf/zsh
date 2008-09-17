@@ -9,6 +9,9 @@ setopt auto_pushd pushd_ignore_dups pushd_minus pushd_silent
 # enter "foobar" to cd foobar, and "derf" to cd ~derf
 setopt auto_cd
 
+# To use rtab within the prompt
+setopt prompt_subst
+
 # Try to correct typos in command names
 setopt correct
 
