@@ -79,20 +79,14 @@ function _index () {
 	_describe index index
 }
 
-function _item () {
-	_wanted item expl 'item' \
-	compadd veryhigh high medium low verylow title info
-}
-
 function _color () {
 	typeset suf
 	if compset -P '*='; then
 		_wanted color expl 'color' \
 		compadd black red green yellow blue magenta cyan white default
 	else
-		compset -S '=*' || suf='='
 		_wanted item expl 'item' \
-		_combination -s '[:=]' item item-color item -S $suf -q "$@" -
+		compadd -S'=' veryhigh high medium low verylow title info
 	fi
 }
 
