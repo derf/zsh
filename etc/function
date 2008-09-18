@@ -1,7 +1,9 @@
+## vim:ft=zsh
 autoload chpwd extr plonkhost world-readable youtube-watch
 autoload reload
 autoload rtab
 autoload xexport xsource
+autoload put
 
 autoload throw catch
 

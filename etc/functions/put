@@ -1,0 +1,42 @@
+## vim:ft=zsh
+
+autoload fdie
+typeset hostname
+typeset -a ssh_options hosts
+typeset target_dir server_prefix
+typeset file
+
+function put_aneurysm () {
+	hostname='derf.homelinux.org'
+	ssh_options=(-q)
+	target_dir='public_html/tmp/'
+	server_prefix='https://derf.homelinux.org/~derf/tmp/'
+}
+
+function put_sievert () {
+	hostname='sievert.tabularazor.org'
+	ssh_options=(-q)
+	target_dir='www/tmp/'
+	server_prefix='https://tabularazor.org/~derf/tmp/'
+}
+
+hosts=(aneurysm sievert)
+
+if [[ -f $1 ]] {
+	file=${1:t}
+	while (( $#hosts )) {
+		put_$hosts[1]
+		ping -c 1 $hostname &> /dev/null
+		if (( ? == 0 )) {
+			scp $ssh_options $file $hostname:$target_dir
+			ssh $ssh_options $hostname "chmod 644 $target_dir$file"
+			echo $server_prefix$file
+			return 0
+		} else {
+			shift hosts
+		}
+	}
+	fdie "No hosts reachable"
+} else {
+	fdie "$1: No such file"
+}
