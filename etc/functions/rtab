@@ -61,10 +61,10 @@ tree=(${(s:/:)dir})
 		expn=(a b)
 		part=''
 		i=0
-		until [[ (( ${#expn} == 1 )) || $dir = $expn ]]  do
+		until [[ (( ${#expn} == 1 )) || $dir = $expn || $i -gt 99 ]]  do
 			(( i++ ))
 			part+=$dir[$i]
-			expn=($(echo ${part}*))
+			expn=($(echo ${part}*(/)))
 			(( short )) && break
 		done
 		result+="/$part"
