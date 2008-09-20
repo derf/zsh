@@ -1,9 +1,0 @@
-#compdef np
-
-local arguments
-
-arguments=(
-	'::mode:(file artist album song)'
-)
-
-_arguments -s $arguments
