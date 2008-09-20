@@ -1,11 +1,17 @@
 ## vim:ft=zsh
-autoload chpwd extr plonkhost world-readable youtube-watch
-autoload reload
-autoload rtab
-autoload xexport xsource
-autoload put
 
-autoload throw catch
+# zsh functions
+autoload -U compinit
+autoload colors
+autoload catch throw
+autoload zargs
+
+# own functions
+autoload chpwd extr plonkhost put reload rtab world-readable youtube-watch
+autoload xexport xsource
+
+colors
+chpwd
 
 # from https://git.tabularazor.org/~mikael/etc/tree/zsh/functions
 for action in Start Stop Restart Reload; {

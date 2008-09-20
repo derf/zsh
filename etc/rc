@@ -12,11 +12,10 @@ alias 'ls-colors:'='which dircolors &> /dev/null &&'
 alias 'openbsd:'='[[ $uname = OpenBSD ]] &&'
 
 ## include the actual config
-source $ZDIR/modules
-source $ZDIR/parameters
-source $ZDIR/colors
-source $ZDIR/function
 source $ZDIR/options
+source $ZDIR/parameters
+source $ZDIR/function
+source $ZDIR/colors
 source $ZDIR/prompt
 source $ZDIR/directories
 source $ZDIR/keys
