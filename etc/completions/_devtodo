@@ -81,7 +81,7 @@ function _index () {
 	for i in $(todo $tdoptions --format display='%n '); do
 		index+=${i}:$(todo $tdoptions --format display='%t' $i)
 	done
-	_describe index index
+	_describe -t items index index
 }
 
 function _color () {

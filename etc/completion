@@ -25,6 +25,10 @@ zstyle ':completion:*:warnings' format \
 
 zstyle ':completion:*' group-name ''
 
+# program-specific settings
+zstyle ':completion:*:*:kill:*' menu yes
+zstyle ':completion:*:*:(todo|td*):*:items' menu yes
+
 _hosts() { compadd derf.homelinux.org kraftwerk saviour kappa nemesis aneurysm;}
 
 compinit -C -d var/cache/zsh/compdump
