@@ -23,14 +23,14 @@ function put_sievert () {
 hosts=(aneurysm sievert)
 
 if [[ -f $1 ]] {
-	file=${1:t}
+	file=$1
 	while (( $#hosts )) {
 		put_$hosts[1]
 		ping -c 1 $hostname &> /dev/null
 		if (( ? == 0 )) {
 			scp $ssh_options $file $hostname:$target_dir
-			ssh $ssh_options $hostname "chmod 644 $target_dir$file"
-			echo $server_prefix$file
+			ssh $ssh_options $hostname "chmod 644 $target_dir${file:t}"
+			echo $server_prefix${file:t}
 			return 0
 		} else {
 			shift hosts
