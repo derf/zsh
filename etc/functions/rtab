@@ -44,6 +44,7 @@ typeset -i i
 (( tilde )) && dir=${dir/$HOME/\~}
 tree=(${(s:/:)dir})
 (
+	unfunction chpwd 2> /dev/null
 	if [[ $tree[1] = '~' ]] {
 		shift tree
 		cd ~
