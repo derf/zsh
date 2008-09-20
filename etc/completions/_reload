@@ -1,2 +1,2 @@
 #compdef reload
-_arguments -s '*::shell function:_functions'
+_functions
