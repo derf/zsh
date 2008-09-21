@@ -1,0 +1,21 @@
+## vim:ft=zsh
+## Collect some directory information for the prompt
+## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## 
+
+typeset string
+
+if [[ -r .todo ]] {
+	if [[ ${#$(todo)} -gt 0 ]] {
+		string+='todo* '
+	} else {
+		string+='todo '
+	}
+}
+[[ -f .fehindex.jpg ]] && string+='feh '
+[[ -d .hg ]] && string+='hg '
+[[ -d .git ]] && string+='git '
+[[ -d .svn ]] && string+='svn '
+[[ -f Makefile || -f makefile ]] && string+='make '
+
+echo $string
