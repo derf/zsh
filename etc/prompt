@@ -3,10 +3,13 @@
 # RPS1 is on the right side of the terminal
 # The \ek\e\\ is for screen's 'shelltitle'
 
+# psvar[1] = directory info
+# psvar[2] = rtab (current directory)
+
 user="${ps_yellow}%n"
 at="@"
 host="%m"
-dir="${ps_reset}%25>…>\$(rtab -f)%>>"
+dir="${ps_reset}%25>…>%2v%>>"
 sign="%(!.${ps_red}#.${ps_green}>)${ps_reset}"
 screen=$'%{\ek\e\\%}'
 

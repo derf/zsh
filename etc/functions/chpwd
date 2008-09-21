@@ -1,4 +1,4 @@
-## vim:set ft=zsh
+## vim:ft=zsh
 psvar[1]=''
 [[ -f .todo ]] && psvar[1]+='todo '
 [[ -f .fehindex.jpg ]] && psvar[1]+='feh '
@@ -6,3 +6,5 @@ psvar[1]=''
 [[ -d .git ]] && psvar[1]+='git '
 [[ -d .svn ]] && psvar[1]+='svn '
 [[ -f Makefile || -f makefile ]] && psvar[1]+='make '
+
+psvar[2]=$(rtab -f)
