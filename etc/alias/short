@@ -47,10 +47,12 @@ alias hgs='hg status'
 alias hgu='hg update'
 alias hgv='hg verify'
 
-# List archive files
+# File listings
 alias lsb='tar tvjf'
+alias lsgz='tar tvzf'
+alias lsi='feh --list'
 alias lst='tar tvf'
-alias lsz='tar tvzf'
+alias lsz='unzip -l'
 
 alias nb='newsbeuter'
 alias nbr='newsbeuter -r'

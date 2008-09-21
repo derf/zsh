@@ -3,7 +3,7 @@
 ## vim:ft=zsh
 # part 1: what filetypes to open whith what app?
 # List of filetypes covered by aliases
-filetypes=(archive audio midi video image document raw office emul)
+filetypes=(archive audio midi video image document raw office emul web)
 
 # File extensions
 archive_formats=(tar.bz2 tar.gz tar bz2 gz zip rar)
@@ -15,6 +15,7 @@ document_formats=(pdf ps)
 raw_formats=(conf ini log txt htm html xhtml c cpp lst)
 office_formats=(doc odt ott rtf sxw)
 emul_formats=(exe)
+web_formats=(com de net org)
 
 # Applications
 archive_app='extr'
@@ -26,6 +27,7 @@ document_app='kpdf'
 raw_app='vim'
 office_app='openoffice'
 emul_app='wine'
+web_app='opera'
 
 # part 2: create the aliases
 for meta in $filetypes; do
@@ -35,4 +37,4 @@ for meta in $filetypes; do
 	unset ${meta}_{formats,app}
 done
 
-unset filetypes meta
+unset filetypes meta format
