@@ -1,0 +1,32 @@
+#compdef iwlist
+## iwlist completion as requested by mxey
+## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_iwlist
+
+function _iwlist_options () {
+	typeset -a options
+	options=(
+		'scanning:list accesspoints'
+		'frequency:list available frequencies'
+		'bitrate:list supported bitrates'
+		'encryption:list encryption keys and key sizes'
+		'power:list power management modes'
+		'txpower:list available transmit powers'
+		'retry:list transmit retry limits and lifetime'
+		'event:list supported wireless events'
+		'auth:list set WPA authentication parameters'
+		'wpakeys:list set WPA encryption keys'
+		'genie:list GENeric Information Elements'
+		'modulation:list supported and enabled modulations'
+	)
+	_describe option options
+}
+
+if (( CURRENT == 2 )); then
+	_net_interfaces
+	_iwlist_options
+elif (( CURRENT == 3 )); then
+	_iwlist_options
+else
+	_message "no more arguments"
+fi
