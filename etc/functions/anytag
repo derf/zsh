@@ -1,0 +1,19 @@
+## vim:ft=zsh
+## anytag - tag files based on symlinks (quick&dirty)
+
+typeset -T REPLY reply ' '
+typeset cmd=$1
+typeset file tag
+
+mkdir -p .tags
+for file in *(.); do
+	eval $cmd
+	read
+	for tag in $reply; do
+		mkdir -p tags/$tag
+		(
+			cd tags/$tag
+			ln -s ../../$file
+		)
+	done
+done
