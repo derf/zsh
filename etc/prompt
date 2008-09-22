@@ -10,7 +10,7 @@ user="${ps_yellow}%n"
 at="@"
 host="%m"
 dir="${ps_reset}%25>…>%2v%>>"
-sign="%(!.${ps_red}#.${ps_green}>)${ps_reset}"
+sign="%(!.${ps_red}$(zchar prompt-root-ok).${ps_green}$(zchar prompt-user-ok))${ps_reset}"
 screen=$'%{\ek\e\\%}'
 
 PS1="${user}${at}${host} ${dir} ${sign} ${screen}"

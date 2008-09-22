@@ -1,0 +1,20 @@
+## vim:ft=zsh
+
+typeset -A chars
+typeset unicode=${unicode-1}
+chars=(
+	compdelim '-·'
+	prompt-user-ok '>>' # ▶?
+	prompt-user-nz '>>' # ▷?
+	prompt-root-ok '##'
+	prompt-root-nz '##'
+)
+
+function zchar () {
+	typeset char=$1
+	if (( unicode == 1 )) {
+		echo -n - ${chars[$char][2]}
+	} else {
+		echo -n - ${chars[$char][1]}
+	}
+}
