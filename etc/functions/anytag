@@ -10,9 +10,9 @@ for file in *(.); do
 	eval $cmd
 	read
 	for tag in $reply; do
-		mkdir -p tags/$tag
+		mkdir -p .tags/$tag
 		(
-			cd tags/$tag
+			cd .tags/$tag
 			ln -s ../../$file
 		)
 	done
