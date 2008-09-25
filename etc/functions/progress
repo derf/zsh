@@ -1,0 +1,25 @@
+## vim:ft=zsh
+## progress - draw a simple progress bar
+## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+
+typeset -i current=$1
+typeset -i max=$2
+typeset desc=$3
+typeset desc2=$4
+typeset output=''
+typeset currentper=$(( (current*100)/max ))
+typeset c a
+function item {
+	typeset j
+	for j in {0..$1}; {
+		(( j > 0 )) && output+=$2
+	}
+}
+c=$(( currentper/5 ))
+a=$(( 20-c ))
+output+="$desc ["
+item $c '='
+item $a ' '
+output+="] $currentper% $desc2"
+echo -ne "\r                                                                                \r"
+echo -ne $output
