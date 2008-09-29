@@ -1,0 +1,47 @@
+#compdef pkill pgrep
+## completion for pkill
+## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+
+## Not finished
+##  * The process completion needs some rework (what about sudo?)
+##  * Some options lack completion / their completion is inspecific
+
+typeset -a arguments
+typeset expl
+
+arguments=(
+	'-c[count matching processes]'
+	'-f[match pattern against full commandline]'
+	'-g[match processes in the listed group IDs]:process group ID'
+	'-G[match processes with this GID]:group:_groups'
+	'-n[select newest matching process]'
+	'-o[select oldest matching process]'
+	'-P[select processes with this parent PID]:process ID:_pids'
+	'-s[select processes with this session ID]:session ID'
+	'-t[select processes with this controlling terminal]:terminal:_terminal'
+	'-u[select processes owned by effective user]:user:_users'
+	'-U[select processes owned by real user]:user:_users'
+	'-v[negate the matching]'
+	'-x[exact matches]'
+	':pattern:_named_process'
+)
+
+if [[ $service == 'pgrep' ]] {
+	arguments+='-d[set output delimiter]:delimiter'
+	arguments+='-l[list process name]'
+}
+
+function _terminal {
+	_path_files -W /dev
+}
+
+function _named_process {
+	typeset -a pgrep_user
+	if (( EUID )) {
+		pgrep_user=(-u $EUID)
+	}
+	_wanted pattern expl 'pattern or process name' \
+	compadd $(pgrep $pgrep_user -l '' | cut -d ' ' -f 2)
+}
+
+_arguments -s $arguments
