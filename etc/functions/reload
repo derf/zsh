@@ -1,4 +1,7 @@
 ## vim:ft=zsh
+## reload the zshrc / some functions
+## Usage: reload [function names]
+
 if [[ ${#*} == 0 ]] {
 	autoload xsource
 	xsource ~/.zshrc

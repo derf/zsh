@@ -1,4 +1,8 @@
 ## vim:ft=zsh
+## put - make a file available via HTTP
+## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## supports as many 'failover' hosts as an array can hold
+## Usage: put <file>
 
 autoload fdie
 typeset hostname
