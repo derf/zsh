@@ -45,3 +45,4 @@ function _named_process {
 }
 
 _arguments -s $arguments
+_signals -p
