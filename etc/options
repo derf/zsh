@@ -18,6 +18,9 @@ setopt rc_quotes
 # Alert me in case of non-zero exit status
 setopt print_exit_value
 
+# greedy is more like dvorak than qwerty...
+setopt dvorak
+
 # Accidently hitting ^s sucks (alternative: `stty -ixon`)
 unsetopt flow_control
 
