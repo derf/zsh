@@ -31,7 +31,8 @@ arg_generic=(
 	'--backup[backup database]:count: '
 	'--timeout[display timeout]:seconds: '
 	'--purge[purge completed items]:days: '
-	'*'{'--filter','-f'}'[show items matching filter]:filter'
+	'*'{'--filter','-f'}'[show items matching filter]:filter:_filter'
+#	'*::item:_index'
 )
 
 arg_pair=(
@@ -91,6 +92,19 @@ function _color () {
 		_wanted item expl 'item' \
 		compadd -S '=' veryhigh high medium low verylow title info
 	fi
+}
+
+function _filter {
+	typeset prefix
+	if [[ ${#${words[$CURRENT]}} -gt 0 ]] {
+		prefix=${${words[$CURRENT]}[1]}
+		_wanted expression expl 'filter expression' \
+		compadd -p $prefix -- all children done veryhigh high medium low verylow
+	} else {
+		# XXX the '-' makes problems
+		_wanted expression expl 'filter expression' \
+		compadd -S '' -- - + = all children done veryhigh high medium low verylow
+	}
 }
 
 function _format () {
