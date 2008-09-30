@@ -10,24 +10,37 @@ alias 'linux:'='[[ $uname = Linux ]] &&'
 alias 'non-linux:'='[[ $uname = Linux ]] ||'
 alias 'ls-colors:'='which dircolors &> /dev/null &&'
 alias 'openbsd:'='[[ $uname = OpenBSD ]] &&'
+ret=0
 
 ## include the actual config
+echo        "options"
 source $ZDIR/options
+echo        "parameters"
 source $ZDIR/parameters
+echo        "unicode"
 source $ZDIR/unicode
+echo        "functions"
 source $ZDIR/function
+echo        "colorc"
 source $ZDIR/colors
+echo        "prompt"
 source $ZDIR/prompt
+echo        "directories"
 source $ZDIR/directories
+echo        "keys"
 source $ZDIR/keys
+echo        "aliases"
 source $ZDIR/alias/suffix
 source $ZDIR/alias/font
 source $ZDIR/alias/default
 source $ZDIR/alias/global
 source $ZDIR/alias/short
+echo                     "includes"
 xsource $ZDIR/../provided/includes
+echo         "local"
 xsource $ZDIR/local
 xsource $HOME/var/tmp/envstore-raw-$UID
+echo        "completion"
 source $ZDIR/completion
 
 ## misc
@@ -44,3 +57,5 @@ unalias 'openbsd:'
 unfunction xexport
 unfunction xsource
 unset uname
+(( ret )) || clear
+unset ret
