@@ -31,6 +31,7 @@ arg_generic=(
 	'--backup[backup database]:count: '
 	'--timeout[display timeout]:seconds: '
 	'--purge[purge completed items]:days: '
+	'*'{'--filter','-f'}'[show items matching filter]:filter'
 )
 
 arg_pair=(
@@ -46,7 +47,6 @@ arg_pair=(
 	'global'      'G'
 	'TODO'        'T'
 	'all'         'A'
-	'filter'      'f'
 )
 
 arg_desc=(
@@ -62,7 +62,6 @@ arg_desc=(
 	'global'      '[use global database]'
 	'TODO'        '[generate TODO file]'
 	'all'         '[show all items]'
-	'filter'      '[show items matching filter]:filter'
 )
 
 for arg in ${(k)arg_pair}; {
