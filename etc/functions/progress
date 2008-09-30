@@ -22,5 +22,5 @@ output+="$desc ["
 item $c '='
 item $a ' '
 output+="] $currentper% $desc2"
-echo -ne "\r                                                                                \r"
+echo -ne "\r\e[2K"
 echo -ne $output
