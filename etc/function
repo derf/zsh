@@ -7,8 +7,8 @@ autoload catch throw
 autoload zargs
 
 # own functions
-autoload anytag chpwd dirinfo extr plonkhost put reload rtab world-readable
-autoload xexport xsource youtube-watch
+autoload anytag chpwd dirinfo extr plonkhost put reload rtab salias 
+autoload world-readable xexport xsource youtube-watch
 
 colors
 chpwd

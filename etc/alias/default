@@ -40,8 +40,8 @@ alias host='host -a'
 alias mx='mx -aZ'
 
 # Only TCP/TCP6, not sockets and such
-alias netstat='sudo netstat -atp tcp'
-linux: alias netstat='sudo netstat --program --all --tcp --extend'
+salias netstat='netstat -atp tcp'
+linux: salias netstat='netstat --program --all --tcp --extend'
 
 
 #
