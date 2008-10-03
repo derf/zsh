@@ -5,13 +5,7 @@
 
 typeset string
 
-if [[ -r .todo ]] {
-	if [[ ${#$(todo)} -gt 0 ]] {
-		string+='todo* '
-	} else {
-		string+='todo '
-	}
-}
+[[ -r .todo ]] && string+='todo '
 [[ -f .fehindex.jpg ]] && string+='feh '
 [[ -d .hg ]] && string+='hg '
 [[ -d .git ]] && string+='git '
