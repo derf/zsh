@@ -5,19 +5,16 @@ case `hostname` in
 		hash -d www=/var/www
 		hash -d web=$HOME/public_html
 		hash -d vcs=$HOME/var/svn
-		hash -d lyrics=$HOME/packages/lyrics
+		hash -d lyrics=/home/wildernet/html/lyrics
 	;;
 	saviour)
 		hash -d music=$HOME/lib/audio
 		hash -d www=/var/www
 		hash -d cgi=/usr/lib/cgi-bin
-		hash -d lyrics=$HOME/packages/lyrics
 		hash -d vcs=$HOME/var/svn
+		hash -d lyrics=~vcs/lyrics
 	;;
 	nemesis)
 		hash -d vcs=$HOME/var/svn
-		hash -d lyrics=$HOME/packages/lyrics
+		hash -d lyrics=~vcs/lyrics
 esac
-
-xexport vcs=${~vcs}
-xexport lyrics=${~lyrics}
