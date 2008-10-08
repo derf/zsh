@@ -33,4 +33,5 @@ zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 
 _hosts() { compadd derf.homelinux.org kraftwerk saviour kappa nemesis aneurysm;}
 
-compinit -C -d var/cache/zsh/compdump
+[[ -r $compdump ]] || echo "Re-creating completion cache, please wait..."
+compinit -C -d $compdump
