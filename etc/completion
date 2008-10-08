@@ -4,7 +4,7 @@ zstyle :compinstall filename ~/.zshrc
 zstyle ':completion:*' cache-path ~/var/cache/zsh
 zstyle ':completion:*' use-cache true
 
-ls-colors: zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+check_com -c dircolors && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Mark the current selection when tabbing through possible completions
 zstyle ':completion:*' menu select=1

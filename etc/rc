@@ -8,7 +8,6 @@
 uname=$(uname)
 alias 'linux:'='[[ $uname = Linux ]] &&'
 alias 'non-linux:'='[[ $uname = Linux ]] ||'
-alias 'ls-colors:'='which dircolors &> /dev/null &&'
 alias 'openbsd:'='[[ $uname = OpenBSD ]] &&'
 
 ## include the actual config
@@ -33,15 +32,15 @@ source $ZDIR/completion
 
 ## misc
 bindkey -e
-ls-colors: eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
+check_com -c dircolors && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
 mesg n
 umask 077
 
 ## cleanup
 unalias 'linux:'
 unalias 'non-linux:'
-unalias 'ls-colors:'
 unalias 'openbsd:'
+unfunction check_com
 unfunction xexport
 unfunction xsource
 unset uname
