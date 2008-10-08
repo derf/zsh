@@ -9,3 +9,4 @@ ZDIR=$HOME/packages/zsh/etc
 PS4='%{'$'\e[0;36m''%}%N%{'$'\e[0m''%}:%{'$'\e[0;33m''%}%i%{'$'\e[0m''%}│'
 fpath=($ZDIR/functions $ZDIR/completions $fpath)
 [[ -r $ZDIR/../provided/env ]] && source $ZDIR/../provided/env
+[[ -r $ZDIR/local-env ]] && source $ZDIR/local-env
