@@ -18,11 +18,11 @@ is_in_path () {
 	return $ret
 }
 
-# a simple sfpath=${fpath:#/home/derf*} won't work
-for i in ${fpath:#/home/derf*}; {
+# a simple sfpath=${fpath:#${HOME}*} won't work
+for i in ${fpath:#${HOME}*}; {
 	sfpath+=$i
 }
-for i in ${path:#/home/derf*}; {
+for i in ${path:#${HOME}*}; {
 	spath+=$i
 }
 
