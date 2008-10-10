@@ -111,6 +111,8 @@ function _format () {
 }
 
 function _priority () {
+	_wanted priority expl 'priority' \
+	compadd default veryhigh high medium low verylow
 }
 
 case $service in
