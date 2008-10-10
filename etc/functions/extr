@@ -1,5 +1,11 @@
 # builtin function for archives, see $ZDIR/alias_suffix
 ## vim:ft=zsh
+
+function confirm_shar {
+	echo -ne "${warn}shar archives are shell scripts and can easily contain malicious code.${reset} Proceed/ [y/N] "
+	read -q
+}
+
 if [[ -f $1 ]] {
 	case $1 in
 		*.tar.bz2) tar xvjf $1 ;;
@@ -15,7 +21,7 @@ if [[ -f $1 ]] {
 		*.tbz2) tar xvjf $1 ;;
 		*.zip) unzip $1 ;;
 		*.Z) uncompress $1 ;;
-		*.shar) sh $1 ;;
+		*.shar) confirm_shar && sh $1 ;;
 		*) echo "Unknown archive type: $1"; exit 2 ;;
 	esac
 } else {
