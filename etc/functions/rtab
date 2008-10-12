@@ -70,5 +70,5 @@ tree=(${(s:/:)dir})
 		cd $dir
 		shift tree
 	}
-	echo $result
+	echo ${result:-/}
 )
