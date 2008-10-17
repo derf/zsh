@@ -1,3 +1,4 @@
 source $HOME/packages/zsh/etc/colors
 print -P "${info}>>${reset} this is ${info}`uname -srm`${reset} on ${info}%y${reset}"
 [[ -n $(echo Maildir/new/*(N)) ]] && echo "${info}>>${reset} You have mail!"
+[[ -r $HOME/packages/zsh/etc/local-profile ]] && source $HOME/packages/zsh/etc/local-profile
