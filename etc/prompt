@@ -10,11 +10,13 @@ user="${ps_yellow}%n"
 at="@"
 host="${ps_yellow}%m"
 dir="${ps_reset}%30<…<%2v%>>"
-sign="%(!.${ps_red}$(zchar prompt-root-ok).${ps_green}$(zchar prompt-user-ok))${ps_reset}"
+(( EUID )) && ps_sign=$ps_green || ps_sign=$ps_red
+sign="%(!.$(zchar prompt-root-ok).$(zchar prompt-user-ok))"
+sign="${ps_sign}%(?.${sign}.%?)${ps_reset}"
 screen=$'%{\ek\e\\%}'
 
 PS1="${host} ${dir} ${sign} ${screen}"
 RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}%T]${ps_reset}"
 
 unset user at host
-unset dir sign screen
+unset dir ps_sign sign screen

@@ -15,9 +15,6 @@ setopt correct
 # echo 'foo''bar''' will become foo'bar'
 setopt rc_quotes
 
-# Alert me in case of non-zero exit status
-setopt print_exit_value
-
 # greedy is more like dvorak than qwerty...
 setopt dvorak
 
