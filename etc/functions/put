@@ -9,6 +9,14 @@ typeset hostname
 typeset -a ssh_options hosts
 typeset target_dir server_prefix
 typeset file
+typeset -i n_hosts n_ping n_curl
+
+function put_aneurysm_int {
+	hostname='aneurysm'
+	ssh_options=(-q)
+	target_dir='public_html/tmp/'
+	server_prefix='https://derf.homelinux.org/~derf/tmp/'
+}
 
 function put_aneurysm () {
 	hostname='derf.homelinux.org'
@@ -24,7 +32,8 @@ function put_sievert () {
 	server_prefix='https://tabularazor.org/~derf/tmp/'
 }
 
-hosts=(aneurysm sievert)
+hosts=(aneurysm_int aneurysm sievert)
+n_hosts=$#hosts
 
 if [[ -f $1 ]] {
 	file=$1
@@ -34,13 +43,20 @@ if [[ -f $1 ]] {
 		if (( ? == 0 )) {
 			scp $ssh_options $file $hostname:$target_dir
 			ssh $ssh_options $hostname "chmod 644 $target_dir${file:t}"
-			echo $server_prefix${file:t}
-			return 0
+			if $(curl -fI $server_prefix${file:t} &> /dev/null); then
+				echo $server_prefix${file:t}
+				return 0
+			else
+				(( n_curl++ ))
+			fi
 		} else {
+			(( n_ping++ ))
 			shift hosts
 		}
 	}
-	fdie "No hosts reachable"
+	fdie "Tried uploading to $n_hosts hosts without succes\n" \
+	" - $n_ping hosts are unreachable\n" \
+	" - $n_curl errors while uploading"
 } else {
 	fdie "$1: No such file"
 }
