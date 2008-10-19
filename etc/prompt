@@ -11,7 +11,7 @@ at="@"
 host="${ps_yellow}%m"
 dir="${ps_reset}%30<…<%2v%>>"
 (( EUID )) && ps_sign=$ps_green || ps_sign=$ps_red
-sign="%(!.$(zchar prompt-root-ok).$(zchar prompt-user-ok))"
+sign="%(!.$(zchar prompt-root).$(zchar prompt-user))"
 sign="${ps_sign}%(?.${sign}.%?)${ps_reset}"
 screen=$'%{\ek\e\\%}'
 
