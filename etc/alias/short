@@ -32,6 +32,9 @@ alias gits='git status'
 alias git-grep='grep --exclude-dir=.git -r'
 alias git-serve='git-daemon --verbose --export-all --base-path=. .'
 
+alias gtd-todo='todo --database ~/var/gtd/todo'
+alias gtd-wait='todo --database ~/var/gtd/waiting-for'
+
 ## Mercurial (hg)
 alias hga='hg add'
 alias hgar='hg addremove'

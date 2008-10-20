@@ -1,4 +1,0 @@
-#compdef gtd
-
-_arguments -s \
-	'1:action:(todo waiting)'

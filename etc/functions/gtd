@@ -1,6 +1,0 @@
-## vim:ft=zsh
-
-case $1 in
-	todo) todo --database ~/var/gtd/todo ;;
-	waiting) todo --database ~/var/gtd/waiting-for ;;
-esac
