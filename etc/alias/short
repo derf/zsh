@@ -14,6 +14,8 @@ alias aller='for i in **/*(*);'
 alias alllr='for i in **/*(@);'
 alias allr='for i in **/*;'
 
+alias dua='du --apparent-size'
+
 ## fbi
 alias fbif='fbi -a'
 alias fbij='fbi -a -u'
