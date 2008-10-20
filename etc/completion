@@ -36,7 +36,7 @@ _hosts() { compadd derf.homelinux.org kraftwerk saviour kappa nemesis aneurysm;}
 if [[ -r $compdump ]] {
 	compinit -C -d $compdump
 } else {
-	echo -n "Re-creating completion cache..."
+	echo -n "Creating completion cache..."
 	compinit -d $compdump
-	echo "ok"
+	echo
 }
