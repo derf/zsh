@@ -7,7 +7,7 @@ autoload catch throw
 autoload zargs
 
 # own functions
-autoload check_com chpwd dirinfo extr plonkhost put reload rtab salias 
+autoload check_com chpwd dirinfo extr gtd plonkhost put reload rtab salias
 autoload world-readable xexport xsource youtube-watch
 
 colors
