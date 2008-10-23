@@ -49,6 +49,7 @@ linux: salias netstat='netstat --program --all --tcp --extend'
 #
 
 alias cal='cal -m'
+alias calendar='calendar -A 14'
 alias cp='cp -i'
 alias fbi='fbi -readahead'
 alias feh='feh --quiet'
