@@ -1,0 +1,26 @@
+#compdef git-hook
+
+typeset hook_dir expl
+
+if [[ -n $GIT_DIR && -d $GIT_DIR ]] {
+	hook_dir=$GIT_DIR/hooks
+} elif [[ -d hooks ]] {
+	hook_dir=$PWD/hooks
+} elif [[ -d .git/hooks ]] {
+	hook_dir=$PWD/.git/hooks
+} elif [[ $PWD == */hooks ]] {
+	hook_dir=$PWD
+}
+
+if (( CURRENT == 2 )) {
+	_wanted ation expl 'action' \
+	compadd list enable disable
+} elif (( CURRENT == 3 )) {
+	if [[ ${words[2]} == 'enable' ]] {
+		_wanted hook expl 'git hook' \
+		_path_files -W $hook_dir -g '*(^x)'
+	} elif [[ ${words[2]} == 'disable' ]] {
+		_wanted hook expl 'git hook' \
+		_path_files -W $hook_dir -g '*(x)'
+	}
+}

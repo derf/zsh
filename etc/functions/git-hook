@@ -1,0 +1,63 @@
+## vim:ft=zsh
+## Small function to help with git hooks
+## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+
+autoload fdie
+typeset hook_dir action=$1 hook=$2
+
+if [[ -n $GIT_DIR && -d $GIT_DIR ]] {
+	hook_dir=$GIT_DIR/hooks
+} elif [[ -d hooks ]] {
+	hook_dir=$PWD/hooks
+} elif [[ -d .git/hooks ]] {
+	hook_dir=$PWD/.git/hooks
+} elif [[ $PWD == */hooks ]] {
+	hook_dir=$PWD
+} else {
+	fdie 'No git or hook directory found.'; return
+}
+
+function usage {
+	cat <<- ENDOFHELP
+	Usage: git-hook enable|disable <hook>
+	ENDOFHELP
+}
+
+if [[ $#* < 1 ]] {
+	usage; return
+}
+
+function hook_enable {
+	if [[ -e $hook_dir/$hook ]] {
+		if ! [[ -x $hook_dir/$hook ]] {
+			chmod u+x $hook_dir/$hook
+		}
+	} else {
+		fdie "No such hook: '$hook'"; return
+	}
+}
+
+function hook_disable {
+	if [[ -e $hook_dir/$hook ]] {
+		if [[ -x $hook_dir/$hook ]] {
+			chmod u-x $hook_dir/$hook
+		}
+	} else {
+		fdie "No such hook: '$hook'"; return
+	}
+}
+
+function hook_list {
+	for hook in $hook_dir/*; {
+		[[ -x $hook ]] && echo -n $green
+		echo -n ${hook:t}
+		echo $reset
+	}
+}
+
+case $action in
+	enable) shift 2; hook_enable $* ;;
+	disable) shift 2; hook_disable $* ;;
+	list) shift; hook_list $* ;;
+	*) usage ;;
+esac
