@@ -14,7 +14,8 @@ if [[ -n $GIT_DIR && -d $GIT_DIR ]] {
 } elif [[ $PWD == */hooks ]] {
 	hook_dir=$PWD
 } else {
-	fdie 'No git or hook directory found.'; return
+	hook_dir=$(git rev-parse --git-dir)/hooks ||
+	return
 }
 
 function usage {
@@ -26,7 +27,7 @@ function usage {
 function hook_enable {
 	if [[ -e $hook_dir/$hook ]] {
 		if ! [[ -x $hook_dir/$hook ]] {
-			chmod u+x $hook_dir/$hook
+			chmod +x $hook_dir/$hook
 		}
 	} else {
 		fdie "No such hook: '$hook'"; return
@@ -36,7 +37,7 @@ function hook_enable {
 function hook_disable {
 	if [[ -e $hook_dir/$hook ]] {
 		if [[ -x $hook_dir/$hook ]] {
-			chmod u-x $hook_dir/$hook
+			chmod -x $hook_dir/$hook
 		}
 	} else {
 		fdie "No such hook: '$hook'"; return
