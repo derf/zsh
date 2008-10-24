@@ -7,10 +7,10 @@ typeset hook_dir action=$1 hook=$2
 
 if [[ -n $GIT_DIR && -d $GIT_DIR ]] {
 	hook_dir=$GIT_DIR/hooks
-} elif [[ -d hooks ]] {
-	hook_dir=$PWD/hooks
 } elif [[ -d .git/hooks ]] {
 	hook_dir=$PWD/.git/hooks
+} elif [[ -d hooks ]] {
+	hook_dir=$PWD/hooks
 } elif [[ $PWD == */hooks ]] {
 	hook_dir=$PWD
 } else {
