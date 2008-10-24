@@ -3,7 +3,7 @@
 ## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
 
 autoload fdie
-typeset hook_dir action=$1 hook=$2
+typeset hook_dir action=${1=list} hook=$2
 
 if [[ -n $GIT_DIR && -d $GIT_DIR ]] {
 	hook_dir=$GIT_DIR/hooks
@@ -21,10 +21,6 @@ function usage {
 	cat <<- ENDOFHELP
 	Usage: git-hook enable|disable <hook>
 	ENDOFHELP
-}
-
-if [[ $#* < 1 ]] {
-	usage; return
 }
 
 function hook_enable {
