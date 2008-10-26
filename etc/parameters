@@ -15,7 +15,7 @@ linux: [[ -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/
 # Used by other programs
 export EDITOR==vim
 export MPD_HOST=saviour
-export CALENDAR_DIR=$HOME/packages/calendar/etc
+export CALENDAR_DIR=$HOME/var/misc
 export HOST
 export COLUMNS
 export LINES
