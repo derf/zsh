@@ -6,8 +6,6 @@
 # psvar[1] = directory info
 # psvar[2] = rtab (current directory)
 
-user="${ps_yellow}%n"
-at="@"
 host="${ps_yellow}%m"
 dir="${ps_reset}%30<…<%2v%>>"
 (( EUID )) && ps_sign=$ps_green || ps_sign=$ps_red
