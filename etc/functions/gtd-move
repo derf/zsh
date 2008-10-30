@@ -1,0 +1,18 @@
+## vim:ft=zsh
+
+if [[ ${#*} != 3 ]] {
+	echo "Usage: gtd-move <from-database> <item> <to-database>"
+	return
+}
+
+typeset prefix="$HOME/var/gtd"
+typeset format='display=%T\n%p'
+typeset from=$1
+typeset itemno=$2
+typeset to=$3
+typeset IFS=$'\n'
+typeset -a item
+
+item=($(todo --database $prefix/$from --format $format $itemno))
+todo --database $prefix/$to --priority $item[2] --add $item[1]
+todo --database $prefix/$from --remove $itemno

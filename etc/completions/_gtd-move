@@ -1,0 +1,15 @@
+#compdef gtd-move
+
+typeset -a arguments
+
+arguments=(
+	':from database:_gtd_database'
+	':item: '
+	':to database:_gtd_database'
+)
+
+function _gtd_database {
+	_path_files -W ~/var/gtd -g '*(.)'
+}
+
+_arguments -s $arguments
