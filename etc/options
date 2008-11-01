@@ -18,6 +18,9 @@ setopt rc_quotes
 # greedy is more like dvorak than qwerty...
 setopt dvorak
 
+# zshexpn(1) -> Filename generation
+setopt extended_glob
+
 # Accidently hitting ^s sucks (alternative: `stty -ixon`)
 unsetopt flow_control
 
