@@ -22,6 +22,8 @@ if [[ -f $1 ]] {
 		*.zip) unzip $1 ;;
 		*.Z) uncompress $1 ;;
 		*.shar) confirm_shar && sh $1 ;;
+		*.cpio) cpio --no-absolute-filenames -idv < $1 ;;
+		*.lzma) unlzma $1 ;;
 		*) echo "Unknown archive type: $1"; return 2 ;;
 	esac
 } else {
