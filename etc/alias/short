@@ -64,6 +64,8 @@ alias lsz='unzip -l'
 alias nb='newsbeuter'
 alias nbr='newsbeuter -r'
 
+alias off='uinit stop-all; sudo halt'
+
 alias rd='rmdir'
 
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
