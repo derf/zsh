@@ -7,9 +7,11 @@
 #   grep
 #
 
-linux: alias egrep='grep -E --color=auto'
-linux: alias fgrep='grep -F --color=auto'
-linux: alias grep='grep --color=auto'
+linux: {
+	alias egrep='grep -E --color=auto'
+	alias fgrep='grep -F --color=auto'
+	alias grep='grep --color=auto'
+}
 
 
 #
@@ -17,16 +19,16 @@ linux: alias grep='grep --color=auto'
 #
 
 # human-readable sizes, local filesystems only
-alias df='df -hl'
-linux: alias df='df -hl --exclude-type=fuse.encfs'
+linux: alias df='df -hl --exclude-type=fuse.encfs' ||
+       alias df='df -hl'
 
 # human-readable sizes, summarize, dereference args
-non-linux: alias du='du -shH'
-linux: alias du='du -shD'
+linux: alias du='du -shD' ||
+       alias du='du -shH'
 
 # human-readable sizes, mark executables with '*' etc.
-alias ls='ls -Fh'
-linux: alias ls='ls -Fh --color=auto'
+linux: alias ls='ls -Fh --color=auto' ||
+       alias ls='ls -Fh'
 
 
 #
@@ -40,8 +42,8 @@ alias host='host -a'
 alias mx='mx -aZ'
 
 # Only TCP/TCP6, not sockets and such
-salias netstat='netstat -atp tcp'
-linux: salias netstat='netstat --program --all --tcp --extend'
+linux: salias netstat='netstat --program --all --tcp --extend' ||
+       salias netstat='netstat -atp tcp'
 
 
 #
