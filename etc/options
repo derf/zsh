@@ -21,6 +21,9 @@ setopt dvorak
 # zshexpn(1) -> Filename generation
 setopt extended_glob
 
+# More compact completion menus
+setopt list_packed
+
 # Accidently hitting ^s sucks (alternative: `stty -ixon`)
 unsetopt flow_control
 
