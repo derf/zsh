@@ -54,7 +54,7 @@ alias cal='cal -m'
 alias calendar='calendar -A 14'
 alias cp='cp -i'
 alias fbi='fbi -readahead'
-alias feh='feh --quiet'
+alias feh='feh --quiet --verbose'
 
 # find does globbing itself
 alias find='noglob find'
