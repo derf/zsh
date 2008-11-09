@@ -1,14 +1,16 @@
 #compdef Start Restart Stop Reload
 ## vim:ft=zsh
-## Completion for /etc/init.d functions
-## Daniel Friesel <derf@derf.homelinux.org>
-## https://derf.homelinux.org/~derf/dotfiles/completion/_initd
-## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/function
 
-local arguments
+typeset arguments file bang
+typeset action=${service:l}
+typeset -a scripts
 
-arguments=(
-	':file:_path_files -W /etc/init.d -g "*(*)"'
-)
+# Most of the loop's content has been taken from the _init_d
+# completion function provided with zsh
+for file in /etc/init.d/*(*); {
+	read -u0 -k2 bang < $file && [[ $bang == '#!' ]] &&
+	[[ -n ${${(j:|:s:|:)${(M)${(f)"$(< $file)"}:#[[:blank:]]#(\'|)${~action}([[:blank:]]#\|[[:blank:]]#${~action})#(\'|)\)}}//[^-a-z_]} ]] &&
+	scripts+=${file##*/}
+}
 
-_arguments -s $arguments
+_wanted script expl script compadd $scripts
