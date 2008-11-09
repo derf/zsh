@@ -1,33 +1,28 @@
 ## Some useful options, see zshoptions(1)
 ## vim:ft=zsh
 
+## Directory changing
 # Automatically use 'pushd' when cd'ing into a directory 
 # so I can use popd or 'cd -1' to get back where I came from.
 # And don't print the stack everytime using popd.
 setopt auto_pushd pushd_ignore_dups pushd_minus pushd_silent
-
-# enter "foobar" to cd foobar, and "derf" to cd ~derf
 setopt auto_cd
 
-# Try to correct typos in command names
-setopt correct
-
-# echo 'foo''bar''' will become foo'bar'
-setopt rc_quotes
-
-# greedy is more like dvorak than qwerty...
-setopt dvorak
-
-# zshexpn(1) -> Filename generation
-setopt extended_glob
-
-# More compact completion menus
+## Completion
 setopt list_packed
 
-# Accidently hitting ^s sucks (alternative: `stty -ixon`)
-unsetopt flow_control
+## Expansion / Globbing
+setopt extended_glob
 
-# And having to escape "!" everytime does, too (plus, I like ^r more)
+## History
 unsetopt bang_hist
 
+## Input/Output
+setopt correct
+# greedy is more like dvorak than qwerty...
+setopt dvorak
+unsetopt flow_control
+setopt rc_quotes
+
+## ZLE
 unsetopt beep
