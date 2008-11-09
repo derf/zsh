@@ -3,7 +3,6 @@
 ## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
 
 ## Not finished
-##  * The process completion needs some rework (what about sudo?)
 ##  * Some options lack completion / their completion is inspecific
 
 typeset -a arguments
@@ -36,12 +35,14 @@ function _terminal {
 }
 
 function _named_process {
-	typeset -a pgrep_user
+	typeset -a pgrep_user processes
+	typeset IFS=$'\n'
 	if (( EUID )) {
 		pgrep_user=(-u $EUID)
 	}
+	processes=($(pgrep $pgrep_user -l ''))
 	_wanted pattern expl 'pattern or process name' \
-	compadd $(pgrep $pgrep_user -l '' | cut -d ' ' -f 2)
+	compadd ${processes#* }
 }
 
 _arguments -s $arguments
