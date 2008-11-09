@@ -35,14 +35,13 @@ function _terminal {
 }
 
 function _named_process {
-	typeset -a pgrep_user processes
+	typeset -a pgrep_user
 	typeset IFS=$'\n'
 	if (( EUID )) {
 		pgrep_user=(-u $EUID)
 	}
-	processes=($(pgrep $pgrep_user -l ''))
 	_wanted pattern expl 'pattern or process name' \
-	compadd ${processes#* }
+	compadd ${$(pgrep $pgrep_user -l '')#* }
 }
 
 _arguments -s $arguments
