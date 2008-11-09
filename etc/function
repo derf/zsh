@@ -16,5 +16,11 @@ chpwd
 
 # from https://git.tabularazor.org/~mikael/etc/tree/zsh/functions
 for action in Start Stop Restart Reload; {
-	eval "$action() { sudo /etc/init.d/\$1 ${action:l} ; }"
+	eval "function $action {
+		typeset action
+		for action in \$*; {
+			sudo /etc/init.d/\$action ${action:l}
+		}
+	}"
 }
+unset action
