@@ -27,3 +27,7 @@ if [[ -x /usr/bin/lesspipe ]] {
 # others
 openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
 compdump='var/cache/zsh/compdump'
+hosts=(
+	kraftwerk saviour kappa nemesis aneurysm
+	sievert
+)

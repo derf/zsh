@@ -31,7 +31,11 @@ unset char
 zstyle ':completion:*:*:kill:*' menu yes
 zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 
-_hosts() { compadd derf.homelinux.org kraftwerk saviour kappa nemesis aneurysm;}
+function _hosts {
+	typeset expl
+	_wanted host expl 'host name' \
+	compadd $hosts
+}
 
 if [[ -r $compdump ]] {
 	compinit -C -d $compdump
