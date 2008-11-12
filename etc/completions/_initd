@@ -1,10 +1,18 @@
 #compdef Start Restart Stop Reload
 ## vim:ft=zsh
+## Note: This script parses the files in /etc/init.d to generate the matches.
+## If you'd prefer to just have all the files in /etc/init.d as arguments, 
+## write "zstyle ':completion:*:*:_initd' all-files true" into your zshrc
 
 typeset arguments file bang
 typeset specific=${service:l}
 typeset action='(st(art|op|atus)|(force-|)re(start|load)|debug_(up|down)|dump(|_stats)|add|delete|clean|list)'
 typeset -a scripts
+
+if zstyle -t ':completion:*:*:_initd' all-files; then
+	_arguments -s '*:init script:_path_files -W /etc/init.d -g "*(*)"'
+	return 0
+fi
 
 # Most of the loop's content has been taken from the _init_d
 # completion function provided with zsh
