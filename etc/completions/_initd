@@ -3,13 +3,14 @@
 
 typeset arguments file bang
 typeset action=${service:l}
+typeset what='(st(art|op|atus)|(force-|)re(start|load)|debug_(up|down)|dump(|_stats)|add|delete|clean|list)'
 typeset -a scripts
 
 # Most of the loop's content has been taken from the _init_d
 # completion function provided with zsh
 for file in /etc/init.d/*(*); {
 	read -u0 -k2 bang < $file && [[ $bang == '#!' ]] &&
-	[[ -n ${${(j:|:s:|:)${(M)${(f)"$(< $file)"}:#[[:blank:]]#(\'|)${~action}([[:blank:]]#\|[[:blank:]]#${~action})#(\'|)\)}}//[^-a-z_]} ]] &&
+	[[ ${${(j:|:s:|:)${(M)${(f)"$(< $file)"}:#[[:blank:]]#(\'|)${~what}([[:blank:]]#\|[[:blank:]]#${~what})#(\'|)\)}}//[^-a-z_]} == *$action* ]] &&
 	scripts+=${file##*/}
 }
 
