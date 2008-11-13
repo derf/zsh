@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 ## vim:ft=zsh
-typeset file dir i
+typeset file dir
 typeset PDIR=$HOME/packages
 typeset -a sfpath spath conflict
 
@@ -18,13 +18,8 @@ is_in_path () {
 	return $ret
 }
 
-# a simple sfpath=${fpath:#${HOME}*} won't work
-for i in ${fpath:#${HOME}*}; {
-	sfpath+=$i
-}
-for i in ${path:#${HOME}*}; {
-	spath+=$i
-}
+sfpath=(${fpath:#$HOME*})
+spath=(${path:#$HOME*})
 
 for file in $PDIR/{*/provides/zsh/completions/*(N),zsh/etc/completions/*(N)}; {
 	conflict=($(is_in_path ${file:t} $sfpath))
