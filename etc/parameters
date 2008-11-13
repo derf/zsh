@@ -1,12 +1,19 @@
 ## vim:ft=zsh
 
-# zsh varirables
+# zsh parameters
 HISTFILE=~/.histfile
 HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 DIRSTACKSIZE=20
 LISTMAX=0
 TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
+
+# zshrc parameters
+compdump='var/cache/zsh/compdump'
+hosts=(
+	kraftwerk saviour kappa nemesis aneurysm
+	sievert
+)
 
 # Paths
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
@@ -23,11 +30,4 @@ if [[ -x /usr/bin/lesspipe ]] {
 	export LESSOPEN='| /usr/bin/lesspipe %s'
 	export LESSCLOSE='/usr/bin/lesspipe %s %s'
 }
-
-# others
 openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
-compdump='var/cache/zsh/compdump'
-hosts=(
-	kraftwerk saviour kappa nemesis aneurysm
-	sievert
-)
