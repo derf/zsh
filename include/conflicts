@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 ## vim:ft=zsh
-typeset file dir
+autoload check_com
+typeset file dir alias
 typeset PDIR=$HOME/packages
 typeset -a sfpath spath conflict
 
@@ -33,4 +34,10 @@ for file in $PDIR/*/bin/*(N); {
 	if (( ? == 0 )) {
 		echo "conflict: $file <-> ${(j:, :)conflict}"
 	}
+}
+
+for alias in ${(k)aliases}; {
+	if check_com -c $alias && [[ $aliases[$alias] != (sudo|)$alias* ]]; then
+		echo "conflicting alias: $alias"
+	fi
 }
