@@ -4,12 +4,17 @@
 ## supports as many 'failover' hosts as an array can hold
 ## Usage: put <file>
 
-autoload fdie
+autoload check_com fdie warn
 typeset hostname
 typeset -a ssh_options hosts
 typeset target_dir server_prefix
 typeset file
 typeset -i n_hosts n_ping n_curl
+
+if ! check_com curl; then
+	function curl {return 0}
+	warn "curl not present, won't be able to check upload success"
+fi
 
 function put_aneurysm_int {
 	hostname='aneurysm'
@@ -54,7 +59,7 @@ if [[ -f $1 ]] {
 			shift hosts
 		}
 	}
-	fdie "Tried uploading to $n_hosts hosts without succes\n" \
+	fdie "Tried uploading to $n_hosts hosts without success\n" \
 	" - $n_ping hosts are unreachable\n" \
 	" - $n_curl errors while uploading"
 } else {
