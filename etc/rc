@@ -35,6 +35,7 @@ bindkey -e
 check_com -c dircolors && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
 mesg n
 umask 077
+chpwd
 
 ## cleanup
 unalias 'linux:'

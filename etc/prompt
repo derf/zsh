@@ -18,3 +18,5 @@ RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}%T]${ps_reset}"
 
 unset user at host
 unset dir ps_sign sign screen
+
+zstyle ':prompt:rtab' fish yes

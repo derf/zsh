@@ -12,7 +12,6 @@ autoload check_com chpwd dirinfo extr git-hook gtd-move \
          world-readable xexport xsource youtube-watch
 
 colors
-chpwd
 
 # from https://git.tabularazor.org/~mikael/etc/tree/zsh/functions
 for action in Start Stop Restart Reload; {

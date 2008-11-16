@@ -13,6 +13,15 @@ typeset lastfull=0
 typeset short=0
 typeset tilde=0
 
+if zstyle -t ':prompt:rtab' fish; then
+	lastfull=1
+	short=1
+	tilde=1
+fi
+zstyle -t ':prompt:rtab' last && lastfull=1
+zstyle -t ':prompt:rtab' short && short=1
+zstyle -t ':prompt:rtab' tilde && tilde=1
+
 while [[ $1 == -* ]]; do
 	case $1 in
 		-f|--fish)
@@ -26,6 +35,8 @@ while [[ $1 == -* ]]; do
 			print ' -l, --last    Print the last directory''s full name'
 			print ' -s, --short   Truncate directory names to the first character'
 			print ' -t, --tilde   Print ~ for the home directory'
+			print 'The long options can also bu set via zstyle, like'
+			print '  zstyle :prompt:rtab fish yes'
 			return 0
 		;;
 		-l|--last) lastfull=1 ;;
