@@ -8,7 +8,7 @@ autoload zargs
 
 # own functions
 autoload check_com chpwd dirinfo extr git-hook gtd-move \
-         plonkhost put reload rtab salias \
+         off plonkhost put reload rtab salias \
          world-readable xexport xsource youtube-watch
 
 colors
