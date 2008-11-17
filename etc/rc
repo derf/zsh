@@ -45,3 +45,4 @@ unfunction check_com
 unfunction xexport
 unfunction xsource
 unset uname
+unset ps_fail ps_green ps_info ps_red ps_reset ps_yellow
