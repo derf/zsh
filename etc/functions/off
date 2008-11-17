@@ -1,0 +1,17 @@
+## vim:ft=zsh
+typeset filesystem line IFS=$'\n'
+typeset -a filesystems
+typeset tune2fs
+uinit stop-all
+for line in $(cat /etc/fstab); {
+	if [[ $line == *[12] ]] {
+		filesystems+=${${(s: :)line}[1]}
+	}
+}
+for filesystem in $filesystems; {
+	tune2fs=($(sudo tune2fs -l $filesystem | fgrep -i 'mount count' | grep -o '[0-9]*'))
+	if (( tune2fs[2] - tune2fs[1] < 2 )) {
+		echo "notice: filesystem $filesystem due to check at next boot"
+	}
+}
+sudo halt
