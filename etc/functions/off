@@ -2,7 +2,21 @@
 typeset filesystem line IFS=$'\n'
 typeset -a filesystems
 typeset tune2fs
-uinit stop-all
+typeset reboot simulate
+
+function execute {
+	(( simulate )) || $*
+}
+
+while [[ $1 == -* ]] {
+	case $1 in
+		-n) simulate=1 ;;
+		-r) reboot=1 ;;
+	esac
+	shift
+}
+
+execute uinit stop-all
 for line in $(cat /etc/fstab); {
 	if [[ $line == *[12] ]] {
 		filesystems+=${${(s: :)line}[1]}
@@ -14,4 +28,8 @@ for filesystem in $filesystems; {
 		echo "notice: filesystem $filesystem due to check at next boot"
 	}
 }
-sudo halt
+if (( reboot )) {
+	execute sudo reboot
+} else {
+	execute sudo halt
+}
