@@ -73,7 +73,7 @@ salias s2d='s2disk'
 salias s2r='s2ram -f'
 
 ## SSH Hosts
-for host in $hosts; {
+for host in ${(k)hosts}; {
 	alias $host="ssh $host"
 }
 unset host

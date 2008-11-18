@@ -34,7 +34,7 @@ zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 function _hosts {
 	typeset expl
 	_wanted host expl 'host name' \
-	compadd $hosts
+	compadd ${(k)hosts}
 }
 
 if [[ -r $compdump ]] {

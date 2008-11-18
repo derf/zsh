@@ -1,8 +1,9 @@
 ## vim:ft=zsh
+autoload warn
 typeset filesystem line IFS=$'\n'
 typeset -a filesystems
 typeset tune2fs
-typeset reboot simulate
+typeset -i force reboot simulate
 
 function execute {
 	(( simulate )) || $*
@@ -12,8 +13,16 @@ while [[ $1 == -* ]] {
 	case $1 in
 		-n) simulate=1 ;;
 		-r) reboot=1 ;;
+		--force) force=1 ;;
 	esac
 	shift
+}
+
+# Don't shut down a server too easily
+if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
+	warn "This seems to be a server... not shutting down"
+	echo "Use 'off --force' if you really mean it"
+	return 1
 }
 
 execute uinit stop-all
