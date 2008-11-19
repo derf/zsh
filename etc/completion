@@ -40,3 +40,5 @@ if [[ -r $compdump ]] {
 	compinit -d $compdump
 	echo
 }
+
+compdef _hosts sshmount
