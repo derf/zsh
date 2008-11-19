@@ -31,11 +31,7 @@ unset char
 zstyle ':completion:*:*:kill:*' menu yes
 zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 
-function _hosts {
-	typeset expl
-	_wanted host expl 'host name' \
-	compadd ${(k)hosts}
-}
+zstyle -e ':completion:*' hosts 'reply=(${(k)hosts})'
 
 if [[ -r $compdump ]] {
 	compinit -C -d $compdump
