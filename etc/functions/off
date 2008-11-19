@@ -6,7 +6,11 @@ typeset tune2fs
 typeset -i force reboot simulate
 
 function execute {
-	(( simulate )) || $*
+	if (( simulate )) {
+		echo $*
+	} else {
+		$*
+	}
 }
 
 while [[ $1 == -* ]] {
@@ -14,6 +18,16 @@ while [[ $1 == -* ]] {
 		-n) simulate=1 ;;
 		-r) reboot=1 ;;
 		--force) force=1 ;;
+		-h)
+			print 'off - shutdown / restart the system'
+			print 'Usage: off [--force] [-hnr]'
+			print 'Options:\n'
+			print '  -n    simulate. Do not actually shutdown'
+			print '  -r    reboot'
+			print '  -h    show this message'
+			print '\--force shutdown even if the machine is a server'
+			return 0
+		;;
 		*) fdie "Unrecognized option: $1"; return 1 ;;
 	esac
 	shift
