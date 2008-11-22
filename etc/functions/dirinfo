@@ -1,7 +1,5 @@
 ## vim:ft=zsh
 ## Collect some directory information for the prompt
-## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
-## 
 
 typeset string
 

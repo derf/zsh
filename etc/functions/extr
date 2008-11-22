@@ -2,7 +2,7 @@
 ## vim:ft=zsh
 
 function confirm_shar {
-	echo -ne "${warn}shar archives are shell scripts and can easily contain malicious code.${reset} Proceed/ [y/N] "
+	echo -ne "${warn}shar archives are shell scripts and can easily contain malicious code.${reset} Proceed? [y/N] "
 	read -q
 }
 

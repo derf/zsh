@@ -1,6 +1,8 @@
 ## vim:ft=zsh
-## zshrc
-## Daniel Friesel <derf@derf.homelinux.org>
+## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## Unless otherwise noted, this Licence applies to all files sourced here:
+##   0. You just DO WHAT THE FUCK YOU WANT TO.
+##
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/rc
 ## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 

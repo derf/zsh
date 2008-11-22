@@ -1,6 +1,5 @@
 ## vim:ft=zsh
 ## Small function to help with git hooks
-## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
 
 autoload fdie
 typeset hook_dir action=${1=list} hook=$2

@@ -1,8 +1,4 @@
 ## vim:ft=zsh
-## zshenv
-## Daniel Friesel <derf@derf.homelinux.org>
-## https://derf.homelinux.org/~derf/dotfiles/zsh/env
-## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 
 ZDIR=$HOME/packages/zsh/etc
 (( ${unicode-1} )) &&

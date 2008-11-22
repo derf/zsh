@@ -1,6 +1,7 @@
 ## vim:ft=zsh
 ## reverse tabbing
 ## written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## Licence: You just DO WHAT THE FUCK YOU WANT TO.
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/functions/rtab
 
 ## CAVEAT: directory-names containing two or more consecutive spaces
