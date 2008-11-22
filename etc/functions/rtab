@@ -10,14 +10,19 @@
 setopt localoptions
 setopt rc_quotes null_glob
 
-typeset lastfull=0
-typeset short=0
-typeset tilde=0
+typeset -i lastfull=0
+typeset -i short=0
+typeset -i tilde=0
+typeset -i named=0
 
 if zstyle -t ':prompt:rtab' fish; then
 	lastfull=1
 	short=1
 	tilde=1
+fi
+if zstyle -t ':prompt:rtab' nameddirs; then
+	tilde=1
+	named=1
 fi
 zstyle -t ':prompt:rtab' last && lastfull=1
 zstyle -t ':prompt:rtab' short && short=1
@@ -32,10 +37,11 @@ while [[ $1 == -* ]]; do
 		;;
 		-h|--help)
 			print 'Usage: rtab [-f -l -s -t] [directory]'
-			print ' -f, --fish    fish-simulation, like -l -s -t'
-			print ' -l, --last    Print the last directory''s full name'
-			print ' -s, --short   Truncate directory names to the first character'
-			print ' -t, --tilde   Print ~ for the home directory'
+			print ' -f, --fish      fish-simulation, like -l -s -t'
+			print ' -l, --last      Print the last directory''s full name'
+			print ' -s, --short     Truncate directory names to the first character'
+			print ' -t, --tilde     Substitute ~ for the home directory'
+			print ' -T, --nameddirs Substitute named directories as well (possibly slow)'
 			print 'The long options can also bu set via zstyle, like'
 			print '  zstyle :prompt:rtab fish yes'
 			return 0
@@ -43,6 +49,10 @@ while [[ $1 == -* ]]; do
 		-l|--last) lastfull=1 ;;
 		-s|--short) short=1 ;;
 		-t|--tilde) tilde=1 ;;
+		-T|--nameddirs)
+			tilde=1
+			named=1
+		;;
 	esac
 	shift
 done
@@ -53,14 +63,19 @@ typeset -i i
 
 [[ -d $dir ]] || return 0
 
+if (( named )) {
+	for part in ${(k)nameddirs}; {
+		[[ $dir == ${nameddirs[$part]}* ]] && dir=${dir/${nameddirs[$part]}/\~$part}
+	}
+}
 (( tilde )) && dir=${dir/$HOME/\~}
 tree=(${(s:/:)dir})
 (
 	unfunction chpwd 2> /dev/null
-	if [[ $tree[1] = '~' ]] {
+	if [[ $tree[1] == \~* ]] {
+		cd ${~tree[1]}
+		result=$tree[1]
 		shift tree
-		cd ~
-		result='~'
 	} else {
 		cd /
 	}
