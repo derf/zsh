@@ -3,9 +3,16 @@
 ## Daniel Friesel <derf@derf.homelinux.org>
 ## https://derf.homelinux.org/~derf/dotfiles/completion/_devtodo
 
-typeset -a arg_generic arg_add
+typeset -a arg_generic arg_add todo_opts
 typeset -A arg_pair arg_desc
+typeset -i i
 typeset expl
+
+for ((i=2; i <= $#words; i++)) {
+	if [[ $words[$i] == '--database' ]] {
+		todo_opts+=(--database ${~words[$((++i))]})
+	}
+}
 
 arg_add=(
 	'-p[priority]:priority:_priority'
@@ -72,14 +79,14 @@ for arg in ${(k)arg_pair}; {
 
 function _index () {
 	typeset i
-	typeset -a index desc tdoptions
+	typeset -a index desc
 	for i in $*; do
 		case $i in
-			-u) tdoptions=(--filter done)
+			-u) todo_opts+=(--filter done)
 		esac
 	done
-	for i in $(todo $tdoptions --format display='%n '); do
-		index+=${i}:$(todo $tdoptions --format display='%t' $i)
+	for i in $(todo $todo_opts --format display='%n '); do
+		index+=${i}:$(todo $todo_opts --format display='%t' $i)
 	done
 	_describe -t items index index
 }
