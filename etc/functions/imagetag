@@ -1,0 +1,16 @@
+## vim:ft=zsh
+# quick & dirty tagging
+typeset file tag
+
+for file in *(.); {
+	unset REPLY
+	typeset REPLY
+	feh -g 800x600 $file &
+	echo -n 'Tags: '
+	read
+	for tag in ${(s:, :)REPLY}; {
+		mkdir -p .tags/$tag
+		ln -s ../../$file .tags/$tag/$file
+	}
+	kill %feh
+}
