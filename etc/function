@@ -7,9 +7,8 @@ autoload catch throw
 autoload zargs
 
 # own functions
-autoload check_com chpwd dirinfo extr git-hook gtd-move \
-         off plonkhost put reload rtab salias \
-         world-readable xexport xsource youtube-watch
+for funcfile in $ZDIR/functions/*(*N);
+	autoload ${funcfile:t}
 
 colors
 
