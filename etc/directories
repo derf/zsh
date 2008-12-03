@@ -1,6 +1,6 @@
 ## Named directories
 ## vim:ft=zsh
-case `hostname` in
+case $HOST in
 	aneurysm)
 		hash -d www=/var/www
 		hash -d web=$HOME/public_html
