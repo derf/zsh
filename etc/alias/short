@@ -29,7 +29,7 @@ alias gitf='git pull'
 alias gitl='git log'
 alias gitp='git push'
 alias gits='git status'
-alias git-grep='grep --exclude-dir=.git -r'
+alias git-rgrep='grep --exclude-dir=.git -r'
 alias git-serve='git-daemon --verbose --export-all --base-path=. .'
 
 alias gtd-later='todo --database ~/var/gtd/later'
