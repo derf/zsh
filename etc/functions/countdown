@@ -1,0 +1,18 @@
+## vim:ft=zsh
+autoload check_com
+typeset -i beep=0
+typeset -i seconds
+
+if check_com beep; then
+	beep=1
+fi
+
+while true; do
+	seconds=$[$(date -d "$*" +%s)-$(date +%s)]
+	echo -n $seconds
+	if (( seconds <= 0 )) {
+		(( beep )) && beep || echo -ne "\a"
+	}
+	sleep 1
+	echo -ne "\r\e[2K"
+done
