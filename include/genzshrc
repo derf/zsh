@@ -1,0 +1,52 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+my $zshrc = "$ENV{HOME}/.zshrc";
+my $zsource = "$ENV{HOME}/packages/zsh/etc/rc";
+my %subst = (
+	ZDIR => "$ENV{HOME}/packages/zsh/etc",
+	HOME => $ENV{HOME},
+);
+my ($command, $args);
+
+sub substitute($) {
+	my $string = shift;
+	my ($param, $value);
+	while (($param, $value) = each(%subst)) {
+		$string =~ s/\$($param|\{$param\})/$value/g;
+	}
+	return($string);
+}
+
+sub parse($) {
+	my $file = shift;
+	my $fh;
+	open($fh, '<', $file) or die("Can't open $file: $!");
+	while(<$fh>) {
+		chomp;
+		s/^\s*//;
+		if (/^#/ or $_ eq '') {
+			next
+		}
+		if (/^(\S+)(?:\s+(.+))?$/ and deploy($1, $2)) {
+			next;
+		}
+		print;
+		print "\n";
+	}
+	close($fh);
+}
+
+sub deploy($;$) {
+	my ($command, $args) = @_;
+	my $plain_args = substitute($args || '');
+	if ($command =~ /^x?source$/ and -r $plain_args) {
+		print "## source $plain_args\n";
+		parse($plain_args);
+		return(1);
+	}
+	return(0);
+}
+
+parse($zsource);
