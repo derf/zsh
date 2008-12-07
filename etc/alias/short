@@ -22,7 +22,7 @@ alias fbij='fbi -a -u'
 
 ## Git
 alias gita='git add'
-alias gitc='git commit'
+alias gitc='git commit -v'
 alias gitd='git diff --color'
 alias gitdc='gitd --cached'
 alias gitf='git pull'
