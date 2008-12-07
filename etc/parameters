@@ -9,7 +9,7 @@ LISTMAX=0
 TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 
 # zshrc parameters
-compdump='var/cache/zsh/compdump'
+compdump=~/var/cache/zsh/compdump
 typeset -A hosts
 hosts=(
 	kraftwerk  ''
