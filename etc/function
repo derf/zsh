@@ -9,6 +9,7 @@ autoload zargs
 # own functions
 for funcfile in $ZDIR/functions/*(*N);
 	autoload ${funcfile:t}
+unset funcfile
 
 colors
 
