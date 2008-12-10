@@ -9,7 +9,6 @@
 ## mostly internal stuff
 uname=$(uname)
 alias 'linux:'='[[ $uname = Linux ]] &&'
-alias 'non-linux:'='[[ $uname = Linux ]] ||'
 alias 'openbsd:'='[[ $uname = OpenBSD ]] &&'
 
 ## include the actual config
@@ -41,7 +40,6 @@ chpwd
 
 ## cleanup
 unalias 'linux:'
-unalias 'non-linux:'
 unalias 'openbsd:'
 unfunction check_com
 unfunction xexport
