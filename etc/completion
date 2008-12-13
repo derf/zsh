@@ -42,3 +42,4 @@ if [[ -r $compdump ]] {
 }
 
 compdef _hosts sshmount
+compdef _functions reload
