@@ -1,8 +1,8 @@
 #compdef toshset
 ## vim:ft=zsh
 ## completion for toshset 1.73-2, based toshset(1) and a Toshiba Satellite 2670
-## Daniel Friesel <derf@derf.homelinux.org>
-## https://derf.homelinux.org/~derf/dotfiles/completion/_toshset
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 local arguments
 

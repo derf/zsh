@@ -1,4 +1,5 @@
 #compdef gtd-move
+## completion for the gtd-move function, see ../functions/gtd-move
 
 typeset -a arguments
 

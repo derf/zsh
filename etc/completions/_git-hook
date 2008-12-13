@@ -1,4 +1,7 @@
 #compdef git-hook
+## Completion for the git-hook function, see ../functions/git-hook
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset hook_dir expl
 

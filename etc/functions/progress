@@ -1,6 +1,8 @@
 ## vim:ft=zsh
 ## progress - draw a simple progress bar
 ## Usage: progress <current> <max> [left description] [right discription]
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset -i current=$1
 typeset -i max=$2

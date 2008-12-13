@@ -1,4 +1,8 @@
 ## vim:ft=zsh
+## Small shutdown/reboot wrapper to work together with my other tools
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
+
 autoload warn fdie
 typeset filesystem line IFS=$'\n'
 typeset -a filesystems

@@ -1,4 +1,7 @@
 #compdef sort
+## Quick, dirty and probably incomplete sort completion
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset -a arguments
 

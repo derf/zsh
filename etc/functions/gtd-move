@@ -1,4 +1,7 @@
 ## vim:ft=zsh
+## Helper for my gtd system
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 if [[ ${#*} != 3 ]] {
 	echo "Usage: gtd-move <from-database> <item> <to-database>"

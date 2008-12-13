@@ -1,8 +1,12 @@
 #compdef Start Restart Stop Reload
 ## vim:ft=zsh
+## Completion for the Start, Stop etc. functions introduced in ../function
+##
 ## Note: This script parses the files in /etc/init.d to generate the matches.
 ## If you'd prefer to just have all the files in /etc/init.d as arguments, 
 ## write "zstyle ':completion:*:*:_initd' all-files true" into your zshrc
+##
+## Most of this has been taken from the _init_d function provided with zsh
 
 typeset arguments file bang
 typeset specific=${service:l}
@@ -14,8 +18,6 @@ if zstyle -t ':completion:*:*:_initd' all-files; then
 	return 0
 fi
 
-# Most of the loop's content has been taken from the _init_d
-# completion function provided with zsh
 for file in /etc/init.d/*(*); {
 	read -u0 -k2 bang < $file && [[ $bang == '#!' ]] &&
 	[[ -n ${${(j:|:s:|:)${(M)${(f)"$(< $file)"}:#[[:blank:]]#(\'|)(${~action}[[:blank:]]#\|[[:blank:]]#)#${~specific}([[:blank:]]#\|[[:blank:]]#${~action})#(\'|)\)}}//[^-a-z_]} ]] &&

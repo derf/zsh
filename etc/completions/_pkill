@@ -1,6 +1,8 @@
 #compdef pkill pgrep
-## completion for pkill
-## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## completion for pkill and pgrep
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
+
 
 ## Not finished
 ##  * Some options lack completion / their completion is inspecific

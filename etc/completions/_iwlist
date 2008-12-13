@@ -1,7 +1,7 @@
 #compdef iwlist
 ## iwlist completion as requested by mxey
-## Written 2008 by Daniel Friesel <derf@derf.homelinux.org>
-## https://derf.homelinux.org/~derf/dotfiles/zsh/completions/_iwlist
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 function _iwlist_options () {
 	typeset -a options

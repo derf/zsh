@@ -2,6 +2,8 @@
 ## put - make a file available via HTTP
 ## supports as many 'failover' hosts as an array can hold
 ## Usage: put <file>
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 autoload check_com fdie warn
 typeset hostname

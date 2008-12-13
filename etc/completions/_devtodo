@@ -1,7 +1,7 @@
 #compdef devtodo todo tda tde tdd tdr
-## completion for devtodo 0.1.20
-## Daniel Friesel <derf@derf.homelinux.org>
-## https://derf.homelinux.org/~derf/dotfiles/completion/_devtodo
+## completion for devtodo 0.1.20 <http://swapoff.org/DevTodo>
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset -a arg_generic arg_add todo_opts \
            priorities
