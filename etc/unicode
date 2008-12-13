@@ -22,8 +22,6 @@ typeset -A chars
 typeset unicode=${unicode-1}
 chars=(
 	compdelim '-·'
-	prompt-user '>>'
-	prompt-root '##'
 )
 
 function zchar () {
