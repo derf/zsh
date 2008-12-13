@@ -31,6 +31,8 @@ xsource $ZDIR/local
 xsource $HOME/var/tmp/envstore-raw-$UID
 source $ZDIR/completion
 
+(( ZPROFILE )) && source $ZDIR/profile
+
 ## misc
 bindkey -e
 check_com -c dircolors && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
