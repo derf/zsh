@@ -1,0 +1,14 @@
+## vim:ft=zsh
+## Change password on all machines
+## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
+
+typeset host
+
+passwd
+for host in ${(k)hosts}; {
+	if [[ $host != $HOST ]]; {
+		echo " ---- $host ---- "
+		ssh $host passwd
+	}
+}
