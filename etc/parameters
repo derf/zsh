@@ -10,15 +10,6 @@ TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 
 # zshrc parameters
 compdump=~/var/cache/zsh/compdump
-typeset -A hosts
-hosts=(
-	kraftwerk  ''
-	saviour    ''
-	kappa      ':server:'
-	nemesis    ''
-	aneurysm   ':server:'
-	sievert    ''
-)
 
 # Paths
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
