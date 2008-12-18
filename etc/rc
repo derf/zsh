@@ -26,9 +26,9 @@ source $ZDIR/alias/font
 source $ZDIR/alias/default
 source $ZDIR/alias/global
 source $ZDIR/alias/short
-xsource $ZDIR/../provided/includes $ZDIR/local \
-        $HOME/var/tmp/envstore-raw-$UID &&
-x_source
+source $ZDIR/../provided/includes
+xsource $ZDIR/local
+xsource $HOME/var/tmp/envstore-raw-$UID
 source $ZDIR/completion
 
 (( ZPROFILE )) && source $ZDIR/profile
@@ -43,7 +43,6 @@ chpwd
 ## cleanup
 unalias 'linux:'
 unalias 'openbsd:'
-unalias x_source
 unfunction check_com
 unfunction xexport
 unfunction xsource
