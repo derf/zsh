@@ -17,6 +17,13 @@ if ! check_com curl; then
 	warn "curl not present, won't be able to check upload success"
 fi
 
+function put_aneurysm_vpn {
+	hostname='aneurysm.wildernet.org'
+	ssh_options=(-q)
+	target_dir='public_html/tmp/'
+	server_prefix='http://aneurysm.wildernet.org/~derf/tmp/'
+}
+
 function put_aneurysm_int {
 	hostname='aneurysm'
 	ssh_options=(-q)
@@ -38,14 +45,24 @@ function put_sievert () {
 	server_prefix='https://tabularazor.org/~derf/tmp/'
 }
 
+hosts_vpn=(aneurysm_vpn)
 hosts=(aneurysm_int aneurysm sievert)
-n_hosts=$#hosts
 
+while [[ $1 == -* ]] {
+	case $1 in
+		*)
+			(( $(eval echo '$#'hosts_${1#-}) )) && eval hosts=\(\$hosts_${1#-}\)
+		;;
+	esac
+	shift
+}
+
+n_hosts=$#hosts
 if [[ -f $1 ]] {
 	file=$1
 	while (( $#hosts )) {
 		put_$hosts[1]
-		ping -c 1 $hostname &> /dev/null
+		ping -c 1 $hostname &> /dev/null || ping6 -c 1 $hostname &> /dev/null
 		if (( ? == 0 )) {
 			scp $ssh_options $file $hostname:$target_dir
 			ssh $ssh_options $hostname "chmod 644 $target_dir${file:t}"
@@ -57,8 +74,8 @@ if [[ -f $1 ]] {
 			fi
 		} else {
 			(( n_ping++ ))
-			shift hosts
 		}
+		shift hosts
 	}
 	fdie "Tried uploading to $n_hosts hosts without success\n" \
 	" - $n_ping hosts are unreachable\n" \
