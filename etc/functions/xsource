@@ -1,8 +1,12 @@
 ## vim:ft=zsh
-# Note: This function's behaviour differs hrom source.
-# With source, parameters declared local are available to the sourcing script.
-# With xsource, parameters declared local will NOT be available.
-# Keep that in mind when using this function
-if [[ -r $1 ]] {
-	source $1
+# Since source in a function makes typeset'ed parameters local
+# (which is not what we want), we use a combination of functions
+# and aliases here:
+# autoload xsource; alias x_source='source $xsource_files; unset xsource_files'
+# xsource file anotherfile && x_source
+typeset file
+(( ${#*} )) && unset xsource_files
+for file in $*; {
+	[[ -r $file ]] && xsource_files=($xsource_files $file)
 }
+(( ${#xsource_files} )) || return 1
