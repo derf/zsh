@@ -10,7 +10,6 @@
 uname=$(uname)
 alias 'linux:'='[[ $uname = Linux ]] &&'
 alias 'openbsd:'='[[ $uname = OpenBSD ]] &&'
-alias x_source='source $xsource_files; unset xsource_files'
 
 ## include the actual config
 source $ZDIR/options

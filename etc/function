@@ -12,6 +12,7 @@ for funcfile in $ZDIR/functions/*(*N);
 unset funcfile
 
 colors
+xsource
 
 # from https://git.tabularazor.org/~mikael/etc/tree/zsh/functions
 for action in Start Stop Restart Reload; {
