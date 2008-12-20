@@ -6,7 +6,7 @@ if (( ZPROFILE == 0 )) {
 	[[ -r $HOME/packages/zsh/etc/local-profile ]] && source $HOME/packages/zsh/etc/local-profile
 	ZPROFILE=1
 } else {
-	check_com todo && gtd-todo
+	check_com -c todo && gtd-todo
 	calendar
 	unset ZPROFILE
 }
