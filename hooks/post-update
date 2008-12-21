@@ -21,6 +21,10 @@ for snippet in $PDIR/*/provides/zsh/*(.N); {
 	echo "source ${snippet/$HOME/\$HOME}" >> $PDIR/zsh/provided/includes
 }
 
+# A machine rarely gets a new CPU, so why not do this here...
+echo export MAKEFLAGS=\
+\"j$(( $(grep '^processor' /proc/cpuinfo|wc -l) + 1 ))\" >> $PDIR/zsh/provided/env
+
 cd $PDIR/zsh/etc
 zcompile functions.zwc functions/*
 zcompile completions.zwc completions/*
