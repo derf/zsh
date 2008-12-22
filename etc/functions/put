@@ -25,10 +25,8 @@ function put_aneurysm_vpn {
 }
 
 function put_aneurysm_int {
+	put_aneurysm
 	hostname='aneurysm'
-	ssh_options=(-q)
-	target_dir='public_html/tmp/'
-	server_prefix='https://derf.homelinux.org/~derf/tmp/'
 }
 
 function put_aneurysm () {
@@ -39,7 +37,7 @@ function put_aneurysm () {
 }
 
 function put_sievert () {
-	hostname='sievert.tabularazor.org'
+	hostname='sievert'
 	ssh_options=(-q)
 	target_dir='www/tmp/'
 	server_prefix='https://tabularazor.org/~derf/tmp/'
