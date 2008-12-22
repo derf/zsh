@@ -12,6 +12,8 @@ ls_opts=("--exclude-per-directory=.gitignore")
 files=(${(ps:\0:)"$(cd $gitdir/..; _call_program files git ls-files -z $ls_opts $opts 2>/dev/null)"})
 __git_command_successful || return
 
+[[ -n $gitdir ]] || return
+
 if [[ ! -d .git ]] {
 	dirdiff=${PWD#${gitdir%/.git}}
 	repeat ${#${(s:/:)dirdiff}}; do
