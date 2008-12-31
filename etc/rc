@@ -14,7 +14,6 @@ alias 'openbsd:'='[[ $uname = OpenBSD ]] &&'
 ## include the actual config
 source $ZDIR/options
 source $ZDIR/parameters
-source $ZDIR/unicode
 source $ZDIR/function
 source $ZDIR/zle
 source $ZDIR/colors

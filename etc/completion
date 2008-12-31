@@ -13,7 +13,7 @@ zstyle ':completion:*' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} m:_=\\\ ' ''
 
 # Be verbose
-char=${ps_yellow}$(zchar compdelim)${ps_reset}
+char=${ps_yellow}·${ps_reset}
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:descriptions' format \
        "$char %d $char"
