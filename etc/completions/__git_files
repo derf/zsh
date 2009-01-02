@@ -1,5 +1,5 @@
 #autoload +X
-local expl files ls_opts opts gitdir dirdiff i tmp
+local expl files ls_opts opts gitdir dirdiff i j prefix item self
 
 zparseopts -D -E -a opts -- -cached -deleted -modified -others -ignored -unmerged -killed
 
@@ -12,21 +12,25 @@ ls_opts=("--exclude-per-directory=.gitignore")
 files=(${(ps:\0:)"$(cd $gitdir/..; _call_program files git ls-files -z $ls_opts $opts 2>/dev/null)"})
 __git_command_successful || return
 
-[[ -n $gitdir ]] || return
+if [[ -z $gitdir ]] {
+	echo "wtf: $gitdir"
+	return
+}
 
 if [[ ! -d .git ]] {
 	dirdiff=${PWD#${gitdir%/.git}}
-	repeat ${#${(s:/:)dirdiff}}; do
-		tmp+='../'
-	done
-	dirdiff=${dirdiff#/}
-	for (( i=1; i <= $#files; i++)) {
-		if [[ $files[$i] == $dirdiff/* ]] {
-			files[$i]=${files[$i]#$dirdiff/}
-		} else {
-			files[$i]=$tmp${files[$i]#$dirdiff/}
+	for ((i = 1; i <= $#files; i++)) {
+		prefix=''
+		item=(${(s:/:)files[$i]})
+		self=(${(s:/:)dirdiff})
+		for ((j = 1; j <= ${#item} && j <= ${#self}; j++)) {
+			if [[ $item[$j] == $self[$j] ]] {
+				item[$j]=''
+			} else {
+				prefix+='../'
+			}
 		}
+		files[$i]=${prefix}${(j:/:)item}
 	}
 }
-
 _wanted files expl 'index file' _multi_parts $@ - / files
