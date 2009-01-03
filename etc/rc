@@ -33,7 +33,6 @@ source $ZDIR/completion
 (( ZPROFILE )) && source $ZDIR/profile
 
 ## misc
-bindkey -e
 check_com -c dircolors && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
 mesg n
 umask 077
