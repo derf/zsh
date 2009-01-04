@@ -44,6 +44,10 @@ if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
 	return 1
 }
 
+if ps aux | fgrep amarokapp &> /dev/null; then
+	dcop amarok MainApplication-Interface quit
+fi
+
 execute uinit stop-all
 for line in $(cat /etc/fstab); {
 	if [[ $line == *[12] ]] {
