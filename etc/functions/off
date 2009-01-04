@@ -45,7 +45,7 @@ if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
 }
 
 if ps aux | fgrep amarokapp &> /dev/null; then
-	dcop amarok MainApplication-Interface quit
+	execute dcop amarok MainApplication-Interface quit
 fi
 
 execute uinit stop-all
