@@ -9,7 +9,7 @@ autoload check_com fdie warn
 typeset hostname
 typeset -a ssh_options hosts
 typeset target_dir server_prefix
-typeset file
+typeset file remote_file illegal
 typeset -i n_hosts n_ping n_curl
 
 if ! check_com curl; then
@@ -22,6 +22,7 @@ function put_aneurysm_vpn {
 	ssh_options=(-q)
 	target_dir='public_html/tmp/'
 	server_prefix='http://aneurysm.wildernet.org/~derf/tmp/'
+	illegal='*.(cgi|pl|php|py)'
 }
 
 function put_aneurysm_int {
@@ -34,6 +35,7 @@ function put_aneurysm () {
 	ssh_options=(-q)
 	target_dir='public_html/tmp/'
 	server_prefix='https://derf.homelinux.org/~derf/tmp/'
+	illegal='*.(cgi|pl|php|py)'
 }
 
 function put_sievert () {
@@ -55,17 +57,22 @@ while [[ $1 == -* ]] {
 	shift
 }
 
+
 n_hosts=$#hosts
 if [[ -f $1 ]] {
 	file=$1
 	while (( $#hosts )) {
+		remote_file=${file:t}
 		put_$hosts[1]
 		ping -c 1 $hostname &> /dev/null || ping6 -c 1 $hostname &> /dev/null
 		if (( ? == 0 )) {
-			scp $ssh_options $file $hostname:$target_dir
-			ssh $ssh_options $hostname "chmod 644 $target_dir${file:t}"
-			if $(curl -fI $server_prefix${file:t} &> /dev/null); then
-				echo $server_prefix${file:t}
+			if [[ $remote_file == ${~illegal} ]] {
+				remote_file=${remote_file:r}
+			}
+			scp $ssh_options $file $hostname:$target_dir/$remote_file
+			ssh $ssh_options $hostname "chmod 644 $target_dir$remote_file"
+			if $(curl -fI $server_prefix$remote_file &> /dev/null); then
+				echo $server_prefix$remote_file
 				return 0
 			else
 				(( n_curl++ ))
