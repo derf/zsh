@@ -44,7 +44,7 @@ if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
 	return 1
 }
 
-if ps aux | fgrep amarokapp &> /dev/null; then
+if pgrep -x amarokapp &> /dev/null; then
 	execute dcop amarok MainApplication-Interface quit
 fi
 
