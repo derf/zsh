@@ -7,6 +7,6 @@ if (( ZPROFILE == 0 )) {
 	ZPROFILE=1
 } else {
 	check_com -c todo && gtd-todo
-	check_com -f calendar && [[ -r ~/stuff/calendar ]] && calendar
+	check_com -c calendar && [[ -r ~/stuff/calendar ]] && calendar
 	unset ZPROFILE
 }
