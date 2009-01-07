@@ -23,7 +23,7 @@ for snippet in $PDIR/*/provides/zsh/*(.N); {
 
 # A machine rarely gets a new CPU, so why not do this here...
 echo export MAKEFLAGS=\
-\"j$(( $(grep -c '^processor' /proc/cpuinfo) + 1 ))\" >> $PDIR/zsh/provided/env
+\"j$(grep -c '^processor' /proc/cpuinfo)\" >> $PDIR/zsh/provided/env
 
 cd $PDIR/zsh/etc
 zcompile functions.zwc functions/*
