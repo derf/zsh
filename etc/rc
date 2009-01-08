@@ -31,6 +31,7 @@ source $ZDIR/alias/short
 source $ZDIR/../provided/includes
 xsource $ZDIR/local
 xsource $HOME/var/tmp/envstore-raw-$UID
+xsource $ZDIR/hosts/$HOST
 source $ZDIR/completion
 
 (( ZPROFILE )) && source $ZDIR/profile
