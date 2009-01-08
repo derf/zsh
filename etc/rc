@@ -6,10 +6,13 @@
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/rc
 ## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 
-## mostly internal stuff
-uname=$(uname)
-alias 'linux:'='[[ $uname = Linux ]] &&'
-alias 'openbsd:'='[[ $uname = OpenBSD ]] &&'
+## What are we running on?
+system=${$(uname):l}
+alias 'linux:'='[[ $system == linux ]] &&'
+alias 'openbsd:'='[[ $system == openbsd ]] &&'
+if [[ $system == linux ]] {
+	[[ -f /etc/debian_version ]] && distro=debian
+}
 
 ## include the actual config
 source $ZDIR/options
@@ -44,5 +47,5 @@ unalias 'openbsd:'
 unfunction check_com
 unfunction xexport
 unfunction xsource
-unset uname
+unset system distro
 unset ps_fail ps_green ps_info ps_red ps_reset ps_yellow
