@@ -4,17 +4,16 @@ case $HOST in
 	aneurysm)
 		hash -d www=/var/www
 		hash -d web=$HOME/public_html
-		hash -d vcs=$HOME/var/svn
 		hash -d lyrics=/home/wildernet/html/lyrics
 	;;
 	saviour)
 		hash -d music=$HOME/lib/audio
 		hash -d www=/var/www
 		hash -d cgi=/usr/lib/cgi-bin
-		hash -d vcs=$HOME/var/svn
 		hash -d lyrics=~vcs/lyrics
 	;;
 	nemesis)
-		hash -d vcs=$HOME/var/svn
 		hash -d lyrics=~vcs/lyrics
 esac
+
+hash -d vcs=$HOME/var/svn
