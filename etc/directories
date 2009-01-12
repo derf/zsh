@@ -1,5 +1,8 @@
 ## Named directories
 ## vim:ft=zsh
+
+hash -d vcs=$HOME/var/svn
+
 case $HOST in
 	aneurysm)
 		hash -d www=/var/www
@@ -15,5 +18,3 @@ case $HOST in
 	nemesis)
 		hash -d lyrics=~vcs/lyrics
 esac
-
-hash -d vcs=$HOME/var/svn
