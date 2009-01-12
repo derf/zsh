@@ -118,6 +118,13 @@ function _filter {
 }
 
 function _format () {
+	typeset prefix
+	if [[ -prefix *= ]] {
+		_message 'format string'
+	} else {
+		_wanted expression expl 'format name' \
+		compadd -S '=' display generated verbose-display verbose-generated
+	}
 }
 
 function _priority () {
