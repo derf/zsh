@@ -42,7 +42,8 @@ function _named_process {
 	if (( EUID )) {
 		pgrep_user=(-u $EUID)
 	}
-	_wanted pattern expl 'pattern or process name' \
+	_message 'pattern'
+	_wanted pattern expl 'process name' \
 	compadd ${$(pgrep $pgrep_user -l '')#* }
 }
 
