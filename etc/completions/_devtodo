@@ -35,7 +35,7 @@ arg_generic=(
 	'--date-format[strftime time formet]:time string: '
 	'*--format[define format]:format:_format'
 	'*--use-format[output format]:format:_format'
-	'--sort[sort database]:expression: '
+	'--sort[sort database]:sort expression:_sort'
 	'--paranoid[paranoid parmissions etc]'
 	'--database-loaders[loader order]:database loader: '
 	'--backup[backup database]:count: '
@@ -130,6 +130,25 @@ function _format () {
 function _priority () {
 	_wanted priority expl 'priority' \
 	compadd default $priorities
+}
+
+function _sort () {
+	typeset -a keys used_prefixes
+	typeset key prefix=''
+	keys=(created completed text priority duration none done)
+	for key in $keys; {
+		[[ $key != none ]] && keys+="-$key"
+	}
+
+	if [[ -prefix *, ]] {
+		prefix=${words[$CURRENT]%,*},
+		used_prefixes=(${(s:,:)prefix})
+		for key in $used_prefixes; {
+			[[ $key == -* ]] && used_prefixes+=$key[2,-1] || used_prefixes+=-$key
+		}
+	}
+	_wanted expression expl 'sort expression' \
+	compadd -F used_prefixes -qS , -P "$prefix" $keys
 }
 
 case $service in
