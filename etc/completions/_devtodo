@@ -81,15 +81,24 @@ for arg in ${(k)arg_pair}; {
 }
 
 function _todo_index () {
-	typeset i
+	typeset number text i entry last_entry depth last_depth=0 IFS=$'\n'
 	typeset -a index desc
 	for i in $*; do
 		case $i in
 			-u) todo_opts+=(--filter done)
 		esac
 	done
-	for i in $(todo $todo_opts --format display='%n '); do
-		index+=${i}:$(todo $todo_opts --format display='%t' $i)
+	for entry in $(todo $todo_opts -f +children --format display='%1>%i%n:%t\n'); do
+		number=${entry%%:*}
+		depth=$(( ${#number} - ${#${number// }} ))
+		# FIXME the subscripts operate on the string instead of the array
+		((depth)) && entry=${(j:.:)${${(s:.:)${last_entry%%:*}#.}[1,$depth]}}.$entry
+		text=${entry#*:}
+		number=${${entry%%:*}// }
+		entry=$number:$text
+		index+=$entry
+		last_depth=$depth
+		last_entry=$entry
 	done
 	_describe -t items index index
 }
