@@ -1,0 +1,9 @@
+## vim:ft=zsh
+echo -n "$* [Y/n] "
+read -k 1
+[[ $REPLY != $'\n' ]] && echo
+if [[ $REPLY == 'y' || $REPLY == 'Y' || $REPLY == $'\n' ]] {
+	true
+} else {
+	false
+}
