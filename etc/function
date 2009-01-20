@@ -2,7 +2,6 @@
 
 # zsh functions
 autoload -U compinit
-autoload colors
 autoload catch throw
 autoload zargs
 
@@ -10,8 +9,6 @@ autoload zargs
 for funcfile in $ZDIR/functions/*(*N);
 	autoload ${funcfile:t}
 unset funcfile
-
-colors
 
 # from https://git.tabularazor.org/~mikael/etc/tree/zsh/functions
 for action in Start Stop Restart Reload; {
