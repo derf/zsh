@@ -82,9 +82,9 @@ if [[ -f $1 ]] {
 		}
 		shift hosts
 	}
-	fdie "Tried uploading to $n_hosts hosts without success\n" \
-	" - $n_ping hosts are unreachable\n" \
-	" - $n_curl errors while uploading"
+	fdie "Tried uploading to $n_hosts hosts without success"
+	((n_ping)) && fdie " - $n_ping hosts are unreachable"
+	((n_curl)) && fdie " - $n_curl errors while uploading"
 } else {
 	fdie "$1: No such file"
 }
