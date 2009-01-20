@@ -1,0 +1,12 @@
+## vim:ft=zsh
+autoload fdie
+
+function __sync {
+	if [[ $HOST != aneurysm ]] {
+		unisync unison derf.homelinux.org .newsbeuter || fdie "sync failed"
+	}
+}
+
+__sync || return 1
+command newsbeuter $*
+__sync
