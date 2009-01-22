@@ -91,7 +91,6 @@ function _todo_index () {
 	for entry in $(todo $todo_opts -f +children --format display='%1>%i%n:%t\n'); do
 		number=${entry%%:*}
 		depth=$(( ${#number} - ${#${number// }} ))
-		# FIXME the subscripts operate on the string instead of the array
 		((depth)) && entry=${(j:.:)${${(s:.:):-a.${last_entry%%:*}}[2,depth+1]}}.$entry
 		text=${entry#*:}
 		number=${${entry%%:*}// }
