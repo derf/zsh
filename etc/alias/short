@@ -32,9 +32,9 @@ alias gits='git status'
 alias grep-nogit='grep --exclude-dir=.git -r'
 alias git-serve='git-daemon --verbose --export-all --base-path=. .'
 
-alias gtd-later='todo --database ~/var/gtd/later'
-alias gtd-todo='todo --database ~/var/gtd/todo'
-alias gtd-wait='todo --database ~/var/gtd/waiting-for'
+for i in ~/var/gtd/*(.N); {
+	alias gtd-${i:t}='todo --database '$i
+}
 
 ## Mercurial (hg)
 alias hga='hg add'
