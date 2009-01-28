@@ -77,7 +77,7 @@ alias screen='screen -ADRUa'
 alias tilp='gksudo "tilp --calc=ti84+ --cable=DirectLink"'
 
 # Don't collapse trees
-alias todo='todo -f +children'
+alias todo='noglob todo -f +children'
 
 # smooth scrolling
 alias xload='xload -jumpscroll 1'
