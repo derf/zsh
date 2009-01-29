@@ -3,7 +3,7 @@ autoload fdie
 
 function __sync {
 	if [[ $HOST != aneurysm ]] {
-		unisync unison derf.homelinux.org .newsbeuter || fdie "sync failed"
+		unisync unison aneurysm .newsbeuter || fdie "sync failed"
 	}
 }
 
