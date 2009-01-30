@@ -18,7 +18,7 @@ if [[ -z $gitdir ]] {
 }
 
 if [[ ! -d .git ]] {
-	dirdiff=${PWD#${gitdir%/.git}}
+	dirdiff=${PWD#${gitdir%/.git}/}
 	for ((i = 1; i <= $#files; i++)) {
 		prefix=''
 		item=(${(s:/:)files[$i]})
@@ -30,7 +30,12 @@ if [[ ! -d .git ]] {
 				prefix+='../'
 			}
 		}
-		files[$i]=${prefix}${(j:/:)item}
+		files[$i]=${prefix}
+		for j in $item; {
+			[[ -n $j ]] && files[$i]+="$j/"
+		}
+		files[$i]=${files[$i]%/}
+		echo $files[$i] >> /tmp/bar
 	}
 }
 _wanted files expl 'index file' _multi_parts $@ - / files
