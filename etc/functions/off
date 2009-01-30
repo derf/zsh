@@ -48,7 +48,7 @@ if pgrep -x amarokapp &> /dev/null; then
 	execute dcop amarok MainApplication-Interface quit
 fi
 
-execute uinit stop-all
+execute uinit -o text stop-all
 for line in $(cat /etc/fstab); {
 	if [[ $line == *[12] ]] {
 		filesystems+=${${(s: :)line}[1]}
