@@ -21,38 +21,42 @@ alias fbif='fbi -a'
 alias fbij='fbi -a -u'
 
 ## Git
-alias gita='git add'
-alias gitc='git commit -v'
-alias gitd='git diff --color'
-alias gitdc='gitd --cached'
-alias gitf='git pull'
-alias gitl='git log'
-alias gitp='git push'
-alias gits='git status'
-alias grep-nogit='grep --exclude-dir=.git -r'
-alias git-serve='git-daemon --verbose --export-all --base-path=. .'
+if check_com -c git; then
+	alias gita='git add'
+	alias gitc='git commit -v'
+	alias gitd='git diff --color'
+	alias gitdc='gitd --cached'
+	alias gitf='git pull'
+	alias gitl='git log'
+	alias gitp='git push'
+	alias gits='git status'
+	alias grep-nogit='grep --exclude-dir=.git -r'
+	alias git-serve='git-daemon --verbose --export-all --base-path=. .'
+fi
 
 for i in ~/var/gtd/*(.N); {
 	alias gtd-${i:t}='todo --database '$i
 }
 
 ## Mercurial (hg)
-alias hga='hg add'
-alias hgar='hg addremove'
-alias hgc='hg commit'
-alias hgd='hg diff | less'
-alias hgf='hg fetch'
-alias hgg='hg glog | less'
-alias hgh='hg heads'
-alias hgi='hg incoming'
-alias hgl='hg log | less'
-alias hgm='hg merge'
-alias hgp='hg push'
-alias hgrm='hg remove'
-alias hgrv='hg revert'
-alias hgs='hg status'
-alias hgu='hg update'
-alias hgv='hg verify'
+if check_com -c hg; then
+	alias hga='hg add'
+	alias hgar='hg addremove'
+	alias hgc='hg commit'
+	alias hgd='hg diff | less'
+	alias hgf='hg fetch'
+	alias hgg='hg glog | less'
+	alias hgh='hg heads'
+	alias hgi='hg incoming'
+	alias hgl='hg log | less'
+	alias hgm='hg merge'
+	alias hgp='hg push'
+	alias hgrm='hg remove'
+	alias hgrv='hg revert'
+	alias hgs='hg status'
+	alias hgu='hg update'
+	alias hgv='hg verify'
+fi
 
 # File listings
 alias lsb='tar tvjf'
