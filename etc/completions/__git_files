@@ -23,7 +23,7 @@ if [[ ! -d .git ]] {
 		prefix=''
 		item=(${(s:/:)files[$i]})
 		self=(${(s:/:)dirdiff})
-		for ((j = 1; j <= ${#item} && j <= ${#self}; j++)) {
+		for ((j = 1; j <= ${#self}; j++)) {
 			if [[ $item[$j] == $self[$j] ]] {
 				item[$j]=''
 			} else {
