@@ -1,7 +1,22 @@
 ## vim:ft=zsh
 typeset prefix=~/var/gtd
 typeset database
+typeset arg=$1
+
+function gtd_grep {
+	if [[ $arg == force ]] {
+		cat
+		return 0
+	}
+	if [[ -r ~/var/tmp/.actual-location && $(<~/var/tmp/.actual-location) == offline ]] {
+		fgrep -v '@online'
+		return 0
+	}
+	cat
+	return 0
+}
+
 for database in $prefix/*(.N); {
 	echo "\n${database:t}"
-	todo --database $database
+	todo --database $database --force-colour | gtd_grep
 }
