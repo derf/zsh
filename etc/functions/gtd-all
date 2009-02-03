@@ -1,0 +1,7 @@
+## vim:ft=zsh
+typeset prefix=~/var/gtd
+typeset database
+for database in $prefix/*(.N); {
+	echo "\n${database:t}"
+	todo --database $database
+}
