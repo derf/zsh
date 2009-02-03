@@ -18,5 +18,5 @@ function gtd_grep {
 
 for database in $prefix/*(.N); {
 	echo "\n${database:t}"
-	todo --database $database --force-colour | gtd_grep
+	todo --database $database | gtd_grep
 }
