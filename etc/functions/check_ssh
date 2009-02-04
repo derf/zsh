@@ -1,0 +1,6 @@
+## vim:ft=zsh
+if [[ $(ssh $1 'echo foo' 2> /dev/null < /dev/null ) == foo ]] {
+	return 0
+} else {
+	return 1
+}
