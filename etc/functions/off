@@ -4,7 +4,7 @@
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 autoload warn fdie
-typeset filesystem line IFS=$'\n'
+typeset filesystem garbage
 typeset -a filesystems
 typeset tune2fs
 typeset -i force reboot simulate
@@ -49,11 +49,13 @@ if pgrep -x amarokapp &> /dev/null; then
 fi
 
 execute uinit -o text stop-all
-for line in $(cat /etc/fstab); {
-	if [[ $line == *[12] ]] {
-		filesystems+=${${(s: :)line}[1]}
-	}
-}
+
+while read filesystem garbage; do
+	if [[ $garbage == *[12] ]] && fgrep $filesystem /etc/mtab &> /dev/null; then
+		filesystems+=$filesystem
+	fi
+done < /etc/fstab
+
 for filesystem in $filesystems; {
 	tune2fs=($(sudo tune2fs -l $filesystem | fgrep -i 'mount count' | grep -o '[0-9]*'))
 	if (( tune2fs[2] - tune2fs[1] < 5 )) {
