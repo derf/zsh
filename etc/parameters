@@ -15,15 +15,4 @@ compdump=~/var/cache/zsh/compdump
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
 linux: [[ -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
 
-# Used by other programs
-export EDITOR==vim
-export MPD_HOST=saviour
-export CALENDAR_DIR=$HOME/stuff
-export HOST
-export COLUMNS
-export LINES
-if [[ -x /usr/bin/lesspipe ]] {
-	export LESSOPEN='| /usr/bin/lesspipe %s'
-	export LESSCLOSE='/usr/bin/lesspipe %s %s'
-}
 openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
