@@ -3,15 +3,3 @@
 
 hash -d vcs=$HOME/var/svn
 hash -d lyrics=/home/wildernet/html/lyrics
-
-case $HOST in
-	aneurysm)
-		hash -d www=/var/www
-		hash -d web=$HOME/public_html
-	;;
-	saviour)
-		hash -d music=$HOME/lib/audio
-		hash -d www=/var/www
-		hash -d cgi=/usr/lib/cgi-bin
-	;;
-esac
