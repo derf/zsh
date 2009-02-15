@@ -5,6 +5,7 @@
 if [[ ${#*} == 0 ]] {
 	autoload xsource
 	xsource ~/.zshrc
+	rehash
 } else {
 	local function
 	for function in $@; {
