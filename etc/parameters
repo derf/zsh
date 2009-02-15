@@ -1,18 +1,27 @@
 ## vim:ft=zsh
 
-# zsh parameters
+# There's no point in having more history than what can be saved on disk
 HISTFILE=~/.histfile
 HISTSIZE=50000
 SAVEHIST=$HISTSIZE
+
+# how many entries to kep for popd
 DIRSTACKSIZE=20
+
+# Use the full terminal size for listings
 LISTMAX=0
+
+# be accurate
 TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 
-# zshrc parameters
+# the completion snippet will check if the compdump exists.
+# If it doesn't, it will print a nice "creating compdump" message
 compdump=~/var/cache/zsh/compdump
 
-# Paths
+# Add my own executables, if they're not already in the path
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
+
+# Add manuals from pkg to manpath
 linux: [[ -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
 
 openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
