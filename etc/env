@@ -3,12 +3,18 @@
 ZDIR=$HOME/packages/zsh/etc
 PS4='%{'$'\e[0;36m''%}%N%{'$'\e[0m''%}:%{'$'\e[0;33m''%}%i%{'$'\e[0m''%}│'
 fpath=($ZDIR/functions $ZDIR/completions $fpath)
+
+# Additional zshenv settings from pkg
 [[ -r $ZDIR/../provided/env ]] && source $ZDIR/../provided/env
+
+# local settings, not tracked with git
 [[ -r $ZDIR/local-env ]] && source $ZDIR/local-env
 
 export EDITOR==vim
 export MPD_HOST=saviour
 export CALENDAR_DIR=$HOME/stuff
+
+# Required for various scripts
 export HOST
 export COLUMNS
 export LINES

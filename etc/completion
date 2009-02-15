@@ -4,6 +4,7 @@ zstyle :compinstall filename ~/.zshrc
 zstyle ':completion:*' cache-path ~/var/cache/zsh
 zstyle ':completion:*' use-cache true
 
+# Use ls-colors for file completion
 check_com -c dircolors && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Mark the current selection when tabbing through possible completions
@@ -27,10 +28,11 @@ zstyle ':completion:*:warnings' format \
 zstyle ':completion:*' group-name ''
 unset char
 
-# program-specific settings
+# Force menu completion since the input is just a stupid number
 zstyle ':completion:*:*:kill:*' menu yes
 zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 
+# $hosts is set from the hosts package
 zstyle -e ':completion:*' hosts 'reply=(${(k)hosts})'
 
 if [[ -r $compdump ]] {

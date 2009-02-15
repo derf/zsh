@@ -1,4 +1,6 @@
 ## vim:ft=zsh
+## parameters which are only important for interactive shells.
+## For application-related parameters, see zshenv
 
 # There's no point in having more history than what can be saved on disk
 HISTFILE=~/.histfile

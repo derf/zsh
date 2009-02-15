@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
 ## vim:ft=zsh
+## Look for conflicting aliases and commands in ~/bin
+## Since aliases are usually loaded from zshrc, which is not sourced
+## for zsh script execution, the recommended usage is
+##    source .../conflicts
+## in a running, interactive zsh
+
 autoload check_com
 typeset file dir alias
 typeset PDIR=$HOME/packages
