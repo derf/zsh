@@ -32,6 +32,11 @@ unset char
 zstyle ':completion:*:*:kill:*' menu yes
 zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 
+# fancy kill completion
+# source: http://madism.org/~madcoder/dotfiles/zsh/40_completion
+zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
+
 # $hosts is set from the hosts package
 zstyle -e ':completion:*' hosts 'reply=(${(k)hosts})'
 
