@@ -6,7 +6,7 @@
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/rc
 ## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 
-## What are we running on?
+# for system-specific setup
 system=${$(uname):l}
 alias 'linux:'='[[ $system == linux ]] &&'
 alias 'openbsd:'='[[ $system == openbsd ]] &&'
@@ -14,12 +14,12 @@ if [[ $system == linux ]] {
 	[[ -f /etc/debian_version ]] && distro=debian
 }
 
-## include the actual config
+# include the actual config
 source $ZDIR/options
+source $ZDIR/colors
 source $ZDIR/parameters
 source $ZDIR/function
 source $ZDIR/zle
-source $ZDIR/colors
 source $ZDIR/prompt
 source $ZDIR/directories
 source $ZDIR/keys
@@ -29,20 +29,21 @@ source $ZDIR/alias/default
 source $ZDIR/alias/global
 source $ZDIR/alias/short
 source $ZDIR/../provided/includes
-xsource $ZDIR/local
-xsource $HOME/var/tmp/envstore-raw-$UID
-xsource $ZDIR/hosts/$HOST
+xsource $ZDIR/local                     # local configuration, not in git
+xsource $HOME/var/tmp/envstore-raw-$UID # envstore
+xsource $ZDIR/hosts/$HOST               # local configuration in git
 source $ZDIR/completion
 
+# Run the parts of .zprofile which require the setup done by .zshrc
 (( ZPROFILE )) && source $ZDIR/profile
 
-## misc
+# misc
 check_com -c dircolors && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
 mesg n
 umask 077
 chpwd
 
-## cleanup
+# cleanup
 unalias 'linux:'
 unalias 'openbsd:'
 unfunction check_com
