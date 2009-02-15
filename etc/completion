@@ -37,6 +37,10 @@ zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
 
+# separate manuals by sections
+zstyle ':completion:*:manuals'    separate-sections true
+zstyle ':completion:*:manuals.*'  insert-sections   true
+
 # $hosts is set from the hosts package
 zstyle -e ':completion:*' hosts 'reply=(${(k)hosts})'
 
