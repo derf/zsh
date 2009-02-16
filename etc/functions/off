@@ -8,6 +8,7 @@ typeset filesystem garbage
 typeset -a filesystems
 typeset tune2fs
 typeset -i force reboot simulate
+typeset gone
 
 function execute {
 	if (( simulate )) {
@@ -37,11 +38,17 @@ while [[ $1 == -* ]] {
 	shift
 }
 
+gone=$1
+
 # Don't shut down a server too easily
 if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
 	warn "This seems to be a server... not shutting down"
 	echo "Use 'off --force' if you really mean it"
 	return 1
+}
+
+if [[ -n $gone ]] {
+	execute unisync with-all
 }
 
 if pgrep -x amarokapp &> /dev/null; then
