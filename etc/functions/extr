@@ -17,7 +17,7 @@ if [[ -f $1 ]] {
 		*.lzh) lha x $1 ;;
 		*.gz) gunzip -d $1 ;;
 		*.tar) tar xvf $1 ;;
-		*.tgz) xvzf $1 ;;
+		*.tgz) tar xvzf $1 ;;
 		*.tbz2) tar xvjf $1 ;;
 		*.zip) unzip $1 ;;
 		*.Z) uncompress $1 ;;
