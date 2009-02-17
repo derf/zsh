@@ -64,7 +64,7 @@ typeset -i i
 
 if (( named )) {
 	for part in ${(k)nameddirs}; {
-		[[ $dir == ${nameddirs[$part]}* ]] && dir=${dir/${nameddirs[$part]}/\~$part}
+		[[ $dir == ${nameddirs[$part]}(/*|) ]] && dir=${dir/${nameddirs[$part]}/\~$part}
 	}
 }
 (( tilde )) && dir=${dir/$HOME/\~}
