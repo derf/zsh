@@ -4,7 +4,7 @@
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 autoload warn fdie
-typeset filesystem garbage
+typeset filesystem garbage file
 typeset -a filesystems
 typeset tune2fs
 typeset -i force reboot simulate
@@ -48,7 +48,13 @@ if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
 }
 
 if [[ -n $gone ]] {
-	execute unisync with-all
+	for file in ~/packages/leave.d/etc/{_any,$gone}/*(N); {
+		if [[ ${file:e} == zsh ]] {
+			execute source $file
+		} else {
+			execute $file
+		}
+	}
 }
 
 if pgrep -x amarokapp &> /dev/null; then
