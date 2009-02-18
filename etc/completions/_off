@@ -1,0 +1,21 @@
+#compdef off
+
+typeset -a arguments
+typeset expl
+
+arguments=(
+	'--force[shutdown a server]'
+	'-n[simulate]'
+	'-r[reboot]'
+	':place:_off_places'
+)
+
+function _off_places {
+	if [[ ! -d ~/packages/places ]] {
+		return 1
+	}
+	_wanted place expl place \
+	compadd $(ls -1 ~/packages/places/etc)
+}
+
+_arguments -s $arguments
