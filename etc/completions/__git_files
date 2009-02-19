@@ -13,8 +13,7 @@ files=(${(ps:\0:)"$(cd $gitdir/..; _call_program files git ls-files -z $ls_opts 
 __git_command_successful || return
 
 if [[ -z $gitdir ]] {
-	echo "wtf: $gitdir"
-	return
+	return 1
 }
 
 if [[ ! -d .git ]] {
