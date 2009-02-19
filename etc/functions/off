@@ -25,12 +25,15 @@ while [[ $1 == -* ]] {
 		--force) force=1 ;;
 		-h)
 			print 'off - shutdown / restart the system'
-			print 'Usage: off [--force] [-hnr]'
+			print 'Usage: off [--force] [-hnr] [place]'
 			print 'Options:\n'
 			print '  -n    simulate. Do not actually shutdown'
 			print '  -r    reboot'
 			print '  -h    show this message'
 			print '\--force shutdown even if the machine is a server'
+			print ''
+			print ' place  supply if machine will remain off for some time,'
+			print '        either "gone" or the place one will be going to'
 			return 0
 		;;
 		*) fdie "Unrecognized option: $1"; return 1 ;;
