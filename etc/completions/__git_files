@@ -1,4 +1,4 @@
-#autoload +X
+#autoload
 local expl files ls_opts opts gitdir dirdiff i j prefix item self
 
 zparseopts -D -E -a opts -- -cached -deleted -modified -others -ignored -unmerged -killed
