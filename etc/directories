@@ -2,4 +2,4 @@
 ## vim:ft=zsh
 
 hash -d vcs=$HOME/var/svn
-hash -d lyrics=/home/wildernet/html/lyrics
+hash -d lyrics=~vcs/lyrics
