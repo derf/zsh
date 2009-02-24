@@ -20,6 +20,10 @@ alias dua='du --apparent-size'
 alias fbif='fbi -a'
 alias fbij='fbi -a -u'
 
+for i in ~/var/gtd/*(.N); {
+	alias gtd-${i:t}='todo --database '$i
+}
+
 # File listings
 alias lsb='tar tvjf'
 alias lsgz='tar tvzf'
