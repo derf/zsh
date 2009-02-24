@@ -32,11 +32,6 @@ unset char
 zstyle ':completion:*:*:kill:*' menu yes
 zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 
-# mplayer does not complete flac by default
-zstyle ':completion:*:*:mplayer:*' file-patterns \
-	'*.(#i)(asf|asx|avi|flac|flv|m1v|m2p|m2v|mjpg|mka|mkv|mov|mp3|mp4|mpe|mpeg|mpg|ogg|ogm|qt|rm|vob|wav|wma|wmv)(-.)' \
-	'*(-/):directories' '*:all-files'
-
 zstyle ':completion:*:*:vi(m|):*' ignored-patterns \
 	'a.out|*.o'
 
