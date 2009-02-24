@@ -37,6 +37,9 @@ zstyle ':completion:*:*:mplayer:*' file-patterns \
 	'*.(#i)(asf|asx|avi|flac|flv|m1v|m2p|m2v|mjpg|mka|mkv|mov|mp3|mp4|mpe|mpeg|mpg|ogg|ogm|qt|rm|vob|wav|wma|wmv)(-.)' \
 	'*(-/):directories' '*:all-files'
 
+zstyle ':completion:*:*:vi(m|):*' ignored-patterns \
+	'a.out|*.o'
+
 # fancy kill completion
 # source: http://madism.org/~madcoder/dotfiles/zsh/40_completion
 zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
