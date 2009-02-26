@@ -43,7 +43,6 @@ chpwd
 # cleanup
 unalias 'linux:'
 unalias 'openbsd:'
-unfunction check_com
 unfunction xexport
 unfunction xsource
 unset system distro
