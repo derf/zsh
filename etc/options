@@ -8,6 +8,9 @@
 setopt auto_pushd pushd_ignore_dups pushd_minus pushd_silent
 setopt auto_cd
 
+## Prompt
+setopt transient_rprompt
+
 ## Completion
 setopt list_packed
 
