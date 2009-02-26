@@ -34,9 +34,6 @@ xsource $HOME/var/tmp/envstore-raw-$UID # envstore
 xsource $ZDIR/hosts/$HOST               # local configuration in git
 source $ZDIR/completion
 
-# Run the parts of .zprofile which require the setup done by .zshrc
-(( ZPROFILE )) && source $ZDIR/profile
-
 # misc
 check_com -c dircolors && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
 mesg n

@@ -1,16 +1,6 @@
 ## vim:ft=zsh
-
-# a part of this file uses functions loaded by the zshrc, which is parsed
-# after zprofile by default. So, at the end of the zshrc, zprofile is sourced
-# again and the section after the else is executed
-if (( ZPROFILE == 0 )) {
-	source $HOME/packages/zsh/etc/colors
-	print -P "${info}>>${reset} this is ${info}$(uname -srm)${reset} on ${info}%y${reset}"
-	[[ -n $(echo Maildir/new/*(N)) ]] && echo "${info}>>${reset} You have mail!"
-	[[ -r $HOME/packages/zsh/etc/local-profile ]] && source $HOME/packages/zsh/etc/local-profile
-	ZPROFILE=1
-} else {
-	check_com -c todo && [[ -r ~/var/gtd/todo ]] && gtd-todo
-	check_com -c calendar && [[ -r ~/stuff/calendar ]] && calendar
-	unset ZPROFILE
-}
+source $HOME/packages/zsh/etc/colors
+print -P "${info}>>${reset} this is ${info}$(uname -srm)${reset} on ${info}%y${reset}"
+[[ -n $(echo Maildir/new/*(N)) ]] && echo "${info}>>${reset} You have mail!"
+[[ -r $HOME/packages/zsh/etc/local-profile ]] && source $HOME/packages/zsh/etc/local-profile
+ZPROFILE=1

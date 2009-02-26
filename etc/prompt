@@ -14,7 +14,11 @@ sign="${ps_sign}%(?.${sign}.%?)${ps_reset}"
 screen=$'%{\ek\e\\%}'
 
 PS1="${host} ${dir} ${sign} ${screen}"
-RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}%T]${ps_reset}"
+RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}"
+if [[ $TERM != screen ]] {
+	RPS1+='%T'
+}
+RPS1+="]${ps_reset}"
 
 unset user at host
 unset dir ps_sign sign screen
