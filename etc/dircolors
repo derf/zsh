@@ -154,7 +154,7 @@ EXEC 01;32
 .fli 04;32
 .gl 04;32
 .dl 04;32
-.xcf 04;32
+.xcf 04;33
 .xwd 04;32
 .yuv 04;32
 # audio formats
