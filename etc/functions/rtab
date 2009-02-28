@@ -41,7 +41,7 @@ while [[ $1 == -* ]]; do
 			print ' -s, --short     Truncate directory names to the first character'
 			print ' -t, --tilde     Substitute ~ for the home directory'
 			print ' -T, --nameddirs Substitute named directories as well'
-			print 'The long options can also bu set via zstyle, like'
+			print 'The long options can also be set via zstyle, like'
 			print '  zstyle :prompt:rtab fish yes'
 			return 0
 		;;
