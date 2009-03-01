@@ -1,5 +1,17 @@
 ## vim:ft=zsh
 source $HOME/packages/zsh/etc/colors
-print -P "${info}>>${reset} this is ${info}$(uname -srm)${reset} on ${info}%y${reset}"
-[[ -n $(echo Maildir/new/*(N)) ]] && echo "${info}>>${reset} You have mail!"
+
+function pr_info {
+	print -P "${info}>>${reset} $*"
+}
+
+echo
+pr_info "This is ${info}$(uname -srm)${reset} on ${info}%y${reset}"
+[[ -r /etc/gentoo-release ]] && pr_info "Running ${info}Gentoo${reset}"
+[[ -r /etc/debian_version ]] && pr_info "Running ${info}Debian${reset} $(cat /etc/debian_version)"
+echo
+
+[[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
 [[ -r $HOME/packages/zsh/etc/local-profile ]] && source $HOME/packages/zsh/etc/local-profile
+
+unfunction pr_info
