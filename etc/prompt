@@ -6,22 +6,33 @@
 # psvar[1] = directory info
 # psvar[2] = rtab (current directory)
 
-host="${ps_yellow}%m"
-dir="${ps_reset}%30<…<%2v%>>"
-(( EUID )) && ps_sign=$ps_green || ps_sign=$ps_red
-sign="%(!.#.>)"
-sign="${ps_sign}%(?.${sign}.%?)${ps_reset}"
-screen=$'%{\ek\e\\%}'
+typeset -A ps rps
 
-PS1="${host} ${dir} ${sign} ${screen}"
-RPS1="${ps_yellow}[${ps_info}%1v${ps_yellow}"
-if [[ $TERM != screen ]] {
-	RPS1+='%T'
+ps=(
+	host   "${ps_yellow}%m"
+	dir    "${ps_reset}%30<…<%2v%>>"
+	sign   "%(!.${ps_red}.${ps_green})%(?.%(!.#.>).%?)${ps_reset}"
+	screen $'%{\ek\e\\%}'
+)
+
+rps=(
+	start_always "${ps_yellow}["
+	start_screen "%(1V.${ps_yellow}["
+	dirinfo      "${ps_info}%1v${ps_reset}"
+	time         '%T'
+	end_always   "${ps_yellow}]${ps_reset}"
+	end_screen   "%(1V.${ps_yellow}]${ps_reset}.)"
+)
+
+PS1="${ps[host]} ${ps[dir]} ${ps[sign]} ${ps[screen]}"
+
+if [[ $TERM == screen ]] {
+	RPS1="${rps[start_screen]}${rps[dirinfo]}${rps[end_screen]}"
+} else {
+	RPS1="${rps[start_always]}${rps[dirinfo]}${rps[time]}${rps[end_always]}"
 }
-RPS1+="]${ps_reset}"
 
-unset user at host
-unset dir ps_sign sign screen
+unset ps rps
 
 zstyle ':prompt:rtab' fish yes
 zstyle ':prompt:rtab' nameddirs yes

@@ -10,4 +10,10 @@ typeset string
 [[ -d .svn ]] && string+='svn '
 [[ -f Makefile || -f makefile ]] && string+='make '
 
-echo $string
+# if we're running in screen, we're the only one writing into the prompt
+# -> no trailing whitespace
+if [[ $TERM == screen ]] {
+	echo ${string% }
+} else {
+	echo $string
+}
