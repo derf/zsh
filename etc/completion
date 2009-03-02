@@ -50,9 +50,9 @@ zstyle -e ':completion:*' hosts 'reply=(${(k)hosts})'
 if [[ -r $compdump ]] {
 	compinit -C -d $compdump
 } else {
-	echo -n "Creating completion cache..."
+	echo -n "${info}--${reset} Creating completion cache"
 	compinit -d $compdump
-	echo
+	echo -n "\r\e[2K"
 }
 
 compdef _hosts sshmount
