@@ -169,3 +169,6 @@ EXEC 01;32
 .ogg 04;36
 .ra 04;36
 .wav 04;36
+# document formats
+.odt 04
+.pdf 04
