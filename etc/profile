@@ -9,6 +9,8 @@ echo
 pr_info "This is ${info}$(uname -srm)${reset} on ${info}%y${reset}"
 [[ -r /etc/gentoo-release ]] && pr_info "Running ${info}Gentoo${reset} ${$(cat /etc/gentoo-release)#(#i)gentoo }"
 [[ -r /etc/debian_version ]] && pr_info "Running ${info}Debian${reset} $(cat /etc/debian_version)"
+[[ -r /etc/arch-release   ]] && pr_info "Running ${info}Arch${reset}"
+[[ -r /etc/redhat-release ]] && pr_info "Running ${info}Redhat${reset}"
 echo
 
 [[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
