@@ -11,8 +11,8 @@ for funcfile in $ZDIR/functions/*(*N);
 unset funcfile
 
 function Start Stop Restart Reload {
-	typeset action
-	for action in $*; {
-		sudo /etc/init.d/$1 ${0:l}
+	typeset script
+	for script in $*; {
+		sudo /etc/init.d/$script ${0:l}
 	}
 }
