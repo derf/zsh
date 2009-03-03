@@ -1,4 +1,5 @@
 ## vim:ft=zsh
+setopt extended_glob
 source $HOME/packages/zsh/etc/colors
 
 function pr_info {
