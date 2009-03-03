@@ -10,15 +10,9 @@ for funcfile in $ZDIR/functions/*(*N);
 	autoload ${funcfile:t}
 unset funcfile
 
-# Convenient control over system daemons
-# The functions are uppercase to avoid conflicts
-# from https://git.tabularazor.org/~mikael/etc/tree/zsh/functions
-for action in Start Stop Restart Reload; {
-	eval "function $action {
-		typeset action
-		for action in \$*; {
-			sudo /etc/init.d/\$action ${action:l}
-		}
-	}"
+function Start Stop Restart Reload {
+	typeset action
+	for action in $*; {
+		sudo /etc/init.d/$1 ${0:l}
+	}
 }
-unset action
