@@ -12,7 +12,14 @@ unset funcfile
 
 function Start Stop Restart Reload {
 	typeset script
+	function __sudo {
+		if ((EUID)) {
+			sudo $*
+		} else {
+			$*
+		}
+	}
 	for script in $*; {
-		sudo /etc/init.d/$script ${0:l}
+		__sudo /etc/init.d/$script ${0:l}
 	}
 }
