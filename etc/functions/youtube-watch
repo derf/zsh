@@ -1,4 +1,20 @@
 ## vim:ft=zsh
-typeset video=$1
+typeset video
+typeset -i cache=0
+
+while [[ $* == -* ]] {
+	case $1 in
+		-c) cache=1
+	esac
+	shift
+}
+
+video=$1
 shift
-mplayer $* $(youtube-dl -g $video)
+
+if ((cache)) {
+	youtube-dl -o /tmp/youtube.flv $video
+	mplayer $* /tmp/youtube.flv
+} else {
+	mplayer $* $(youtube-dl -gb $video)
+}
