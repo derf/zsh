@@ -1,1 +1,4 @@
-mplayer $(youtube-dl -g $1)
+## vim:ft=zsh
+typeset video=$1
+shift
+mplayer $* $(youtube-dl -g $video)
