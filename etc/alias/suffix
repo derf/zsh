@@ -27,7 +27,7 @@ document_app='kpdf'
 raw_app='vim'
 office_app='openoffice'
 emul_app='wine'
-web_app='opera'
+web_app='x-www-browser'
 
 # part 2: create the aliases
 for meta in $filetypes; do
