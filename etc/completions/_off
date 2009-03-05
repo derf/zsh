@@ -7,15 +7,7 @@ arguments=(
 	'--force[shutdown a server]'
 	'-n[simulate]'
 	'-r[reboot]'
-	':place:_off_places'
+	':place:_derf_place'
 )
-
-function _off_places {
-	if [[ ! -d ~/packages/places ]] {
-		return 1
-	}
-	_wanted place expl place \
-	compadd $(ls -1 ~/packages/places/etc)
-}
 
 _arguments -s $arguments
