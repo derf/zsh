@@ -62,7 +62,7 @@ NORMAL 00 # global default, although everything should be something.
 FILE 00 # normal file
 DIR 01;37 # directory
 LINK 01;36 # symbolic link. (If you set this to 'target' instead of a
- # numerical value, the color is as for the file pointed to.)
+           # numerical value, the color is as for the file pointed to.)
 FIFO 40;33 # pipe
 SOCK 01;35 # socket
 DOOR 01;35 # door
@@ -89,7 +89,9 @@ EXEC 01;32
 # executable bit actually set.
 #.sh 01;32
 #.csh 01;32
- # archives or compressed (bright red)
+
+## Extension based colors are indicated by an underline
+# archives/compressed files (red)
 .tar 04;31
 .tgz 04;31
 .svgz 04;31
@@ -115,7 +117,7 @@ EXEC 01;32
 .cpio 04;31
 .7z 04;31
 .rz 04;31
-# image formats
+# images (yellow)
 .jpg 04;33
 .jpeg 04;33
 .gif 04;33
@@ -132,7 +134,9 @@ EXEC 01;32
 .svg 04;33
 .mng 04;33
 .pcx 04;33
-.mov 04;33
+.xcf 04;33
+# videos (green)
+.mov 04;32
 .mpg 04;32
 .mpeg 04;32
 .m2v 04;32
@@ -154,10 +158,9 @@ EXEC 01;32
 .fli 04;32
 .gl 04;32
 .dl 04;32
-.xcf 04;33
 .xwd 04;32
 .yuv 04;32
-# audio formats
+# audio (cyan)
 .aac 04;36
 .au 04;36
 .flac 04;36
@@ -169,6 +172,6 @@ EXEC 01;32
 .ogg 04;36
 .ra 04;36
 .wav 04;36
-# document formats
+# document formats, not plain text! (white)
 .odt 04
 .pdf 04
