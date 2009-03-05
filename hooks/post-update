@@ -31,3 +31,8 @@ echo export MAKEFLAGS=\
 cd $PDIR/zsh/etc
 zcompile functions.zwc functions/*
 zcompile completions.zwc completions/*
+
+# Preserve old history
+if [[ ! -e ~/var/cache/zsh/history ]] {
+	cp ~/.histfile ~/var/cache/zsh/history
+}

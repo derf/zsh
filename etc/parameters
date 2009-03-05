@@ -3,7 +3,7 @@
 ## For application-related parameters, see zshenv
 
 # There's no point in having more history than what can be saved on disk
-HISTFILE=~/.histfile
+HISTFILE=~/var/cache/zsh/history
 HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 
