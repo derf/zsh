@@ -6,9 +6,7 @@ autoload catch throw
 autoload zargs
 
 # own functions
-for funcfile in $ZDIR/functions/*(*N);
-	autoload ${funcfile:t}
-unset funcfile
+autoload $ZDIR/functions/*(*N:t)
 
 function Start Stop Restart Reload {
 	typeset script
