@@ -1,0 +1,11 @@
+#compdef cryptsetup
+
+typeset expl
+
+if (( CURRENT == 2 )) {
+	_wanted action expl action \
+	compadd create remove status resize \
+	luks{Format,Open,Close,{Add,Remove}Key} \
+	luks{KillSlot,UUID,Dump} \
+	isLuks
+}
