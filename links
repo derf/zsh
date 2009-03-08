@@ -1,0 +1,4 @@
+soft .zshrc $etc/rc
+soft .zprofile $etc/profile
+soft .zlogin $etc/login
+soft .zshenv $etc/env
