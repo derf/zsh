@@ -24,6 +24,6 @@ compdump=~/var/cache/zsh/compdump
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
 
 # Add manuals from pkg to manpath
-linux: [[ -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
+check_com manpath && [[ -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
 
 openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
