@@ -1,11 +1,28 @@
 #compdef cryptsetup
 
-typeset expl
-
-if (( CURRENT == 2 )) {
+function _cryptsetup_action {
+	typeset expl
 	_wanted action expl action \
 	compadd create remove status resize \
 	luks{Format,Open,Close,{Add,Remove}Key} \
 	luks{KillSlot,UUID,Dump} \
 	isLuks
 }
+
+_arguments -n \
+	{-h,--hash}':hash' \
+	{-c,--cipher}':cipher specification' \
+	{-y,--verify-passphrase} \
+	{-d,--key-file}':key file:_files' \
+	{-S,--key-slot}':key slot' \
+	{-s,--key-size}':key size (bits)' \
+	{-b,--size}':device size (sectors)' \
+	{-o,--offset}':start offset' \
+	{-p,--skip}':skip data (sectors)' \
+	--readonly \
+	{-i,--iter-time}':password processing time (milliseconds)' \
+	{-q,--batch-mode} \
+	{-t,--timeout}':password timeout (seconds)' \
+	{-T,--tries}':passwort retries' \
+	'--align-payload=-:payload boundary align (512-byte sectors)' \
+	':action:_cryptsetup_action'
