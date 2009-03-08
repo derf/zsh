@@ -8,8 +8,9 @@ function confirm_shar {
 
 if [[ -f $1 ]] {
 	case $1 in
-		*.(tar.bz2tbz2)) tar xvjf $1 ;;
+		*.(tar.bz2|bz2)) tar xvjf $1 ;;
 		*.(tar.gz|tgz)) tar xvzf $1 ;;
+		*.tar.lzma) unlzma $1 | tar xv ;;
 		*.ace) unace e $1 ;;
 		*.rar) unrar x $1 ;;
 		*.deb) ar -x $1 ;;
