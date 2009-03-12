@@ -28,10 +28,13 @@ source $ZDIR/prompt
 source $ZDIR/directories
 source $ZDIR/keys
 source $ZDIR/alias
+
+zrc_status "includes"
 source $ZDIR/../provided/includes
 xsource $ZDIR/local                     # local configuration, not in git
 xsource $HOME/var/tmp/envstore-raw-$UID # envstore
 xsource $ZDIR/hosts/$HOST               # local configuration in git
+
 source $ZDIR/completion
 
 # misc
