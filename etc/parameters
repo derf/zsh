@@ -16,8 +16,7 @@ LISTMAX=0
 # be accurate
 TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 
-# the completion snippet will check if the compdump exists.
-# If it doesn't, it will print a nice "creating compdump" message
+# completion cache for compinit
 compdump=~/var/cache/zsh/compdump
 
 # Add my own executables, if they're not already in the path

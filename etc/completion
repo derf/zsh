@@ -48,12 +48,7 @@ zstyle ':completion:*:manuals.*'  insert-sections   true
 # $hosts is set from the hosts package
 zstyle -e ':completion:*' hosts 'reply=(${(k)hosts})'
 
-if [[ -r $compdump ]] {
-	compinit -C -d $compdump
-} else {
-	zrc_status "Creating completion cache"
-	compinit -d $compdump
-}
+compinit -C -d $compdump
 
 compdef _hosts sshmount
 compdef _functions reload
