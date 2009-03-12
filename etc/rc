@@ -14,6 +14,10 @@ if [[ $system == linux ]] {
 	[[ -f /etc/debian_version ]] && distro=debian
 }
 
+function zrc_status {
+	echo -n "\r\e[2K${info}--${reset} $*"
+}
+
 # include the actual config
 source $ZDIR/options
 source $ZDIR/colors
@@ -41,6 +45,7 @@ umask 077
 chpwd
 
 # cleanup
+echo -n "\r\e[2K"
 unalias 'linux:'
 unalias 'openbsd:'
 unfunction xexport
