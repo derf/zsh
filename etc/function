@@ -1,4 +1,5 @@
 ## vim:ft=zsh
+zrc_status functions
 
 # zsh functions
 autoload -U compinit

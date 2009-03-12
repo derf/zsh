@@ -1,4 +1,5 @@
 ## vim:ft=zsh
+zrc_status completion
 
 zstyle :compinstall filename ~/.zshrc
 zstyle ':completion:*' cache-path ~/var/cache/zsh
