@@ -47,7 +47,7 @@ chpwd
 echo -n "\r\e[2K"
 unalias 'linux:'
 unalias 'openbsd:'
-unfunction xexport
-unfunction xsource
+unfunction zrc_status
+unfunction xexport xsource
 unset system distro
 unset ps_fail ps_green ps_info ps_red ps_reset ps_yellow
