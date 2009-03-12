@@ -1,0 +1,7 @@
+## vim:ft=zsh
+zrc_status aliases
+source $ZDIR/aliases/suffix
+source $ZDIR/aliases/font
+source $ZDIR/aliases/default
+source $ZDIR/aliases/global
+source $ZDIR/aliases/short
