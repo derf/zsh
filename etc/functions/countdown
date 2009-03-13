@@ -7,13 +7,20 @@
 autoload check_com
 typeset -i beep=0
 typeset -i seconds
+typeset date
 
 if check_com beep; then
 	beep=1
 fi
 
+if [[ $1 == +* ]] {
+	date=@$(($(date +%s) + ${1#+}))
+} else {
+	date="$*"
+}
+
 while true; do
-	seconds=$[$(date -d "$*" +%s)-$(date +%s)]
+	seconds=$[$(date -d $date +%s)-$(date +%s)]
 	echo -n $seconds
 	if (( seconds <= 0 )) {
 		(( beep )) && beep || echo -ne "\a"
