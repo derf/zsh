@@ -1,1 +1,2 @@
-echo -e "${warn}${*}${reset}"
+## vim:ft=zsh
+echo -e "${warn}${*}${reset}" > /dev/stderr

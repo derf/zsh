@@ -1,2 +1,3 @@
-echo -e "${fail}${*}${reset}"
+## vim:ft=zsh
+echo -e "${fail}${*}${reset}" > /dev/stderr
 exit 1
