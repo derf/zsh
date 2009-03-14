@@ -9,6 +9,28 @@ function _cryptsetup_action {
 	isLuks
 }
 
+function _cryptsetup_device {
+	_files
+}
+
+function _cryptsetup_mapping {
+	_path_files -W /dev/mapper
+}
+
+function _cryptsetup_arguments {
+	if (( CURRENT == 2 )) {
+		case $word[1] in
+			create|remove|status|resize) _cryptsetup_mapping ;;
+			luks(Format|Open|AddKey|RemoveKey|KillSlot|DelKey|UUID|Dump)|isLuks) _cryptsetup_device ;;
+		esac
+	} elif (( CURRNT == 3 )) {
+		case $word[1] in
+			create) _cryptsetup_device ;;
+			luksOpen) _cryptsetup_mapping ;;
+		esac
+	}
+}
+
 _arguments -n \
 	{-h,--hash}':hash' \
 	{-c,--cipher}':cipher specification' \
@@ -25,4 +47,5 @@ _arguments -n \
 	{-t,--timeout}':password timeout (seconds)' \
 	{-T,--tries}':passwort retries' \
 	'--align-payload=-:payload boundary align (512-byte sectors)' \
-	':action:_cryptsetup_action'
+	':action:_cryptsetup_action' \
+	':arguments::_cryptsetup_arguments'
