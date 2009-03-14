@@ -19,12 +19,12 @@ function _cryptsetup_mapping {
 
 function _cryptsetup_arguments {
 	if (( CURRENT == 2 )) {
-		case $word[1] in
+		case $words[1] in
 			create|remove|status|resize) _cryptsetup_mapping ;;
 			luks(Format|Open|AddKey|RemoveKey|KillSlot|DelKey|UUID|Dump)|isLuks) _cryptsetup_device ;;
 		esac
-	} elif (( CURRNT == 3 )) {
-		case $word[1] in
+	} elif (( CURRENT == 3 )) {
+		case $words[1] in
 			create) _cryptsetup_device ;;
 			luksOpen) _cryptsetup_mapping ;;
 		esac
@@ -48,4 +48,4 @@ _arguments -n \
 	{-T,--tries}':passwort retries' \
 	'--align-payload=-:payload boundary align (512-byte sectors)' \
 	':action:_cryptsetup_action' \
-	':arguments::_cryptsetup_arguments'
+	'*::arguments:_cryptsetup_arguments'
