@@ -7,14 +7,14 @@ autoload warn fdie
 typeset filesystem garbage file
 typeset -a filesystems
 typeset tune2fs
-typeset -i force reboot simulate
+typeset -i force reboot simulate exit_ok=1
 typeset gone
 
 function execute {
 	if (( simulate )) {
 		echo $*
 	} else {
-		$*
+		$* || exit_ok=0
 	}
 }
 
@@ -75,6 +75,7 @@ done < /etc/fstab
 for filesystem in $filesystems; {
 	tune2fs=($(sudo tune2fs -l $filesystem | fgrep -i 'mount count' | grep -o '[0-9]*'))
 	if (( tune2fs[2] - tune2fs[1] < 5 )) {
+		exit_ok=0
 		echo "notice: filesystem $filesystem due to check in $((tune2fs[2] - tune2fs[1])) mounts"
 	}
 }
@@ -82,4 +83,7 @@ if (( reboot )) {
 	execute sudo reboot
 } else {
 	execute sudo halt
+}
+if (( exit_ok )) {
+	execute exit
 }
