@@ -7,10 +7,3 @@ yellow=$'\e[0;33m'
 green=$'\e[0;32m'
 red=$'\e[0;31m'
 reset=$'\e[0m'
-
-ps_fail="%{$fail%}"
-ps_info="%{$info%}"
-ps_yellow="%{$yellow%}"
-ps_green="%{$green%}"
-ps_red="%{$red%}"
-ps_reset="%{$reset%}"

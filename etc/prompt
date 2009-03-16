@@ -9,19 +9,19 @@
 typeset -A ps rps
 
 ps=(
-	host   "${ps_yellow}%m"
-	dir    "${ps_reset}%30<…<%2v%>>"
-	sign   "%(!.${ps_red}.${ps_green})%(?.%(!.#.>).%?)${ps_reset}"
+	host   "%F{yellow}%m"
+	dir    "%F{default}%30<…<%2v%>>"
+	sign   "%(!.%F{red}.%F{green})%(?.%(!.#.>).%?)%F{reset}"
 	screen $'%{\ek\e\\%}'
 )
 
 rps=(
-	start_always "${ps_yellow}["
-	start_screen "%(1V.${ps_yellow}["
-	dirinfo      "${ps_info}%1v${ps_reset}"
+	start_always "%F{yellow}["
+	start_screen "%(1V.%F{yellow}["
+	dirinfo      "%F{cyan}%1v%F{default}"
 	time         '%T'
-	end_always   "${ps_yellow}]${ps_reset}"
-	end_screen   "%(1V.${ps_yellow}]${ps_reset}.)"
+	end_always   "%F{yellow}]%F{default}"
+	end_screen   "%(1V.%F{yellow}]%F{default}.)"
 )
 
 PS1="${ps[host]} ${ps[dir]} ${ps[sign]} ${ps[screen]}"
