@@ -7,3 +7,4 @@ source $ZDIR/aliases/global
 source $ZDIR/aliases/short
 
 [[ $distro == debian ]] && source $ZDIR/aliases/debian
+check_com -c startx && source $ZDIR/aliases/x
