@@ -43,7 +43,7 @@ for file in $PDIR/*/bin/*(N); {
 }
 
 for alias in ${(k)aliases}; {
-	if check_com -c $alias && [[ $aliases[$alias] != (sudo|)$alias* ]]; then
+	if check_com -c $alias && [[ $aliases[$alias] != (sudo |noglob |)$alias* ]]; then
 		echo "conflicting alias: $alias"
 	fi
 }
