@@ -1,0 +1,42 @@
+#compdef fbsetroot
+## completion for fbsetroot (fluxbox 1.0.0+deb1-9), based on fbsetroot(1)
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/completion/_fbsetroot
+
+local arguments 
+local texturestrings colors
+
+texturestrings=(
+	Horizontal
+	Vertical
+	Diagonal
+	Crossdiagonal
+	Pipecross
+	Elliptic
+	Rectangle
+	Pyramid
+)
+
+colors=(
+	white gray black
+	green yellow red
+	blue cyan purple
+)
+
+arguments=(
+	'-display[specify display]:display: '
+	- help
+	'-help[print help]'
+	- solid
+	'-solid[set root window to specified color]:color:'"($colors)"
+	- gradient
+	'-gradient[render texture string]:texturestring:'"($texturestrings)"
+	'-from[first grodient color]:color:'"($colors)"
+	'-to[second gradient color]:color:'"($colors)"
+	- mod
+	'-mod[create modula pattern]:x: :y: '
+	'-bg[modula background color]:color:'"($colors)"
+	'-fg[modula foreground color]:color:'"($colors)"
+)
+
+_arguments -s $arguments

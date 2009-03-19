@@ -1,0 +1,35 @@
+#compdef fbsetbg
+## completion for fbsetbg (fluxbox 1.0.0+deb1-9), based on fbsetbg(1)
+## Daniel Friesel <derf@derf.homelinux.org>
+## https://derf.homelinux.org/~derf/dotfiles/completion/_fbsetbg
+
+local -a arguments
+local -A file_arguments
+
+arguments=(
+	'(-u)-U[specify wallpapersetter (without remembering)]:wallpapersetter: '
+	'(-U)-u[specify wallpapersetter]:wallpapersetter: '
+	'(-b)-B[options for fbsetroot (without remembering)]:fbsetroot options: '
+	'(-B)-b[options for fbsetroot]:fbsetroot options: '
+	- '(exclusive)'
+	'-h[show help]'
+	'-i[show wallpapersetter information]'
+	'-l[set previous wallpaper]'
+	'-p[show tips]'
+	'-r[set random wallpaper from directory]:directory:_path_files -/'
+	'-R[set random wallpaper from directory (without remembering)]:directory:_path_files -/'
+)
+
+file_arguments=(
+	'-f' 'fullscreen'
+	'-c' 'centered'
+	'-t' 'tiled'
+	'-a' 'fullscreen (preserving aspect)'
+)
+
+for arg in ${(k)file_arguments}; {
+	arguments+=$arg'[set '$file_arguments[$arg]' wallpaper]:file:_files'
+	arguments+=${arg:u}'[set '$file_arguments[$arg]' wallpaper (without remembering)]:file:_files'
+}
+
+_arguments -s $arguments
