@@ -5,3 +5,5 @@ source $ZDIR/aliases/font
 source $ZDIR/aliases/default
 source $ZDIR/aliases/global
 source $ZDIR/aliases/short
+
+[[ $distro == debian ]] && source $ZDIR/aliases/debian

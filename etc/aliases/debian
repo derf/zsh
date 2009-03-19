@@ -1,0 +1,47 @@
+## vim:ft=zsh
+## Debian package system (aptitude/apt-get, apt-cache, dpkg)
+
+# Search the packages list
+alias acse='apt-cache search'
+alias afse='apt-file search'
+alias apse='aptitude search'
+
+# Show package information
+alias acsh='apt-cache show'
+alias afsh='apt-file show'
+alias apsh='aptitude show'
+alias dps='dpkg --status'
+
+# Update packages list
+salias agu='apt-get update'
+salias apu='aptitude update'
+
+# Update packages
+salias ags='apt-get upgrade'
+salias agf='apt-get dist-upgrade'
+salias aps='aptitude safe-upgrade'
+salias apf='aptitude full-upgrade'
+
+# Install packages
+salias agi='apt-get install'
+salias api='aptitude install'
+salias dpi='dpkg --install'
+
+# Clean packages cache
+salias agc='apt-get clean'
+salias apc='aptitude clean'
+
+# Remove/Purge packages
+salias agar='apt-get autoremove'
+salias agp='apt-get purge'
+salias agr='apt-get remove'
+salias dpp='dpkg --purge'
+salias dpr='dpkg --remove'
+
+# Get package source
+alias agsrc='apt-get source'
+
+# Configure packages
+salias dprc='dpkg-reconfigure'
+
+alias acp='apt-cache policy'
