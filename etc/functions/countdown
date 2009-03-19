@@ -1,7 +1,8 @@
 ## vim:ft=zsh
 ## Countdown to a specific date/time
 ## Usage: countdown <string understood by 'date -d'>
-## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+##    or: countdown +<seconds>
+## Copyright (C) 2008-2009 by Daniel Friesel <derf@derf.homelinux.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 autoload check_com
@@ -21,7 +22,7 @@ if [[ $1 == +* ]] {
 
 while true; do
 	seconds=$[$(date -d $date +%s)-$(date +%s)]
-	echo -n $seconds
+	printf '%02d:%02d:%02d' $((seconds/3600)) $(((seconds/60)%60)) $((seconds%60))
 	if (( seconds <= 0 )) {
 		(( beep )) && beep || echo -ne "\a"
 	}
