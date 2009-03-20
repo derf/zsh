@@ -3,10 +3,7 @@
 ## To evade them, use '=foo' instead of 'foo'
 
 
-#
-#   grep
-#
-
+## grep
 linux: {
 	alias egrep='grep -E --color=auto'
 	alias fgrep='grep -F --color=auto'
@@ -14,10 +11,7 @@ linux: {
 }
 
 
-#
-#   file and filesystem information
-#
-
+## file and filesystem information
 # human-readable sizes, local filesystems only
 linux: alias df='df -hl --exclude-type=fuse.encfs' ||
        alias df='df -hl'
@@ -31,10 +25,7 @@ linux: alias ls='ls -Fh --color=auto' ||
        alias ls='ls -Fh'
 
 
-#
-#   networking
-#
-
+## networking
 # I often use it for just *viewing* things, which works fine without root
 alias ifconfig='/sbin/ifconfig'
 
@@ -45,10 +36,6 @@ alias mx='mx -aZ'
 linux: salias netstat='netstat --program --all --tcp --extend' ||
        salias netstat='netstat -atp tcp'
 
-
-#
-#   various other stuff
-#
 
 alias cal='cal -m'
 alias cp='cp -i'
