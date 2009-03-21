@@ -17,6 +17,9 @@ if [[ $system == linux ]] {
 function zrc_status {
 	echo -n "\r\e[2K${info}--${reset} $*"
 }
+function zrc_info {
+	echo "${info}--${reset} $*"
+}
 
 # include the actual config
 source $ZDIR/options
@@ -47,7 +50,7 @@ chpwd
 echo -n "\r\e[2K"
 unalias 'linux:'
 unalias 'openbsd:'
-unfunction zrc_status
+unfunction zrc_status zrc_info
 unfunction xexport xsource
 unset system distro
 unset ps_fail ps_green ps_info ps_red ps_reset ps_yellow

@@ -2,7 +2,7 @@
 zrc_status completion
 
 zstyle :compinstall filename ~/.zshrc
-zstyle ':completion:*' cache-path ~/var/cache/zsh
+zstyle ':completion:*' cache-path $ZCACHEDIR
 zstyle ':completion:*' use-cache true
 
 # Use ls-colors for file completion

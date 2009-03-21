@@ -2,8 +2,17 @@
 ## parameters which are only important for interactive shells.
 ## For application-related parameters, see zshenv
 
+# zsh cache directory
+if [[ -d ~/var/cache/zsh ]] {
+	ZCACHEDIR=~/var/cache/zsh
+} else {
+	zrc_info "~/var/cache/zsh does not exist, using ~/.zsh-cache instead"
+	mkdir -p ~/.zsh-cache
+	ZCACHEDIR=~/.zsh-cache
+}
+
 # There's no point in having more history than what can be saved on disk
-HISTFILE=~/var/cache/zsh/history
+HISTFILE=$ZCACHEDIR/history
 HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 
@@ -17,7 +26,7 @@ LISTMAX=0
 TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 
 # completion cache for compinit
-compdump=~/var/cache/zsh/compdump
+compdump=$ZCACHEDIR/compdump
 
 # Add my own executables, if they're not already in the path
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
