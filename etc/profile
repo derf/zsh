@@ -3,15 +3,15 @@ setopt extended_glob
 source $ZDIR/colors
 
 function pr_info {
-	print -P "${info}>>${reset} $*"
+	print -P "%F{cyan}>>%F{reset} $*"
 }
 
 echo
-pr_info "This is ${info}$(uname -srm)${reset} on ${info}%y${reset}"
-[[ -r /etc/gentoo-release ]] && pr_info "Running ${info}Gentoo${reset} ${$(cat /etc/gentoo-release)#(#i)gentoo }"
-[[ -r /etc/debian_version ]] && pr_info "Running ${info}Debian${reset} $(cat /etc/debian_version)"
-[[ -r /etc/arch-release   ]] && pr_info "Running ${info}Arch${reset}"
-[[ -r /etc/redhat-release ]] && pr_info "Running ${info}Redhat${reset}"
+pr_info "This is %F{cyan}$(uname -srm)%F{reset} on %F{cyan}%y%F{reset}"
+[[ -r /etc/gentoo-release ]] && pr_info "Running %F{cyan}Gentoo%F{reset} ${$(cat /etc/gentoo-release)#(#i)gentoo }"
+[[ -r /etc/debian_version ]] && pr_info "Running %F{cyan}Debian%F{reset} $(cat /etc/debian_version)"
+[[ -r /etc/arch-release   ]] && pr_info "Running %F{cyan}Arch%F{reset}"
+[[ -r /etc/redhat-release ]] && pr_info "Running %F{cyan}Redhat%F{reset}"
 echo
 
 [[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
