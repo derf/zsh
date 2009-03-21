@@ -110,7 +110,7 @@ while [[ -n $state ]]; do
 					tmp=( 'users:login name:_ssh_users -qS@' )
 				fi
 				 _alternative \
-				'hosts:remote host name:_ssh_hosts' \
+				'hosts:remote host name:_ssh_hosts -S :' \
 				"$tmp[@]"
 			fi
 		;;
