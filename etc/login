@@ -1,3 +1,4 @@
 ## vim:ft=zsh
 check_com -c todo && [[ -r ~/var/gtd/todo ]] && gtd-todo
 check_com -c calendar && [[ -r ~/stuff/calendar ]] && calendar
+true
