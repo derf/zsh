@@ -1,0 +1,15 @@
+## vim:ft=zsh
+## wrapper around man, finfo, etc
+
+if man -w $1 &> /dev/null; then
+	man $1
+elif [[ -n $(whichf $1) ]]; then
+	finfo $1
+elif (( ${+builtins[$1]} )); then
+	man zshbuiltins | less -p "       $1"
+elif check_com -c $1 && check_com -c apt-file; then
+	apt-cache show ${(s/:/)$(apt-file search -F $commands[$1])[1]}
+else
+	echo "Sorry, no clue." >&2
+	return 1
+fi
