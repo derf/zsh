@@ -37,6 +37,9 @@ linux: salias netstat='netstat --program --all --tcp --extend' ||
        salias netstat='netstat -atp tcp'
 
 
+# less frequent updates when running ncdu via ssh
+[[ -n $SSH_CONNECTION ]] && check_com -c ncdu && alias ncdu='ncdu -q'
+
 alias cal='cal -m'
 alias cp='cp -i'
 alias fbi='fbi -readahead'
