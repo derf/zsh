@@ -1,0 +1,7 @@
+## vim:ft=zsh
+typeset -i ls=0
+[[ -d $1 ]] && ls=1
+mkdir -p $1
+cd $1
+((ls)) && ls
+true
