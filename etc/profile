@@ -1,6 +1,5 @@
 ## vim:ft=zsh
 setopt extended_glob
-source $ZDIR/colors
 
 function pr_info {
 	print -P "%F{cyan}>>%F{reset} $*"
