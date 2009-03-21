@@ -7,6 +7,7 @@ alias afse='apt-file search'
 alias apse='aptitude search'
 
 # Show package information
+alias acp='apt-cache policy'
 alias acsh='apt-cache show'
 alias afsh='apt-file show'
 alias apsh='aptitude show'
@@ -43,5 +44,3 @@ alias agsrc='apt-get source'
 
 # Configure packages
 salias dprc='dpkg-reconfigure'
-
-alias acp='apt-cache policy'

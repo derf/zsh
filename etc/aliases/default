@@ -29,6 +29,7 @@ linux: alias ls='ls -Fh --color=auto' ||
 # I often use it for just *viewing* things, which works fine without root
 alias ifconfig='/sbin/ifconfig'
 
+# With these settings, mx and host do basically the same, but whatever
 alias host='host -a'
 alias mx='mx -aZ'
 
@@ -41,17 +42,17 @@ linux: salias netstat='netstat --program --all --tcp --extend' ||
 [[ -n $SSH_CONNECTION ]] && check_com -c ncdu && alias ncdu='ncdu -q'
 
 alias cal='cal -m'
-alias cp='cp -i'
 alias fbi='fbi -readahead'
-alias feh='feh --quiet --verbose'
+
+# I keep accidently overwriting files
+alias cp='cp -i'
+alias mv='mv -i'
 
 # find does globbing itself
 alias find='noglob find'
 
-# Show manuals in all sections
+# Show all available manuals (all sections)
 alias man='man -a'
-
-alias mv='mv -i'
 
 # BSD style
 alias ps='ps aux'

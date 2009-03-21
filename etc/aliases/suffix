@@ -30,11 +30,11 @@ emul_app='wine'
 web_app='x-www-browser'
 
 # part 2: create the aliases
-for meta in $filetypes; do
-	for format in $(eval echo -n "$"${meta}_formats); do 
+for meta in $filetypes; {
+	for format in $(eval echo -n "$"${meta}_formats); {
 		eval alias -s $format="$"${meta}_app
-	done
+	}
 	unset ${meta}_{formats,app}
-done
+}
 
 unset filetypes meta format

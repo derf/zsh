@@ -2,7 +2,21 @@
 
 # feh etc if X is running, x for startx otherwise
 if pidof X &> /dev/null; then
-	## feh
+
+	# quiet and verbose can actually be used together here.
+	# quiet = suppress non-critical errors, verbose = show progress bars
+	alias feh='feh --quiet --verbose'
+
+	# Alias structure:
+	# feh[theme][recursive?][slide-delay?]
+	# theme = [f]ullscreen | [i]ndex | [j]ust | [t]humbnail
+	# recursive: r for recursive, nothing otherwise
+	# slide-delay:
+	#     none   - no slideshow
+	#     number - slideshow, $number seconds per image
+	#     x      - slideshow, seconds will be specified on commandline
+	#              (like "fehfrx 7 .")
+	# the themes are defined in .fehrc
 	alias fehf='feh -Tfull' # Fullscreen
 	alias fehfr='feh -Tfull --recursive'
 	alias fehi='feh .fehindex.jpg'
