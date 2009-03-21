@@ -34,7 +34,6 @@ if [[ ! -d .git ]] {
 			[[ -n $j ]] && files[$i]+="$j/"
 		}
 		files[$i]=${files[$i]%/}
-		echo $files[$i] >> /tmp/bar
 	}
 }
 _wanted files expl 'index file' _multi_parts $@ - / files
