@@ -1,6 +1,6 @@
 ## vim:ft=zsh
 setopt extended_glob
-source $HOME/packages/zsh/etc/colors
+source $ZDIR/colors
 
 function pr_info {
 	print -P "${info}>>${reset} $*"
@@ -15,6 +15,6 @@ pr_info "This is ${info}$(uname -srm)${reset} on ${info}%y${reset}"
 echo
 
 [[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
-[[ -r $HOME/packages/zsh/etc/local-profile ]] && source $HOME/packages/zsh/etc/local-profile
+[[ -r $ZDIR/local-profile ]] && source $ZDIR/local-profile
 
 unfunction pr_info

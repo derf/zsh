@@ -41,7 +41,7 @@ xsource $ZDIR/hosts/$HOST               # local configuration in git
 source $ZDIR/completion
 
 # misc
-check_com -c dircolors && eval $(dircolors -b $HOME/packages/zsh/etc/dircolors)
+check_com -c dircolors && eval $(dircolors -b $ZDIR/dircolors)
 mesg n
 umask 077
 chpwd

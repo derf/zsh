@@ -3,7 +3,7 @@
 typeset -a arguments
 typeset net
 
-for net in $(grep '^hosts_' ~/packages/zsh/etc/functions/put | sed -r 's/^hosts_(\w*)=.*$/\1/'); {
+for net in $(grep '^hosts_' $ZDIR/functions/put | sed -r 's/^hosts_(\w*)=.*$/\1/'); {
 	arguments+="-$net"
 }
 
