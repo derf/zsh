@@ -48,11 +48,6 @@ alias feh='feh --quiet --verbose'
 # find does globbing itself
 alias find='noglob find'
 
-# This is an export, so that also man() and other apps using less as pager get it
-# clear-screen = much faster scrolling on ttys
-# RAW-CONTROL-CHARS = Don't produce crap if the file contains ANSI color sequences
-export LESS='--silent --no-init --clear-screen --RAW-CONTROL-CHARS --quit-if-one-screen --ignore-case --tabs=5'
-
 # Show manuals in all sections
 alias man='man -a'
 
