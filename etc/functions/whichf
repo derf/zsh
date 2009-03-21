@@ -1,0 +1,2 @@
+## vim:ft=zsh
+echo ${^fpath}/$1(-.N)
