@@ -15,15 +15,14 @@ if [[ $system == linux ]] {
 }
 
 function zrc_status {
-	echo -n "\r\e[2K${info}--${reset} $*"
+	echo -n "\r\e[2K\e[0;36m--\e[0m $*"
 }
 function zrc_info {
-	echo "${info}--${reset} $*"
+	echo "\e[0;36m--\e[0m $*"
 }
 
 # include the actual config
 source $ZDIR/options
-source $ZDIR/colors
 source $ZDIR/parameters
 source $ZDIR/function
 source $ZDIR/zle
