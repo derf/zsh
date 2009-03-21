@@ -3,8 +3,7 @@
 ## Usage: reload [function names]
 
 if [[ ${#*} == 0 ]] {
-	autoload xsource
-	xsource ~/.zshrc
+	source ~/.zshrc
 	rehash
 } else {
 	local function
