@@ -1,0 +1,12 @@
+## vim:ft=zsh
+## finfo - show function info
+## Assume that a function begins with an introduction, and print it
+typeset line
+
+[[ -n $(whichf $1) ]] || return 1
+
+while read line; do
+	[[ $line == \#* ]] || break
+	[[ $line == *vim:ft=* ]] && continue
+	echo $line
+done < $(whichf $1)
