@@ -1,15 +1,34 @@
 ## vim:ft=zsh
 ## wrapper around man, finfo, etc
+typeset -a methods
+typeset method
+typeset -i found=0
 
-if man -w $1 &> /dev/null; then
-	man $1
-elif whichf $1 &> /dev/null; then
-	finfo $1
-elif (( ${+builtins[$1]} )); then
-	man zshbuiltins | less -p "       $1"
-elif [[ $commands[$1] != ${HOME}* ]] && check_com -c $1 && check_com -c apt-file; then
+methods=(man function builtin apt)
+
+function help_check_man      { man -w $1 &> /dev/null }
+function help_check_function { whichf $1 &> /dev/null }
+function help_check_builtin  { (( ${+builtins[$1]} )) }
+function help_check_apt {
+	[[ $commands[$1] != ${HOME}* ]] && check_com -c $1 && check_com -c apt-file
+}
+
+function help_show_man       { man $1 }
+function help_show_function  { finfo $1 }
+function help_show_builtin   { man zshbuiltins | less -p "       $1" }
+function help_show_apt {
 	apt-cache show ${(s/:/)$(apt-file search -F $commands[$1])[1]}
-else
-	echo "Sorry, no clue." >&2
+}
+
+for method in $methods; {
+	if help_check_$method $1; then
+		help_show_$method $1
+		((found++))
+		break
+	fi
+}
+
+if ((found == 0)) {
+	echo "Sorry, no clue." > /dev/stderr
 	return 1
-fi
+}
