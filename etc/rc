@@ -6,22 +6,8 @@
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/rc
 ## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 
-# for system-specific setup
-system=${$(uname):l}
-alias 'linux:'='[[ $system == linux ]] &&'
-alias 'openbsd:'='[[ $system == openbsd ]] &&'
-if [[ $system == linux ]] {
-	[[ -f /etc/debian_version ]] && distro=debian
-}
-
-function zrc_status {
-	echo -n "\r\e[2K\e[0;36m--\e[0m $*"
-}
-function zrc_info {
-	echo "\e[0;36m--\e[0m $*"
-}
-
-# include the actual config
+source $ZDIR/osdetect
+source $ZDIR/rc_status
 source $ZDIR/options
 source $ZDIR/parameters
 source $ZDIR/function
@@ -30,6 +16,7 @@ source $ZDIR/prompt
 source $ZDIR/directories
 source $ZDIR/keys
 source $ZDIR/alias
+source $ZDIR/misc
 
 zrc_status "includes"
 source $ZDIR/../provided/includes
@@ -38,18 +25,4 @@ xsource $HOME/var/tmp/envstore-raw-$UID # envstore
 xsource $ZDIR/hosts/$HOST               # local configuration in git
 
 source $ZDIR/completion
-
-# misc
-check_com -c dircolors && eval $(dircolors -b $ZDIR/dircolors)
-mesg n
-umask 077
-chpwd
-
-# cleanup
-echo -n "\r\e[2K"
-unalias 'linux:'
-unalias 'openbsd:'
-unfunction zrc_status zrc_info
-unfunction xexport xsource
-unset system distro
-unset ps_fail ps_green ps_info ps_red ps_reset ps_yellow
+source $ZDIR/cleanup

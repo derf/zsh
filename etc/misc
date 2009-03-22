@@ -1,0 +1,6 @@
+## vim:ft=zsh
+# misc
+check_com -c dircolors && eval $(dircolors -b $ZDIR/dircolors)
+mesg n
+umask 077
+chpwd
