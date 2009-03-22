@@ -48,6 +48,7 @@ hosts=(aneurysm_int aneurysm sievert)
 
 while [[ $1 == -* ]] {
 	case $1 in
+		-|--) shift; break ;;
 		*)
 			(( $(eval echo '$#'hosts_${1#-}) )) && eval hosts=\(\$hosts_${1#-}\)
 		;;
