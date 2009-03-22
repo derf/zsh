@@ -8,5 +8,5 @@ typeset line
 while read line; do
 	[[ $line == \#* ]] || break
 	[[ $line == *vim:ft=* ]] && continue
-	echo $line
+	echo ${line#(\#|)\# }
 done < $(whichf $1)
