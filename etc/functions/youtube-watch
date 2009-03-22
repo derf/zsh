@@ -4,7 +4,7 @@ typeset -i cache=0
 
 while [[ $* == -* ]] {
 	case $1 in
-		-c) cache=1
+		-c) cache=1 ;;
 		-|--) shift; break ;;
 	esac
 	shift
