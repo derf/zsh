@@ -2,9 +2,18 @@
 ## wrapper around man, finfo, etc
 typeset -a methods
 typeset method
-typeset -i found=0
-
+typeset -i found check_only all
 methods=(man function builtin apt)
+
+while [[ $1 == -* ]] {
+	case $1 in
+		-c|--check-only) check_only=1 ;;
+		-a|--all) all=1 ;;
+		-|--) shift; break ;;
+		*) echo "unknown option: $1" ;;
+	esac
+	shift
+}
 
 function help_check_man      { man -w $1 &> /dev/null }
 function help_check_function { whichf $1 &> /dev/null }
@@ -22,9 +31,13 @@ function help_show_apt {
 
 for method in $methods; {
 	if help_check_$method $1; then
-		help_show_$method $1
 		((found++))
-		break
+		if ((check_only)) {
+			echo $method
+			continue
+		}
+		help_show_$method $1
+		((all)) || break
 	fi
 }
 
