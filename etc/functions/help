@@ -3,7 +3,7 @@
 
 if man -w $1 &> /dev/null; then
 	man $1
-elif [[ -n $(whichf $1) ]]; then
+elif whichf $1 &> /dev/null; then
 	finfo $1
 elif (( ${+builtins[$1]} )); then
 	man zshbuiltins | less -p "       $1"
