@@ -1,0 +1,32 @@
+#!/usr/bin/env zsh
+typeset -a audio video image
+typeset c_audio='04;36' c_video='04;32' c_image='04;33'
+
+while read mime extensions; do
+	[[ $mime == audio/* ]] && audio+=(${(s/ /)extensions})
+	[[ $mime == video/* ]] && video+=(${(s/ /)extensions})
+	[[ $mime == image/* ]] && image+=(${(s/ /)extensions})
+done < /etc/mime.types
+
+audio=(${(i)audio})
+video=(${(i)video})
+image=(${(i)image})
+
+echo "## dircolors"
+echo "# audio"
+for type in $audio; {
+	echo ".$type $c_audio"
+}
+echo "\n# video"
+for type in $video; {
+	echo ".$type $c_video"
+}
+echo "\n# images"
+for type in $image; {
+	echo ".$type $c_image"
+}
+
+echo "\n\n## suffix aliases"
+echo "audio_formats=($audio)"
+echo "video_formats=($video)"
+echo "image_formats=($image)"
