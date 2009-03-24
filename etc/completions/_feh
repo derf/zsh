@@ -1,7 +1,7 @@
 #compdef feh
 ## completion for feh 1.3.4.dfsg.1-1, based on feh(1)
-## Daniel Friesel <derf@derf.homelinux.org>
-## https://derf.homelinux.org/~derf/dotfiles/completion/_feh
+## Copyright (C) 2008, 2009 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset -a arguments
 typeset -A argument_pairs argument_postfix
@@ -66,7 +66,7 @@ argument_postfix=(
 	'version'     '[Show version information]'
 	'verbose'     '[Be verbose]'
 	'quiet'       '[Suppress non-fatal errors]'
-	'theme'       '[Load named options from config]:theme:->theme'
+	'theme'       '[Load named options from config]:theme:_feh_theme'
 	'recursive'   '[Recurse into subdirectories]'
 	'randomize'   '[Randomize file list before displaying]'
 	'filelist'    '[Read file list from this file]:file:_files'
@@ -94,14 +94,14 @@ argument_postfix=(
 	'thumbnails'  '[Enable interactive index mode]'
 	'menu-font'   '[Set font in menus]:font: '
 	'no-menus'    "[Don't load or show any menus]"
-	'next-button' '[Button for next image]:button:->button'
-	'zoom-button' '[Button to zoom image]:button:->button'
-	'pan-button'  '[Ctrl+Button to pan image]:button:->button'
-	'menu-button' '[Button to activate menu]:button:->button'
+	'next-button' '[Button for next image]:button:_feh_button'
+	'zoom-button' '[Button to zoom image]:button:_fes_button'
+	'pan-button'  '[Ctrl+Button to pan image]:button:_feh_button'
+	'menu-button' '[Button to activate menu]:button:_feh_button'
 	'no-menu-ctrl-mask' '[Show Menu without pressing ctrl]'
-	'rotate-button' '[Ctrl+Button to rotate image]:button:->button'
+	'rotate-button' '[Ctrl+Button to rotate image]:button:_feh_button'
 	'no-rotate-ctrl-mask' '[Rotate without pressing ctrl]'
-	'blur-button' '[Ctrl+Button tu blur image]:button:->button'
+	'blur-button' '[Ctrl+Button tu blur image]:button:_feh_button'
 	'no-blur-ctrl-mask' '[Blur without pressing ctrl]'
 	'ignore-aspect' "[montage mode: Don't preserve aspect ratio]"
 	'stretch'     '[montage mode: Enlarge images to fit thumbnail size]'
@@ -125,7 +125,7 @@ arguments=(
 	'--bg-scale[Set scaled desktop background]:file:_files'
 	'--bg-seamless[Set scaled desktop background, preserving aspect]:file:_files'
 	'--menu-style[Style descriptor for menu text]:file:_files'
-	'--menu-bg[Background image in menus]: :->background'
+	'--menu-bg[Background image in menus]: :_feh_background'
 	'--menu-border[Set menu background border]:integer: '
 	'--no-pan-ctrl-mask[Pan without pressing ctrl]'
 	'--xinerama[Toggle xinerama support]'
@@ -143,33 +143,30 @@ for arg in ${(k)argument_pairs}; {
 	arguments+='(-'${argument_pairs[$arg]}[1]')--'${arg}${argument_postfix[$arg]}
 }
 
-_arguments -s $arguments
+function _feh_theme {
+	if [[ -r ~/.fehrc ]]; then
+		typeset -a themes tmp
+		typeset theme IFS=$'\n'
+		for theme in $(grep "\w" ~/.fehrc | grep -v "^#"); do
+			tmp=(${(s: :)theme})
+			theme=$tmp[1]
+			shift tmp
+			themes+=$theme:${(j: :)tmp}
+		done
+		_describe 'theme' themes
+	fi
+}
 
-while [[ -n $state ]]; do
-	lstate=$state
-	state=''
-	case $lstate in
-		theme)
-			if [[ -r ~/.fehrc ]]; then
-				typeset -a themes tmp
-				typeset theme IFS=$'\n'
-				for theme in $(grep "\w" ~/.fehrc | grep -v "^#"); do
-					tmp=(${(s: :)theme})
-					theme=$tmp[1]
-					shift tmp
-					themes+=$theme:${(j: :)tmp}
-				done
-				_describe 'theme' themes
-			fi
-		;;
-		button)
-			_wanted button expl 'button' \
-			compadd 1 2 3
-		;;
-		background)
-			_alternative \
-			'file:file:_files' \
-			'mode:mode:(trans)'
-		;;
-	esac
-done
+function _feh_button {
+	typeset expl
+	_wanted button expl button \
+	compadd 1 2 3
+}
+
+function _feh_background {
+	_alternative \
+	'file:file:_files' \
+	'mode:mode:(trans)'
+}
+
+_arguments -s $arguments
