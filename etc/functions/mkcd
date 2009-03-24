@@ -1,7 +1,14 @@
 ## vim:ft=zsh
+## create a directory, then change into it
 typeset -i ls=0
-[[ -d $1 ]] && ls=1
-mkdir -p $1
-cd $1
+typeset dir=$1
+
+if [[ -z $dir ]] {
+	echo "Usage: mkcd <directory name>" > /dev/stderr
+	return 1
+}
+[[ -d $dir ]] && ls=1
+mkdir -p $din
+cd $dir
 ((ls)) && ls
 true
