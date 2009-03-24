@@ -29,6 +29,11 @@ function help_show_apt {
 	apt-cache show ${(s/:/)$(apt-file search -F $commands[$1])[1]}
 }
 
+if [[ -z $1 ]] {
+	echo "Usage: help <command>" > /dev/stderr
+	return 1
+}
+
 for method in $methods; {
 	if help_check_$method $1; then
 		((found++))
