@@ -1,10 +1,20 @@
 ## vim:ft=zsh
+## concatenate all GTD databases
+## usage: gtd-all [--force] [devtodo options]
 typeset prefix=~/var/gtd
 typeset database
-typeset arg=$1
+typeset -i force
+
+while [[ $1 == -* ]] {
+	case $1 in
+		-|--) shift; break ;;
+		--force) force=1 ;;
+	esac
+	shift
+}
 
 function gtd_grep {
-	if [[ $arg == force ]] {
+	if (( force )) {
 		cat
 		return 0
 	}
@@ -18,5 +28,5 @@ function gtd_grep {
 
 for database in $prefix/*(.N); {
 	echo "\n${database:t}"
-	todo --database $database | gtd_grep
+	todo --database $database $* | gtd_grep
 }
