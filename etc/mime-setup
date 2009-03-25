@@ -16,5 +16,5 @@ mime_image=(
 )
 mime_video=(
 	3gp asf asx avi axv dif dl dv fli flv gl lsf lsx mng mov
-	movie mp4 mpe mpeg mpg mpv mxu ogv qt wm wmv wmx wvx
+	movie mp4 mpe mpeg mpg mpv mxu ogm ogv qt wm wmv wmx wvx
 )
