@@ -6,3 +6,5 @@ LS_COLORS+=:${(j/:/):-"*."${^mime_audio}"=04;36"}
 LS_COLORS+=:${(j/:/):-"*."${^mime_document}"=04"}
 LS_COLORS+=:${(j/:/):-"*."${^mime_image}"=04;33"}
 LS_COLORS+=:${(j/:/):-"*."${^mime_video}"=04;32"}
+
+export LS_COLORS
