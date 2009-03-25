@@ -6,4 +6,4 @@ unalias 'openbsd:'
 unfunction zrc_status zrc_info
 unfunction xexport xsource
 unset system distro
-unset ps_fail ps_green ps_info ps_red ps_reset ps_yellow
+unset -m 'mime_*'

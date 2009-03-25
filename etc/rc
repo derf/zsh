@@ -10,6 +10,8 @@ source $ZDIR/osdetect
 source $ZDIR/rc_status
 source $ZDIR/options
 source $ZDIR/parameters
+source $ZDIR/mime-setup
+source $ZDIR/ls-colors
 source $ZDIR/function
 source $ZDIR/zle
 source $ZDIR/prompt

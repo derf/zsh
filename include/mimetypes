@@ -12,21 +12,6 @@ audio=(${(i)audio})
 video=(${(i)video})
 image=(${(i)image})
 
-echo "## dircolors"
-echo "# audio"
-for type in $audio; {
-	echo ".$type $c_audio"
-}
-echo "\n# video"
-for type in $video; {
-	echo ".$type $c_video"
-}
-echo "\n# images"
-for type in $image; {
-	echo ".$type $c_image"
-}
-
-echo "\n\n## suffix aliases"
-echo "audio_formats=($audio)"
-echo "video_formats=($video)"
-echo "image_formats=($image)"
+echo "mime_audio=($audio)"
+echo "mime_video=($video)"
+echo "mime_image=($image)"

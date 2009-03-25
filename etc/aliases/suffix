@@ -1,26 +1,7 @@
 ## Sufix aliases
 ## Like, enter "somefile.ogg" and zsh will automatically open it using $audio_app
 ## vim:ft=zsh
-# part 1: what filetypes to open whith what app?
-# List of filetypes covered by aliases
-filetypes=(archive audio document emul image midi office raw video web)
 
-# File extensions
-archive_formats=(tar.bz2 tar.gz tar bz2 gz zip rar)
-audio_formats=(aif aifc aiff amr amr au awb awb axa flac gsm kar m3u m3u m4a mid
-	midi mp2 mp3 mpega mpga oga ogg pls ra ra ram rm sd2 sid snd spx wav wax wma)
-document_formats=(pdf ps)
-emul_formats=(exe)
-image_formats=(art bmp cdr cdt cpt djv djvu gif ico ief jng jpe jpeg jpg pat pbm
-	pcx pgm png pnm ppm psd ras rgb svg svgz tif tiff wbmp xbm xpm xwd)
-midi_formats=(mid s3m)
-office_formats=(doc odt ott rtf sxw)
-raw_formats=(conf ini log txt htm html xhtml c cpp lst)
-video_formats=(3gp asf asx avi axv dif dl dv fli flv gl lsf lsx mng mov movie mp4
-	mpe mpeg mpg mpv mxu ogv qt wm wmv wmx wvx)
-web_formats=(com de net org)
-
-# Applications
 archive_app='extr'
 audio_app='mplayer'
 document_app='kpdf'
@@ -32,12 +13,11 @@ raw_app='vim'
 video_app='mplayer'
 web_app='x-www-browser'
 
-# part 2: create the aliases
-for meta in $filetypes; {
-	for format in $(eval echo -n "$"${meta}_formats); {
+for meta in ${parameters[(I)mime_*]#mime_}; {
+	for format in $(eval echo "$"mime_$meta); {
 		eval alias -s $format="$"${meta}_app
 	}
-	unset ${meta}_{formats,app}
+	unset ${meta}_app
 }
 
 unset filetypes meta format

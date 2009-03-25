@@ -6,7 +6,7 @@ zstyle ':completion:*' cache-path $ZCACHEDIR
 zstyle ':completion:*' use-cache true
 
 # Use ls-colors for file completion
-check_com -c dircolors && zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Mark the current selection when tabbing through possible completions
 zstyle ':completion:*' menu select=1
