@@ -8,7 +8,7 @@ if [[ -z $dir ]] {
 	return 1
 }
 [[ -d $dir ]] && ls=1
-mkdir -p $din
+mkdir -p $dir
 cd $dir
 ((ls)) && ls
 true
