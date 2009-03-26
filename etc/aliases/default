@@ -38,6 +38,7 @@ linux: salias netstat='netstat --program --all --tcp --extend' ||
        salias netstat='netstat -atp tcp'
 
 
+alias modinfo='/sbin/modinfo'
 # less frequent updates when running ncdu via ssh
 [[ -n $SSH_CONNECTION ]] && check_com -c ncdu && alias ncdu='ncdu -q'
 
