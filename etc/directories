@@ -1,5 +1,7 @@
 ## Named directories
 ## vim:ft=zsh
 
-hash -d vcs=$HOME/var/svn
-hash -d lyrics=~vcs/lyrics
+hash -d vcs=~/var/svn
+xhashd lyrics=~vcs/lyrics
+xhashd www=/var/www
+xhashd web=~/public_html
