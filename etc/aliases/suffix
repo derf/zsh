@@ -5,13 +5,8 @@
 archive_app='extr'
 audio_app='mplayer'
 document_app='kpdf'
-emul_app='wine'
 image_app='feh'
-midi_app='timidity'
-office_app='openoffice'
-raw_app='vim'
 video_app='mplayer'
-web_app='x-www-browser'
 
 for meta in ${parameters[(I)mime_*]#mime_}; {
 	for format in $(eval echo "$"mime_$meta); {
