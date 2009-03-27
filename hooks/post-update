@@ -10,14 +10,13 @@ echo -n > $PDIR/zsh/provided/env
 
 typeset -a futurepath
 for inc in $PDIR/*/provides/zsh/{functions,completions}(N); {
-	inc=${inc/$HOME/\$HOME}
-	futurepath+=$inc
+	futurepath+=${inc/$HOME/\$HOME}
 }
 if [[ -n $futurepath ]] {
-	echo "fpath=($futurepath" '$fpath)' > $PDIR/zsh/provided/env
+	echo "fpath=($futurepath \$fpath)" > $PDIR/zsh/provided/env
 }
-for inc in $PDIR/*/provides/zsh/functions(N); {
-	echo "autoload ${inc:t}" >> $PDIR/zsh/provided/includes
+for inc in $PDIR/*/provides/zsh/functions(*N:t); {
+	echo "autoload $inc" >> $PDIR/zsh/provided/includes
 }
 
 for snippet in $PDIR/*/provides/zsh/*(.N); {
