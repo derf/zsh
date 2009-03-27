@@ -15,19 +15,17 @@ zstyle ':completion:*' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} m:_=\\\ ' ''
 
 # Be verbose
-char=·
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:descriptions' format \
-       "$char %d $char"
+       "· %d ·"
 zstyle ':completion:*:messages' format \
-       "$char %d $char"
+       "· %d ·"
 zstyle ':completion:*:corrections' format \
-       "$char %d $char"
+       "· %d ·"
 zstyle ':completion:*:warnings' format \
-       "${ps_red}no match:${ps_reset} %d"
+       "%F{red}no match:%F{default} %d"
 
 zstyle ':completion:*' group-name ''
-unset char
 
 # Force menu completion since the input is just a stupid number
 zstyle ':completion:*:*:kill:*' menu yes
