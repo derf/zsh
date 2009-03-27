@@ -10,15 +10,11 @@ autoload zargs
 autoload $ZDIR/functions/*(*N:t)
 
 function Start Stop Restart Reload {
-	typeset script
-	function __sudo {
-		if ((EUID)) {
-			sudo $*
-		} else {
-			$*
-		}
+	typeset script sudo
+	if ((EUID)) {
+		sudo=sudo
 	}
 	for script in $*; {
-		__sudo /etc/init.d/$script ${0:l}
+		$sudo /etc/init.d/$script ${0:l}
 	}
 }
