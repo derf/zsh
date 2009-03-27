@@ -11,7 +11,7 @@ typeset -A ps rps
 ps=(
 	host   "%F{yellow}%m"
 	dir    "%F{default}%30<…<%2v%>>"
-	sign   "%(!.%F{red}.%F{green})%(?.%(!.#.>).%?)%F{reset}"
+	sign   "%(!.%F{red}.%F{green})%(?.%(!.#.>).%?)%F{default}"
 	screen $'%{\ek\e\\%}'
 )
 
