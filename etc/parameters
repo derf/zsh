@@ -28,6 +28,8 @@ TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 # completion cache for compinit
 compdump=$ZCACHEDIR/compdump
 
+export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
+
 # Add my own executables, if they're not already in the path
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
 
