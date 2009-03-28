@@ -1,0 +1,20 @@
+## vim:ft=zsh
+## check_ping -return true if a host responds to ICMP echo requests
+typeset -i ipv6 ret
+
+while [[ $1 == -* ]] {
+	case $1 in
+		-6) ipv6=1 ;;
+	esac
+	shift
+}
+
+typeset dst=$1
+shift
+
+if ((ipv6)) {
+	ping6 -c 1 $dst &> /dev/null
+} else {
+	ping -c 1 $dst &> /dev/null
+}
+return
