@@ -7,9 +7,6 @@ fpath=($ZDIR/functions $ZDIR/completions $fpath)
 # Additional zshenv settings from pkg
 [[ -r $ZDIR/../provided/env ]] && source $ZDIR/../provided/env
 
-# local settings, not tracked with git
-[[ -r $ZDIR/local-env ]] && source $ZDIR/local-env
-
 export EDITOR==vim
 export MPD_HOST=saviour
 export CALENDAR_DIR=$HOME/stuff
@@ -23,3 +20,6 @@ if [[ -x /usr/bin/lesspipe ]] {
 	export LESSOPEN='| /usr/bin/lesspipe %s'
 	export LESSCLOSE='/usr/bin/lesspipe %s %s'
 }
+
+# local settings, not tracked with git
+[[ -r $ZDIR/local-env ]] && source $ZDIR/local-env
