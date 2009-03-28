@@ -1,0 +1,4 @@
+## vim:ft=zsh
+if pgrep mpd &> /dev/null; then
+	export MPD_HOST=localhost
+fi
