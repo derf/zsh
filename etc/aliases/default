@@ -26,9 +26,6 @@ linux: alias ls='ls -Fh --color=auto' ||
 
 
 ## networking
-# I often use it for just *viewing* things, which works fine without root
-alias ifconfig='/sbin/ifconfig'
-
 # With these settings, mx and host do basically the same, but whatever
 alias host='host -a'
 alias mx='mx -aZ'
@@ -38,7 +35,6 @@ linux: salias netstat='netstat --program --all --tcp --extend' ||
        salias netstat='netstat -atp tcp'
 
 
-alias modinfo='/sbin/modinfo'
 # less frequent updates when running ncdu via ssh
 [[ -n $SSH_CONNECTION ]] && check_com -c ncdu && alias ncdu='ncdu -q'
 
@@ -68,6 +64,3 @@ alias tilp='gksudo "tilp --calc=ti84+ --cable=DirectLink"'
 
 # Don't collapse trees
 alias todo='noglob todo -f +children'
-
-# smooth scrolling
-alias xload='xload -jumpscroll 1'
