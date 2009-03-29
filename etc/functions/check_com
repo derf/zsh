@@ -1,5 +1,6 @@
 ## vim:ft=zsh
 ## Check for a command/function
+## Usage: check_com [-c] <command>
 ## Taken from the grml zshrc - http://grml.org
 local -i comonly
 

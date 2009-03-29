@@ -1,6 +1,6 @@
 ## vim:ft=zsh
 
-## This all belongs into the prompt, but since it only changes
-## when changing directories, it's more efficient to do it here
+# This all belongs into the prompt, but since it only changes
+# when changing directories, it's more efficient to do it here
 psvar[1]=$(dirinfo)
 psvar[2]=$(rtab)

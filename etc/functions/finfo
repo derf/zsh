@@ -1,6 +1,7 @@
 ## vim:ft=zsh
 ## finfo - show function info
 ## Assume that a function begins with an introduction, and print it
+## Usage: finfo <function name>
 typeset line
 
 whichf $1 &> /dev/null || return 1

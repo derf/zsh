@@ -1,5 +1,6 @@
 ## vim:ft=zsh
 ## check_ssh - returns true if a machine is reachable and allowing logins on ssh
+## Usage: check_ssh <host>
 if [[ $(ssh $1 'echo foo' 2> /dev/null < /dev/null ) == foo ]] {
 	return 0
 } else {

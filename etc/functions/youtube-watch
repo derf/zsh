@@ -1,4 +1,7 @@
 ## vim:ft=zsh
+## Watch a youtube video
+## requires youtube-dl and mplayer
+## Usage: youtube-dl [-c] <video url> [mplayer options]
 typeset video
 typeset -i cache=0
 

@@ -1,5 +1,6 @@
-# builtin function for archives, see $ZDIR/alias_suffix
 ## vim:ft=zsh
+## Extract archives
+## Usage: extr <file>
 
 function confirm_shar {
 	echo -ne "\e[1;33mshar archives are shell scripts and can easily contain malicious code.\e[0m Proceed? [y/N] "

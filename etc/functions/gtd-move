@@ -1,5 +1,6 @@
 ## vim:ft=zsh
 ## Helper for my gtd system
+## Usage: gtd-move <old-database> <index> <new-database>
 ## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 

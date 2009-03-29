@@ -1,5 +1,6 @@
 ## vim:ft=zsh
 ## wrapper around man, finfo, etc
+## Usage: help <topic>
 typeset -a methods
 typeset method
 typeset -i found check_only all

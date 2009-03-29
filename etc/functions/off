@@ -1,5 +1,6 @@
 ## vim:ft=zsh
 ## Small shutdown/reboot wrapper to work together with my other tools
+## Usage: off [-nrh] [place]
 ## Copyright (C) 2008, 2009 by Daniel Friesel <derf@derf.homelinux.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
