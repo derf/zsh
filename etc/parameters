@@ -16,7 +16,7 @@ HISTFILE=$ZCACHEDIR/history
 HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 
-# how many entries to kep for popd
+# how many entries to keep for popd
 DIRSTACKSIZE=20
 
 # Use the full terminal size for listings
