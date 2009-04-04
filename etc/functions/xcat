@@ -1,2 +1,5 @@
 ## vim:ft=zsh
-[[ -r $1 ]] && cat $1
+while [[ -n $1 ]] {
+	[[ -r $1 ]] && cat $1
+	shift
+}
