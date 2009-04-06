@@ -40,6 +40,9 @@ if pidof X &> /dev/null; then
 
 	# Useful when a beamer is connected to my laptop
 	alias rplayer='mplayer -vo x11 -zoom -vf scale=1024:-2'
+
+	# show current weather
+	alias weather='feh http://www.bredeney-wetter.de/aktuell.gif'
 else
 	# start x and log out immediately
 	alias x='unsetopt bg_nice; startx &! exit'
