@@ -1,0 +1,7 @@
+## vim:ft=zsh
+## print a table with all 256 color codes
+
+for i in {0..255}; {
+	printf " %s%-3s" $'\e[38;5;'${i}m $i
+	(( (i+1) % (COLUMNS/4) < 1 )) && echo
+}
