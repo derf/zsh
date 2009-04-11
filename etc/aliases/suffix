@@ -2,17 +2,19 @@
 ## Like, enter "somefile.ogg" and zsh will automatically open it using $audio_app
 ## vim:ft=zsh
 
-archive_app='extr'
-audio_app='mplayer'
-document_app='kpdf'
-image_app='feh'
-video_app='mplayer'
+typeset -A alias_apps
+alias_apps=(
+	archive	extr
+	audio	mplayer
+	document	kpdf
+	image	feh
+	video	mplayer
+)
 
 for meta in ${parameters[(I)mime_*]#mime_}; {
 	for format in $(eval echo "$"mime_$meta); {
-		eval alias -s $format="$"${meta}_app
+		alias -s $format=$alias_apps[$meta]
 	}
-	unset ${meta}_app
 }
 
-unset filetypes meta format
+unset filetypes meta format alias_apps
