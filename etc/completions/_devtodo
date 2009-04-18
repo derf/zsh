@@ -88,7 +88,7 @@ function _todo_index () {
 			-u) todo_opts+=(--filter done)
 		esac
 	done
-	for entry in $(todo $todo_opts -f +children --format display='%1>%i%n:%t\n'); do
+	for entry in $(command todo $todo_opts -f +children --format display='%1>%i%n:%t\n'); do
 		number=${entry%%:*}
 		depth=$(( ${#number} - ${#${number// }} ))
 		((depth)) && entry=${(j:.:)${${(s:.:):-a.${last_entry%%:*}}[2,depth+1]}}.$entry
