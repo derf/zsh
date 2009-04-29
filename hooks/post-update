@@ -3,27 +3,27 @@
 ## It includes configs provided by other packages
 ## and sets some more static parameters
 mkdir -p $HOME/var/cache/zsh
-mkdir -p $PDIR/zsh/provided
+mkdir -p $PKG_DIR/zsh/provided
 rm -f $HOME/var/cache/zsh/compdump
-echo -n > $PDIR/zsh/provided/includes
-echo -n > $PDIR/zsh/provided/env
+echo -n > $PKG_DIR/zsh/provided/includes
+echo -n > $PKG_DIR/zsh/provided/env
 
 typeset -a futurepath
-for inc in $PDIR/*/provides/zsh/{functions,completions}(N); {
+for inc in $PKG_DIR/*/provides/zsh/{functions,completions}(N); {
 	futurepath+=${inc/$HOME/\$HOME}
 }
 if [[ -n $futurepath ]] {
-	echo "fpath=($futurepath \$fpath)" > $PDIR/zsh/provided/env
+	echo "fpath=($futurepath \$fpath)" > $PKG_DIR/zsh/provided/env
 }
-for inc in $PDIR/*/provides/zsh/functions(*N:t); {
-	echo "autoload $inc" >> $PDIR/zsh/provided/includes
-}
-
-for snippet in $PDIR/*/provides/zsh/*(.N); {
-	echo "source ${snippet/$HOME/\$HOME}" >> $PDIR/zsh/provided/includes
+for inc in $PKG_DIR/*/provides/zsh/functions(*N:t); {
+	echo "autoload $inc" >> $PKG_DIR/zsh/provided/includes
 }
 
-cd $PDIR/zsh/etc
+for snippet in $PKG_DIR/*/provides/zsh/*(.N); {
+	echo "source ${snippet/$HOME/\$HOME}" >> $PKG_DIR/zsh/provided/includes
+}
+
+cd $PKG_DIR/zsh/etc
 zcompile functions.zwc functions/*
 zcompile completions.zwc completions/*
 

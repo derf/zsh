@@ -8,7 +8,7 @@
 
 autoload check_com
 typeset file dir alias
-typeset PDIR=$HOME/packages
+typeset PKG_DIR=$HOME/packages
 typeset -a sfpath spath conflict
 
 is_in_path () {
@@ -28,14 +28,14 @@ is_in_path () {
 sfpath=(${fpath:#$HOME*})
 spath=(${path:#$HOME*})
 
-for file in $PDIR/{*/provides/zsh/completions/*(N),zsh/etc/completions/*(N)}; {
+for file in $PKG_DIR/{*/provides/zsh/completions/*(N),zsh/etc/completions/*(N)}; {
 	conflict=($(is_in_path ${file:t} $sfpath))
 	if (( ? == 0 )) {
 		echo "conflict: $file <-> ${(j:, :)conflict}"
 	}
 }
 
-for file in $PDIR/*/bin/*(N); {
+for file in $PKG_DIR/*/bin/*(N); {
 	conflict=($(is_in_path ${file:t} $spath))
 	if (( ? == 0 )) {
 		echo "conflict: $file <-> ${(j:, :)conflict}"
