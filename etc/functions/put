@@ -33,7 +33,6 @@ function put_aneurysm () {
 	ssh_options=(-q)
 	target_dir='public_html/tmp/'
 	server_prefix='https://derf.homelinux.org/~derf/tmp/'
-	illegal='*.(cgi|pl|php|py)'
 }
 
 function put_sievert () {
