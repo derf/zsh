@@ -12,7 +12,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select=1
 
 # Complete uppercase names with lowercase and spaces with _
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} m:_=\\\ ' ''
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z} m:_=\\\ ' '+ l:|=* r:|=*'
 
 # Be verbose
 zstyle ':completion:*' verbose true
