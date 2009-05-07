@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 typeset -a audio video image
-typeset c_audio='04;36' c_video='04;32' c_image='04;33'
+. etc/mime-setup
 
 while read mime extensions; do
 	[[ $mime == audio/* ]] && audio+=(${(s/ /)extensions})
@@ -11,6 +11,16 @@ done < /etc/mime.types
 audio=(${(i)audio})
 video=(${(i)video})
 image=(${(i)image})
+
+for mimetype in $audio; {
+	[[ ${mime_audio[(I)$mimetype]} == 0 ]] && echo "mime_audio+=$mimetype"
+}
+for mimetype in $video; {
+	[[ ${mime_video[(I)$mimetype]} == 0 ]] && echo "mime_video+=$mimetype"
+}
+for mimetype in $image; {
+	[[ ${mime_image[(I)$mimetype]} == 0 ]] && echo "mime_image+=$mimetype"
+}
 
 echo "mime_audio=($audio)"
 echo "mime_video=($video)"
