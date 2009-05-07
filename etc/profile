@@ -15,5 +15,6 @@ echo
 
 [[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
 [[ -r $ZDIR/local-profile ]] && source $ZDIR/local-profile
+[[ -r $ZDIR/hosts/profile-$HOST ]] && source $ZDIR/hosts/profile-$HOST
 
 unfunction pr_info

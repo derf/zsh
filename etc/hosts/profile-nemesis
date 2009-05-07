@@ -1,0 +1,6 @@
+## vim:ft=zsh
+if [[ ! -e /tmp/.afterboot ]] {
+	touch /tmp/.afterboot
+	unsetopt bg_nice
+	startx &! exit
+}
