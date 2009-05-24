@@ -2,7 +2,7 @@
 ## check_ac - returns true if machine is running on AC
 typeset file=/sys/class/power_supply/AC/online
 if [[ -f $file ]] {
-	[[ $(cat /sys/class/power_supply/AC/online) == 1 ]]
+	[[ $(cat $file) == 1 ]]
 	return $?
 }
 return 0
