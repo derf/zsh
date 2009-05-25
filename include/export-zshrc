@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+## Copyright © 2009 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
+setopt err_exit
+result=/tmp/zsh-derf.tar.bz2
+dir=$(mktemp -dt)
+
+cd $dir
+mkdir -p packages/zsh/etc
+
+cp -a ~/packages/zsh/etc packages/zsh
+cp -a ~/packages/zsh/links packages/zsh
+mkdir -p packages/zsh/provided
+touch packages/zsh/provided/includes
+(
+	export HOME=$PWD
+	cd packages/zsh
+	checklinks -p etc=packages/zsh/etc
+)
+tar cjf $result .
+echo $result
+cd ..
+rm -rf $dir
