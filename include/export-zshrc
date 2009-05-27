@@ -12,6 +12,9 @@ cp -a ~/packages/zsh/etc packages/zsh
 cp -a ~/packages/zsh/links packages/zsh
 mkdir -p packages/zsh/provided
 touch packages/zsh/provided/includes
+if [[ -n $(echo packages/zsh/etc/local*(N)) ]] {
+	rm -f packages/zsh/etc/local*
+}
 (
 	export HOME=$PWD
 	cd packages/zsh
