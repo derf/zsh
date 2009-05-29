@@ -11,6 +11,7 @@ export EDITOR==vim
 export MPD_HOST=saviour
 export CALENDAR_DIR=$HOME/stuff
 export LESS='--silent --no-init --clear-screen --RAW-CONTROL-CHARS --quit-if-one-screen --ignore-case --tabs=5'
+export PERLLIB="$HOME/packages/.collected/perl_libs"
 
 # Required for various scripts
 export HOST
