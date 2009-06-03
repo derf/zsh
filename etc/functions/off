@@ -69,7 +69,7 @@ fi
 execute uinit -o text stop-all
 
 while read filesystem garbage; do
-	if [[ $garbage == *[12] ]] && fgrep $filesystem /etc/mtab &> /dev/null; then
+	if [[ $garbage == *[12] ]] && fgrep -q $filesystem /etc/mtab; then
 		filesystems+=$filesystem
 	fi
 done < /etc/fstab
