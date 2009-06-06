@@ -18,7 +18,7 @@ ps=(
 rps=(
 	start_always "%F{yellow}["
 	start_screen "%(1V.%F{yellow}["
-	dirinfo      "%F{cyan}%1v%F{default}"
+	dirinfo      "%F{default}%1v"
 	time         '%T'
 	end_always   "%F{yellow}]%F{default}"
 	end_screen   "%(1V.%F{yellow}]%F{default}.)"
