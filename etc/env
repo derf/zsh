@@ -1,7 +1,7 @@
 ## vim:ft=zsh
 
 : ${ZDIR:=$HOME/packages/zsh/etc}
-PS4='%F{cyan}%N%F{default}:%F{yellow}%i%F{default}│'
+PS4='%b%u%s%k%F{cyan}%N%F{default}:%F{yellow}%i%F{default}│'
 fpath=($ZDIR/functions $ZDIR/completions $fpath)
 
 # Additional zshenv settings from pkg
