@@ -1,6 +1,6 @@
 ## vim:ft=zsh
 if [[ -z $SSH_CONNECTION && ! -e /tmp/.x-started ]] {
-	touch /tmp/.afterboot
+	touch /tmp/.x-started
 	unsetopt bg_nice
 	startx &! exit
 }
