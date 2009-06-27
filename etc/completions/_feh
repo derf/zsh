@@ -5,7 +5,7 @@
 
 typeset -a arguments
 typeset -A argument_pairs argument_postfix
-typeset arg expl lstate
+typeset arg
 
 argument_pairs=(
 	'help'        'h'
