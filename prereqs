@@ -1,1 +1,1 @@
-require package hosts
+depend package hosts
