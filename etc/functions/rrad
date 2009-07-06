@@ -4,5 +4,11 @@ typeset url=$(printf http://www.wetteronline.de/daten/radar/dnrw/%s/std_%02d%02d
 typeset file=$(mktemp /tmp/rrad.XXXXXXX)
 
 curl -s $url > $file
+
+if [[ ${$(du -b $file)[1]} == 0 ]] {
+	echo "Error"
+	return 1
+}
+
 mplayer -loop 0 $file
 rm $file
