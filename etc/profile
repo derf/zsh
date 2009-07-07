@@ -1,6 +1,4 @@
 ## vim:ft=zsh
-setopt extended_glob
-
 function pr_info {
 	print -P "%F{cyan}>>%F{default} $*"
 }
