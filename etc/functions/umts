@@ -1,0 +1,14 @@
+## vim:ft=zsh
+typeset module
+
+if [[ $1 == on ]] {
+	for module (usbcore {u,e}hci_hcd) {
+		sudo modprobe $module
+	}
+	sleep 10
+	sudo pon umts
+	sleep 40
+	sudo pon umts
+} elif [[ $1 == off ]] {
+	sudo poff umts
+}
