@@ -7,7 +7,7 @@ if [[ $1 == on ]] {
 	}
 	sleep 10
 	sudo pon umts
-	sleep 40
+	sleep 31
 	sudo pon umts
 } elif [[ $1 == off ]] {
 	sudo poff umts
