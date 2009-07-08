@@ -3,7 +3,6 @@ zrc_status functions
 
 # zsh functions
 autoload -U compinit
-autoload catch throw
 autoload zargs
 
 # own functions
