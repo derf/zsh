@@ -11,8 +11,8 @@ mime_audio=(
 )
 mime_document=(pdf ps)
 mime_image=(
-	art bmp cdr cdt cpt djv djvu gif ico ief jng jpe jpeg jpg pat pbm pcx
-	pgm png pnm ppm psd ras rgb svg svgz tif tiff wbmp xbm xpm xwd
+	art bmp cdr cdt cpt cr2 crw djv djvu erf gif ico ief jng jpe jpeg jpg nef orf
+	pat pbm pcx pgm png pnm ppm psd ras rgb svg svgz tif tiff wbmp xbm xpm xwd
 )
 mime_video=(
 	3gp asf asx avi axv dif divx dl dv fli flv gl lsf lsx m2t mkv mng mov
