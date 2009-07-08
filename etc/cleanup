@@ -4,6 +4,6 @@ echo -n "\r\e[2K"
 unalias 'linux:'
 unalias 'openbsd:'
 unfunction zrc_status zrc_info
-unfunction xexport xsource
+unfunction xsource
 unset system distro
 unset -m 'mime_*'
