@@ -8,7 +8,7 @@ fpath=($ZDIR/functions $ZDIR/completions $fpath)
 [[ -r $ZDIR/../provided/env ]] && source $ZDIR/../provided/env
 
 export EDITOR==vim
-export MPD_HOST=saviour
+export MPD_HOST=localhost
 export CALENDAR_DIR=$HOME/stuff
 export LESS='--silent --no-init --clear-screen --RAW-CONTROL-CHARS --quit-if-one-screen --ignore-case --tabs=5'
 
