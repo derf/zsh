@@ -1,7 +1,7 @@
 ## vim:ft=zsh
 
 # feh etc if X is running, x for startx otherwise
-if pidof X &> /dev/null; then
+if pgrep X &> /dev/null; then
 
 	# quiet and verbose can actually be used together here.
 	# quiet = suppress non-critical errors, verbose = show progress bars
