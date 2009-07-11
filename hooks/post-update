@@ -1,5 +1,5 @@
 # vim:ft=zsh
-## This is a post-update hook for pkg (a vcs-home implementation).
+## This is a post-update hook for caretaker (a vcs-home implementation).
 ## It includes configs provided by other packages
 ## and sets some more static parameters
 mkdir -p $HOME/var/cache/zsh

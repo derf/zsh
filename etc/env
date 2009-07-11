@@ -4,7 +4,7 @@
 PS4='%b%u%s%k%F{cyan}%N%F{default}:%F{yellow}%i%F{default}│'
 fpath=($ZDIR/functions $ZDIR/completions $fpath)
 
-# Additional zshenv settings from pkg
+# Additional zshenv settings from caretaker
 [[ -r $ZDIR/../provided/env ]] && source $ZDIR/../provided/env
 
 export EDITOR==vim
