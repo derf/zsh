@@ -13,7 +13,7 @@ cp -a ~/packages/zsh/links packages/zsh
 mkdir -p packages/zsh/provided
 mkdir -p var/cache/zsh
 touch packages/zsh/provided/includes
-echo ${${(z)$(git --git-dir=$HOME/packages/core/.git/ log -n 1)}[2]} > packages/zsh/version
+echo ${${(z)$(git --git-dir=$HOME/packages/caretaker/.git/ log -n 1)}[2]} > packages/zsh/version
 if [[ -n $(echo packages/zsh/etc/local*(N)) ]] {
 	rm -f packages/zsh/etc/local*
 }
