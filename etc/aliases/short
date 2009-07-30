@@ -16,6 +16,8 @@ alias allr='for i in **/*;'
 
 alias dua='du --apparent-size'
 
+alias lasth='last | head -$((LINES-1))'
+
 ## fbi
 alias fbif='fbi -a'
 alias fbij='fbi -a -u'
