@@ -29,8 +29,6 @@ alias exec='exec '
 alias sudo='sudo '
 
 ## networking
-# With these settings, mx and host do basically the same, but whatever
-alias host='host -a'
 alias mx='mx -aZ'
 
 # Only TCP/TCP6, not sockets and such
