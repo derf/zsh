@@ -2,5 +2,5 @@
 zrc_status "includes"
 source $ZDIR/../provided/includes
 xsource $ZDIR/local                     # local configuration, not in git
-check_com envstore && eval $(envstore eval)
+[[ -e /tmp/envstore-$UID ]] && check_com envstore && eval $(envstore eval)
 xsource $ZDIR/hosts/$HOST               # local configuration in git
