@@ -7,8 +7,7 @@ if [[ -z $dir ]] {
 	echo "Usage: mkcd <directory name>" > /dev/stderr
 	return 1
 }
-[[ -d $dir ]] && ls=1
+if [[ -d $dir ]] ls=1
 mkdir -p $dir
 cd $dir
-((ls)) && ls
-true
+if ((ls)) ls --color=auto

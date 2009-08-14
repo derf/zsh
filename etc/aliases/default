@@ -21,7 +21,7 @@ linux: alias du='du -shD' ||
        alias du='du -shH'
 
 # human-readable sizes, mark executables with '*' etc.
-linux: alias ls='ls -Fh --color=auto' ||
+linux: alias ls='ls -h --color=auto' ||
        alias ls='ls -Fh'
 
 ## enable alias expansion
