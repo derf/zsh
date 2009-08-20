@@ -71,7 +71,7 @@ if (( named )) {
 		[[ $dir == ${nameddirs[$part]}(/*|) ]] && dir=${dir/${nameddirs[$part]}/\~$part}
 	}
 }
-(( tilde )) && dir=${dir/$HOME/\~}
+(( tilde )) && dir=${dir/#$HOME/\~}
 tree=(${(s:/:)dir})
 (
 	unfunction chpwd 2> /dev/null
