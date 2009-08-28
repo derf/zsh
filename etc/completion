@@ -43,7 +43,7 @@ zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 
 # $hosts is set from the hosts package
-zstyle -e ':completion:*' hosts 'reply=(${(k)hosts})'
+zstyle ':completion:*' hosts ${(k)hosts}
 
 compinit -C -d $compdump
 
