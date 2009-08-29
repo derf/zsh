@@ -1,7 +1,7 @@
 ## vim:ft=zsh
 function zrc_status {
-	echo -n "\r\e[2K\e[0;36m--\e[0m $*"
+	echo -n "\r\e[2K\e[0;36m䷢\e[0m $*"
 }
 function zrc_info {
-	echo "\e[0;36m--\e[0m $*"
+	echo "\e[0;36mℹ\e[0m $*"
 }
