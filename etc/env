@@ -16,10 +16,10 @@ export LESS='--silent --no-init --clear-screen --RAW-CONTROL-CHARS --quit-if-one
 export HOST
 export COLUMNS
 export LINES
-if [[ -x /usr/bin/lesspipe ]] {
-	export LESSOPEN='| /usr/bin/lesspipe %s'
-	export LESSCLOSE='/usr/bin/lesspipe %s %s'
-}
+if which lesspipe &> /dev/null; then
+	export LESSOPEN='| lesspipe %s'
+	export LESSCLOSE='lesspipe %s %s'
+fi
 
 # local settings, not tracked with git
 [[ -r $ZDIR/local-env ]] && source $ZDIR/local-env
