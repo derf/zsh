@@ -8,7 +8,7 @@ autoload zargs
 # own functions
 autoload $ZDIR/functions/*(:t)
 
-function Start Stop Restart Reload {
+function Status Start Stop Restart Reload {
 	typeset script sudo
 	if ((EUID)) {
 		sudo=sudo
