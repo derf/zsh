@@ -5,3 +5,4 @@ for i in {0..255}; {
 	printf " %s%-3s" $'\e[38;5;'${i}m $i
 	(( (i+1) % (COLUMNS/4) < 1 )) && echo
 }
+echo
