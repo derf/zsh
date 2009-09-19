@@ -60,7 +60,7 @@ alias ps='ps aux'
 # use unicode, reattach anyway, resize if neccessary
 alias screen='screen -ADRUa'
 
-alias tilp='gksudo "tilp --calc=ti84+ --cable=DirectLink"'
+alias tilp='kdesudo "tilp --calc=ti84+ --cable=DirectLink"'
 
 # Don't collapse trees
 alias todo='noglob todo -f +children'
