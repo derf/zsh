@@ -48,6 +48,9 @@ alias fbi='fbi -readahead'
 alias cp='cp -i'
 alias mv='mv -i'
 
+# no atime
+alias pmount='pmount -A'
+
 # find does globbing itself
 alias find='noglob find'
 
