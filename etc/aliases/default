@@ -61,7 +61,7 @@ alias man='man -a'
 alias ps='ps aux'
 
 # use unicode, reattach anyway, resize if neccessary
-alias screen='screen -ADRUa'
+alias screen='tscreen -ADRUa'
 
 alias tilp='kdesudo "tilp --calc=ti84+ --cable=DirectLink"'
 
