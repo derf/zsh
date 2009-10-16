@@ -9,7 +9,6 @@ typeset filesystem garbage file
 typeset -a filesystems
 typeset tune2fs
 typeset -i force reboot simulate exit_ok=1
-typeset gone
 
 function execute {
 	if (( simulate )) {
@@ -26,15 +25,12 @@ while [[ $1 == -* ]] {
 		--force) force=1 ;;
 		-h)
 			print 'off - shutdown / restart the system'
-			print 'Usage: off [--force] [-hnr] [place]'
+			print 'Usage: off [--force] [-hnr]'
 			print 'Options:\n'
 			print '  -n    simulate. Do not actually shutdown'
 			print '  -r    reboot'
 			print '  -h    show this message'
 			print '\--force shutdown even if the machine is a server'
-			print ''
-			print ' place  supply if machine will remain off for some time,'
-			print '        either "gone" or the place one will be going to'
 			return 0
 		;;
 		-|--) shift; break ;;
@@ -43,23 +39,11 @@ while [[ $1 == -* ]] {
 	shift
 }
 
-gone=$1
-
 # Don't shut down a server too easily
 if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
 	warn "This seems to be a server... not shutting down"
 	echo "Use 'off --force' if you really mean it"
 	return 1
-}
-
-if [[ -n $gone ]] {
-	for file in ~/packages/leave.d/etc/{_any,$gone}/*(N); {
-		if [[ ${file:e} == zsh ]] {
-			execute source $file
-		} else {
-			execute $file
-		}
-	}
 }
 
 if pgrep -x amarokapp &> /dev/null; then
