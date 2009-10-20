@@ -1,6 +1,5 @@
 ## vim:ft=zsh
 ## wrapper around newsbeuter to keep the feeds in sync
-autoload fdie
 
 function __sync {
 	if [[ $HOST != aneurysm ]] {
