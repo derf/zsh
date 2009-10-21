@@ -4,7 +4,7 @@
 
 typeset -A alias_apps
 alias_apps=(
-	archive	extr
+	archive	extract
 	audio	mplayer
 	document	kpdf
 	image	feh
