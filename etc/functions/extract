@@ -9,8 +9,8 @@ function confirm_shar {
 
 if [[ -f $1 ]] {
 	case $1 in
-		*.(tar.bz2|bz2)) tar xvjf $1 ;;
-		*.(tar.gz|tgz)) tar xvzf $1 ;;
+		*.(tar.bz2|bz2)) tar xvjf $* ;;
+		*.(tar.gz|tgz)) tar xvzf $* ;;
 		*.tar.lzma) unlzma $1 | tar xv ;;
 		*.ace) unace e $1 ;;
 		*.rar) unrar x $1 ;;
@@ -18,7 +18,7 @@ if [[ -f $1 ]] {
 		*.bz2) bzip2 -d $1 ;;
 		*.lzh) lha x $1 ;;
 		*.gz) gunzip -d $1 ;;
-		*.tar) tar xvf $1 ;;
+		*.tar) tar xvf $* ;;
 		*.zip) unzip $1 ;;
 		*.Z) uncompress $1 ;;
 		*.shar) confirm_shar && sh $1 ;;
