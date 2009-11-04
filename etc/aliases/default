@@ -58,7 +58,7 @@ alias find='noglob find'
 alias man='man -a'
 
 # BSD style
-alias ps='ps aux'
+alias ps='ps -f'
 
 # use unicode, reattach anyway, resize if neccessary
 alias screen='tscreen -ADRUa'
