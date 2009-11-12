@@ -1,9 +1,0 @@
-## vim:ft=zsh
-# misc
-mesg n
-if ((UID)) {
-	umask 077
-} else {
-	umask 002
-}
-chpwd

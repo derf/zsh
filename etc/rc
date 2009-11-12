@@ -1,24 +1,567 @@
-## vim:ft=zsh
+## vim:ft=zsh:foldmethod=marker
 ## Copyright (c) 2008, 2009 by Daniel Friesel <derf@derf.homelinux.org>
-## Unless otherwise noted, this Licence applies to all files sourced here:
+## Licence:
 ##   0. You just DO WHAT THE FUCK YOU WANT TO.
 ##
 ## https://derf.homelinux.org/~derf/dotfiles/zsh/rc
 ## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 
-source $ZDIR/osdetect
-source $ZDIR/rc_status
-source $ZDIR/options
-source $ZDIR/parameters
-source $ZDIR/mime-setup
-source $ZDIR/ls-colors
-source $ZDIR/function
-source $ZDIR/zle
-source $ZDIR/prompt
-source $ZDIR/directories
-source $ZDIR/keys
-source $ZDIR/alias
-source $ZDIR/misc
-source $ZDIR/include
-source $ZDIR/completion
-source $ZDIR/cleanup
+# {{{ OS Detection
+system=${$(uname):l}
+
+alias 'linux:'='[[ $system == linux ]] &&'
+alias 'openbsd:'='[[ $system == openbsd ]] &&'
+
+if [[ $system == linux ]] {
+	[[ -f /etc/debian_version ]] && distro=debian
+	[[ -f /etc/gentoo-release ]] && distro=gentoo
+	[[ -f /etc/arch-release   ]] && distro=arch
+	[[ -f /etc/redhat-release ]] && distro=redhat
+}
+# }}}
+
+# {{{ Functions for startup status
+function zrc_status {
+	echo -n "\r\e[2K\e[0;36m䷢\e[0m $*"
+}
+
+function zrc_info {
+	echo "\e[0;36mℹ\e[0m $*"
+}
+# }}}
+
+# {{{ Options
+## Directory changing
+# Automatically use 'pushd' when cd'ing into a directory
+# so I can use popd or 'cd -1' to get back where I came from.
+# And don't print the stack everytime using popd.
+setopt auto_pushd pushd_ignore_dups pushd_minus pushd_silent
+setopt auto_cd
+
+## Prompt
+setopt transient_rprompt
+
+## Completion
+setopt list_packed
+
+## Expansion / Globbing
+setopt extended_glob
+
+## History
+unsetopt bang_hist
+
+## Input/Output
+setopt correct
+# greedy is more like dvorak than qwerty...
+setopt dvorak
+unsetopt flow_control
+setopt rc_quotes
+
+## ZLE
+unsetopt beep
+# }}}
+
+# {{{ Shell parameters
+## parameters which are only important for interactive shells.
+## For application-related parameters, see zshenv
+
+# zsh cache directory
+if [[ -d ~/var/cache/zsh ]] {
+	ZCACHEDIR=~/var/cache/zsh
+} else {
+	zrc_info "~/var/cache/zsh does not exist, using ~/.zsh-cache instead"
+	mkdir -p ~/.zsh-cache
+	ZCACHEDIR=~/.zsh-cache
+}
+
+# There's no point in having more history than what can be saved on disk
+HISTFILE=$ZCACHEDIR/history
+HISTSIZE=50000
+SAVEHIST=$HISTSIZE
+
+# how many entries to keep for popd
+DIRSTACKSIZE=20
+
+# Use the full terminal size for listings
+LISTMAX=0
+
+# be accurate
+TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
+
+# completion cache for compinit
+compdump=$ZCACHEDIR/compdump
+
+if ((EUID)) {
+	path+=(/sbin /usr/sbin /usr/local/sbin)
+}
+
+export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
+
+# Add my own executables, if they're not already in the path
+[[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
+
+# Add manuals from caretaker to manpath
+which manpath &> /dev/null && [[ -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
+
+openbsd: export PKG_PATH="ftp://ftp.freenet.de/pub/ftp.openbsd.org/pub/OpenBSD/`uname -r`/packages/`machine -a`/:ftp://openbsd.ftp.fu-berlin.de/pub/OpenBSD/`uname -r`/packages/`machine -a`/"
+# }}}
+
+# {{{ MIME parameters
+mime_archive=(
+	7z ace arj bz bz2 cpio deb dz gz jar lzh lzma rar rpm rz svgz
+	tar taz tbz2 tgz tz z Z zip zoo
+)
+mime_audio=(
+	aif aifc aiff amr amr au awb awb axa flac gsm kar m3u m3u m4a mid midi
+	mp2 mp3 mpega mpga oga ogg pls ra ra ram rm sd2 sid snd spx wav wax wma
+)
+mime_document=(pdf ps)
+mime_image=(
+	art bmp cdr cdt cpt cr2 crw djv djvu erf gif ico ief jng jpe jpeg jpg nef orf
+	pat pbm pcx pgm png pnm ppm psd ras rgb svg svgz tif tiff wbmp xbm xpm xwd
+)
+mime_video=(
+	3gp asf asx avi axv dif divx dl dv fli flv gl lsf lsx m2t mkv mng mov
+	movie mp4 mpe mpeg mpg mpv mxu ogm ogv qt rmvb wm wmv wmx wvx
+)
+# }}}
+
+# {{{ ls-colors (partially based on MIME)
+#        default:file :dirctory:  link  :  pipe  : socket
+LS_COLORS="no=00:fi=00:di=01;37:ln=01;36:pi=40;33:so=01;35"
+
+#            door    : block dev : char dev  :broken link: setuid
+LS_COLORS+=":do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41"
+
+#            setgid  : +t,o+w :  o+w   : sticky : executable
+LS_COLORS+=":sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32"
+
+LS_COLORS+=:${(j/:/):-"*."${^mime_archive}"=04;31"}
+LS_COLORS+=:${(j/:/):-"*."${^mime_audio}"=04;36"}
+LS_COLORS+=:${(j/:/):-"*."${^mime_document}"=04"}
+LS_COLORS+=:${(j/:/):-"*."${^mime_image}"=04;33"}
+LS_COLORS+=:${(j/:/):-"*."${^mime_video}"=04;32"}
+
+export LS_COLORS
+# }}}
+
+# {{{ Functions
+zrc_status functions
+
+# zsh functions
+autoload -U compinit
+autoload zargs
+
+# own functions
+autoload $ZDIR/functions/*(:t)
+
+function Status Start Stop Restart Reload {
+	typeset script sudo
+	if ((EUID)) {
+		sudo=sudo
+	}
+	for script in $*; {
+		$sudo /etc/init.d/$script ${0:l}
+	}
+}
+# }}}
+
+# {{{ ZLE
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
+autoload predict-on
+zle -N predict-on
+zle -N predict-off
+zstyle ':predict' verbose true
+# }}}
+
+# {{{ Prompt
+# RPS1 is on the right side of the terminal
+# The \ek\e\\ is for screen's 'shelltitle'
+
+# psvar[1] = directory info
+# psvar[2] = rtab (current directory)
+
+typeset -A ps rps
+
+ps=(
+	host   "%F{yellow}%m"
+	dir    "%F{default}%30<…<%2v%>>"
+	sign   "%(!.%F{red}.%F{green})%(?.%(!.#.>).%?)%F{default}"
+	screen $'%{\ek\e\\%}'
+)
+
+rps=(
+	start_always "%F{yellow}["
+	start_screen "%(1V.%F{yellow}["
+	dirinfo      "%F{default}%1v"
+	time         '%T'
+	end_always   "%F{yellow}]%F{default}"
+	end_screen   "%(1V.%F{yellow}]%F{default}.)"
+)
+
+PS1="${ps[host]} ${ps[dir]} ${ps[sign]} ${ps[screen]}"
+
+if [[ $TERM == screen ]] {
+	RPS1="${rps[start_screen]}${rps[dirinfo]}${rps[end_screen]}"
+} else {
+	RPS1="${rps[start_always]}${rps[dirinfo]}${rps[time]}${rps[end_always]}"
+}
+
+unset ps rps
+
+zstyle ':prompt:rtab' fish yes
+zstyle ':prompt:rtab' nameddirs yes
+# }}}
+
+# {{{ Named directories
+hash -d vcs=~/var/svn
+xhashd lyrics=~vcs/lyrics
+xhashd www=/var/www
+xhashd web=~/public_html
+# }}}
+
+# {{{ Keys
+bindkey -e
+[[ -z $terminfo[kdch1] ]] || bindkey -M emacs $terminfo[kdch1] delete-char
+[[ -z $terminfo[khome] ]] || bindkey -M emacs $terminfo[khome] beginning-of-line
+[[ -z $terminfo[kend] ]] || bindkey -M emacs $terminfo[kend] end-of-line
+bindkey '^Z'   predict-on
+bindkey '^X^Z' predict-off
+# }}}
+
+# {{{ Aliases
+zrc_status aliases
+
+# {{{ Suffix
+typeset -A alias_apps
+alias_apps=(
+	archive	extract
+	audio	mplayer
+	document	kpdf
+	image	feh
+	video	mplayer
+)
+
+for meta in ${parameters[(I)mime_*]#mime_}; {
+	for format in $(eval echo "$"mime_$meta); {
+		alias -s $format=$alias_apps[$meta]
+	}
+}
+
+unset filetypes meta format alias_apps
+# }}}
+# {{{ Font
+# Shamelessly stolen from http://git.kitenet.net/?p=joey/home-etc;a=summary
+
+alias font-tiny='echo -en "\033]50;-misc-fixed-medium-r-normal--8-80-75-75-c-50-iso10646-1\007"'
+alias font-small='echo -en "\033]50;6x10\007"'
+alias font-default='echo -e "\033]50;-misc-fixed-medium-r-semicondensed--13-*-*-*-*-*-iso10646-1\007"'
+alias font-medium='echo -en "\033]50;-misc-fixed-medium-r-normal--13-120-75-75-c-80-iso10646-1\007"'
+alias font-large='echo -en "\033]50;-misc-fixed-medium-*-*-*-15-*-*-*-*-*-iso10646-1\007"'
+alias font-larger='echo -en "\033]50;-misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1\007"'
+alias font-huge='echo -en "\033]50;-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso10646-1\007"'
+# }}}
+# {{{ Defaults
+# evade them with '=foo' instead of 'foo'
+## grep
+linux: {
+	alias egrep='grep -E --color=auto'
+	alias fgrep='grep -F --color=auto'
+	alias grep='grep --color=auto'
+}
+
+
+## file and filesystem information
+# human-readable sizes, local filesystems only
+linux: alias df='df -hl --exclude-type=fuse.encfs' ||
+       alias df='df -hl'
+
+# human-readable sizes, summarize, dereference args
+linux: alias du='du -shD' ||
+       alias du='du -shH'
+
+# human-readable sizes, mark executables with '*' etc.
+linux: alias ls='ls -h --color=auto' ||
+       alias ls='ls -Fh'
+
+## enable alias expansion
+alias exec='exec '
+alias sudo='sudo '
+
+## networking
+alias mx='mx -aZ'
+
+# Only TCP/TCP6, not sockets and such
+linux: salias netstat='netstat --program --all --tcp --extend' ||
+       salias netstat='netstat -atp tcp'
+
+
+# less frequent updates when running ncdu via ssh
+[[ -n $SSH_CONNECTION ]] && check_com -c ncdu && alias ncdu='ncdu -q'
+
+alias bc='bc -l'
+
+alias cal='cal -m'
+alias fbi='fbi -readahead'
+
+# I keep accidently overwriting files
+alias cp='cp -i'
+alias mv='mv -i'
+
+# no atime
+alias pmount='pmount -A'
+
+# find does globbing itself
+alias find='noglob find'
+
+# Show all available manuals (all sections)
+alias man='man -a'
+
+# BSD style
+alias ps='ps -F'
+
+# use unicode, reattach anyway, resize if neccessary
+alias screen='tscreen -ADRUa'
+
+alias tilp='kdesudo "tilp --calc=ti84+ --cable=DirectLink"'
+
+# Don't collapse trees
+alias todo='noglob todo -f +children'
+# }}}
+# {{{ Global
+# global aliases are slightly evil, but (usually) not messy
+alias -g EG='|egrep'
+alias -g FG='|fgrep'
+alias -g G='|grep'
+alias -g H='|head'
+alias -g L='|less'
+alias -g T='|tail'
+# }}}
+# {{{ Loop me
+alias allf='for i in *(.);'
+alias alld='for i in *(/);'
+alias alle='for i in *(*);'
+alias alll='for i in *(@);'
+alias all='for i in *;'
+
+alias allfr='for i in **/*(.);'
+alias alldr='for i in **/*(/);'
+alias aller='for i in **/*(*);'
+alias alllr='for i in **/*(@);'
+alias allr='for i in **/*;'
+# }}}
+# {{{ Short (similar to default options)
+alias dua='du --apparent-size'
+
+alias lasth='last | head -$((LINES-1))'
+
+## fbi
+alias fbif='fbi -a'
+alias fbij='fbi -a -u'
+
+for i in ~/var/gtd/*(.N); {
+	alias gtd-${i:t}='todo --database '$i
+}
+
+# File listings
+alias lsi='feh --list'
+alias lst='tar tvf'
+alias lsz='unzip -l'
+
+alias nb='newsbeuter'
+alias nbr='newsbeuter -r'
+
+alias rd='rmdir'
+
+alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
+
+## Suspend
+salias s2d='s2disk'
+salias s2r='s2ram -f'
+
+## Getränke
+alias mate='decrement ~/stuff/$(cat ~/var/tmp/.actual-location)/mateguthaben'
+
+alias x='unsetopt bg_nice; startx &! exit'
+# }}}
+
+if [[ $distro == debian ]] { #{{{
+	# Search the packages list
+	alias acse='apt-cache search'
+	alias afse='apt-file search'
+	alias apse='aptitude search'
+
+	# Show package information
+	alias acp='apt-cache policy'
+	alias acsh='apt-cache show'
+	alias afsh='apt-file show'
+	alias apsh='aptitude show'
+	alias dps='dpkg --status'
+
+	# Update packages list
+	salias agu='apt-get update'
+	salias apu='aptitude update'
+
+	# Update packages
+	salias ags='apt-get upgrade'
+	salias agf='apt-get dist-upgrade'
+	salias aps='aptitude safe-upgrade'
+	salias apf='aptitude full-upgrade'
+
+	# Install packages
+	salias agi='apt-get install'
+	salias api='aptitude install'
+	salias dpi='dpkg --install'
+
+	# Clean packages cache
+	salias agc='apt-get clean'
+	salias apc='aptitude clean'
+
+	# Remove/Purge packages
+	salias agar='apt-get autoremove'
+	salias agp='apt-get purge'
+	salias agr='apt-get remove'
+	salias dpp='dpkg --purge'
+	salias dpr='dpkg --remove'
+
+	# Get package source
+	alias agsrc='apt-get source'
+
+	# Configure packages
+	salias dprc='dpkg-reconfigure'
+} #}}}
+
+if [[ -e /tmp/.x-started ]] { #{{{
+	# quiet and verbose can actually be used together here.
+	# quiet = suppress non-critical errors, verbose = show progress bars
+	alias feh='feh --quiet --verbose'
+
+	# Alias structure:
+	# feh[theme][recursive?][slide-delay?]
+	# theme = [f]ullscreen | [i]ndex | [j]ust | [t]humbnail
+	# recursive: r for recursive, nothing otherwise
+	# slide-delay:
+	#     none   - no slideshow
+	#     number - slideshow, $number seconds per image
+	#     x      - slideshow, seconds will be specified on commandline
+	#              (like "fehfrx 7 .")
+	# the themes are defined in .fehrc
+	alias fehf='feh -Tfull' # Fullscreen
+	alias fehfr='feh -Tfull --recursive'
+	alias fehi='feh .fehindex.jpg'
+	alias fehj='feh -Tjust' # Screensaver-like
+	alias fehjr='feh -Tjust --recursive'
+	for i in {5,10,15,20}; {
+		alias fehj$i="feh -Tjust --slideshow-delay $i"
+		alias fehf$i="feh -Tfull --slideshow-delay $i"
+		alias fehjr$i="feh -Tjust --slideshow-delay $i --recursive"
+		alias fehfr$i="feh -Tfull --slideshow-delay $i --recursive"
+	}
+	alias fehjx='feh -Tjust --slideshow-delay'
+	alias fehfx='feh -Tfull --slideshow-delay'
+	alias fehjrx='feh -Tjust --recursive --slideshow-delay'
+	alias fehfrx='feh -Tfull --recursive --slideshow-delay'
+	alias feht='feh -Tthumbnail' # List thumbnails
+	alias fehtr='feh -Tthumbnail --recursive'
+
+	# Automatically upload screenshot plzkthx
+	alias putscreen='put $(screenshot)'
+
+	# Useful when a beamer is connected to my laptop
+	alias rplayer='mplayer -vo x11 -zoom -vf scale=1024:-2'
+
+	# show current weather
+	alias weather='feh http://www.bredeney-wetter.de/aktuell.gif'
+} #}}}
+
+# }}}
+
+# {{{ Misc
+mesg n
+if ((UID)) {
+	umask 077
+} else {
+	umask 002
+}
+chpwd
+# }}}
+
+# {{{ Includes
+zrc_status include
+
+source $ZDIR/../provided/includes
+
+# local configuration, not in git
+xsource $ZDIR/local
+
+check_com envstore && eval $(envstore eval)
+
+# local configuration, in git
+xsource $ZDIR/hosts/$HOST
+# }}}
+
+# {{{ Completion
+zrc_status completion
+
+zstyle ':completion:*' cache-path $ZCACHEDIR
+zstyle ':completion:*' use-cache true
+
+# Use ls-colors for file completion
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Mark the current selection when tabbing through possible completions
+zstyle ':completion:*' menu select=1
+
+# Complete uppercase names with lowercase and spaces with _
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z} m:_=\\\ ' '+ l:|=* r:|=*'
+
+# Be verbose
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:descriptions' format \
+       "· %d ·"
+zstyle ':completion:*:messages' format \
+       "· %d ·"
+zstyle ':completion:*:corrections' format \
+       "· %d ·"
+zstyle ':completion:*:warnings' format \
+       "%F{red}no match:%F{default} %d"
+
+zstyle ':completion:*' group-name ''
+
+# Force menu completion since the input is just a stupid number
+zstyle ':completion:*:*:kill:*' menu yes
+zstyle ':completion:*:*:(todo|td*):*:items' menu yes
+
+zstyle ':completion:*:*:vi(m|):*' ignored-patterns \
+	'a.out|*.o'
+
+# fancy kill completion
+# source: http://madism.org/~madcoder/dotfiles/zsh/40_completion
+zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
+
+# separate manuals by sections
+zstyle ':completion:*:manuals'    separate-sections true
+zstyle ':completion:*:manuals.*'  insert-sections   true
+
+# $hosts is set from the hosts package
+zstyle ':completion:*' hosts ${(k)hosts}
+
+compinit -C -d $compdump
+
+compdef _hosts sshmount
+compdef _functions reload
+
+# }}}
+
+# {{{ Cleanup
+echo -n "\r\e[2K"
+unalias 'linux:'
+unalias 'openbsd:'
+unfunction zrc_status zrc_info
+unfunction xsource
+unset system distro
+unset -m 'mime_*'
+# }}}

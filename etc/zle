@@ -1,8 +1,0 @@
-## vim:ft=zsh
-autoload -U url-quote-magic
-zle -N self-insert url-quote-magic
-
-autoload predict-on
-zle -N predict-on
-zle -N predict-off
-zstyle ':predict' verbose true
