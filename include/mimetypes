@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 typeset -a audio video image
-. etc/mime-setup
+eval $(perl -ne 'if (/^mime_\w+\=\(/ or $found == 1) { $found = 1; print } if (/^\)/ and $found == 1) {$found = 0}' ~/.zshrc)
 
 while read mime extensions; do
 	[[ $mime == audio/* ]] && audio+=(${(s/ /)extensions})
