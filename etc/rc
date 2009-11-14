@@ -303,7 +303,6 @@ linux: salias netstat='netstat --program --all --tcp --extend' ||
 
 alias bc='bc -l'
 
-alias cal='cal -m'
 alias fbi='fbi -readahead'
 
 # I keep accidently overwriting files
