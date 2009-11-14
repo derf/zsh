@@ -95,7 +95,7 @@ argument_postfix=(
 	'menu-font'   '[Set font in menus]:font: '
 	'no-menus'    "[Don't load or show any menus]"
 	'next-button' '[Button for next image]:button:_feh_button'
-	'zoom-button' '[Button to zoom image]:button:_fes_button'
+	'zoom-button' '[Button to zoom image]:button:_feh_button'
 	'pan-button'  '[Ctrl+Button to pan image]:button:_feh_button'
 	'menu-button' '[Button to activate menu]:button:_feh_button'
 	'no-menu-ctrl-mask' '[Show Menu without pressing ctrl]'
