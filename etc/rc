@@ -316,11 +316,8 @@ alias find='noglob find'
 # Show all available manuals (all sections)
 alias man='man -a'
 
-# BSD style
+# ps -C foo is better than ps aux | fgrep foo ;-)
 alias ps='ps -F'
-
-# use unicode, reattach anyway, resize if neccessary
-alias screen='tscreen -ADRUa'
 
 alias tilp='kdesudo "tilp --calc=ti84+ --cable=DirectLink"'
 
