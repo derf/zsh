@@ -19,11 +19,7 @@ if [[ $system == linux ]] {
 }
 # }}}
 
-# {{{ Functions for startup status
-function zrc_status {
-	echo -n "\r\e[2K\e[0;32m>>\e[0m $*"
-}
-
+# {{{ Startup infos
 function zrc_info {
 	echo "\e[0;31m>>\e[0m $*"
 }
@@ -143,7 +139,6 @@ export LS_COLORS
 # }}}
 
 # {{{ Functions
-zrc_status functions
 
 # zsh functions
 autoload -U compinit
@@ -229,7 +224,6 @@ bindkey '^X^Z' predict-off
 # }}}
 
 # {{{ Aliases
-zrc_status aliases
 
 # {{{ Suffix
 typeset -A alias_apps
@@ -482,7 +476,6 @@ chpwd
 # }}}
 
 # {{{ Includes
-zrc_status include
 
 source $ZDIR/../provided/includes
 
@@ -496,7 +489,6 @@ xsource $ZDIR/hosts/$HOST
 # }}}
 
 # {{{ Completion
-zrc_status completion
 
 zstyle ':completion:*' cache-path $ZCACHEDIR
 zstyle ':completion:*' use-cache true
@@ -552,7 +544,7 @@ compdef _functions reload
 # {{{ Cleanup
 echo -n "\r\e[2K"
 unalias 'linux:'
-unfunction zrc_status zrc_info
+unfunction zrc_info
 unfunction xsource
 unset system distro
 unset -m 'mime_*'
