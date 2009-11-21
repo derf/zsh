@@ -100,7 +100,7 @@ export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
 
 # Add manuals from caretaker to manpath
-which manpath &> /dev/null && [[ -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
+[[ -n $commands[manpath] && -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
 # }}}
 
 # {{{ MIME parameters
