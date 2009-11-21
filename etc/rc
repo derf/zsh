@@ -83,9 +83,6 @@ LISTMAX=0
 # be accurate
 TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 
-# completion cache for compinit
-compdump=$ZCACHEDIR/compdump
-
 if ((EUID)) {
 	path+=(/sbin /usr/sbin /usr/local/sbin)
 }
@@ -536,7 +533,7 @@ zstyle ':completion:*:manuals.*'  insert-sections   true
 # $hosts is set from the hosts package
 zstyle ':completion:*' hosts ${(k)hosts}
 
-compinit -C -d $compdump
+compinit -C -d $ZCACHEDIR/compdump
 
 compdef _hosts sshmount
 compdef _functions reload
