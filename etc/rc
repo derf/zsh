@@ -158,11 +158,6 @@ function Status Start Stop Restart Reload {
 # {{{ ZLE
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
-
-autoload predict-on
-zle -N predict-on
-zle -N predict-off
-zstyle ':predict' verbose true
 # }}}
 
 # {{{ Prompt
@@ -216,8 +211,6 @@ bindkey -e
 [[ -z $terminfo[kdch1] ]] || bindkey -M emacs $terminfo[kdch1] delete-char
 [[ -z $terminfo[khome] ]] || bindkey -M emacs $terminfo[khome] beginning-of-line
 [[ -z $terminfo[kend] ]] || bindkey -M emacs $terminfo[kend] end-of-line
-bindkey '^Z'   predict-on
-bindkey '^X^Z' predict-off
 # }}}
 
 # {{{ Aliases
