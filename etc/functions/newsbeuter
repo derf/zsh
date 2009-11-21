@@ -3,7 +3,7 @@
 
 function __sync {
 	if [[ $HOST != aneurysm ]] {
-		unisync unison aneurysm .newsbeuter || fdie "sync failed"
+		unisync unison aneurysm .newsbeuter
 	}
 }
 
