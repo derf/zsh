@@ -6,7 +6,6 @@
 ##    source .../conflicts
 ## in a running, interactive zsh
 
-autoload check_com
 typeset file dir alias
 typeset PKG_DIR=$HOME/packages
 typeset -a sfpath spath conflict
@@ -43,7 +42,7 @@ for file in $PKG_DIR/*/bin/*(N); {
 }
 
 for alias in ${(k)aliases}; {
-	if check_com -c $alias && [[ $aliases[$alias] != (sudo |noglob |)$alias* ]]; then
+	if [[ -n $commands[$alias] ]] && [[ $aliases[$alias] != (sudo |noglob |)$alias* ]]; then
 		echo "conflicting alias: $alias"
 	fi
 }

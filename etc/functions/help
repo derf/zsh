@@ -21,7 +21,7 @@ function help_check_man      { man -w $1 &> /dev/null }
 function help_check_zshfunction { whichf $1 &> /dev/null }
 function help_check_zshbuiltin  { (( ${+builtins[$1]} )) }
 function help_check_apt {
-	[[ $commands[$1] != ${HOME}* ]] && check_com -c $1 && check_com -c apt-file
+	[[ $commands[$1] != ${HOME}* ]] && [[ -n $commands[$1] ]] && [[ -n $commands[apt-file ]]
 }
 
 function help_show_man       { man $1 }

@@ -11,7 +11,7 @@ typeset target_dir server_prefix
 typeset file remote_file illegal
 typeset -i n_hosts n_ping n_curl
 
-if ! check_com curl; then
+if [[ -z $commands[curl] ]]; then
 	function curl {return 0}
 	warn "curl not present, won't be able to check upload success"
 fi

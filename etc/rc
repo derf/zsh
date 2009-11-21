@@ -296,7 +296,7 @@ linux: salias netstat='netstat --program --all --tcp --extend' ||
 
 
 # less frequent updates when running ncdu via ssh
-[[ -n $SSH_CONNECTION ]] && check_com -c ncdu && alias ncdu='ncdu -q'
+[[ -n $SSH_CONNECTION && -n $commands[ncdu] ]] && alias ncdu='ncdu -q'
 
 alias bc='bc -l'
 
@@ -489,7 +489,7 @@ source $ZDIR/../provided/includes
 # local configuration, not in git
 xsource $ZDIR/local
 
-check_com envstore && eval $(envstore eval)
+[[ -n $commands[envstore] ]] && eval $(envstore eval)
 
 # local configuration, in git
 xsource $ZDIR/hosts/$HOST
