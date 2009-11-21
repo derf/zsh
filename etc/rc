@@ -261,6 +261,8 @@ linux: {
 	alias egrep='grep -E --color=auto'
 	alias fgrep='grep -F --color=auto'
 	alias grep='grep --color=auto'
+	alias bzgrep='bzgrep --color=auto'
+	alias zgrep='zgrep --color=auto'
 }
 
 
