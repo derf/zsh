@@ -2,11 +2,6 @@
 ## Extract archives
 ## Usage: extr <file>
 
-function confirm_shar {
-	echo -ne "\e[1;33mshar archives are shell scripts and can easily contain malicious code.\e[0m Proceed? [y/N] "
-	read -q
-}
-
 if [[ -f $1 ]] {
 	case $1 in
 		*.(tar.bz2|bz2)) tar xvjf $* ;;
@@ -21,7 +16,6 @@ if [[ -f $1 ]] {
 		*.tar) tar xvf $* ;;
 		*.zip) unzip $1 ;;
 		*.Z) uncompress $1 ;;
-		*.shar) confirm_shar && sh $1 ;;
 		*.cpio) cpio --no-absolute-filenames -idv < $1 ;;
 		*.lzma) unlzma $1 ;;
 		*) echo "Unknown archive type: $1"; return 2 ;;
