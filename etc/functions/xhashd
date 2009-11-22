@@ -1,7 +1,0 @@
-## vim:ft=zsh
-## hash a directory if it exists
-typeset directory=${~1#*\=} name=${1%%\=*}
-
-if [[ -d $directory ]] {
-	hash -d $name=$directory
-}

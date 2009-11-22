@@ -142,7 +142,71 @@ autoload -U compinit
 autoload zargs
 
 # own functions
-autoload $ZDIR/functions/*(:t)
+if [[ -e $ZDIR/functions ]] {
+	autoload $ZDIR/functions/*(:t)
+} else {
+	zrc_info "No functions dir found, assuming standalone mode"
+	# The presence of rtab is generally assumed
+	function rtab {
+		print -P %~
+	}
+}
+
+
+# This all belongs into the prompt, but since it only changes
+# when changing directories, it's more efficient to do it here
+function chpwd {
+	psvar[1]=$(dirinfo)
+	psvar[2]=$(rtab)
+}
+
+## Collect some directory information for the prompt
+function dirinfo {
+	typeset string
+
+	[[ -r .todo ]] && string+='todo '
+	[[ -f .fehindex.jpg ]] && string+='feh '
+	[[ -d .hg ]] && string+='hg '
+	[[ -d .git ]] && string+='git '
+	[[ -d .svn ]] && string+='svn '
+	[[ -f Makefile || -f makefile ]] && string+='make '
+
+	# if we're running in screen, we're the only one writing into the prompt
+	# -> no trailing whitespace
+	if [[ $TERM == screen ]] {
+		echo ${string% }
+	} else {
+		echo $string
+	}
+}
+
+# Inspired by salias from the grml zshrc
+function salias {
+	typeset key=${1%%\=*} val=${1#*\=}
+
+	if (( EUID == 0 )) {
+		alias -- $key=$val
+	} else {
+		alias -- $key="sudo $val"
+	}
+}
+
+# hash a directory only if it exists
+function xhashd {
+	typeset directory=${~1#*\=} name=${1%%\=*}
+
+	if [[ -d $directory ]] {
+		hash -d $name=$directory
+	}
+}
+
+# source a file only if it exists.
+# Note: local assignments (typeset foo=bar) are lost. export foo=bar works.
+function xsource {
+	if [[ -r $1 ]] {
+		source $1
+	}
+}
 
 function Status Start Stop Restart Reload {
 	typeset script sudo
@@ -469,7 +533,10 @@ chpwd
 
 # {{{ Includes
 
-source $ZDIR/../provided/includes
+# no xsource here - typeset may be used
+if [[ -e $ZDIR/../provided/includes ]] {
+	source $ZDIR/../provided/includes
+}
 
 # local configuration, not in git
 xsource $ZDIR/local
