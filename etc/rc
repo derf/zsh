@@ -21,7 +21,7 @@ if [[ $system == linux ]] {
 
 # {{{ Startup infos
 function zrc_info {
-	echo "\e[0;31m>>\e[0m $*"
+	print -P "%F{red}>>%F{default} $*"
 }
 # }}}
 
@@ -534,7 +534,6 @@ compdef _functions reload
 # }}}
 
 # {{{ Cleanup
-echo -n "\r\e[2K"
 unalias 'linux:'
 unfunction zrc_info
 unfunction xsource
