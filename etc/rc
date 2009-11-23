@@ -93,7 +93,14 @@ export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
 [[ $path[1] = $HOME/bin ]] || export PATH=$HOME/bin:$PATH
 
 # Add manuals from caretaker to manpath
-[[ -n $commands[manpath] && -z $MANPATH ]] && export MANPATH=$(manpath):$HOME/packages/.collected/man
+if [[ $distro == debian ]] {
+	if [[ -e ~/packages/catman ]] {
+		export MANPATH=/var/cache/man
+	} else {
+		export MANPATH=/usr/share/man
+	}
+	MANPATH+=":/usr/local/share/man:$HOME/packages/.collected/man"
+}
 # }}}
 
 # {{{ MIME parameters
