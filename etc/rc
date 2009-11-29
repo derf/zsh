@@ -601,6 +601,7 @@ zstyle ':completion:*:manuals.*'  insert-sections   true
 # $hosts is set from the hosts package
 zstyle ':completion:*' hosts ${(k)hosts}
 
+[[ -e $ZCACHEDIR/compdump ]] || zrc_info "Creating completion cache"
 compinit -C -d $ZCACHEDIR/compdump
 
 compdef _hosts sshmount
