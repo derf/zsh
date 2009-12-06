@@ -58,9 +58,8 @@ unsetopt beep
 
 # {{{ Shell parameters
 ## parameters which are only important for interactive shells.
-## For application-related parameters, see zshenv
+## For application-related parameters, see .zshenv
 
-# zsh cache directory
 if [[ -d ~/var/cache/zsh ]] {
 	ZCACHEDIR=~/var/cache/zsh
 } else {
@@ -69,18 +68,15 @@ if [[ -d ~/var/cache/zsh ]] {
 	ZCACHEDIR=~/.zsh-cache
 }
 
-# There's no point in having more history than what can be saved on disk
 HISTFILE=$ZCACHEDIR/history
 HISTSIZE=50000
 SAVEHIST=$HISTSIZE
 
-# how many entries to keep for popd
 DIRSTACKSIZE=20
 
 # Use the full terminal size for listings
 LISTMAX=0
 
-# be accurate
 TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 
 if ((EUID)) {
@@ -89,7 +85,6 @@ if ((EUID)) {
 
 export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
 
-# Add my own executables, if they're not already in the path
 typeset -U path
 path=(~/bin $path)
 
@@ -145,7 +140,6 @@ export LS_COLORS
 
 # {{{ Functions
 
-# zsh functions
 autoload -U compinit
 autoload zargs
 
@@ -154,7 +148,8 @@ if [[ -e $ZDIR/functions ]] {
 	autoload $ZDIR/functions/*(:t)
 } else {
 	zrc_info "No functions dir found, assuming standalone mode"
-	# The presence of rtab is generally assumed
+	# rtab is tracked in functions/, so it may not be present everywhere.
+	# However, the prompt assumes the presence of a 'rtab' function.
 	function rtab {
 		print -P %~
 	}
@@ -318,7 +313,6 @@ alias font-huge='echo -en "\033]50;-misc-fixed-medium-r-normal--20-200-75-75-c-1
 # }}}
 # {{{ Defaults
 # evade them with '=foo' instead of 'foo'
-## grep
 linux: {
 	alias egrep='grep -E --color=auto'
 	alias fgrep='grep -F --color=auto'
@@ -337,15 +331,14 @@ linux: alias df='df -hl --exclude-type=fuse.encfs' ||
 linux: alias du='du -shD' ||
        alias du='du -shH'
 
-# human-readable sizes, mark executables with '*' etc.
+# human-readable sizes
 linux: alias ls='ls -h --color=auto' ||
-       alias ls='ls -Fh'
+       alias ls='ls -h'
 
 ## enable alias expansion
 alias exec='exec '
 alias sudo='sudo '
 
-## networking
 alias mx='mx -aZ'
 
 # Only TCP/TCP6, not sockets and such
@@ -370,7 +363,6 @@ alias pmount='pmount -A'
 # find does globbing itself
 alias find='noglob find'
 
-# Show all available manuals (all sections)
 alias man='man -a'
 
 # ps -C foo is better than ps aux | fgrep foo ;-)
@@ -408,7 +400,6 @@ alias dua='du --apparent-size'
 
 alias lasth='last | head -$((LINES-1))'
 
-## fbi
 alias fbif='fbi -a'
 alias fbij='fbi -a -u'
 
@@ -416,7 +407,6 @@ for i in ~/var/gtd/*(.N); {
 	alias gtd-${i:t}='todo --database '$i
 }
 
-# File listings
 alias lsi='feh --list'
 alias lst='tar tvf'
 alias lsz='unzip -l'
@@ -428,49 +418,38 @@ alias rd='rmdir'
 
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
-## Suspend
-salias s2d='s2disk'
-salias s2r='s2ram -f'
-
-## Getränke
+# Mateguthaben in CCC-Erfas u.ä.
 alias mate='decrement ~/stuff/$(cat ~/var/tmp/.actual-location)/mateguthaben'
 
 alias x='unsetopt bg_nice; startx &! exit'
 # }}}
 
 if [[ $distro == debian ]] { #{{{
-	# Search the packages list
 	alias acse='apt-cache search'
 	alias afse='apt-file search'
 	alias apse='aptitude search'
 
-	# Show package information
 	alias acp='apt-cache policy'
 	alias acsh='apt-cache show'
 	alias afsh='apt-file show'
 	alias apsh='aptitude show'
 	alias dps='dpkg --status'
 
-	# Update packages list
 	salias agu='apt-get update'
 	salias apu='aptitude update'
 
-	# Update packages
 	salias ags='apt-get upgrade'
 	salias agf='apt-get dist-upgrade'
 	salias aps='aptitude safe-upgrade'
 	salias apf='aptitude full-upgrade'
 
-	# Install packages
 	salias agi='apt-get install'
 	salias api='aptitude install'
 	salias dpi='dpkg --install'
 
-	# Clean packages cache
 	salias agc='apt-get clean'
 	salias apc='aptitude clean'
 
-	# Remove/Purge packages
 	salias agar='apt-get autoremove'
 	salias agp='apt-get purge'
 	salias agr='apt-get remove'
@@ -499,10 +478,10 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	#     x      - slideshow, seconds will be specified on commandline
 	#              (like "fehfrx 7 .")
 	# the themes are defined in .fehrc
-	alias fehf='feh -Tfull' # Fullscreen
+	alias fehf='feh -Tfull'
 	alias fehfr='feh -Tfull --recursive'
 	alias fehi='feh .fehindex.jpg'
-	alias fehj='feh -Tjust' # Screensaver-like
+	alias fehj='feh -Tjust'
 	alias fehjr='feh -Tjust --recursive'
 	for i in {5,10,15,20}; {
 		alias fehj$i="feh -Tjust --slideshow-delay $i"
@@ -514,10 +493,9 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	alias fehfx='feh -Tfull --slideshow-delay'
 	alias fehjrx='feh -Tjust --recursive --slideshow-delay'
 	alias fehfrx='feh -Tfull --recursive --slideshow-delay'
-	alias feht='feh -Tthumbnail' # List thumbnails
+	alias feht='feh -Tthumbnail'
 	alias fehtr='feh -Tthumbnail --recursive'
 
-	# Automatically upload screenshot plzkthx
 	alias putscreen='put $(screenshot)'
 
 	# Useful when a beamer is connected to my laptop
@@ -560,25 +538,19 @@ xsource $ZDIR/hosts/$HOST
 zstyle ':completion:*' cache-path $ZCACHEDIR
 zstyle ':completion:*' use-cache true
 
-# Use ls-colors for file completion
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# Mark the current selection when tabbing through possible completions
 zstyle ':completion:*' menu select=1
 
 # Complete uppercase names with lowercase and spaces with _
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z} m:_=\\\ ' '+ l:|=* r:|=*'
 
-# Be verbose
 zstyle ':completion:*' verbose true
-zstyle ':completion:*:descriptions' format \
-       "· %d ·"
-zstyle ':completion:*:messages' format \
-       "· %d ·"
-zstyle ':completion:*:corrections' format \
-       "· %d ·"
-zstyle ':completion:*:warnings' format \
-       "%F{red}no match:%F{default} %d"
+
+zstyle ':completion:*:descriptions' format '· %d ·'
+zstyle ':completion:*:messages'     format '· %d ·'
+zstyle ':completion:*:corrections'  format '· %d ·'
+zstyle ':completion:*:warnings'     format '%F{red}no match:%F{default} %d'
 
 zstyle ':completion:*' group-name ''
 
