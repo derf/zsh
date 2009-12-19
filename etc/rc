@@ -94,6 +94,9 @@ if [[ $distro == debian ]] {
 		export MANPATH=/var/cache/man
 	} else {
 		export MANPATH=/usr/share/man
+		if (( COLUMNS > 100 )) {
+			export MANWIDTH=100
+		}
 	}
 	MANPATH+=":/usr/local/share/man:$HOME/packages/.collected/man"
 }
