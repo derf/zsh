@@ -94,7 +94,13 @@ tree=(${(s:/:)dir})
 			(( i++ ))
 			part+=$dir[$i]
 			expn=($(echo ${part}*(-/)))
-			(( short )) && break
+			if ((short)) {
+				if [[ $dir[$i] == . ]] {
+					expn=(a b)
+				} else {
+					break
+				}
+			}
 		done
 		result+="/$part"
 		cd $dir
