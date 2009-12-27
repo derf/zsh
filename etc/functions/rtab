@@ -75,6 +75,8 @@ if (( named )) {
 tree=(${(s:/:)dir})
 (
 	unfunction chpwd 2> /dev/null
+
+	# Start either in the currrent named directory or in /
 	if [[ $tree[1] == \~* ]] {
 		cd ${~tree[1]}
 		result=$tree[1]
@@ -87,19 +89,20 @@ tree=(${(s:/:)dir})
 			result+="/$tree"
 			break
 		}
+
+		# required for the until loop
 		expn=(a b)
 		part=''
 		i=0
-		until [[ (( ${#expn} == 1 )) || $dir = $expn || $i -gt 99 ]]  do
+		until [[ (( ${#expn} == 1 )) || $dir == $expn || $i -gt 99 ]]  do
 			(( i++ ))
 			part+=$dir[$i]
 			expn=($(echo ${part}*(-/)))
-			if ((short)) {
-				if [[ $dir[$i] == . ]] {
-					expn=(a b)
-				} else {
-					break
-				}
+			# Never show a single . as directory
+			if [[ $i == 1 && $dir[$i] == . ]] {
+				expn=(a b)
+			} elif [[ $short == 1 ]] {
+				break
 			}
 		done
 		result+="/$part"
