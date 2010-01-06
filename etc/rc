@@ -13,9 +13,6 @@ alias 'linux:'='[[ $system == linux ]] &&'
 
 if [[ $system == linux ]] {
 	[[ -f /etc/debian_version ]] && distro=debian
-	[[ -f /etc/gentoo-release ]] && distro=gentoo
-	[[ -f /etc/arch-release   ]] && distro=arch
-	[[ -f /etc/redhat-release ]] && distro=redhat
 }
 # }}}
 
@@ -63,7 +60,6 @@ unsetopt beep
 if [[ -d ~/var/cache/zsh ]] {
 	ZCACHEDIR=~/var/cache/zsh
 } else {
-	zrc_info "~/var/cache/zsh does not exist, using ~/.zsh-cache instead"
 	mkdir -p ~/.zsh-cache
 	ZCACHEDIR=~/.zsh-cache
 }
@@ -144,13 +140,14 @@ export LS_COLORS
 # {{{ Functions
 
 autoload -U compinit
-autoload zargs
+autoload zargs zmv
 
 # own functions
 if [[ -e $ZDIR/functions ]] {
 	autoload $ZDIR/functions/*(:t)
 } else {
-	zrc_info "No functions dir found, assuming standalone mode"
+	# No cool extra stuff
+	zrc_info "Running in standalone mode"
 	# rtab is tracked in functions/, so it may not be present everywhere.
 	# However, the prompt assumes the presence of a 'rtab' function.
 	function rtab {
@@ -179,7 +176,7 @@ function dirinfo {
 
 	# if we're running in screen, we're the only one writing into the prompt
 	# -> no trailing whitespace
-	if [[ $TERM == screen ]] {
+	if [[ $TERM == screen* ]] {
 		echo ${string% }
 	} else {
 		echo $string
@@ -257,7 +254,7 @@ rps=(
 
 PS1="${ps[host]} ${ps[dir]} ${ps[sign]} ${ps[screen]}"
 
-if [[ $TERM == screen ]] {
+if [[ $TERM == screen* ]] {
 	RPS1="${rps[start_screen]}${rps[dirinfo]}${rps[end_screen]}"
 } else {
 	RPS1="${rps[start_always]}${rps[dirinfo]}${rps[time]}${rps[end_always]}"
@@ -342,15 +339,10 @@ linux: alias ls='ls -h --color=auto' ||
 alias exec='exec '
 alias sudo='sudo '
 
-alias mx='mx -aZ'
-
 # Only TCP/TCP6, not sockets and such
 linux: salias netstat='netstat --program --all --tcp --extend' ||
        salias netstat='netstat -atp tcp'
 
-
-# less frequent updates when running ncdu via ssh
-[[ -n $SSH_CONNECTION && -n $commands[ncdu] ]] && alias ncdu='ncdu -q'
 
 alias bc='bc -l'
 
@@ -370,8 +362,6 @@ alias man='man -a'
 
 # ps -C foo is better than ps aux | fgrep foo ;-)
 alias ps='ps -F'
-
-alias tilp='kdesudo "tilp --calc=ti84+ --cable=DirectLink"'
 
 # Don't collapse trees
 alias todo='noglob todo -f +children'
@@ -500,9 +490,6 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	alias fehtr='feh -Tthumbnail --recursive'
 
 	alias putscreen='put $(screenshot)'
-
-	# Useful when a beamer is connected to my laptop
-	alias rplayer='mplayer -vo x11 -zoom -vf scale=1024:-2'
 
 	# show current weather
 	alias weather='feh http://www.bredeney-wetter.de/aktuell.gif'
