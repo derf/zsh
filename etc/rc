@@ -300,17 +300,6 @@ for meta in ${parameters[(I)mime_*]#mime_}; {
 
 unset filetypes meta format alias_apps
 # }}}
-# {{{ Font
-# Shamelessly stolen from http://git.kitenet.net/?p=joey/home-etc;a=summary
-
-alias font-tiny='echo -en "\033]50;-misc-fixed-medium-r-normal--8-80-75-75-c-50-iso10646-1\007"'
-alias font-small='echo -en "\033]50;6x10\007"'
-alias font-default='echo -e "\033]50;-misc-fixed-medium-r-semicondensed--13-*-*-*-*-*-iso10646-1\007"'
-alias font-medium='echo -en "\033]50;-misc-fixed-medium-r-normal--13-120-75-75-c-80-iso10646-1\007"'
-alias font-large='echo -en "\033]50;-misc-fixed-medium-*-*-*-15-*-*-*-*-*-iso10646-1\007"'
-alias font-larger='echo -en "\033]50;-misc-fixed-medium-r-normal--18-*-*-*-*-*-iso10646-1\007"'
-alias font-huge='echo -en "\033]50;-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso10646-1\007"'
-# }}}
 # {{{ Defaults
 # evade them with '=foo' instead of 'foo'
 linux: {
