@@ -7,6 +7,7 @@
 ## see also: https://derf.homelinux.org/~derf/dotfiles/zsh/
 
 # {{{ OS Detection
+
 system=${$(uname):l}
 
 alias 'linux:'='[[ $system == linux ]] &&'
@@ -14,46 +15,40 @@ alias 'linux:'='[[ $system == linux ]] &&'
 if [[ $system == linux ]] {
 	[[ -f /etc/debian_version ]] && distro=debian
 }
-# }}}
 
+# }}}
 # {{{ Startup infos
+
 function zrc_info {
 	print -P "%F{red}>>%F{default} $*"
 }
-# }}}
 
+# }}}
 # {{{ Options
-## Directory changing
-# Automatically use 'pushd' when cd'ing into a directory
-# so I can use popd or 'cd -1' to get back where I came from.
-# And don't print the stack everytime using popd.
+
 setopt auto_pushd pushd_ignore_dups pushd_minus pushd_silent
 setopt auto_cd
 
-## Prompt
 setopt transient_rprompt
 
-## Completion
 setopt list_packed
 
-## Expansion / Globbing
 setopt extended_glob
 
-## History
 unsetopt bang_hist
 
-## Input/Output
 setopt correct
+
 # greedy is more like dvorak than qwerty...
 setopt dvorak
 unsetopt flow_control
 setopt rc_quotes
 
-## ZLE
 unsetopt beep
-# }}}
 
+# }}}
 # {{{ Shell parameters
+
 ## parameters which are only important for interactive shells.
 ## For application-related parameters, see .zshenv
 
@@ -75,7 +70,7 @@ LISTMAX=0
 
 TIMEFMT='%J (%P)  -  %*E real, %*U user, %*S system'
 
-if ((EUID)) {
+if (( EUID != 0)) {
 	path+=(/sbin /usr/sbin /usr/local/sbin)
 }
 
@@ -96,9 +91,10 @@ if [[ $distro == debian ]] {
 	}
 	MANPATH+=":/usr/local/share/man:$HOME/packages/.collected/man"
 }
-# }}}
 
+# }}}
 # {{{ MIME parameters
+
 mime_archive=(
 	7z ace arj bz bz2 cpio deb dz gz jar lzh lzma rar rpm rz svgz
 	tar taz tbz2 tgz tz z Z zip zoo
@@ -116,9 +112,10 @@ mime_video=(
 	3gp asf asx avi axv dif divx dl dv fli flv gl lsf lsx m2t mkv mng mov
 	movie mp4 mpe mpeg mpg mpv mxu ogm ogv qt rmvb wm wmv wmx wvx
 )
-# }}}
 
+# }}}
 # {{{ ls-colors (partially based on MIME)
+
 #        default:file :dirctory:  link  :  pipe  : socket
 LS_COLORS="no=00:fi=00:di=01;37:ln=01;36:pi=40;33:so=01;35"
 
@@ -135,14 +132,13 @@ LS_COLORS+=:${(j/:/):-"*."${^mime_image}"=04;33"}
 LS_COLORS+=:${(j/:/):-"*."${^mime_video}"=04;32"}
 
 export LS_COLORS
-# }}}
 
+# }}}
 # {{{ Functions
 
 autoload -U compinit
 autoload zargs zmv
 
-# own functions
 if [[ -e $ZDIR/functions ]] {
 	autoload $ZDIR/functions/*(:t)
 } else {
@@ -163,7 +159,6 @@ function chpwd {
 	psvar[2]=$(rtab)
 }
 
-## Collect some directory information for the prompt
 function dirinfo {
 	typeset string
 
@@ -194,7 +189,6 @@ function salias {
 	}
 }
 
-# hash a directory only if it exists
 function xhashd {
 	typeset directory=${~1#*\=} name=${1%%\=*}
 
@@ -203,7 +197,6 @@ function xhashd {
 	}
 }
 
-# source a file only if it exists.
 # Note: local assignments (typeset foo=bar) are lost. export foo=bar works.
 function xsource {
 	if [[ -r $1 ]] {
@@ -220,14 +213,17 @@ function Status Start Stop Restart Reload {
 		$sudo /etc/init.d/$script ${0:l}
 	}
 }
-# }}}
 
+# }}}
 # {{{ ZLE
-autoload -U url-quote-magic
-zle -N self-insert url-quote-magic
-# }}}
 
+autoload -U url-quote-magic
+
+zle -N self-insert url-quote-magic
+
+# }}}
 # {{{ Prompt
+
 # RPS1 is on the right side of the terminal
 # The \ek\e\\ is for screen's 'shelltitle'
 
@@ -264,25 +260,28 @@ unset ps rps
 
 zstyle ':prompt:rtab' fish yes
 zstyle ':prompt:rtab' nameddirs yes
-# }}}
 
+
+# }}}
 # {{{ Named directories
+
 hash -d vcs=~/var/svn
 xhashd lyrics=~vcs/lyrics
 xhashd www=/var/www
 xhashd web=~/public_html
-# }}}
 
+# }}}
 # {{{ Keys
+
 bindkey -e
 [[ -z $terminfo[kdch1] ]] || bindkey -M emacs $terminfo[kdch1] delete-char
 [[ -z $terminfo[khome] ]] || bindkey -M emacs $terminfo[khome] beginning-of-line
 [[ -z $terminfo[kend] ]] || bindkey -M emacs $terminfo[kend] end-of-line
+
 # }}}
-
 # {{{ Aliases
-
 # {{{ Suffix
+
 typeset -A alias_apps
 alias_apps=(
 	archive	extract
@@ -299,9 +298,12 @@ for meta in ${parameters[(I)mime_*]#mime_}; {
 }
 
 unset filetypes meta format alias_apps
+
 # }}}
 # {{{ Defaults
-# evade them with '=foo' instead of 'foo'
+
+# To evade these defaults, use '=command' instead of 'command'
+
 linux: {
 	alias egrep='grep -E --color=auto'
 	alias fgrep='grep -F --color=auto'
@@ -311,16 +313,12 @@ linux: {
 }
 
 
-## file and filesystem information
-# human-readable sizes, local filesystems only
 linux: alias df='df -hl --exclude-type=fuse.encfs' ||
        alias df='df -hl'
 
-# human-readable sizes, summarize, dereference args
 linux: alias du='du -shD' ||
        alias du='du -shH'
 
-# human-readable sizes
 linux: alias ls='ls -h --color=auto' ||
        alias ls='ls -h'
 
@@ -328,7 +326,6 @@ linux: alias ls='ls -h --color=auto' ||
 alias exec='exec '
 alias sudo='sudo '
 
-# Only TCP/TCP6, not sockets and such
 linux: salias netstat='netstat --program --all --tcp --extend' ||
        salias netstat='netstat -atp tcp'
 
@@ -337,14 +334,11 @@ alias bc='bc -l'
 
 alias fbi='fbi -readahead'
 
-# I keep accidently overwriting files
 alias cp='cp -i'
 alias mv='mv -i'
 
-# no atime
 alias pmount='pmount -A'
 
-# find does globbing itself
 alias find='noglob find'
 
 alias man='man -a'
@@ -352,10 +346,11 @@ alias man='man -a'
 # ps -C foo is better than ps aux | fgrep foo ;-)
 alias ps='ps -F'
 
-# Don't collapse trees
 alias todo='noglob todo -f +children'
+
 # }}}
 # {{{ Global
+
 # global aliases are slightly evil, but (usually) not messy
 alias -g EG='|egrep'
 alias -g FG='|fgrep'
@@ -363,8 +358,10 @@ alias -g G='|grep'
 alias -g H='|head'
 alias -g L='|less'
 alias -g T='|tail'
+
 # }}}
 # {{{ Loop me
+
 alias allf='for i in *(.);'
 alias alld='for i in *(/);'
 alias alle='for i in *(*);'
@@ -376,8 +373,10 @@ alias alldr='for i in **/*(/);'
 alias aller='for i in **/*(*);'
 alias alllr='for i in **/*(@);'
 alias allr='for i in **/*;'
+
 # }}}
 # {{{ Short (similar to default options)
+
 alias dua='du --apparent-size'
 
 alias lasth='last | head -$((LINES-1))'
@@ -404,9 +403,10 @@ alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin -
 alias mate='decrement ~/stuff/$(cat ~/var/tmp/.actual-location)/mateguthaben'
 
 alias x='unsetopt bg_nice; startx &! exit'
-# }}}
 
+# }}}
 if [[ $distro == debian ]] { #{{{
+
 	alias acse='apt-cache search'
 	alias afse='apt-file search'
 	alias apse='aptitude search'
@@ -438,16 +438,13 @@ if [[ $distro == debian ]] { #{{{
 	salias dpp='dpkg --purge'
 	salias dpr='dpkg --remove'
 
-	# Get package source
 	alias agsrc='apt-get source'
 
-	# Configure packages
 	salias dprc='dpkg-reconfigure'
-} #}}}
 
+} #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
-	# quiet and verbose can actually be used together here.
-	# quiet = suppress non-critical errors, verbose = show progress bars
+
 	alias feh='feh --quiet --verbose'
 
 	# Alias structure:
@@ -459,7 +456,7 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	#     number - slideshow, $number seconds per image
 	#     x      - slideshow, seconds will be specified on commandline
 	#              (like "fehfrx 7 .")
-	# the themes are defined in .fehrc
+	# The themes are defined in ~/.fehrc
 	alias fehf='feh -Tfull'
 	alias fehfr='feh -Tfull --recursive'
 	alias fehi='feh .fehindex.jpg'
@@ -480,13 +477,12 @@ if [[ -e /tmp/.x-started ]] { #{{{
 
 	alias putscreen='put $(screenshot)'
 
-	# show current weather
 	alias weather='feh http://www.bredeney-wetter.de/aktuell.gif'
 } #}}}
 
 # }}}
-
 # {{{ Misc
+
 mesg n
 if ((UID)) {
 	umask 077
@@ -494,8 +490,8 @@ if ((UID)) {
 	umask 002
 }
 chpwd
-# }}}
 
+# }}}
 # {{{ Includes
 
 # no xsource here - typeset may be used
@@ -510,8 +506,8 @@ xsource $ZDIR/local
 
 # local configuration, in git
 xsource $ZDIR/hosts/$HOST
-# }}}
 
+# }}}
 # {{{ Completion
 
 zstyle ':completion:*' cache-path $ZCACHEDIR
@@ -521,7 +517,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 zstyle ':completion:*' menu select=1
 
-# Complete uppercase names with lowercase and spaces with _
+# Complete uppercase chars with lowercase ones, spaces with _,
+# start completion somewhere else than the beginning of the word if neccessary
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z} m:_=\\\ ' '+ l:|=* r:|=*'
 
 zstyle ':completion:*' verbose true
@@ -540,12 +537,10 @@ zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 zstyle ':completion:*:*:vi(m|):*' ignored-patterns \
 	'a.out|*.o'
 
-# fancy kill completion
 # source: http://madism.org/~madcoder/dotfiles/zsh/40_completion
 zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
 
-# separate manuals by sections
 zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 
@@ -559,11 +554,12 @@ compdef _hosts sshmount
 compdef _functions reload
 
 # }}}
-
 # {{{ Cleanup
+
 unalias 'linux:'
 unfunction zrc_info
 unfunction xsource
 unset system distro
 unset -m 'mime_*'
+
 # }}}

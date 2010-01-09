@@ -16,6 +16,7 @@ export LESS='--silent --no-init --clear-screen --RAW-CONTROL-CHARS --quit-if-one
 export HOST
 export COLUMNS
 export LINES
+
 if [[ -n $commands[lesspipe] ]] {
 	export LESSOPEN='| lesspipe %s'
 	export LESSCLOSE='lesspipe %s %s'
