@@ -445,7 +445,7 @@ if [[ $distro == debian ]] { #{{{
 } #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
-	alias feh='feh --quiet --verbose --action8 "mkdir -p .rm; mv '\'%f\'' .rm"'
+	alias feh='feh --quiet --verbose --action8 "nrm '\'%f\'\"
 
 	# Alias structure:
 	# feh[theme][recursive?][slide-delay?]
