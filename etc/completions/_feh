@@ -59,6 +59,13 @@ argument_pairs=(
 	'bg'          'b+'
 	'alpha'       'a+'
 	'font'        'e+'
+	'scale-down'  '.'
+	'output-dir'  'j+'
+	'wget-timestamp' 'G'
+	'fontpath'    'C+'
+	'image-bg'    'B+'
+	'output'      'o'
+	'output-only' 'O'
 )
 
 argument_postfix=(
@@ -113,6 +120,13 @@ argument_postfix=(
 	'alpha'       '[montage mode: Thumbnail transparency level]:integer: '
 	'font'        '[index mode: Thumbnail info font]:font: '
 	'slideshow-delay' '[slide change delay]:seconds'
+	'scale-down'  '[Scale down images which are too big]'
+	'output-dir'  '[Save files to DIR (with -k)]:directory:_files -/'
+	'wget-timestamp' '[Add no timestamp ("?123") to URLs]'
+	'fontpath'    '[Add paths to font path]:font path:_files -/'
+	'image-bg'    '[Set transparent image background]:background:(white black default)'
+	'output'      '[montage mode: Output file]:file:_files'
+	'output-only' "[montage mode: Output file, don't display montage]:file:_files"
 )
 
 arguments=(
@@ -128,13 +142,16 @@ arguments=(
 	'--menu-bg[Background image in menus]: :_feh_background'
 	'--menu-border[Set menu background border]:integer: '
 	'--no-pan-ctrl-mask[Pan without pressing ctrl]'
-	'--xinerama[Toggle xinerama support]'
+	'--no-xinerama[Disable xinerama support]'
 	'--screen-clip[Toggle window clipping]'
 	'--hide-pointer[Hide mouse pointer in fullscreen mode]'
-	'-o[montage mode: Output file]:file:_files'
-	"-O[montage mode: Output file, don't display montage]:file:_files"
 	'*--fontpath[index mode: directory to search for fonts]:directory:_path_files -/'
 	'--title-font[index mode: title font]:font: '
+	'--no-jump-on-resort[Stay at current image after resorting the filelist]'
+	'--cycle-once[Quit after one loop through the slideshow]'
+	'--draw-actions[Draw defined actions]'
+	'--cache-thumbnails[Enable thumbnail caching]'
+	'--title[slideshow mode: Set window title]:title: '
 	'*:file:_files'
 )
 
