@@ -348,6 +348,8 @@ alias ps='ps -F'
 
 alias todo='noglob todo -f +children'
 
+alias vim='vim -p'
+
 # }}}
 # {{{ Global
 
