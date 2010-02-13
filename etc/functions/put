@@ -13,7 +13,7 @@ typeset -i n_hosts n_ping n_curl
 
 if [[ -z $commands[curl] ]]; then
 	function curl {return 0}
-	warn "curl not present, won't be able to check upload success"
+	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
 function put_aneurysm_vpn {

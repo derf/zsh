@@ -40,7 +40,7 @@ while [[ $1 == -* ]] {
 
 # Don't shut down a server too easily
 if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
-	warn "This seems to be a server... not shutting down"
+	print -P '%B%F{yellow}This seems to be a server... not shutting down%f%b'
 	echo "Use 'off --force' if you really mean it"
 	return 1
 }
