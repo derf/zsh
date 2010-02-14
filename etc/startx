@@ -2,5 +2,5 @@
 if [[ -z $SSH_CONNECTION && ! -e /tmp/.x-started ]] {
 	touch /tmp/.x-started
 	unsetopt bg_nice
-	startx &! exit
+	xinit /home/derf/.xinitrc -- /etc/X11/xinit/xserverrc :0 -auth $(mktemp --tmpdir serverauth.XXXXXXXXXX) &! exit
 }
