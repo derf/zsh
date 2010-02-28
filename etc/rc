@@ -455,25 +455,18 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	# recursive: r for recursive, nothing otherwise
 	# slide-delay:
 	#     none   - no slideshow
-	#     number - slideshow, $number seconds per image
 	#     x      - slideshow, seconds will be specified on commandline
 	#              (like "fehfrx 7 .")
 	# The themes are defined in ~/.fehrc
-	alias fehf='feh -Tfull'
-	alias fehfr='feh -Tfull --recursive'
+	alias fehf='feh -Tfs'
+	alias fehfr='feh -Tfs --recursive'
 	alias fehi='feh .fehindex.jpg'
-	alias fehj='feh -Tjust'
-	alias fehjr='feh -Tjust --recursive'
-	for i in {5,10,15,20}; {
-		alias fehj$i="feh -Tjust --slideshow-delay $i"
-		alias fehf$i="feh -Tfull --slideshow-delay $i"
-		alias fehjr$i="feh -Tjust --slideshow-delay $i --recursive"
-		alias fehfr$i="feh -Tfull --slideshow-delay $i --recursive"
-	}
-	alias fehjx='feh -Tjust --slideshow-delay'
-	alias fehfx='feh -Tfull --slideshow-delay'
-	alias fehjrx='feh -Tjust --recursive --slideshow-delay'
-	alias fehfrx='feh -Tfull --recursive --slideshow-delay'
+	alias fehj='feh -Trfs'
+	alias fehjr='feh -Trfs --recursive'
+	alias fehjx='feh -Trfs --slideshow-delay'
+	alias fehfx='feh -Tfs --slideshow-delay'
+	alias fehjrx='feh -Trfs --recursive --slideshow-delay'
+	alias fehfrx='feh -Tfs --recursive --slideshow-delay'
 	alias feht='feh -Tthumbnail'
 	alias fehtr='feh -Tthumbnail --recursive'
 
