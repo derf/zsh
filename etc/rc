@@ -178,17 +178,6 @@ function dirinfo {
 	}
 }
 
-# Inspired by salias from the grml zshrc
-function salias {
-	typeset key=${1%%\=*} val=${1#*\=}
-
-	if (( EUID == 0 )) {
-		alias -- $key=$val
-	} else {
-		alias -- $key="sudo $val"
-	}
-}
-
 function xhashd {
 	typeset directory=${~1#*\=} name=${1%%\=*}
 
@@ -326,8 +315,8 @@ linux: alias ls='ls -h --color=auto' ||
 alias exec='exec '
 alias sudo='sudo '
 
-linux: salias netstat='netstat --program --all --tcp --extend' ||
-       salias netstat='netstat -atp tcp'
+linux: alias netstat='sudo netstat --program --all --tcp --extend' ||
+       alias netstat='sudo netstat -atp tcp'
 
 
 alias bc='bc -l'
@@ -419,30 +408,30 @@ if [[ $distro == debian ]] { #{{{
 	alias apsh='aptitude show'
 	alias dps='dpkg --status'
 
-	salias agu='apt-get update'
-	salias apu='aptitude update'
+	alias agu='sudo apt-get update'
+	alias apu='sudo aptitude update'
 
-	salias ags='apt-get upgrade'
-	salias agf='apt-get dist-upgrade'
-	salias aps='aptitude safe-upgrade'
-	salias apf='aptitude full-upgrade'
+	alias ags='sudo apt-get upgrade'
+	alias agf='sudo apt-get dist-upgrade'
+	alias aps='sudo aptitude safe-upgrade'
+	alias apf='sudo aptitude full-upgrade'
 
-	salias agi='apt-get install'
-	salias api='aptitude install'
-	salias dpi='dpkg --install'
+	alias agi='sudo apt-get install'
+	alias api='sudo aptitude install'
+	alias dpi='sudo dpkg --install'
 
-	salias agc='apt-get clean'
-	salias apc='aptitude clean'
+	alias agc='sudo apt-get clean'
+	alias apc='sudo aptitude clean'
 
-	salias agar='apt-get autoremove'
-	salias agp='apt-get purge'
-	salias agr='apt-get remove'
-	salias dpp='dpkg --purge'
-	salias dpr='dpkg --remove'
+	alias agar='sudo apt-get autoremove'
+	alias agp='sudo apt-get purge'
+	alias agr='sudo apt-get remove'
+	alias dpp='sudo dpkg --purge'
+	alias dpr='sudo dpkg --remove'
 
 	alias agsrc='apt-get source'
 
-	salias dprc='dpkg-reconfigure'
+	alias dprc='sudo dpkg-reconfigure'
 
 } #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
