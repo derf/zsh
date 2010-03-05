@@ -232,18 +232,13 @@ rps=(
 	start_always "%F{yellow}["
 	start_screen "%(1V.%F{yellow}["
 	dirinfo      "%F{default}%1v"
-	time         '%T'
 	end_always   "%F{yellow}]%F{default}"
 	end_screen   "%(1V.%F{yellow}]%F{default}.)"
 )
 
 PS1="${ps[host]} ${ps[dir]} ${ps[sign]} ${ps[screen]}"
 
-if [[ $TERM == screen* ]] {
-	RPS1="${rps[start_screen]}${rps[dirinfo]}${rps[end_screen]}"
-} else {
-	RPS1="${rps[start_always]}${rps[dirinfo]}${rps[time]}${rps[end_always]}"
-}
+RPS1="${rps[start_screen]}${rps[dirinfo]}${rps[end_screen]}"
 
 unset ps rps
 
