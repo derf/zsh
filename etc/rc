@@ -337,6 +337,7 @@ alias vim='vim -p'
 alias desmume='pushd ~/lib/games/nds; desmume --num-cores=2'
 
 alias irc='dtach -A ~/.dtach.irssi irssi'
+alias jabber='dtach -A ~/.dtach.mcabber mcabber'
 
 # }}}
 # {{{ Global
