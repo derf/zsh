@@ -16,12 +16,6 @@ if [[ -z $commands[curl] ]]; then
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
-function put_aneurysm_vpn {
-	put_aneurysm
-	hostname='aneurysm.wildernet.org'
-	server_prefix='http://aneurysm.vpn.skyshaper.org/tmp/'
-}
-
 function put_aneurysm_int {
 	put_aneurysm
 	hostname='aneurysm'
@@ -34,15 +28,14 @@ function put_aneurysm () {
 	server_prefix='https://derf.homelinux.org/tmp/'
 }
 
-function put_sievert () {
-	hostname='sievert'
+function put_becquerel () {
+	hostname='becquerel'
 	ssh_options=(-q)
 	target_dir='www/tmp/'
 	server_prefix='https://statis.illdefined.org/~derf/tmp/'
 }
 
-hosts_vpn=(aneurysm_vpn)
-hosts=(aneurysm_int aneurysm sievert)
+hosts=(aneurysm_int aneurysm becquerel)
 
 while [[ $1 == -* ]] {
 	case $1 in
