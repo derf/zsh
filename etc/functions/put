@@ -29,13 +29,14 @@ function put_aneurysm () {
 }
 
 function put_becquerel () {
-	hostname='becquerel'
+	hostname='becquerel.illdefined.org'
 	ssh_options=(-q)
 	target_dir='www/tmp/'
-	server_prefix='https://statis.illdefined.org/~derf/tmp/'
+	server_prefix='http://static.illdefined.org/~derf/tmp/'
 }
 
 hosts=(aneurysm_int aneurysm becquerel)
+hosts_nossl=(becquerel)
 
 while [[ $1 == -* ]] {
 	case $1 in
