@@ -283,9 +283,9 @@ unset filetypes meta format alias_apps
 # To evade these defaults, use '=command' instead of 'command'
 
 linux: {
-	alias egrep='grep -E --color=auto'
-	alias fgrep='grep -F --color=auto'
 	alias grep='grep --color=auto'
+	alias egrep='grep -E'
+	alias fgrep='grep -F'
 	alias bzgrep='bzgrep --color=auto'
 	alias zgrep='zgrep --color=auto'
 }
