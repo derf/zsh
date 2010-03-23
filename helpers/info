@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+[[ -n $commands[todo]     ]] && [[ -r ~/var/gtd/todo   ]] && \
+	todo --database /home/derf/var/gtd/todo
+[[ -n $commands[calendar] ]] && [[ -r ~/stuff/calendar ]] && calendar
+true

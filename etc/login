@@ -1,4 +1,0 @@
-## vim:ft=zsh
-[[ -n $commands[todo]     ]] && [[ -r ~/var/gtd/todo   ]] && gtd-todo
-[[ -n $commands[calendar] ]] && [[ -r ~/stuff/calendar ]] && calendar
-true
