@@ -334,6 +334,12 @@ alias irc='dtach -A ~/.dtach.irssi irssi'
 alias jabber='dtach -A ~/.dtach.mcabber mcabber'
 
 # }}}
+# {{{ Font
+
+alias font-present='echo -en "\033]50;-*-terminus-medium-*-*-*-*-320-*-*-*-*-*-*\007"'
+alias font-default='echo -en "\033]50;-misc-fixed-medium-r-semicondensed--13-*-*-*-*-*-iso10646-1\007"'
+
+# }}}
 # {{{ Global
 
 # global aliases are slightly evil, but (usually) not messy
