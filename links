@@ -1,4 +1,0 @@
-soft .zshrc $etc/rc
-soft .zprofile $etc/profile
-soft .zlogout $etc/logout
-soft .zshenv $etc/env
