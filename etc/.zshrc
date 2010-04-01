@@ -366,7 +366,7 @@ alias alllr='for i in **/*(@);'
 alias allr='for i in **/*;'
 
 # }}}
-# {{{ Short (similar to default options)
+# {{{ Misc
 
 alias dua='du --apparent-size'
 
@@ -394,6 +394,8 @@ alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin -
 alias mate='decrement ~/stuff/$(cat ~/var/tmp/.actual-location)/mateguthaben'
 
 alias x='unsetopt bg_nice; startx &! exit'
+
+alias readahead='cat **/*(-.) > /dev/null'
 
 # }}}
 if [[ $distro == debian ]] { #{{{
