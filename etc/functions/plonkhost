@@ -1,4 +1,4 @@
 ## vim:ft=zsh
 ## "plonk" (as in ignore) a host via iptables
 ## Usage: plonkhost <host>
-sudo iptables -I INPUT -s "$1" -j DROP
+sudo iptables -I INPUT -s "${1}" -j DROP

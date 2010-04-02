@@ -11,14 +11,14 @@ typeset -i force reboot simulate exit_ok=1
 
 function execute {
 	if (( simulate )) {
-		echo $*
+		echo ${*}
 	} else {
-		$* || exit_ok=0
+		${*} || exit_ok=0
 	}
 }
 
-while [[ $1 == -* ]] {
-	case $1 in
+while [[ ${1} == -* ]] {
+	case ${1} in
 		-n) simulate=1 ;;
 		-r) reboot=1 ;;
 		--force) force=1 ;;
@@ -33,13 +33,13 @@ while [[ $1 == -* ]] {
 			return 0
 		;;
 		-|--) shift; break ;;
-		*) echo "Unrecognized option: $1" >&2 ; return 1 ;;
+		*) echo "Unrecognized option: ${1}" >&2 ; return 1 ;;
 	esac
 	shift
 }
 
 # Don't shut down a server too easily
-if [[ $force != 1 && $hosts[$HOST] == *:server:* ]] {
+if [[ ${force} != 1 && ${hosts[$HOST]} == *:server:* ]] {
 	print -P '%B%F{yellow}This seems to be a server... not shutting down%f%b'
 	echo "Use 'off --force' if you really mean it"
 	return 1
@@ -52,16 +52,16 @@ fi
 execute uinit -o text stop-all
 
 while read filesystem garbage; do
-	if [[ $garbage == *[12] ]] && fgrep -q $filesystem /etc/mtab; then
-		filesystems+=$filesystem
+	if [[ ${garbage} == *[12] ]] && fgrep -q ${filesystem} /etc/mtab; then
+		filesystems+=${filesystem}
 	fi
 done < /etc/fstab
 
-for filesystem in $filesystems; {
-	tune2fs=($(sudo tune2fs -l $filesystem | fgrep -i 'mount count' | grep -o '[0-9]*'))
+for filesystem in ${filesystems}; {
+	tune2fs=($(sudo tune2fs -l ${filesystem} | fgrep -i 'mount count' | grep -o '[0-9]*'))
 	if (( tune2fs[2] - tune2fs[1] < 5 )) {
 		exit_ok=0
-		echo "notice: filesystem $filesystem due to check in $((tune2fs[2] - tune2fs[1])) mounts"
+		echo "notice: filesystem ${filesystem} due to check in $((tune2fs[2] - tune2fs[1])) mounts"
 	}
 }
 if (( reboot )) {

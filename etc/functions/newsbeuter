@@ -2,11 +2,11 @@
 ## wrapper around newsbeuter to keep the feeds in sync
 
 function __sync {
-	if [[ $HOST != aneurysm ]] {
+	if [[ ${HOST} != aneurysm ]] {
 		unisync unison aneurysm .newsbeuter
 	}
 }
 
 __sync || return 1
-command newsbeuter $*
+command newsbeuter ${*}
 __sync

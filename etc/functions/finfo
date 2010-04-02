@@ -4,11 +4,11 @@
 ## Usage: finfo <function name>
 typeset line
 
-whichf $1 &> /dev/null || return 1
+whichf ${1} &> /dev/null || return 1
 
 while read line; do
-	[[ $line == \#* ]] || break
-	[[ $line == *vim:ft=* ]] && continue
-	[[ $line == \#(autoload|compdef)* ]] && continue
+	[[ ${line} == \#* ]] || break
+	[[ ${line} == *vim:ft=* ]] && continue
+	[[ ${line} == \#(autoload|compdef)* ]] && continue
 	echo ${line#(\#|)\# }
-done < $(whichf $1)
+done < $(whichf ${1})

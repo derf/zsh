@@ -1,7 +1,7 @@
 ## vim:ft=zsh
 ## locate the file corresponding to a function
-if [[ -n $(echo ${^fpath}/$1(-.N)) ]] {
-	echo ${^fpath}/$1(-.N)
+if [[ -n $(echo ${^fpath}/${1}(-.N)) ]] {
+	echo ${^fpath}/${1}(-.N)
 } else {
 	return 1
 }

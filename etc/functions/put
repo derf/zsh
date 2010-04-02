@@ -11,7 +11,7 @@ typeset target_dir server_prefix
 typeset file remote_file illegal
 typeset -i n_hosts n_ping n_curl
 
-if [[ -z $commands[curl] ]]; then
+if [[ -z ${commands[curl]} ]]; then
 	function curl {return 0}
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
@@ -38,8 +38,8 @@ function put_becquerel () {
 hosts=(aneurysm_int aneurysm becquerel)
 hosts_nossl=(becquerel)
 
-while [[ $1 == -* ]] {
-	case $1 in
+while [[ ${1} == -* ]] {
+	case ${1} in
 		-|--) shift; break ;;
 		*)
 			(( $(eval echo '$#'hosts_${1#-}) )) && eval hosts=\(\$hosts_${1#-}\)
@@ -49,21 +49,21 @@ while [[ $1 == -* ]] {
 }
 
 
-n_hosts=$#hosts
-if [[ -f $1 ]] {
-	file=$1
-	while (( $#hosts )) {
+n_hosts=${#hosts}
+if [[ -f ${1} ]] {
+	file=${1}
+	while (( ${#hosts} )) {
 		remote_file=${file:t}
-		put_$hosts[1]
-		ping -c 1 $hostname &> /dev/null || ping6 -c 1 $hostname &> /dev/null
+		put_${hosts[1]}
+		ping -c 1 ${hostname} &> /dev/null || ping6 -c 1 ${hostname} &> /dev/null
 		if (( ? == 0 )) {
-			if [[ $remote_file == ${~illegal} ]] {
+			if [[ ${remote_file} == ${~illegal} ]] {
 				remote_file=${remote_file:r}
 			}
-			scp $ssh_options $file $hostname:$target_dir/$remote_file
-			ssh $ssh_options $hostname "chmod 644 $target_dir$remote_file"
-			if $(curl -fI $server_prefix$remote_file &> /dev/null); then
-				echo $server_prefix$remote_file
+			scp ${ssh_options} ${file} ${hostname}:${target_dir}/${remote_file}
+			ssh ${ssh_options} ${hostname} "chmod 644 ${target_dir}${remote_file}"
+			if $(curl -fI ${server_prefix}${remote_file} &> /dev/null); then
+				echo ${server_prefix}${remote_file}
 				return 0
 			else
 				(( n_curl++ ))
@@ -73,11 +73,11 @@ if [[ -f $1 ]] {
 		}
 		shift hosts
 	}
-	echo "Tried uploading to $n_hosts hosts without success" >&2
-	((n_ping)) && echo " - $n_ping hosts are unreachable"    >&2
-	((n_curl)) && echo " - $n_curl errors while uploading"   >&2
+	echo "Tried uploading to ${n_hosts} hosts without success" >&2
+	((n_ping)) && echo " - ${n_ping} hosts are unreachable"    >&2
+	((n_curl)) && echo " - ${n_curl} errors while uploading"   >&2
 	return 1
 } else {
-	echo "$1: No such file"
+	echo "${1}: No such file"
 	return 1
 }

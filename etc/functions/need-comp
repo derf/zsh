@@ -1,9 +1,9 @@
 ## vim:ft=zsh
 
 check_comp() {
-	((! $+_comps[$1])) && print $1
+	((! ${+_comps[$1]})) && print ${1}
 }
 
 {
-	for f ($^path/*(N:t)) check_comp $f
+	for f (${^path}/*(N:t)) check_comp ${f}
 } | sort

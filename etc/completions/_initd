@@ -19,9 +19,9 @@ if zstyle -t ':completion:*:*:_initd' all-files; then
 fi
 
 for file in /etc/init.d/*(*); {
-	read -u0 -k2 bang < $file && [[ $bang == '#!' ]] &&
-	[[ -n ${${(j:|:s:|:)${(M)${(f)"$(< $file)"}:#[[:blank:]]#(\'|)(${~action}[[:blank:]]#\|[[:blank:]]#)#${~specific}([[:blank:]]#\|[[:blank:]]#${~action})#(\'|)\)}}//[^-a-z_]} ]] &&
+	read -u0 -k2 bang < ${file} && [[ ${bang} == '#!' ]] &&
+	[[ -n ${${(j:|:s:|:)${(M)${(f)"$(< ${file})"}:#[[:blank:]]#(\'|)(${~action}[[:blank:]]#\|[[:blank:]]#)#${~specific}([[:blank:]]#\|[[:blank:]]#${~action})#(\'|)\)}}//[^-a-z_]} ]] &&
 	scripts+=${file##*/}
 }
 
-_wanted script expl script compadd $scripts
+_wanted script expl script compadd ${scripts}

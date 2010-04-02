@@ -1,6 +1,6 @@
 ## vim:ft=zsh
 function pr_info {
-	print -P "%F{cyan}>>%F{default} $*"
+	print -P "%F{cyan}>>%F{default} ${*}"
 }
 
 echo
@@ -14,7 +14,7 @@ pr_info "This is %F{cyan}$(uname -srm)%F{default} on %F{cyan}%y%F{default}"
 echo
 
 [[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
-[[ -r $ZDIR/local-profile ]] && source $ZDIR/local-profile
-[[ -r $ZDIR/hosts/profile-$HOST ]] && source $ZDIR/hosts/profile-$HOST
+[[ -r ${ZDIR}/local-profile ]] && source ${ZDIR}/local-profile
+[[ -r ${ZDIR}/hosts/profile-${HOST} ]] && source ${ZDIR}/hosts/profile-${HOST}
 
 unfunction pr_info

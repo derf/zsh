@@ -1,1 +1,1 @@
-echo $1 install | sudo dpkg --set-selections
+echo ${1} install | sudo dpkg --set-selections

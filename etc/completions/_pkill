@@ -27,7 +27,7 @@ arguments=(
 	':pattern:_named_process'
 )
 
-if [[ $service == 'pgrep' ]] {
+if [[ ${service} == 'pgrep' ]] {
 	arguments+='-d[set output delimiter]:delimiter'
 	arguments+='-l[list process name]'
 }
@@ -40,12 +40,12 @@ function _named_process {
 	typeset -a pgrep_user
 	typeset IFS=$'\n'
 	if (( EUID )) {
-		pgrep_user=(-u $EUID)
+		pgrep_user=(-u ${EUID})
 	}
 	_message 'pattern'
 	_wanted pattern expl 'process name' \
-	compadd ${$(pgrep $pgrep_user -l '')#* }
+	compadd ${$(pgrep ${pgrep_user} -l '')#* }
 }
 
-_arguments -s $arguments
+_arguments -s ${arguments}
 _signals -p

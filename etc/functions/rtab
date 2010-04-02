@@ -27,8 +27,8 @@ zstyle -t ':prompt:rtab' last && lastfull=1
 zstyle -t ':prompt:rtab' short && short=1
 zstyle -t ':prompt:rtab' tilde && tilde=1
 
-while [[ $1 == -* ]]; do
-	case $1 in
+while [[ ${1} == -* ]]; do
+	case ${1} in
 		-f|--fish)
 			lastfull=1
 			short=1
@@ -61,32 +61,32 @@ while [[ $1 == -* ]]; do
 done
 
 typeset -a tree expn
-typeset result part dir=${1-$PWD}
+typeset result part dir=${1-${PWD}}
 typeset -i i
 
-[[ -d $dir ]] || return 0
+[[ -d ${dir} ]] || return 0
 
 if (( named )) {
 	for part in ${(k)nameddirs}; {
-		[[ $dir == ${nameddirs[$part]}(/*|) ]] && dir=${dir/${nameddirs[$part]}/\~$part}
+		[[ ${dir} == ${nameddirs[$part]}(/*|) ]] && dir=${dir/${nameddirs[$part]}/\~${part}}
 	}
 }
-(( tilde )) && dir=${dir/#$HOME/\~}
+(( tilde )) && dir=${dir/#${HOME}/\~}
 tree=(${(s:/:)dir})
 (
 	unfunction chpwd 2> /dev/null
 
 	# Start either in the currrent named directory or in /
-	if [[ $tree[1] == \~* ]] {
+	if [[ ${tree[1]} == \~* ]] {
 		cd ${~tree[1]}
-		result=$tree[1]
+		result=${tree[1]}
 		shift tree
 	} else {
 		cd /
 	}
-	for dir in $tree; {
-		if (( lastfull && $#tree == 1 )) {
-			result+="/$tree"
+	for dir in ${tree}; {
+		if (( lastfull && ${#tree} == 1 )) {
+			result+="/${tree}"
 			break
 		}
 
@@ -94,19 +94,19 @@ tree=(${(s:/:)dir})
 		expn=(a b)
 		part=''
 		i=0
-		until [[ (( ${#expn} == 1 )) || $dir == $expn || $i -gt 99 ]]  do
+		until [[ (( ${#expn} == 1 )) || ${dir} == ${expn} || ${i} -gt 99 ]]  do
 			(( i++ ))
-			part+=$dir[$i]
+			part+=${dir[$i]}
 			expn=($(echo ${part}*(-/)))
 			# Never show a single . as directory
-			if [[ $i == 1 && $dir[$i] == . ]] {
+			if [[ ${i} == 1 && ${dir[$i]} == . ]] {
 				expn=(a b)
-			} elif [[ $short == 1 ]] {
+			} elif [[ ${short} == 1 ]] {
 				break
 			}
 		done
-		result+="/$part"
-		cd $dir
+		result+="/${part}"
+		cd ${dir}
 		shift tree
 	}
 	echo ${result:-/}

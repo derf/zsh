@@ -19,12 +19,12 @@ function _cryptsetup_mapping {
 
 function _cryptsetup_arguments {
 	if (( CURRENT == 2 )) {
-		case $words[1] in
+		case ${words[1]} in
 			create|remove|status|resize) _cryptsetup_mapping ;;
 			luks(Format|Open|AddKey|RemoveKey|KillSlot|DelKey|UUID|Dump)|isLuks) _cryptsetup_device ;;
 		esac
 	} elif (( CURRENT == 3 )) {
-		case $words[1] in
+		case ${words[1]} in
 			create) _cryptsetup_device ;;
 			luksOpen) _cryptsetup_mapping ;;
 		esac

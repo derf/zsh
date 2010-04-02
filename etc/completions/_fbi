@@ -36,7 +36,7 @@ arguments=(
 	'*:file:_files'
 )
 
-_arguments -s $arguments
+_arguments -s ${arguments}
 
 function _font () {
 	typeset IFS=$'\n'

@@ -13,4 +13,4 @@ function _gtd_database {
 	_path_files -W ~/var/gtd -g '*(.)'
 }
 
-_arguments -s $arguments
+_arguments -s ${arguments}

@@ -3,10 +3,10 @@
 typeset -a arguments
 typeset net
 
-for net in $(grep '^hosts_' $ZDIR/functions/put | sed -r 's/^hosts_(\w*)=.*$/\1/'); {
-	arguments+="-$net"
+for net in $(grep '^hosts_' ${ZDIR}/functions/put | sed -r 's/^hosts_(\w*)=.*$/\1/'); {
+	arguments+="-${net}"
 }
 
 arguments+=':file:_files'
 
-_arguments -s $arguments
+_arguments -s ${arguments}

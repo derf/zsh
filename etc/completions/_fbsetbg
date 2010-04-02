@@ -28,8 +28,8 @@ file_arguments=(
 )
 
 for arg in ${(k)file_arguments}; {
-	arguments+=$arg'[set '$file_arguments[$arg]' wallpaper]:file:_files'
-	arguments+=${arg:u}'[set '$file_arguments[$arg]' wallpaper (without remembering)]:file:_files'
+	arguments+=${arg}'[set '${file_arguments[$arg]}' wallpaper]:file:_files'
+	arguments+=${arg:u}'[set '${file_arguments[$arg]}' wallpaper (without remembering)]:file:_files'
 }
 
-_arguments -s $arguments
+_arguments -s ${arguments}

@@ -45,4 +45,4 @@ arguments=(
 	'-trmode[toggle display transflective mode]'
 )
 
-_arguments -s $arguments
+_arguments -s ${arguments}

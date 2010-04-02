@@ -10,9 +10,9 @@
 
 system=${$(uname):l}
 
-alias 'linux:'='[[ $system == linux ]] &&'
+alias 'linux:'='[[ ${system} == linux ]] &&'
 
-if [[ $system == linux ]] {
+if [[ ${system} == linux ]] {
 	[[ -f /etc/debian_version ]] && distro=debian
 }
 
@@ -20,7 +20,7 @@ if [[ $system == linux ]] {
 # {{{ Startup infos
 
 function zrc_info {
-	print -P "%F{red}>>%F{default} $*"
+	print -P "%F{red}>>%F{default} ${*}"
 }
 
 # }}}
@@ -59,9 +59,9 @@ if [[ -d ~/var/cache/zsh ]] {
 	ZCACHEDIR=~/.zsh-cache
 }
 
-HISTFILE=$ZCACHEDIR/history
+HISTFILE=${ZCACHEDIR}/history
 HISTSIZE=50000
-SAVEHIST=$HISTSIZE
+SAVEHIST=${HISTSIZE}
 
 DIRSTACKSIZE=20
 
@@ -77,10 +77,10 @@ if (( EUID != 0)) {
 export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
 
 typeset -U path
-path=(~/bin $path)
+path=(~/bin ${path})
 
 # Add manuals from caretaker to manpath
-if [[ $distro == debian ]] {
+if [[ ${distro} == debian ]] {
 	if [[ -e ~/packages/catman ]] {
 		export MANPATH=/var/cache/man
 	} else {
@@ -89,7 +89,7 @@ if [[ $distro == debian ]] {
 			export MANWIDTH=100
 		}
 	}
-	MANPATH+=":/usr/local/share/man:$HOME/packages/.collected/man"
+	MANPATH+=":/usr/local/share/man:${HOME}/packages/.collected/man"
 }
 
 # }}}
@@ -139,8 +139,8 @@ export LS_COLORS
 autoload -U compinit
 autoload zargs zmv
 
-if [[ -e $ZDIR/functions ]] {
-	autoload $ZDIR/functions/*(:t)
+if [[ -e ${ZDIR}/functions ]] {
+	autoload ${ZDIR}/functions/*(:t)
 } else {
 	# No cool extra stuff
 	zrc_info "Running in standalone mode"
@@ -175,15 +175,15 @@ function dirinfo {
 function xhashd {
 	typeset directory=${~1#*\=} name=${1%%\=*}
 
-	if [[ -d $directory ]] {
-		hash -d $name=$directory
+	if [[ -d ${directory} ]] {
+		hash -d ${name}=${directory}
 	}
 }
 
 # Note: local assignments (typeset foo=bar) are lost. export foo=bar works.
 function xsource {
-	if [[ -r $1 ]] {
-		source $1
+	if [[ -r ${1} ]] {
+		source ${1}
 	}
 }
 
@@ -192,8 +192,8 @@ function Status Start Stop Restart Reload {
 	if ((EUID)) {
 		sudo=sudo
 	}
-	for script in $*; {
-		$sudo /etc/init.d/$script ${0:l}
+	for script in ${*}; {
+		${sudo} /etc/init.d/${script} ${0:l}
 	}
 }
 
@@ -252,9 +252,9 @@ xhashd web=~/public_html
 # {{{ Keys
 
 bindkey -e
-[[ -z $terminfo[kdch1] ]] || bindkey -M emacs $terminfo[kdch1] delete-char
-[[ -z $terminfo[khome] ]] || bindkey -M emacs $terminfo[khome] beginning-of-line
-[[ -z $terminfo[kend] ]] || bindkey -M emacs $terminfo[kend] end-of-line
+[[ -z ${terminfo[kdch1]} ]] || bindkey -M emacs ${terminfo[kdch1]} delete-char
+[[ -z ${terminfo[khome]} ]] || bindkey -M emacs ${terminfo[khome]} beginning-of-line
+[[ -z ${terminfo[kend]} ]] || bindkey -M emacs ${terminfo[kend]} end-of-line
 
 # }}}
 # {{{ Aliases
@@ -270,8 +270,8 @@ alias_apps=(
 )
 
 for meta in ${parameters[(I)mime_*]#mime_}; {
-	for format in $(eval echo "$"mime_$meta); {
-		alias -s $format=$alias_apps[$meta]
+	for format in $(eval echo "$"mime_${meta}); {
+		alias -s ${format}=${alias_apps[$meta]}
 	}
 }
 
@@ -376,7 +376,7 @@ alias fbif='fbi -a'
 alias fbij='fbi -a -u'
 
 for i in ~/var/gtd/*(.N); {
-	alias gtd-${i:t}='todo --database '$i
+	alias gtd-${i:t}='todo --database '${i}
 }
 
 alias lsi='feh --list'
@@ -398,7 +398,7 @@ alias x='unsetopt bg_nice; startx &! exit'
 alias readahead='cat **/*(-.) > /dev/null'
 
 # }}}
-if [[ $distro == debian ]] { #{{{
+if [[ ${distro} == debian ]] { #{{{
 
 	alias acse='apt-cache search'
 	alias afse='apt-file search'
@@ -480,29 +480,29 @@ chpwd
 # Show infos if requested (.xinitrc)
 
 if ((SHOW_INFO)) {
-	$ZDIR/../helpers/info
+	${ZDIR}/../helpers/info
 }
 
 # }}}
 # {{{ Includes
 
 # no xsource here - typeset may be used
-if [[ -e $ZDIR/../provided/includes ]] {
-	source $ZDIR/../provided/includes
+if [[ -e ${ZDIR}/../provided/includes ]] {
+	source ${ZDIR}/../provided/includes
 }
 
 # local configuration, not in git
-xsource $ZDIR/local
+xsource ${ZDIR}/local
 
-[[ -n $commands[envstore] ]] && eval $(envstore eval)
+[[ -n ${commands[envstore]} ]] && eval $(envstore eval)
 
 # local configuration, in git
-xsource $ZDIR/hosts/$HOST
+xsource ${ZDIR}/hosts/${HOST}
 
 # }}}
 # {{{ Completion
 
-zstyle ':completion:*' cache-path $ZCACHEDIR
+zstyle ':completion:*' cache-path ${ZCACHEDIR}
 zstyle ':completion:*' use-cache true
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -530,17 +530,17 @@ zstyle ':completion:*:*:vi(m|):*' ignored-patterns \
 	'a.out|*.o'
 
 # source: http://madism.org/~madcoder/dotfiles/zsh/40_completion
-zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
+zstyle ':completion:*:processes' command 'ps -au${USER} -o pid,time,cmd|grep -v "ps -au${USER} -o pid,time,cmd"'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
 
 zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 
-# $hosts is set from the hosts package
+# ${hosts} is set from the hosts package
 zstyle ':completion:*' hosts ${(k)hosts}
 
-[[ -e $ZCACHEDIR/compdump ]] || zrc_info "Creating completion cache"
-compinit -C -d $ZCACHEDIR/compdump
+[[ -e ${ZCACHEDIR}/compdump ]] || zrc_info "Creating completion cache"
+compinit -C -d ${ZCACHEDIR}/compdump
 
 compdef _hosts sshmount
 compdef _functions reload

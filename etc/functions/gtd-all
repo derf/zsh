@@ -5,8 +5,8 @@ typeset prefix=~/var/gtd
 typeset database
 typeset -i force
 
-while [[ $1 == -* ]] {
-	case $1 in
+while [[ ${1} == -* ]] {
+	case ${1} in
 		-|--) shift; break ;;
 		--force) force=1 ;;
 	esac
@@ -26,7 +26,7 @@ function gtd_grep {
 	return 0
 }
 
-for database in $prefix/*(.N); {
+for database in ${prefix}/*(.N); {
 	echo "\n${database:t}"
-	todo --database $database $* | gtd_grep
+	todo --database ${database} ${*} | gtd_grep
 }

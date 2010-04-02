@@ -28,15 +28,15 @@ arguments=(
 	- help
 	'-help[print help]'
 	- solid
-	'-solid[set root window to specified color]:color:'"($colors)"
+	'-solid[set root window to specified color]:color:'"(${colors})"
 	- gradient
-	'-gradient[render texture string]:texturestring:'"($texturestrings)"
-	'-from[first grodient color]:color:'"($colors)"
-	'-to[second gradient color]:color:'"($colors)"
+	'-gradient[render texture string]:texturestring:'"(${texturestrings})"
+	'-from[first grodient color]:color:'"(${colors})"
+	'-to[second gradient color]:color:'"(${colors})"
 	- mod
 	'-mod[create modula pattern]:x: :y: '
-	'-bg[modula background color]:color:'"($colors)"
-	'-fg[modula foreground color]:color:'"($colors)"
+	'-bg[modula background color]:color:'"(${colors})"
+	'-fg[modula foreground color]:color:'"(${colors})"
 )
 
-_arguments -s $arguments
+_arguments -s ${arguments}

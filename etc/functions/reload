@@ -7,8 +7,8 @@ if [[ ${#*} == 0 ]] {
 	rehash
 } else {
 	local function
-	for function in $@; {
-		unfunction $function
-		autoload $function
+	for function in ${@}; {
+		unfunction ${function}
+		autoload ${function}
 	}
 }

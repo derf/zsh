@@ -167,7 +167,7 @@ arguments=(
 )
 
 for arg in ${(k)argument_pairs}; {
-	arguments+='(--'$arg')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
+	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
 	arguments+='(-'${argument_pairs[$arg]}[1]')--'${arg}${argument_postfix[$arg]}
 }
 
@@ -177,9 +177,9 @@ function _feh_theme {
 		typeset theme IFS=$'\n'
 		for theme in $(grep "\w" ~/.fehrc | grep -v "^#"); do
 			tmp=(${(s: :)theme})
-			theme=$tmp[1]
+			theme=${tmp[1]}
 			shift tmp
-			themes+=$theme:${(j: :)tmp}
+			themes+=${theme}:${(j: :)tmp}
 		done
 		_describe 'theme' themes
 	fi
@@ -197,4 +197,4 @@ function _feh_background {
 	'mode:mode:(trans)'
 }
 
-_arguments -s $arguments
+_arguments -s ${arguments}
