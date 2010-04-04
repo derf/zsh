@@ -397,6 +397,8 @@ alias x='unsetopt bg_nice; startx &! exit'
 
 alias readahead='cat **/*(-.) > /dev/null'
 
+alias safe='dtach -c /tmp/.dtach.$$'
+
 # }}}
 if [[ ${distro} == debian ]] { #{{{
 
