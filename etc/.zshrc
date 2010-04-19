@@ -81,15 +81,8 @@ path=(~/bin ${path})
 
 # Add manuals from caretaker to manpath
 if [[ ${distro} == debian ]] {
-	if [[ -e ~/packages/catman ]] {
-		export MANPATH=/var/cache/man
-	} else {
-		export MANPATH=/usr/share/man
-		if (( COLUMNS > 100 )) {
-			export MANWIDTH=100
-		}
-	}
-	MANPATH+=":/usr/local/share/man:${HOME}/packages/.collected/man"
+	export MANPATH=/usr/share/man:/usr/local/share/man
+	MANPATH+=":${HOME}/packages/.collected/man"
 }
 
 # }}}
@@ -243,9 +236,8 @@ zstyle ':prompt:rtab' nameddirs yes
 # }}}
 # {{{ Named directories
 
-hash -d vcs=~/var/svn
+xhashd vcs=~/var/svn
 xhashd lyrics=~vcs/lyrics
-xhashd www=/var/www
 xhashd web=~/public_html
 
 # }}}
@@ -254,7 +246,7 @@ xhashd web=~/public_html
 bindkey -e
 [[ -z ${terminfo[kdch1]} ]] || bindkey -M emacs ${terminfo[kdch1]} delete-char
 [[ -z ${terminfo[khome]} ]] || bindkey -M emacs ${terminfo[khome]} beginning-of-line
-[[ -z ${terminfo[kend]} ]] || bindkey -M emacs ${terminfo[kend]} end-of-line
+[[ -z ${terminfo[kend]}  ]] || bindkey -M emacs ${terminfo[kend]}  end-of-line
 
 # }}}
 # {{{ Aliases
@@ -262,15 +254,15 @@ bindkey -e
 
 typeset -A alias_apps
 alias_apps=(
-	archive	extract
-	audio	mplayer
-	document	kpdf
-	image	feh
-	video	mplayer
+	archive    extract
+	audio      mplayer
+	document   apvlv
+	image      feh
+	video      mplayer
 )
 
 for meta in ${parameters[(I)mime_*]#mime_}; {
-	for format in $(eval echo "$"mime_${meta}); {
+	for format in $(eval echo '$'mime_${meta}); {
 		alias -s ${format}=${alias_apps[$meta]}
 	}
 }
@@ -380,7 +372,7 @@ for i in ~/var/gtd/*(.N); {
 }
 
 alias lsi='feh --list'
-alias lst='tar tvf'
+alias lst='tar -tvf'
 alias lsz='unzip -l'
 
 alias nb='newsbeuter'
@@ -440,7 +432,7 @@ if [[ ${distro} == debian ]] { #{{{
 } #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
-	alias feh='feh --quiet --verbose --action8 "nrm '\'%f\'\"
+	alias feh='feh --quiet --verbose --sort filename --action8 "nrm '\'%f\'\"
 
 	# Alias structure:
 	# feh[theme][recursive?][slide-delay?]
