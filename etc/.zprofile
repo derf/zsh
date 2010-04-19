@@ -15,6 +15,14 @@ echo
 
 [[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
 [[ -r ${ZDIR}/local-profile ]] && source ${ZDIR}/local-profile
-[[ -r ${ZDIR}/hosts/profile-${HOST} ]] && source ${ZDIR}/hosts/profile-${HOST}
+
+if [[ ${HOST} == (remnant|saviour) && -z ${SSH_CONNECTION} && \
+	! -e /tmp/.x-started ]] \
+{
+	touch /tmp/.x-started
+	unsetopt bg_nice
+	xinit /home/derf/.xinitrc -- /etc/X11/xinit/xserverrc :0 -auth \
+		$(mktemp --tmpdir serverauth.XXXXXXXXXX) &! exit
+}
 
 unfunction pr_info
