@@ -1,2 +1,0 @@
-## vim:ft=zsh
-echo -e "\e[1;33m${*}\e[0m" > /dev/stderr
