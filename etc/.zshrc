@@ -320,8 +320,6 @@ alias todo='noglob todo -f +children'
 
 alias vim='vim -p'
 
-alias desmume='pushd ~/lib/games/nds; desmume --num-cores=2'
-
 alias icq='dtach -A ~/.dtach.ysm ysm'
 alias irc='dtach -A ~/.dtach.irssi irssi'
 alias jabber='dtach -A ~/.dtach.mcabber mcabber'
