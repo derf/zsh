@@ -390,6 +390,8 @@ alias readahead='cat **/*(-.) > /dev/null'
 
 alias safe='dtach -c /tmp/.dtach.$$'
 
+alias dent='twidge update'
+
 # }}}
 if [[ ${distro} == debian ]] { #{{{
 
