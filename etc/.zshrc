@@ -433,7 +433,7 @@ if [[ ${distro} == debian ]] { #{{{
 } #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
-	alias feh='feh --quiet --verbose --sort filename --action8 "nrm '\'%f\'\"
+	alias feh='feh --quiet --verbose --action8 "nrm '\'%f\'\"
 
 	# Alias structure:
 	# feh[theme][recursive?][slide-delay?]
