@@ -90,7 +90,7 @@ if [[ ${distro} == debian ]] {
 
 mime_archive=(
 	7z ace arj bz bz2 cpio deb dz gz jar lzh lzma rar rpm rz svgz
-	tar taz tbz2 tgz tz z Z zip zoo
+	tar taz tbz2 tgz tz xz z Z zip zoo
 )
 mime_audio=(
 	aif aifc aiff amr amr au awb awb axa flac gsm kar m3u m3u m4a mid midi
