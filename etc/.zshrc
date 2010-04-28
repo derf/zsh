@@ -320,10 +320,6 @@ alias todo='noglob todo -f +children'
 
 alias vim='vim -p'
 
-alias icq='dtach -A ~/.dtach.ysm ysm'
-alias irc='dtach -A ~/.dtach.irssi irssi'
-alias jabber='dtach -A ~/.dtach.mcabber mcabber'
-
 # }}}
 # {{{ Font
 
@@ -359,12 +355,19 @@ alias allr='for i in **/*;'
 # }}}
 # {{{ Misc
 
+alias dent='twidge update'
+
 alias dua='du --apparent-size'
 
 alias lasth='last | head -$((LINES-1))'
 
 alias fbif='fbi -a'
 alias fbij='fbi -a -u'
+
+alias icq='dtach -A ~/.dtach.ysm ysm'
+alias irc='dtach -A ~/.dtach.irssi irssi'
+alias jabber='dtach -A ~/.dtach.mcabber mcabber'
+alias safe='dtach -c /tmp/.dtach.$$'
 
 for i in ~/var/gtd/*(.N); {
 	alias gtd-${i:t}='todo --database '${i}
@@ -374,23 +377,19 @@ alias lsi='feh --list'
 alias lst='tar -tvf'
 alias lsz='unzip -l'
 
+alias mate='decrement ~/stuff/$(cat ~/var/tmp/.actual-location)/mateguthaben'
+
 alias nb='newsbeuter'
 alias nbr='newsbeuter -r'
 
 alias rd='rmdir'
 
-alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
-
-# Mateguthaben in CCC-Erfas u.ä.
-alias mate='decrement ~/stuff/$(cat ~/var/tmp/.actual-location)/mateguthaben'
-
-alias x='unsetopt bg_nice; startx &! exit'
-
 alias readahead='cat **/*(-.) > /dev/null'
 
-alias safe='dtach -c /tmp/.dtach.$$'
+alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin"\
+	"--log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
-alias dent='twidge update'
+alias x='unsetopt bg_nice; startx &! exit'
 
 alias xxz='xz -v -9 -M 800M'
 
