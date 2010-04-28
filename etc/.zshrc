@@ -392,6 +392,8 @@ alias safe='dtach -c /tmp/.dtach.$$'
 
 alias dent='twidge update'
 
+alias xxz='xz -v -9 -M 800M'
+
 # }}}
 if [[ ${distro} == debian ]] { #{{{
 
