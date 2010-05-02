@@ -292,6 +292,8 @@ linux: alias du='du -shD' ||
 linux: alias ls='ls -h --color=auto' ||
        alias ls='ls -h'
 
+[[ -n ${commands[bsdtar]} ]] && alias tar=bsdtar
+
 ## enable alias expansion
 alias exec='exec '
 alias sudo='sudo '
