@@ -173,13 +173,6 @@ function xhashd {
 	}
 }
 
-# Note: local assignments (typeset foo=bar) are lost. export foo=bar works.
-function xsource {
-	if [[ -r ${1} ]] {
-		source ${1}
-	}
-}
-
 function Status Start Stop Restart Reload {
 	typeset script sudo
 	if ((EUID)) {
@@ -484,18 +477,15 @@ if ((SHOW_INFO)) {
 # }}}
 # {{{ Includes
 
-# no xsource here - typeset may be used
 if [[ -e ${ZDIR}/../provided/includes ]] {
 	source ${ZDIR}/../provided/includes
 }
 
-# local configuration, not in git
-xsource ${ZDIR}/local
+if [[ -e ${ZDIR}/local ]] {
+	source ${ZDIR}/local
+}
 
 [[ -n ${commands[envstore]} ]] && eval $(envstore eval)
-
-# local configuration, in git
-xsource ${ZDIR}/hosts/${HOST}
 
 # }}}
 # {{{ Completion
@@ -548,7 +538,6 @@ compdef _functions reload
 
 unalias 'linux:'
 unfunction zrc_info
-unfunction xsource
 unset system distro
 unset -m 'mime_*'
 
