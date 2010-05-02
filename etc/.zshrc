@@ -174,12 +174,9 @@ function xhashd {
 }
 
 function Status Start Stop Restart Reload {
-	typeset script sudo
-	if ((EUID)) {
-		sudo=sudo
-	}
+	typeset script
 	for script in ${*}; {
-		${sudo} /etc/init.d/${script} ${0:l}
+		sudo /etc/init.d/${script} ${0:l}
 	}
 }
 
@@ -193,11 +190,9 @@ zle -N self-insert url-quote-magic
 # }}}
 # {{{ Prompt
 
-# RPS1 is on the right side of the terminal
-# The \ek\e\\ is for screen's 'shelltitle'
-
 # psvar[1] = directory info
 # psvar[2] = rtab (current directory)
+# (both set by the chpwd function)
 
 typeset -A ps rps
 
@@ -205,20 +200,17 @@ ps=(
 	host   "%F{yellow}%m"
 	dir    "%F{default}%30<…<%2v%>>"
 	sign   "%(!.%F{red}.%F{green})%(?.%(!.#.>).%?)%F{default}"
-	screen $'%{\ek\e\\%}'
 )
 
 rps=(
-	start_always "%F{yellow}["
-	start_screen "%(1V.%F{yellow}["
-	dirinfo      "%F{default}%1v"
-	end_always   "%F{yellow}]%F{default}"
-	end_screen   "%(1V.%F{yellow}]%F{default}.)"
+	start    "%(1V.%F{yellow}["
+	dirinfo  "%F{default}%1v"
+	end      "%(1V.%F{yellow}]%F{default}.)"
 )
 
-PS1="${ps[host]} ${ps[dir]} ${ps[sign]} ${ps[screen]}"
+PS1="${ps[host]} ${ps[dir]} ${ps[sign]} "
 
-RPS1="${rps[start_screen]}${rps[dirinfo]}${rps[end_screen]}"
+RPS1="${rps[start]}${rps[dirinfo]}${rps[end]}"
 
 unset ps rps
 
