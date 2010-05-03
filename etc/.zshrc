@@ -76,6 +76,10 @@ if (( EUID != 0)) {
 
 export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
 
+if [[ -n ${commands[clang]} ]] {
+	export CC=clang
+}
+
 typeset -U path
 path=(~/bin ${path})
 
