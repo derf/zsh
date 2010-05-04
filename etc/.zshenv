@@ -10,7 +10,9 @@ fpath=(${ZDIR}/functions ${ZDIR}/completions ${fpath})
 export EDITOR==vim
 export MPD_HOST=mpd
 export CALENDAR_DIR=${HOME}/stuff
-export LESS='--silent --no-init --clear-screen --RAW-CONTROL-CHARS --quit-if-one-screen --ignore-case --tabs=5'
+
+export LESS='--silent --no-init --clear-screen --RAW-CONTROL-CHARS'\
+' --quit-if-one-screen --ignore-case --tabs=5'
 
 # Required for various scripts
 export HOST

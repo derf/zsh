@@ -102,8 +102,9 @@ mime_audio=(
 )
 mime_document=(pdf ps)
 mime_image=(
-	art bmp cdr cdt cpt cr2 crw djv djvu erf gif ico ief jng jpe jpeg jpg nef orf
-	pat pbm pcx pgm png pnm ppm psd ras rgb svg svgz tif tiff wbmp xbm xpm xwd
+	art bmp cdr cdt cpt cr2 crw djv djvu erf gif ico ief jng jpe jpeg jpg nef
+	orf pat pbm pcx pgm png pnm ppm psd ras rgb svg svgz tif tiff wbmp xbm
+	xpm xwd
 )
 mime_video=(
 	3gp asf asx avi axv dif divx dl dv fli flv gl lsf lsx m2t mkv mng mov
@@ -233,9 +234,12 @@ xhashd web=~/public_html
 # {{{ Keys
 
 bindkey -e
-[[ -z ${terminfo[kdch1]} ]] || bindkey -M emacs ${terminfo[kdch1]} delete-char
-[[ -z ${terminfo[khome]} ]] || bindkey -M emacs ${terminfo[khome]} beginning-of-line
-[[ -z ${terminfo[kend]}  ]] || bindkey -M emacs ${terminfo[kend]}  end-of-line
+[[ -z ${terminfo[kdch1]} ]] || bindkey -M emacs ${terminfo[kdch1]} \
+	delete-char
+[[ -z ${terminfo[khome]} ]] || bindkey -M emacs ${terminfo[khome]} \
+	beginning-of-line
+[[ -z ${terminfo[kend]}  ]] || bindkey -M emacs ${terminfo[kend]} \
+	end-of-line
 
 # }}}
 # {{{ Aliases
@@ -314,8 +318,11 @@ alias vim='vim -p'
 # }}}
 # {{{ Font
 
-alias font-present='echo -en "\033]50;-*-terminus-medium-*-*-*-*-320-*-*-*-*-*-*\007"'
-alias font-default='echo -en "\033]50;-misc-fixed-medium-r-semicondensed--13-*-*-*-*-*-iso10646-1\007"'
+alias font-present='echo -en '\
+'"\033]50;-*-terminus-medium-*-*-*-*-320-*-*-*-*-*-*\007"'
+
+alias font-default='echo -en '\
+'"\033]50;-misc-fixed-medium-r-semicondensed--13-*-*-*-*-*-iso10646-1\007"'
 
 # }}}
 # {{{ Global
@@ -514,8 +521,11 @@ zstyle ':completion:*:*:vi(m|):*' ignored-patterns \
 	'a.out|*.o'
 
 # source: http://madism.org/~madcoder/dotfiles/zsh/40_completion
-zstyle ':completion:*:processes' command 'ps -au${USER} -o pid,time,cmd|grep -v "ps -au${USER} -o pid,time,cmd"'
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
+zstyle ':completion:*:processes' command \
+	'ps -au${USER} -o pid,time,cmd|grep -v "ps -au${USER} -o pid,time,cmd"'
+
+zstyle ':completion:*:*:kill:*:processes' list-colors \
+	'=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
 
 zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
