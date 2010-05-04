@@ -385,7 +385,7 @@ alias rd='rmdir'
 alias readahead='cat **/*(-.) > /dev/null'
 
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin"\
-	"--log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
+" --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
 alias x='unsetopt bg_nice; startx &! exit'
 
