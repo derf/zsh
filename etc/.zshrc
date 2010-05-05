@@ -8,13 +8,7 @@
 
 # {{{ OS Detection
 
-system=${$(uname):l}
-
-alias 'linux:'='[[ ${system} == linux ]] &&'
-
-if [[ ${system} == linux ]] {
-	[[ -f /etc/debian_version ]] && distro=debian
-}
+[[ -f /etc/debian_version ]] && distro=debian
 
 # }}}
 # {{{ Startup infos
@@ -267,23 +261,18 @@ unset filetypes meta format alias_apps
 
 # To evade these defaults, use '=command' instead of 'command'
 
-linux: {
-	alias grep='grep --color=auto'
-	alias egrep='grep -E'
-	alias fgrep='grep -F'
-	alias bzgrep='bzgrep --color=auto'
-	alias zgrep='zgrep --color=auto'
-}
+alias grep='grep --color=auto'
+alias egrep='grep -E'
+alias fgrep='grep -F'
+alias bzgrep='bzgrep --color=auto'
+alias zgrep='zgrep --color=auto'
 
 
-linux: alias df='df -hl --exclude-type=fuse.encfs' ||
-       alias df='df -hl'
+alias df='df -hl --exclude-type=fuse.encfs'
 
-linux: alias du='du -shD' ||
-       alias du='du -shH'
+alias du='du -shD'
 
-linux: alias ls='ls -h --color=auto' ||
-       alias ls='ls -h'
+alias ls='ls -h --color=auto'
 
 [[ -n ${commands[bsdtar]} ]] && alias tar=bsdtar
 
@@ -291,8 +280,7 @@ linux: alias ls='ls -h --color=auto' ||
 alias exec='exec '
 alias sudo='sudo '
 
-linux: alias netstat='sudo netstat --program --all --tcp --extend' ||
-       alias netstat='sudo netstat -atp tcp'
+alias netstat='sudo netstat --program --all --tcp --extend'
 
 
 alias bc='bc -l'
@@ -542,7 +530,6 @@ compdef _functions reload
 # }}}
 # {{{ Cleanup
 
-unalias 'linux:'
 unfunction zrc_info
 unset system distro
 unset -m 'mime_*'
