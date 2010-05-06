@@ -1,32 +1,10 @@
 ## vim:ft=zsh
 ## concatenate all GTD databases
-## usage: gtd-all [--force] [devtodo options]
+## usage: gtd-all [devtodo options]
 typeset prefix=~/var/gtd
 typeset database
-typeset -i force
-
-while [[ ${1} == -* ]] {
-	case ${1} in
-		-|--) shift; break ;;
-		--force) force=1 ;;
-	esac
-	shift
-}
-
-function gtd_grep {
-	if (( force )) {
-		cat
-		return 0
-	}
-	if [[ -r ~/var/tmp/.actual-location && $(<~/var/tmp/.actual-location) == offline ]] {
-		fgrep -v '@online'
-		return 0
-	}
-	cat
-	return 0
-}
 
 for database in ${prefix}/*(.N); {
 	echo "\n${database:t}"
-	todo --database ${database} ${*} | gtd_grep
+	todo --database ${database} ${*}
 }

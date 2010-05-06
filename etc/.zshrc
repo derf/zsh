@@ -363,7 +363,7 @@ alias lsi='feh --list'
 alias lst='tar -tvf'
 alias lsz='unzip -l'
 
-alias mate='decrement ~/stuff/$(cat ~/var/tmp/.actual-location)/mateguthaben'
+alias mate='decrement ~/stuff/$(cat /tmp/.location)/mateguthaben'
 
 alias nb='newsbeuter'
 alias nbr='newsbeuter -r'
