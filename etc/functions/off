@@ -49,7 +49,7 @@ if pgrep -x amarokapp &> /dev/null; then
 	execute dcop amarok MainApplication-Interface quit
 fi
 
-execute uinit -o text stop-all
+execute uinit stop -a
 
 while read filesystem garbage; do
 	if [[ ${garbage} == *[12] ]] && fgrep -q ${filesystem} /etc/mtab; then
