@@ -292,6 +292,8 @@ alias mv='mv -i'
 
 alias pmount='pmount -A'
 
+alias exifprobe='exifprobe -Rc'
+
 alias find='noglob find'
 
 alias man='man -a'
