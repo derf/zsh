@@ -24,7 +24,11 @@ close($comp_file);
 open(my $man_file, '<', $man_path) or die("Can't open $man_path: $!");
 while (my $line = <$man_file>) {
 
-	if ($line !~ /^ \.B \s (?: -(?<short> . ), \s )? --(?<long> [\w-]+ )/xo) {
+	if ($line !~ /^ \.It \s Cm \s (?: -(?<short> . ) \s , )? --(?<long> [\w-]+ )/xo) {
+		next;
+	}
+
+	if ($+{'long'} =~ / ^ action \d $ /xo) {
 		next;
 	}
 
