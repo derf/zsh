@@ -1,7 +1,73 @@
 #compdef modprobe
-typeset expl
-_wanted module expl module \
-compadd $(
-	find /lib/modules/$(uname -r) -type f -name '*.ko' -printf '%f\n' |
-	sed 's/\.ko$//'
+## completion for modprobe x.y, based on modprobe(1)
+## Copyright (C) 2010 by Daniel Friesel <derf@chaosdorf.de>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
+
+typeset -a arguments
+typeset -A argument_pairs argument_postfix
+typeset arg
+
+argument_pairs=(
+	all           a
+	use-blacklist b
+	config        C
+	showconfig    c
+	dirname       d
+	force         f
+	ignore-install i
+	list          l
+	dry-run       n
+	name          o
+	quiet         q
+	resolve-alias R
+	remove        r
+	set-version   S
+	syslog        s
+	version       V
+	verbose       v
 )
+
+argument_postfix=(
+	all           '[Insert all modules listed, no parameters]'
+	use-blacklist '[Apply blacklist commands to module names]'
+	config        '[Change config directory/file]:file:_files]'
+	showconfig    '[Dump current configuration]'
+	dirname       '[Show module directory]'
+	force         '[Force module insertion regardless of version issues]'
+	ignore-install '[Ignore install and remove commands in the config]'
+	list          '[List all matching modules]:wildcard'
+	dry-run       '[Do not actually change things]'
+	name          '[insert module with another name]:module name'
+	quiet         '[Do not print error messages]'
+	resolve-alias '[Print all module names matching an alias]'
+	remove        '[remove modules rather than inserting them]'
+	set-version   '[Set kernel version (for finding modules)]'
+	syslog        '[Write errors to syslog]'
+	version       '[show version information]'
+	verbose       '[Show what modprobe is doing]'
+)
+
+arguments=(
+	'--dump-modversions[Print versioning information]'
+	'--first-time[fail if a module already is inserted]'
+	'--force-vermagic[Ignore version magic when loading modules]'
+	'--force-modversion[Ignore CONFIG_MODVERSION when loading modules]'
+	'--show-depends[List dependencies of a module]'
+	'*:module:_modprobe_module'
+)
+
+for arg in ${(k)argument_pairs}; {
+	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
+	arguments+='(-'${argument_pairs[$arg]}[1]')--'${arg}${argument_postfix[$arg]}
+}
+
+function _modprobe_module {
+	typeset expl
+	_wanted module expl module \
+	compadd $(
+		find /lib/modules/$(uname -r) -type f -name '*.ko' -printf '%f\n' | \
+		sed 's/\.ko$//'
+	)
+}
+
+_arguments -s ${arguments}
