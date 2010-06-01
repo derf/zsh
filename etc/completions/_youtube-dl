@@ -1,0 +1,67 @@
+#compdef youtube-dl
+## completion for youtube-dl v2010.04.04, based on youtube-dl(1)
+## Copyright © 2010 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
+
+typeset -a arguments
+typeset -A argument_pairs argument_postfix
+typeset arg
+
+argument_pairs=(
+	help          h
+	version       v
+	ignore-errors i
+	rate-limit    r
+	username      u
+	password      p
+	netrc         n
+	format        f
+	best-quality  b
+	mobile-version m
+	high-def      d
+	quiet         q
+	simulate      s
+	get-url       g
+	get-title     e
+	title         t
+	literal       l
+	output        o
+	batch-file    a
+	no-overwrites w
+	continue      c
+)
+
+argument_postfix=(
+	help          '[Show help]'
+	version       '[Show version]'
+	ignore-errors '[Ignore errors when downloading]'
+	rate-limit    '[Limit download rate]:bandwidth limit'
+	username      '[Specify youtube username]:username'
+	password      '[Specify youtube password]:password'
+	netrc         '[Load authentication data from .netrc]'
+	format        '[Specify video quality]:video format'
+	best-quality  '[Download the best available quality]'
+	mobile-version '[Download mobile version of the video]'
+	high-def      '[Download video in HD quality]'
+	quiet         '[Quiet mode]'
+	simulate      '[Do not actually download videos]'
+	get-url       '[Print actual video url]'
+	get-title     '[Print video title]'
+	title         '[Put video title into the filename]'
+	literal       '[Put literal video title into the filename]'
+	output        '[Specify filename template]:template'
+	batch-file    '[Download videos specified in file]:file:_files'
+	no-overwrites '[Do not overwrite existing files]'
+	continue      '[Resume partial downloads]'
+)
+
+arguments=(
+	'*:youtube link'
+)
+
+for arg in ${(k)argument_pairs}; {
+	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
+	arguments+='(-'${argument_pairs[$arg]}[1]')--'${arg}${argument_postfix[$arg]}
+}
+
+_arguments -s ${arguments}
