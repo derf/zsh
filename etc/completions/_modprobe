@@ -32,7 +32,7 @@ argument_postfix=(
 	use-blacklist '[Apply blacklist commands to module names]'
 	config        '[Change config directory/file]:file:_files]'
 	showconfig    '[Dump current configuration]'
-	dirname       '[Show module directory]'
+	dirname       '[Set module directory]:module directory:_files -/'
 	force         '[Force module insertion regardless of version issues]'
 	ignore-install '[Ignore install and remove commands in the config]'
 	list          '[List all matching modules]:wildcard'
