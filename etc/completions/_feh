@@ -1,5 +1,5 @@
 #compdef feh
-## completion for feh 1.6 (incomplete), based on feh(1)
+## completion for feh 1.6, based on feh(1)
 ## Copyright (C) 2008, 2009 by Daniel Friesel <derf@derf.homelinux.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
@@ -163,6 +163,7 @@ arguments=(
 	'--draw-actions[Draw defined actions]'
 	'--cache-thumbnails[Enable thumbnail caching]'
 	'--menu-bg[Background image in menus]: :_feh_background'
+	'--thumb-redraw[Set thumbnail image redraw frequency]:digit'
 	'*:file:_files'
 )
 
