@@ -1,0 +1,59 @@
+#compdef fdupes
+## completion for fdupes v1.50-RP2, based on fdupes(1)
+## Copyright © 2010 by Daniel Friesel <derf@derf.homelinux.org>
+## License: WTFPL <http://sam.zoy.org/wtfpl>
+
+typeset -a arguments
+typeset -A argument_pairs argument_postfix
+typeset arg
+
+argument_pairs=(
+	recurse       r
+	recurse\\:    R
+	symlinks      s
+	hardlinks     H
+	noempty       n
+	omitfirst     f
+	nohidden      A
+	sameline      1
+	size          S
+	summarize     m
+	quiet         q
+	delete        d
+	hardlink      L
+	noprompt      N
+	debug         D
+	version       v
+	help          h
+)
+
+argument_postfix=(
+	recurse       '[Recurse into subdirectories]'
+	recurse\\:    '[Recurse into subdirectories only after this option]'
+	symlinks      '[Follow symlinked directorie]'
+	hardlinks     '[Treat hardlinked files as duplicates]'
+	noempty       '[Exclude zero-length files]'
+	omitfirst     '[Omit first file in each set of showed matches]'
+	nohidden      '[Exclude hidden files]'
+	sameline      '[List each set of matches on a single line]'
+	size          '[Show size of duplicate files]'
+	summarize     '[Summarize duplicate files information]'
+	quiet         '[Hide progress bar]'
+	delete        '[Prompt user for files to preserve, deleting all others]'
+	hardlink      '[Replace all duplicates with hardlinks to the first file]'
+	noprompt      '[Preserve first file, delete all other duplicates of it]'
+	debug         '[Show debug information]'
+	version       '[Show version]'
+	help          '[Show help]'
+)
+
+arguments=(
+	'*:directory:_files -/'
+)
+
+for arg in ${(k)argument_pairs}; {
+	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
+	arguments+='(-'${argument_pairs[$arg]}[1]')--'${arg}${argument_postfix[$arg]}
+}
+
+_arguments -s ${arguments}
