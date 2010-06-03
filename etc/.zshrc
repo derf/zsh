@@ -451,8 +451,10 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	alias fehfx='feh -Tfs --slideshow-delay'
 	alias fehjrx='feh -Trfs --recursive --slideshow-delay'
 	alias fehfrx='feh -Tfs --recursive --slideshow-delay'
-	alias feht='feh -Tthumbnail'
-	alias fehtr='feh -Tthumbnail --recursive'
+	alias feht='feh -Tthumb'
+	alias fehtr='feh -Tthumb --recursive'
+	alias fehtn='feh -Tthumb_nt'
+	alias fehtnr='feh -Tthumb_nt --recursive'
 
 	alias putscreen='put $(screenshot)'
 
