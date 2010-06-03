@@ -420,6 +420,15 @@ if [[ ${distro} == debian ]] { #{{{
 	alias dprc='sudo dpkg-reconfigure'
 
 } #}}}
+if [[ ${HOST} == aneurysm ]] { #{{{
+
+	while read mdir; do
+
+		alias mutt-${${mdir#.}//\//-}="mutt -f ${HOME}/Maildir/${mdir}"
+
+	done < Maildir/maildirs
+
+} #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
 	alias feh='feh --quiet --verbose --action8 "nrm '\'%f\'\"
