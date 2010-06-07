@@ -282,6 +282,7 @@ alias sudo='sudo '
 
 alias netstat='sudo netstat --program --all --tcp --extend'
 
+alias svstat='sudo svstat /etc/service/*'
 
 alias bc='bc -l'
 
