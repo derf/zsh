@@ -315,6 +315,9 @@ alias font-present='echo -en '\
 alias font-default='echo -en '\
 '"\033]50;-misc-fixed-medium-r-semicondensed--13-*-*-*-*-*-iso10646-1\007"'
 
+alias font-t='echo -en '\
+'"\033]50;-*-terminus-medium-*-*-*-*-150-*-*-*-*-*-*\007"'
+
 # }}}
 # {{{ Global
 
