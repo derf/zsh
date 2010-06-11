@@ -378,6 +378,8 @@ alias rd='rmdir'
 
 alias readahead='cat **/*(-.) > /dev/null'
 
+alias remake='make clean; make && sudo make install'
+
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin"\
 " --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
