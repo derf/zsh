@@ -19,6 +19,8 @@ export HOST
 export COLUMNS
 export LINES
 
+export DEBEMAIL='derf@chaosdorf.de'
+
 if [[ -n ${commands[lesspipe]} ]] {
 	export LESSOPEN='| lesspipe %s'
 	export LESSCLOSE='lesspipe %s %s'
