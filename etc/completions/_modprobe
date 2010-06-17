@@ -64,10 +64,7 @@ for arg in ${(k)argument_pairs}; {
 function _modprobe_module {
 	typeset expl
 	_wanted module expl module \
-	compadd $(
-		find /lib/modules/$(uname -r) -type f -name '*.ko' -printf '%f\n' | \
-		sed 's/\.ko$//'
-	)
+	compadd ${$(echo /lib/modules/$(uname -r)/**/*.ko):t:r}
 }
 
 _arguments -s ${arguments}
