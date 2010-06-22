@@ -53,7 +53,7 @@ arguments=(
 	'--force-vermagic[Ignore version magic when loading modules]'
 	'--force-modversion[Ignore CONFIG_MODVERSION when loading modules]'
 	'--show-depends[List dependencies of a module]'
-	'*:module:_modprobe_all_modules'
+	'*:module:_modprobe_module'
 )
 
 for arg in ${(k)argument_pairs}; {
@@ -71,6 +71,14 @@ function _modprobe_loaded_modules {
 	typeset expl
 	_wanted module expl module \
 	compadd $(cut -d\  -f1 < /proc/modules)
+}
+
+function _modprobe_module {
+	if [[ ${words[(I)-r]} == 0 ]] {
+		_modprobe_all_modules
+	} else {
+		_modprobe_loaded_modules
+	}
 }
 
 _arguments -s ${arguments}
