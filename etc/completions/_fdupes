@@ -53,7 +53,7 @@ arguments=(
 
 for arg in ${(k)argument_pairs}; {
 	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
-	arguments+='(-'${argument_pairs[$arg]}[1]')--'${arg}${argument_postfix[$arg]}
+	arguments+='(-'${${argument_pairs[$arg]}[1]}')--'${arg}${argument_postfix[$arg]}
 }
 
 _arguments -s ${arguments}
