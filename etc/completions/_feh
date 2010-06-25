@@ -1,6 +1,6 @@
 #compdef feh
-## completion for feh 1.7, based on feh(1)
-## Copyright (C) 2008, 2009 by Daniel Friesel <derf@derf.homelinux.org>
+## completion for feh 1.8, based on feh(1)
+## Copyright (C) 2008-2010 by Daniel Friesel <derf@derf.homelinux.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset -a arguments
@@ -60,7 +60,6 @@ argument_pairs=(
 	'font'        'e+'
 	'scale-down'  '.'
 	'output-dir'  'j+'
-	'wget-timestamp' 'G'
 	'fontpath'    'C+'
 	'image-bg'    'B+'
 	'output'      'o'
@@ -125,7 +124,6 @@ argument_postfix=(
 	'slideshow-delay' '[slide change delay]:seconds'
 	'scale-down'  '[Scale down images which are too big]'
 	'output-dir'  '[Save files to DIR (with -k)]:directory:_files -/'
-	'wget-timestamp' '[Add no timestamp ("?123") to URLs]'
 	'fontpath'    '[Add paths to font path]:font path:_files -/'
 	'image-bg'    '[Set transparent image background]:background:(white black default)'
 	'output'      '[montage mode: Output file]:file:_files'
@@ -152,7 +150,7 @@ arguments=(
 	'--no-rotate-ctrl-mask[Don'\''t require Ctrl for the rotate button]'
 	'--no-blur-ctrl-mask[Don'\''t require Ctrl for the blur button]'
 	'--no-xinerama[Disable xinerama support]'
-	'--screen-clip[Toggle window clipping]'
+	'--no-screen-clip[Disable window clipping]'
 	'--hide-pointer[Hide mouse pointer in fullscreen mode]'
 	'*--fontpath[index mode: directory to search for fonts]:directory:_path_files -/'
 	'--index-name[Show image name in index/thumbnail mode]:bool:(0 1)'
