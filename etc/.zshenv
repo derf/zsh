@@ -19,6 +19,7 @@ export HOST
 export COLUMNS
 export LINES
 
+export DEBFULLNAME='Daniel Friesel'
 export DEBEMAIL='derf@chaosdorf.de'
 
 if [[ -n ${commands[lesspipe]} ]] {
