@@ -270,7 +270,7 @@ alias zgrep='zgrep --color=auto'
 
 alias df='df -hl --exclude-type=fuse.encfs'
 
-alias du='du -shD'
+alias du='du -shH'
 
 alias ls='ls -h --color=auto'
 
