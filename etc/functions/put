@@ -5,11 +5,12 @@
 ## Copyright (C) 2008, 2009 by Daniel Friesel <derf@derf.homelinux.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
-typeset hostname
+typeset hostname ssh_name
 typeset -a hosts
-typeset target_dir server_prefix
+typeset target_dir server_prefix max_size
 typeset file remote_file illegal
-typeset -i n_hosts n_ping n_curl
+
+zmodload zsh/stat
 
 if [[ -z ${commands[curl]} ]]; then
 	function curl {return 0}
@@ -21,6 +22,7 @@ function put_aneurysm {
 	ssh_name='aneurysm'
 	target_dir='public_html/tmp/'
 	server_prefix='http://derf.homelinux.org/tmp/'
+	max_size=2000000
 }
 
 function put_chaosdorf {
@@ -28,6 +30,7 @@ function put_chaosdorf {
 	ssh_name='chaosdorf-web'
 	target_dir='public_html/tmp/'
 	server_prefix='http://www.chaosdorf.de/~derf/tmp/'
+	max_size=0
 }
 
 hosts=(aneurysm chaosdorf)
@@ -47,7 +50,6 @@ if [[ ! -f ${1} ]] {
 	return 1
 }
 
-n_hosts=${#hosts}
 file=${1}
 
 while (( ${#hosts} )) {
@@ -55,6 +57,12 @@ while (( ${#hosts} )) {
 	put_${hosts[1]}
 	ping -c 1 ${hostname} &> /dev/null || ping6 -c 1 ${hostname} &> /dev/null
 	if (( ? == 0 )) {
+
+		if (( max_size > 0 && $(zstat +size ${file}) > max_size )) {
+			shift hosts
+			continue
+		}
+
 		if [[ ${remote_file} == ${~illegal} ]] {
 			remote_file=${remote_file:r}
 		}
@@ -63,15 +71,8 @@ while (( ${#hosts} )) {
 		if $(curl -fI ${server_prefix}${remote_file} &> /dev/null); then
 			echo ${server_prefix}${remote_file}
 			return 0
-		else
-			(( n_curl++ ))
 		fi
-	} else {
-		(( n_ping++ ))
 	}
 	shift hosts
 }
-echo "Tried uploading to ${n_hosts} hosts without success" >&2
-((n_ping)) && echo " - ${n_ping} hosts are unreachable"    >&2
-((n_curl)) && echo " - ${n_curl} errors while uploading"   >&2
 return 1
