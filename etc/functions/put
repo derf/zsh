@@ -6,7 +6,7 @@
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset hostname
-typeset -a ssh_options hosts
+typeset -a hosts
 typeset target_dir server_prefix
 typeset file remote_file illegal
 typeset -i n_hosts n_ping n_curl
@@ -16,22 +16,21 @@ if [[ -z ${commands[curl]} ]]; then
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
-function put_aneurysm () {
+function put_aneurysm {
 	hostname='derf.homelinux.org'
-	ssh_options=(-q)
+	ssh_name='aneurysm'
 	target_dir='public_html/tmp/'
 	server_prefix='http://derf.homelinux.org/tmp/'
 }
 
-function put_becquerel () {
-	hostname='becquerel.illdefined.org'
-	ssh_options=(-q)
-	target_dir='www/tmp/'
-	server_prefix='http://static.illdefined.org/~derf/tmp/'
+function put_chaosdorf {
+	hostname='frontend.chaosdorf.de'
+	ssh_name='chaosdorf-web'
+	target_dir='public_html/tmp/'
+	server_prefix='http://www.chaosdorf.de/~derf/tmp/'
 }
 
-hosts=(aneurysm becquerel)
-hosts_nossl=(becquerel)
+hosts=(aneurysm chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
@@ -43,36 +42,36 @@ while [[ ${1} == -* ]] {
 	shift
 }
 
-
-n_hosts=${#hosts}
-if [[ -f ${1} ]] {
-	file=${1}
-	while (( ${#hosts} )) {
-		remote_file=${file:t}
-		put_${hosts[1]}
-		ping -c 1 ${hostname} &> /dev/null || ping6 -c 1 ${hostname} &> /dev/null
-		if (( ? == 0 )) {
-			if [[ ${remote_file} == ${~illegal} ]] {
-				remote_file=${remote_file:r}
-			}
-			scp ${ssh_options} ${file} ${hostname}:${target_dir}/${remote_file}
-			ssh ${ssh_options} ${hostname} "chmod 644 ${target_dir}${remote_file}"
-			if $(curl -fI ${server_prefix}${remote_file} &> /dev/null); then
-				echo ${server_prefix}${remote_file}
-				return 0
-			else
-				(( n_curl++ ))
-			fi
-		} else {
-			(( n_ping++ ))
-		}
-		shift hosts
-	}
-	echo "Tried uploading to ${n_hosts} hosts without success" >&2
-	((n_ping)) && echo " - ${n_ping} hosts are unreachable"    >&2
-	((n_curl)) && echo " - ${n_curl} errors while uploading"   >&2
-	return 1
-} else {
-	echo "${1}: No such file"
+if [[ ! -f ${1} ]] {
+	echo "${1}: No such file" >&2
 	return 1
 }
+
+n_hosts=${#hosts}
+file=${1}
+
+while (( ${#hosts} )) {
+	remote_file=${file:t}
+	put_${hosts[1]}
+	ping -c 1 ${hostname} &> /dev/null || ping6 -c 1 ${hostname} &> /dev/null
+	if (( ? == 0 )) {
+		if [[ ${remote_file} == ${~illegal} ]] {
+			remote_file=${remote_file:r}
+		}
+		lftp -c "connect sftp://${ssh_name}; cd ${target_dir}; put ${file}"\
+" -o ${remote_file}; chmod 644 ${remote_file}"
+		if $(curl -fI ${server_prefix}${remote_file} &> /dev/null); then
+			echo ${server_prefix}${remote_file}
+			return 0
+		else
+			(( n_curl++ ))
+		fi
+	} else {
+		(( n_ping++ ))
+	}
+	shift hosts
+}
+echo "Tried uploading to ${n_hosts} hosts without success" >&2
+((n_ping)) && echo " - ${n_ping} hosts are unreachable"    >&2
+((n_curl)) && echo " - ${n_curl} errors while uploading"   >&2
+return 1
