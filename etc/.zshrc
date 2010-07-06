@@ -268,7 +268,7 @@ alias bzgrep='bzgrep --color=auto'
 alias zgrep='zgrep --color=auto'
 
 
-alias df='df -hl --exclude-type=fuse.encfs'
+alias df='df -h'
 
 alias du='du -shH'
 
