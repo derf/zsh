@@ -1,7 +1,11 @@
 #compdef fbi
 ## completion for fbi <http://linux.bytesex.org/fbida/> 2.07-1, based on fbi -h
 ## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
-## License: WTFPL <http://sam.zoy.org/wtfpl>
+## License: WTFPL <http://sam.zoy.org/wtfpl>:
+##   0. You just DO WHAT THE FUCK YOU WANT TO.
+##
+## http://derf.homelinux.org/git/zsh/plain/etc/completions/_fbi
+
 
 typeset -a arguments
 

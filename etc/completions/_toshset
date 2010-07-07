@@ -2,7 +2,10 @@
 ## vim:ft=zsh
 ## completion for toshset 1.73-2, based toshset(1) and a Toshiba Satellite 2670
 ## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
-## License: WTFPL <http://sam.zoy.org/wtfpl>
+## License: WTFPL <http://sam.zoy.org/wtfpl>:
+##   0. You just DO WHAT THE FUCK YOU WANT TO.
+##
+## http://derf.homelinux.org/git/zsh/plain/etc/completions/_toshset
 
 local arguments
 

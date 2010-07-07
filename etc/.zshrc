@@ -3,8 +3,8 @@
 ## Licence:
 ##   0. You just DO WHAT THE FUCK YOU WANT TO.
 ##
-## https://derf.homelinux.org/dotfiles/zsh/rc
-## see also: https://derf.homelinux.org/dotfiles/zsh/
+## http://derf.homelinux.org/git/zsh/plain/etc/.zshrc
+## see also: http://derf.homelinux.org/git/zsh/tree/etc
 
 # {{{ OS Detection
 
