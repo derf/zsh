@@ -466,7 +466,7 @@ if [[ -e /tmp/.x-started ]] { #{{{
 
 	alias putscreen='put $(screenshot)'
 
-	alias weather='feh http://www.bredeney-wetter.de/aktuell.gif'
+	alias weather='feh http://www.yr.no/place/Germany/North_Rhine-Westphalia/Essen/meteogram.png'
 } #}}}
 
 # }}}
