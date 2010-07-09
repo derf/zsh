@@ -72,6 +72,10 @@ argument_pairs=(
 	'title'       '^'
 	'start-at'    '|'
 	'title-font'  '@'
+	'cache-thumbnails' 'P'
+	'caption-path' 'K+'
+	'draw-actions' 'G'
+	'thumb-redraw' 'J+'
 )
 
 argument_postfix=(
@@ -136,11 +140,14 @@ argument_postfix=(
 	'title'       '[Window title in slideshow mode]:format string'
 	'start-at'    '[Start slideshow at]:file:_files'
 	'title-font'  '[Title font for index mode]:font'
+	'cache-thumbnails' '[Enable thumbnail caching]'
+	'caption-path' '[Where to look for image captions]:relative directory: '
+	'draw-actions' '[Draw defined actions]'
+	'thumb-redraw' '[Set thumbnail image redraw frequency]:digit'
 )
 
 arguments=(
 	'--zoom[Zoom images]:percent: '
-	'--caption-path[Where to look for image captions]:relative directory: '
 	--action{1..9}':shell: '
 	'--bg-tile[Set tiled desktop background]:file:_files'
 	'--bg-center[Set centered desktop background]:file:_files'
@@ -160,10 +167,7 @@ arguments=(
 	'--index-dim[Show image dimensions in index/thumbnail mode]:bool:(0 1)'
 	'--no-jump-on-resort[Stay at current image after resorting the filelist]'
 	'--cycle-once[Quit after one loop through the slideshow]'
-	'--draw-actions[Draw defined actions]'
-	'--cache-thumbnails[Enable thumbnail caching]'
 	'--menu-bg[Background image in menus]: :_feh_background'
-	'--thumb-redraw[Set thumbnail image redraw frequency]:digit'
 	'--xinerama-screen[Set xinerama screen to work on]:digit'
 	'*:file:_files'
 )
