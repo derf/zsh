@@ -369,6 +369,8 @@ alias lsi='feh --list'
 alias lst='tar -tvf'
 alias lsz='unzip -l'
 
+alias lssh='ssh -C -o CompressionLevel=1'
+
 alias mate='decrement ~/stuff/$(cat /tmp/.location)/mateguthaben'
 
 alias nb='newsbeuter'
