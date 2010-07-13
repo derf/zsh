@@ -369,7 +369,7 @@ alias lsi='feh --list'
 alias lst='tar -tvf'
 alias lsz='unzip -l'
 
-alias lssh='ssh -C -o CompressionLevel=1'
+alias lssh='ssh -C -o CompressionLevel=9'
 
 alias mate='decrement ~/stuff/$(cat /tmp/.location)/mateguthaben'
 
