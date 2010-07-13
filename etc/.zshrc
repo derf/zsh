@@ -31,6 +31,8 @@ setopt extended_glob
 
 unsetopt bang_hist
 
+setopt hist_ignore_dups
+
 setopt correct
 
 # greedy is more like dvorak than qwerty...
