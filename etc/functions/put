@@ -2,7 +2,7 @@
 ## put - make a file available via HTTP
 ## supports as many 'failover' hosts as an array can hold
 ## Usage: put <file>
-## Copyright (C) 2008, 2009 by Daniel Friesel <derf@derf.homelinux.org>
+## Copyright © 2008 - 2010 by Daniel Friesel <derf@derf.homelinux.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset hostname ssh_name
@@ -22,7 +22,15 @@ function put_aneurysm {
 	ssh_name='aneurysm'
 	target_dir='public_html/tmp/'
 	server_prefix='http://derf.homelinux.org/tmp/'
-	max_size=2000000
+	max_size=700000
+}
+
+function put_steel {
+	hostname='steel.derf0.net'
+	ssh_name='steel'
+	target_dir='public_html/tmp/'
+	server_prefix='http://steel.derf0.net/tmp/'
+	max_size=0
 }
 
 function put_chaosdorf {
@@ -33,7 +41,7 @@ function put_chaosdorf {
 	max_size=0
 }
 
-hosts=(aneurysm chaosdorf)
+hosts=(aneurysm steel chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
