@@ -222,8 +222,8 @@ zstyle ':prompt:rtab' nameddirs yes
 # }}}
 # {{{ Named directories
 
+xhashd code=~/var/code
 xhashd vcs=~/var/svn
-xhashd lyrics=~vcs/lyrics
 xhashd web=~/public_html
 
 # }}}
