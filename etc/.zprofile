@@ -21,7 +21,7 @@ echo
 [[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
 [[ -r ${ZDIR}/local-profile ]] && source ${ZDIR}/local-profile
 
-if [[ ${HOST} == (descent|chrome) && -z ${SSH_CONNECTION} && \
+if [[ ${HOST} == descent && -z ${SSH_CONNECTION} && \
 	! -e /tmp/.x-started ]] \
 {
 	touch /tmp/.x-started
