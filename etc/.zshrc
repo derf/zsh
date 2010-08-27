@@ -72,6 +72,10 @@ if (( EUID != 0)) {
 
 export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
 
+if [[ -e /sys/class/net/vpn ]] {
+	export http_proxy='http://10.200.200.2:8080/'
+}
+
 if [[ -n ${commands[clang]} ]] {
 	export CC=clang
 }
