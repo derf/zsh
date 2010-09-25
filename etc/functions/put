@@ -53,12 +53,17 @@ while [[ ${1} == -* ]] {
 	shift
 }
 
-if [[ ! -f ${1} ]] {
+if [[ ! -e ${1} ]] {
 	echo "${1}: No such file" >&2
 	return 1
 }
 
-file=${1}
+if [[ -d ${1} ]] {
+	tar -C ${1:h} -cJf /tmp/${1:t}.tar.xz ${1:t}
+	file=/tmp/${1:t}.tar.xz
+} else {
+	file=${1}
+}
 
 while (( ${#hosts} )) {
 	remote_file=${file:t}
