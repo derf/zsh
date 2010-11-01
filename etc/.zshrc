@@ -384,7 +384,7 @@ alias nbr='newsbeuter -r'
 
 alias rd='rmdir'
 
-alias rebuild='perl Build.PL && ./Build && ./Build test && sudo ./Build instell'
+alias rebuild='perl Build.PL && ./Build && ./Build test && sudo ./Build install'
 alias remake='make clean; make && sudo make install'
 
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin"\
