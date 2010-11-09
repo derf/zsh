@@ -440,6 +440,10 @@ if [[ ${HOST} == aneurysm ]] { #{{{
 		alias mutt-${${mdir#.}//\//-}="mutt -f ${HOME}/Maildir/${mdir}"
 
 	done < Maildir/maildirs
+# }}}
+} else { #{{{
+
+	alias icli='ssh aneurysm icli'
 
 } #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
