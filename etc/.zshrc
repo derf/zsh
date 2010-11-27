@@ -355,6 +355,8 @@ alias allr='for i in **/*;'
 
 alias dent='twidge update'
 
+alias dent-cccd='twidge -c ~/.twidgerc.chaosdorf update'
+
 alias dua='du --apparent-size'
 
 alias lasth='last | head -$((LINES-1))'
