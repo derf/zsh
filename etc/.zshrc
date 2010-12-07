@@ -392,6 +392,8 @@ alias remake='make clean; make && sudo make install'
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin"\
 " --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
+alias scanto='convert =(sudo scanimage -p -d hp4200:libusb:002:002)'
+
 alias x='unsetopt bg_nice; startx &! exit'
 
 alias xxz='xz -v -9 -M 800M'
