@@ -487,8 +487,6 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	alias putscreen='put $(screenshot)'
 
 	alias lmplayer='mplayer -vfm ffmpeg -lavdopts lowres=1:fast:skiploopfilter=all'
-
-	alias weather='feh http://www.yr.no/place/Germany/North_Rhine-Westphalia/Essen/meteogram.png'
 } #}}}
 
 # }}}
