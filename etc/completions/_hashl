@@ -1,0 +1,66 @@
+#compdef hashl
+
+typeset -a arguments
+typeset -A argument_pairs argument_postfix
+typeset arg expl
+typeset -i NORMARG
+
+function _hashl_directory {
+	_files -/
+}
+
+function _hashl_db_file {
+	typeset index=${words[(I)(-d|--database)]}
+	typeset dbfile=${words[$((index+1))]}
+	typeset IFS=$'\n'
+	if [[ ${index} != 0 && -r ${dbfile} ]] {
+		_wanted file expl 'file' \
+		compadd $(hashl -d ${dbfile} list | grep -v '^#' | cut -d ' ' -f 2-)
+	} else {
+		_wanted file expl 'file' \
+		compadd $(hashl list | grep -v '^#' | cut -d ' ' -f 2-)
+	}
+}
+
+function _hashl_action {
+	_wanted action expl 'action' \
+	compadd copy find-known find-new ignore info list list-ignored update
+}
+
+function _hashl_action_args {
+	case ${words[$NORMARG]} in
+		copy|find-known|find-new|ignore)
+			_hashl_directory
+		;;
+		info)
+			_hashl_db_file
+		;;
+		*)
+			_message 'no more arguments'
+		;;
+	esac
+}
+
+argument_pairs=(
+	database      d
+	no-progress   n
+	read-size     s+
+)
+
+argument_postfix=(
+	database      '[hashl db]:file:_files'
+	no-progress   '[Do not show progress]'
+	read-size     '[Change hashed file part]:bytes'
+)
+
+for arg in ${(k)argument_pairs}; {
+	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
+	arguments+='(-'${argument_pairs[$arg]}[1]')--'${arg}${argument_postfix[$arg]}
+}
+
+arguments+=(
+	':action:_hashl_action'
+	'*:arguments:_hashl_action_args'
+)
+
+_arguments -n ${arguments}
