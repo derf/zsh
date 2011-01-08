@@ -15,10 +15,10 @@ function _hashl_db_file {
 	typeset IFS=$'\n'
 	if [[ ${index} != 0 && -r ${dbfile} ]] {
 		_wanted file expl 'file' \
-		compadd $(hashl -d ${dbfile} list | grep -v '^#' | cut -d ' ' -f 2-)
+		compadd $(hashl -d ${dbfile} list-files)
 	} else {
 		_wanted file expl 'file' \
-		compadd $(hashl list | grep -v '^#' | cut -d ' ' -f 2-)
+		compadd $(hashl list-files)
 	}
 }
 
