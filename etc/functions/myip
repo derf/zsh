@@ -1,0 +1,9 @@
+if ifdata -e wlan0 && [[ $(cat /sys/class/net/wlan0/operstate) == up ]]; then
+	ifdata -pa wlan0
+
+else
+	ifdata -pa lan
+
+fi
+
+curl https://derf.homelinux.org/cgi-bin/clientinfo/ip.cgi
