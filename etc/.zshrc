@@ -439,7 +439,7 @@ if [[ ${distro} == debian ]] { #{{{
 } #}}}
 if [[ ${HOST} == aneurysm ]] { #{{{
 
-	while read mdir; do
+	while read mdir discard; do
 
 		alias mutt-${${mdir#.}//\//-}="mutt -f ${HOME}/Maildir/${mdir}"
 
