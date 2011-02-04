@@ -108,7 +108,7 @@ mime_image=(
 )
 mime_video=(
 	3gp asf asx avi axv dif divx dl dv fli flv gl lsf lsx m2t mkv mng mov
-	movie mp4 mpe mpeg mpg mpv mxu ogm ogv qt rmvb wm wmv wmx wvx
+	movie mp4 mpe mpeg mpg mpv mxu ogm ogv qt rmvb ts webm wm wmv wmx wvx
 )
 
 # }}}
