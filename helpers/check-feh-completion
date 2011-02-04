@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use 5.010;
 
-my $man_path = "$ENV{HOME}/packages/feh/man/feh.1";
+my $man_path = "$ENV{HOME}/var/code/feh/man/feh.pre";
 my $comp_path = "$ENV{HOME}/packages/zsh/etc/completions/_feh";
 
 my @options;

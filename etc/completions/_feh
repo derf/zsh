@@ -154,6 +154,8 @@ arguments=(
 	'--bg-scale[Set scaled desktop background]:file:_files'
 	'--bg-seamless[Set desktop background with seamless borders]:file:_files'
 	'--bg-fill[Set scaled desktop background, preserving aspect ratio]:file:_files'
+	'--bg-max[Set scaled desktop background, like fill with borders]:file:_files'
+	'--info[Show additional information]:info command'
 	'--menu-style[Style descriptor for menu text]:file:_files'
 	'--menu-ctrl-mask[Use Ctrl+Button to display menu]'
 	'--no-rotate-ctrl-mask[Don'\''t require Ctrl for the rotate button]'
