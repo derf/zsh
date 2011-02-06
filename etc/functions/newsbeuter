@@ -3,7 +3,7 @@
 
 function __sync {
 	if [[ ${HOST} != aneurysm ]] {
-		unisync unison aneurysm .newsbeuter
+		unisync unison aneurysm .config/newsbeuter
 	}
 }
 
