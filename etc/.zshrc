@@ -384,6 +384,8 @@ alias mate='decrement ~/stuff/$(cat /tmp/.location)/mateguthaben'
 alias nb='newsbeuter'
 alias nbr='newsbeuter -r'
 
+alias pdftopng='pdftoppm -png'
+
 alias rd='rmdir'
 
 alias rebuild='perl Build.PL && ./Build && ./Build test && sudo ./Build install'
