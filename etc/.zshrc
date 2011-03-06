@@ -72,10 +72,6 @@ if (( EUID != 0)) {
 
 export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
 
-if [[ -e /sys/class/net/vpn ]] {
-	export http_proxy='http://10.200.200.2:8080/'
-}
-
 if [[ -n ${commands[clang]} ]] {
 	export CC=clang
 }
@@ -399,6 +395,9 @@ alias scanto='convert =(sudo scanimage -p -d hp4200:libusb:002:002)'
 alias x='unsetopt bg_nice; startx &! exit'
 
 alias xxz='xz -v -9 -M 800M'
+
+alias wprox='http_proxy=http://10.200.200.2:8080/'
+alias eprox='export http_proxy=http://10.200.200.2:8080/'
 
 # }}}
 if [[ ${distro} == debian ]] { #{{{
