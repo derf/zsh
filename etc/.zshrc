@@ -224,7 +224,7 @@ zstyle ':prompt:rtab' nameddirs yes
 
 xhashd code=~/var/code
 xhashd vcs=~/var/svn
-xhashd web=~/public_html
+xhashd web=~/web/org.homelinux.derf
 
 # }}}
 # {{{ Keys
