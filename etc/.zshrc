@@ -181,6 +181,12 @@ function Status Start Stop Restart Reload {
 	}
 }
 
+function ondemand powersave {
+	for cpu (/sys/devices/system/cpu/cpu?); do
+		sudo cpufreq-set -c ${${cpu:t}#cpu} -g ${0}
+	done
+}
+
 # }}}
 # {{{ ZLE
 
