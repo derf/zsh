@@ -181,7 +181,7 @@ function Status Start Stop Restart Reload {
 	}
 }
 
-function ondemand powersave {
+function ondemand powersave performance {
 	for cpu (/sys/devices/system/cpu/cpu?); do
 		sudo cpufreq-set -c ${${cpu:t}#cpu} -g ${0}
 	done
