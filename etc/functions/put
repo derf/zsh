@@ -18,17 +18,17 @@ if [[ -z ${commands[curl]} ]]; then
 fi
 
 function put_aneurysm {
-	hostname='derf.homelinux.org'
+	hostname='aneurysm.derf0.net'
 	ssh_name='aneurysm'
-	target_dir='web/org.homelinux.derf/out/tmp'
-	server_prefix='http://derf.homelinux.org/tmp/'
+	target_dir='web/net.derf0.aneurysm/out/tmp'
+	server_prefix='http://aneurysm.derf0.net/tmp/'
 	max_size=700000
 }
 
 function put_steel {
 	hostname='steel.derf0.net'
 	ssh_name='steel'
-	target_dir='public_html/tmp/'
+	target_dir='web/net.derf0.steel/out/tmp/'
 	server_prefix='http://steel.derf0.net/tmp/'
 	max_size=0
 }
