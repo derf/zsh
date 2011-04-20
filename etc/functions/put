@@ -47,7 +47,11 @@ while [[ ${1} == -* ]] {
 	case ${1} in
 		-|--) shift; break ;;
 		*)
-			(( $(eval echo '$#'hosts_${1#-}) )) && eval hosts=\(\$hosts_${1#-}\)
+			if [[ -n ${functions[put_${1#-}]} ]]; then
+				hosts=(${1#-})
+			else
+				(( $(eval echo '$#'hosts_${1#-}) )) && eval hosts=\(\$hosts_${1#-}\)
+			fi
 		;;
 	esac
 	shift
@@ -71,7 +75,7 @@ while (( ${#hosts} )) {
 	ping -c 1 ${hostname} &> /dev/null || ping6 -c 1 ${hostname} &> /dev/null
 	if (( ? == 0 )) {
 
-		if (( max_size > 0 && $(zstat +size ${file}) > max_size )) {
+		if (( max_size > 0 && $(zstat +size ${file}) > max_size && ${#hosts} > 1 )) {
 			shift hosts
 			continue
 		}
