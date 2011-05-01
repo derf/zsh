@@ -366,6 +366,8 @@ alias lasth='last | head -$((LINES-1))'
 alias fbif='fbi -a'
 alias fbij='fbi -a -u'
 
+alias ghi='ghi -r ${PWD:t}'
+
 alias icq='dtach -A ~/.dtach.ysm ysm'
 alias irc='dtach -A ~/.dtach.irssi irssi'
 alias jabber='dtach -A ~/.dtach.mcabber mcabber'
