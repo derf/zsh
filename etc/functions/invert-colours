@@ -1,0 +1,5 @@
+if [[ ${PS1} == '%F{black}'* ]] {
+	PS1=${${${PS1//\%K/%F}//white/default}#\%K\{black\}}
+} else {
+	PS1='%F{black}'${${PS1//\%F/%K}//default/white}
+}
