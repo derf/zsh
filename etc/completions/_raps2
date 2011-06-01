@@ -1,0 +1,32 @@
+#compdef raps2
+
+typeset -i NORMARG
+
+function _raps2_action_args {
+	if [[ ${words[$NORMARG]} == add ]]; then
+		_message 'Account name'
+
+	elif [[ ${words[$NORMARG]} != list ]]; then
+		_path_files -W ${XDG_DATA_HOME-${HOME}/.local/share}/raps2/
+
+	fi
+}
+
+function _raps2_action {
+	typeset -a actions
+
+	actions=(
+		'add:Add an account'
+		'del:Remove an account'
+		'dump:Dump all account data'
+		'edit:Edit account'
+		'get:Place account password in X clipboard'
+		'info:Show account information'
+		'list:list accounts'
+	)
+
+	_describe 'action' actions
+}
+
+_arguments -n ':action:_raps2_action' \
+	'*:arguments:_raps2_action_args'
