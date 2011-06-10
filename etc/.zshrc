@@ -404,6 +404,8 @@ alias x='unsetopt bg_nice; startx &! exit'
 
 alias xxz='xz -v -9 -M 800M'
 
+alias yd='youtube-dl -t'
+
 alias wprox='http_proxy=http://10.200.200.2:8080/'
 alias eprox='export http_proxy=http://10.200.200.2:8080/'
 
