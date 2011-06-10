@@ -450,6 +450,8 @@ if [[ ${distro} == debian ]] { #{{{
 } #}}}
 if [[ ${HOST} == aneurysm ]] { #{{{
 
+	alias m=mutt
+
 	while read mdir shortcut; do
 
 		alias m-${shortcut}="mutt -f ${HOME}/Maildir/${mdir}"
