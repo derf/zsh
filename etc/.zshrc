@@ -457,6 +457,9 @@ if [[ ${HOST} == aneurysm ]] { #{{{
 		alias m-${shortcut}="mutt -f ${HOME}/Maildir/${mdir}"
 
 	done < Maildir/maildirs
+
+	alias  icl='while sleep 20; do out=$(icli -z!o -v); clear; echo $out; done'
+	alias ticl='font-t; icl'
 # }}}
 } else { #{{{
 
