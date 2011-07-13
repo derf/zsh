@@ -408,6 +408,14 @@ alias wprox='http_proxy=http://10.200.200.2:8080/'
 alias eprox='export http_proxy=http://10.200.200.2:8080/'
 
 # }}}
+# {{{ Perl
+
+alias pd='perldoc'
+alias pdf='perldoc -f'
+alias pdm='perldoc -m'
+alias pdv='noglob perldoc -v'
+
+# }}}
 if [[ ${distro} == debian ]] { #{{{
 
 	alias acse='apt-cache search'
