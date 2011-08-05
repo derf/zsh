@@ -9,6 +9,7 @@ typeset hostname ssh_name
 typeset -a hosts
 typeset target_dir server_prefix max_size
 typeset file remote_file illegal
+typeset -i pic make_random
 
 zmodload zsh/stat
 
@@ -33,6 +34,14 @@ function put_steel {
 	max_size=0
 }
 
+function put_steel_pic {
+	hostname='steel.derf0.net'
+	ssh_name='steel'
+	target_dir='web/org.finalrewind.lib/out/p/'
+	server_prefix='http://lib.finalrewind.org/p/'
+	max_size=0
+}
+
 function put_chaosdorf {
 	hostname='frontend.chaosdorf.de'
 	ssh_name='chaosdorf-web'
@@ -46,6 +55,8 @@ hosts=(aneurysm steel chaosdorf)
 while [[ ${1} == -* ]] {
 	case ${1} in
 		-|--) shift; break ;;
+		-p)   pic=1 ;;
+		-r)   make_random=1 ;;
 		*)
 			if [[ -n ${functions[put_${1#-}]} ]]; then
 				hosts=(${1#-})
@@ -69,8 +80,18 @@ if [[ -d ${1} ]] {
 	file=${1}
 }
 
+remote_file=${file:t}
+
+if (( pic )) {
+	hosts=(steel_pic)
+}
+
+if (( make_random )) {
+	remote_file=$(mktemp -u XXXXXX)
+}
+
 while (( ${#hosts} )) {
-	remote_file=${file:t}
+
 	put_${hosts[1]}
 	ping -c 1 ${hostname} &> /dev/null || ping6 -c 1 ${hostname} &> /dev/null
 	if (( ? == 0 )) {
