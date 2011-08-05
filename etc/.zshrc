@@ -353,6 +353,8 @@ alias allr='for i in **/*;'
 # }}}
 # {{{ Misc
 
+alias ddate='ddate "+%A, %B %e, %Y"'
+
 alias dent='twidge update'
 
 alias dent-cccd='twidge -c ~/.twidgerc.chaosdorf update'
