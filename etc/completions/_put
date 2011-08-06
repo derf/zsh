@@ -7,6 +7,6 @@ for net in $(grep '^hosts_' ${ZDIR}/functions/put | sed -r 's/^hosts_(\w*)=.*$/\
 	arguments+="-${net}"
 }
 
-arguments+=':file:_files'
+arguments+='*:file:_files'
 
-_arguments -s ${arguments}
+_arguments -s : -p -r ${arguments}
