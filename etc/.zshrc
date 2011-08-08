@@ -249,7 +249,7 @@ typeset -A alias_apps
 alias_apps=(
 	archive    extract
 	audio      mplayer
-	document   apvlv
+	document   okular
 	image      feh
 	video      mplayer
 )
