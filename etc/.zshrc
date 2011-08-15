@@ -355,9 +355,9 @@ alias allr='for i in **/*;'
 
 alias ddate='ddate "+%A, %B %e, %Y"'
 
-alias dent='twidge update'
+alias dent='twidge -c ~/packages/twitter/etc/derf-identica update'
 
-alias dent-cccd='twidge -c ~/.twidgerc.chaosdorf update'
+alias dent-cccd='twidge -c ~/packages/twitter/etc/chaosdorf-identica update'
 
 alias dua='du --apparent-size'
 
@@ -387,6 +387,9 @@ alias mate='decrement ~/stuff/$(cat /tmp/.location)/mateguthaben'
 
 alias nb='newsbeuter'
 alias nbr='newsbeuter -r'
+
+alias tw='twidge -c ~/packages/twitter/etc/derf-twitter'
+alias twc='twidge -c ~/packages/twitter/etc/chaosdorf-twitter'
 
 alias pdftopng='pdftoppm -png'
 
