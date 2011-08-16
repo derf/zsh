@@ -43,6 +43,8 @@ function _twidge_args {
 
 	args_update=(
 		'(-i --inreplyto)'{-i,--inreplyto}'[update in reply to a message]:message id'
+		'(-i --inreplyto 1)-r[read RFC2822 Mail]'
+		':status'
 	)
 
 	case $1 in
@@ -62,10 +64,7 @@ function _twidge_args {
 			_message username
 			;;
 		update)
-			_arguments \
-				'(-r -i --inreplyto)'{-i,--inreplyto}'[in reply to]:message id' \
-				'-r[read RFC2822 E-Mail]' \
-				'(-r):status'
+			_arguments $args_update
 			;;
 	esac
 }
