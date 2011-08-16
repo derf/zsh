@@ -47,7 +47,7 @@ function _twidge_args {
 		':status'
 	)
 
-	case $1 in
+	case ${words[1]} in
 		lsarchive)
 			_arguments $args_common $args_more $args_other
 			;;
@@ -70,22 +70,11 @@ function _twidge_args {
 }
 
 function _twidge {
-	typeset -i ret=1
-	typeset curcontext=$curcontext state line
-	typeset -A opt_args
-
-	_arguments -C \
+	_arguments \
 		'(-c --config)'{-c,--config}'[config file]:file:_files' \
 		'(-d --debug)'{-d,--debug}'[enable debugging output]' \
-		'(-): :->command' \
-		'(-)*:: :->command-argument' && return
-
-	case $state in
-		command) _call_function ret _twidge_command ;;
-		command-argument) _call_function ret _twidge_args ${words[1]} ;;
-	esac
-
-	return ret
+		'(-): :_twidge_command' \
+		'(-)*:: :_twidge_args'
 }
 
 _twidge
