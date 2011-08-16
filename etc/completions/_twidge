@@ -1,0 +1,92 @@
+#compdef twidge
+## completion for twidge 1.0.8, based on twidge(1)
+## Copyright © 2011 by Daniel Friesel <derf@finalrewind.org>
+## License: WTFPL:
+##    0. You just DO WHAT THE FUCK YOU WANT TO
+
+function _twidge_command {
+	typeset -a twidge_commands
+	typeset -i skip=1
+
+	twidge lscommands | while read cmd desc; do
+		if [[ $cmd == ---* ]] {
+			skip=0
+			continue
+		}
+		if (( skip )) {
+			continue
+		}
+		twidge_commands+="${cmd}:${desc}"
+	done
+
+	_describe command twidge_commands
+}
+
+function _twidge_args {
+	typeset -a args_common args_more args_other args_update
+
+	args_common=(
+		'(-a --all)'{-a,--all}'[receive all content]'
+		'(-e --exec)'{-e,--exec}'[execute command for each retrieved item]:command'
+		'(-l --long)'{-l,--long}'[long output format]'
+		'(-m --mailto)'{-m,--mailto}'[mail retrieved items]:mail address'
+	)
+
+	args_more=(
+		'(-s --saveid)'{-s,--saveid}'[save ID of most recent message]'
+		'(-u --unseen)'{-u,--unseen}'[only show unseen messages]'
+	)
+
+	args_other=(
+		'(-U --username)'{-U,--username}'[show updates of different user]:username'
+	)
+
+	args_update=(
+		'(-i --inreplyto)'{-i,--inreplyto}'[update in reply to a message]:message id'
+	)
+
+	case $1 in
+		lsarchive)
+			_arguments $args_common $args_more $args_other
+			;;
+		ls(dm(|archive)|recent|replies|rt(|archive|replies)))
+			_arguments $args_common $args_more
+			;;
+		lsfollow(ers|ing))
+			_arguments $args_common :username
+			;;
+		dmsend)
+			_arguments :recipient :status
+			;;
+		(un|)follow)
+			_message username
+			;;
+		update)
+			_arguments \
+				'(-r -i --inreplyto)'{-i,--inreplyto}'[in reply to]:message id' \
+				'-r[read RFC2822 E-Mail]' \
+				'(-r):status'
+			;;
+	esac
+}
+
+function _twidge {
+	typeset -i ret=1
+	typeset curcontext=$curcontext state line
+	typeset -A opt_args
+
+	_arguments -C \
+		'(-c --config)'{-c,--config}'[config file]:file:_files' \
+		'(-d --debug)'{-d,--debug}'[enable debugging output]' \
+		'(-): :->command' \
+		'(-)*:: :->command-argument' && return
+
+	case $state in
+		command) _call_function ret _twidge_command ;;
+		command-argument) _call_function ret _twidge_args ${words[1]} ;;
+	esac
+
+	return ret
+}
+
+_twidge
