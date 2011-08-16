@@ -71,10 +71,10 @@ function _twidge_args {
 
 function _twidge {
 	_arguments \
-		'(-c --config)'{-c,--config}'[config file]:file:_files' \
-		'(-d --debug)'{-d,--debug}'[enable debugging output]' \
-		'(-): :_twidge_command' \
-		'(-)*:: :_twidge_args'
+	'(-c --config)'{-c,--config}'[config file]:file:_files' \
+	'(-d --debug)'{-d,--debug}'[enable debugging output]' \
+	'(-): :_twidge_command' \
+	'(-)*:: :_twidge_args'
 }
 
-_twidge
+_twidge "$@"

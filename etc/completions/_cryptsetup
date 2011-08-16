@@ -68,7 +68,8 @@ function _cryptsetup_arguments {
 	esac
 }
 
-_arguments \
+function _cryptsetup {
+	_arguments \
 	'(-v --verbose)'{-v,--verbose}'[enable verbose mode]' \
 	'--debug[enable debug mode]' \
 	'(-h --hash)'{-h,--hash}'[hash algorithm]:hash algorithm' \
@@ -96,3 +97,6 @@ _arguments \
 	'--version[show version information]' \
 	':action:_cryptsetup_action' \
 	'*::arguments:_cryptsetup_arguments'
+}
+
+_cryptsetup "$@"
