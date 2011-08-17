@@ -1,70 +1,60 @@
 #compdef youtube-dl
-## completion for youtube-dl v2010.04.04, based on youtube-dl(1)
-## Copyright © 2010 by Daniel Friesel <derf@derf.homelinux.org>
-## License: WTFPL <http://sam.zoy.org/wtfpl>:
-##   0. You just DO WHAT THE FUCK YOU WANT TO.
-##
-## http://derf.homelinux.org/git/zsh/plain/etc/completions/_youtube-dl
+## completion for youtube-dl v2011.08.04, based on youtube-dl(1)
 
-typeset -a arguments
-typeset -A argument_pairs argument_postfix
-typeset arg
-
-argument_pairs=(
-	help          h
-	version       v
-	ignore-errors i
-	rate-limit    r
-	username      u
-	password      p
-	netrc         n
-	format        f
-	best-quality  b
-	mobile-version m
-	high-def      d
-	quiet         q
-	simulate      s
-	get-url       g
-	get-title     e
-	title         t
-	literal       l
-	output        o
-	batch-file    a
-	no-overwrites w
-	continue      c
-)
-
-argument_postfix=(
-	help          '[Show help]'
-	version       '[Show version]'
-	ignore-errors '[Ignore errors when downloading]'
-	rate-limit    '[Limit download rate]:bandwidth limit'
-	username      '[Specify youtube username]:username'
-	password      '[Specify youtube password]:password'
-	netrc         '[Load authentication data from .netrc]'
-	format        '[Specify video quality]:video format'
-	best-quality  '[Download the best available quality]'
-	mobile-version '[Download mobile version of the video]'
-	high-def      '[Download video in HD quality]'
-	quiet         '[Quiet mode]'
-	simulate      '[Do not actually download videos]'
-	get-url       '[Print actual video url]'
-	get-title     '[Print video title]'
-	title         '[Put video title into the filename]'
-	literal       '[Put literal video title into the filename]'
-	output        '[Specify filename template]:template'
-	batch-file    '[Download videos specified in file]:file:_files'
-	no-overwrites '[Do not overwrite existing files]'
-	continue      '[Resume partial downloads]'
-)
-
-arguments=(
-	'*:youtube link'
-)
-
-for arg in ${(k)argument_pairs}; {
-	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
-	arguments+='(-'${${argument_pairs[$arg]}[1]}')--'${arg}${argument_postfix[$arg]}
+function _youtube-dl_format {
+	typeset -a formats
+	formats=(
+		'43:WebM at 480p'
+		'45:WebM at 720p'
+		'18:H264 in MP4 at 480p'
+		'22:H264 in MP4 at 720p'
+		'37:H264 in MP4 at 1080p'
+		'34:H264 in FLV at 360p'
+		'35:H264 in FLV at 480p'
+		'5:H263 at 240P'
+		'17:3GP'
+	)
+	_describe 'video format' formats
 }
 
-_arguments -s ${arguments}
+function _youtube-dl {
+	_arguments \
+	'(-)'{-h,--help}'[show help]' \
+	'(-)'{-v,--version}'[show version]' \
+	'(-U --update)'{-U,--update}'[update youtube-dl]' \
+	'(-i --ignore-errors)'{-i,--ignore-errors}'[ignore errors during download]' \
+	'(-r --rate-limit)'{-r,--rate-limit}'[limit download speed]:speed with suffix' \
+	'(-R --retries)'{-R,--retries}'[maximum retries for download]:number' \
+	'--playlist-start[number of video in playlist to start with]:number' \
+	'--playlist-end[number of video in playlist to stop with]:number' \
+	'--dump-user-agent[show youtube-dl User-Agent]' \
+	'(-u --username)'{-u,--username}'[set youtube account name]:username' \
+	'(-p --password)'{-p,--password}'[set youtube account password]:password' \
+	'(-n --netrc)'{-n,--netrc}'[read authentication data from .netrc]' \
+	'(-f --format)'{-f,--format}'[set video quality to download]: :_youtube-dl_format' \
+	'--all-formats[download all available formats]' \
+	'--max-quality[set maximum video quality to download]: :_youtube-dl_format' \
+	'(-q --quiet)'{-q,--quiet}'[quiet mode]' \
+	'(-s --simulate)'{-s,--simulate}'[simulate operation, do not download anything]' \
+	'(-g --get-url)'{-g,--get-url}'[only show URL that would be downloaded]' \
+	'--get-thumbnail[only show thumbnail URL]' \
+	'--get-description[only show video description]' \
+	'--get-filename[only show output filename]' \
+	'--no-prograss[do not print progress bar]' \
+	'--console-title[try to show download progress in terminal title]' \
+	'(-t --title)'{-t,--title}'[use the video title in the output filename]' \
+	'(-l --literal)'{-l,--literal}'[use literal video title in the output filename]' \
+	'(-A --auto-number)'{-A,--auto-number}'[automatically number videos downloaded from a playlist]' \
+	'(-o --output)'{-o,--output}'[set template for output filenames]:output template' \
+	'(-a --batch-file)'{-a,--batch-file}'[read video URLs from file]:file:_files' \
+	'(-w --no-overwrites)'{-w,--no-overwrites}'[do not overwrite existing files]' \
+	'(-c --continue)'{-c,--continue}'[resume partial downloads]' \
+	'--cokies[set cookie jar file]:cookie jar file:_files' \
+	'--no-part[do not append .part to incomplete downloads]' \
+	'--no-mtime[do not set mtime based on Last-modified header]' \
+	'--extract-audio[extract audio from video download]' \
+	'--audio-format[set extraction audio format]:format:(best aac mp3)' \
+	'*:video url'
+}
+
+_youtube-dl "$@"
