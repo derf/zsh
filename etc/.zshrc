@@ -274,6 +274,8 @@ alias bzgrep='bzgrep --color=auto'
 alias zgrep='zgrep --color=auto'
 
 
+alias ddate='ddate "+%A, %B %e, %Y"'
+
 alias df='df -h'
 
 alias du='du -shH'
@@ -336,7 +338,7 @@ alias -g L='|less'
 alias -g T='|tail'
 
 # }}}
-# {{{ Loop me
+# {{{ Loops
 
 alias allf='for i in *(.);'
 alias alld='for i in *(/);'
@@ -353,34 +355,23 @@ alias allr='for i in **/*;'
 # }}}
 # {{{ Misc
 
-alias ddate='ddate "+%A, %B %e, %Y"'
-
 alias dent='twidge -c ~/packages/twitter/etc/derf-identica update'
-
 alias dent-cccd='twidge -c ~/packages/twitter/etc/chaosdorf-identica update'
 
 alias dua='du --apparent-size'
-
-alias lasth='last | head -$((LINES-1))'
 
 alias fbif='fbi -a'
 alias fbij='fbi -a -u'
 
 alias ghi='ghi -r ${PWD:t}'
 
-alias icq='dtach -A ~/.dtach.ysm ysm'
-alias irc='dtach -A ~/.dtach.irssi irssi'
-alias jabber='dtach -A ~/.dtach.mcabber mcabber'
-alias safe='dtach -c /tmp/.dtach.$$'
-
 for i in ~/var/gtd/*(.N); {
 	alias gtd-${i:t}='todo --database '${i}
 }
 
-alias lsi='feh --list'
-alias lsr='unrar l'
-alias lst='tar -tvf'
-alias lsz='unzip -l'
+alias irc='dtach -A ~/.dtach.irssi irssi'
+
+alias lasth='last | head -$((LINES-1))'
 
 alias lssh='ssh -C -o CompressionLevel=9'
 
@@ -388,9 +379,6 @@ alias mate='decrement ~/stuff/$(cat /tmp/.location)/mateguthaben'
 
 alias nb='newsbeuter'
 alias nbr='newsbeuter -r'
-
-alias tw='twidge -c ~/packages/twitter/etc/derf-twitter'
-alias twc='twidge -c ~/packages/twitter/etc/chaosdorf-twitter'
 
 alias pdftopng='pdftoppm -png'
 
@@ -403,14 +391,24 @@ alias rmake='make && sudo make install'
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin"\
 " --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
+alias safe='dtach -c /tmp/.dtach.$$'
+
+alias tw='twidge -c ~/packages/twitter/etc/derf-twitter'
+alias twc='twidge -c ~/packages/twitter/etc/chaosdorf-twitter'
+
 alias x='unsetopt bg_nice; startx &! exit'
 
 alias xxz='xz -v -9 -M 800M'
 
 alias yd='youtube-dl -t'
 
-alias wprox='http_proxy=http://10.200.200.2:8080/'
-alias eprox='export http_proxy=http://10.200.200.2:8080/'
+# }}}
+# {{{ ls-like
+
+alias lsi='feh --list'
+alias lsr='unrar l'
+alias lst='tar -tvf'
+alias lsz='unzip -l'
 
 # }}}
 # {{{ Perl
