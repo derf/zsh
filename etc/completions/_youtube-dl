@@ -19,8 +19,8 @@ function _youtube-dl_format {
 
 function _youtube-dl {
 	_arguments \
-	'(-)'{-h,--help}'[show help]' \
-	'(-)'{-v,--version}'[show version]' \
+	'(- *)'{-h,--help}'[show help]' \
+	'(- *)'{-v,--version}'[show version]' \
 	'(-U --update)'{-U,--update}'[update youtube-dl]' \
 	'(-i --ignore-errors)'{-i,--ignore-errors}'[ignore errors during download]' \
 	'(-r --rate-limit)'{-r,--rate-limit}'[limit download speed]:speed with suffix' \
