@@ -1,0 +1,128 @@
+#compdef exiv2
+## completion for exiv2 0.20, based on exiv2(1)
+
+function _exiv2_command_or_file {
+	_alternative \
+	'options:command:_exiv2_command' \
+	'files:file:_files'
+}
+
+function _exiv2_command {
+	typeset -a commands
+	commands=(
+		'print:print metadata (default)'
+		'extract:extract metadata'
+		'insert:insert metadata'
+		'delete:delete metadata'
+		'adjust:adjust exif timestamps'
+		'modify:modify metadata'
+		'rename:rename files basd on exif data'
+		'fixiso:fix ISO tag for Nikon/Canon makernotes'
+		'fixcom:fix encoding of user comments'
+	)
+	_describe command commands
+}
+
+function _exiv2_targets {
+	typeset target=$*[-1]
+	typeset target_opchar=$target[1]
+	typeset -a targets ignored
+	targets=(
+		'a:all metadata'
+		'e:Exif section'
+		't:Exif thumbnail'
+		'i:IPTC data'
+		'x:XMP packet'
+		'c:JPEG comment'
+	)
+
+	case $target in
+		insert) targets+='X:insert XMP metadata' ;;
+		extract) targets+=(
+				'p:extract preview files'
+				'X:extract XMP metadata'
+			)
+			;;
+	esac
+
+	ignored=(${(s::)words[$CURRENT]#-*${target_opchar}})
+
+	_describe "${target} targets" targets \
+	-F ignored -qS '' -P "${words[$CURRENT]#-*${target_opchar}}"
+}
+
+function _exiv2_print_mode {
+	typeset -a modes
+	modes=(
+		's:Exif summary'
+		'a:Exif, IPTC and XMP metadata'
+		't:interpreted Exif tags'
+		'v:plain Exif tags'
+		'h:hexdump of Exif data'
+		'i:IPTC datasets'
+		'x:XMP properties'
+		'c:JPEG comment'
+		'p:image previews'
+	)
+	_describe mode modes
+}
+
+function _exiv2_print_flags {
+	typeset -a flags ignored
+	flags=(
+		'E:include Exif tags'
+		'I:IPTC datasets'
+		'X:XMP properties'
+		'x:column with tag number'
+		'g:group name'
+		'k:key'
+		'l:tag label'
+		'n:tag name'
+		'y:type'
+		'c:number of components'
+		's:size (bytes)'
+		'v:plain data value'
+		't:interpreted data'
+		'h:hexdump of data'
+	)
+
+	ignored=(${(s::)words[$CURRENT]#-*P})
+
+	_describe 'print flags' flags \
+	-F ignored -qS '' -P "${words[$CURRENT]#-*P}"
+}
+
+function _exiv2 {
+	_arguments -s \
+	'(- 1 *)-h[show help]' \
+	'(- 1 *)-V[show version]' \
+	'-v[be verbose]' \
+	'-b[show large binary values]' \
+	'-u[show unknown tags]' \
+	'*-g-[grep by exiv2 key]:exiv2 key' \
+	'-n-[charset to decode user comments]:charset' \
+	'(-t -T)-k[preserve file timestamps when updating]' \
+	'(-k)-t[set file timestamps according to EXIF data when renaming]' \
+	'(-k)-T[only set timestamp, do not rename]' \
+	'-f[force overwrite of files]' \
+	'-F[force rename of files]' \
+	'-a-[adjust time]:HH[\:MM[\:SS]] time delta' \
+	'-Y-[adjust year]:year delta' \
+	'-O-[adjust month]:month delta' \
+	'-D-[adjust day]:day delta' \
+	'-p-[print mode]: :_exiv2_print_mode' \
+	'-P-[print flags]:print flags:_exiv2_print_flags' \
+	'-d-[delete targets]: :_exiv2_targets delete' \
+	'-i-[insert targets]: :_exiv2_targets insert' \
+	'-e-[extract targets]: :_exiv2_targets extract' \
+	'-r-[file rename format]:file format' \
+	'-c-[JPEG comment string]:comment' \
+	'-m-[set command file]:command file:_files' \
+	'-M-[set modify command line]:command' \
+	'-l-[set directory for inserted/extracted files]:directory:_path_files -/' \
+	'-S-[set source file suffix]:suffix' \
+	': :_exiv2_command_or_file' \
+	'*:file:_files'
+}
+
+_exiv2 "$@"
