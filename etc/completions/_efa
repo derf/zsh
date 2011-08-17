@@ -1,63 +1,57 @@
 #compdef efa
+## completion for efa 1.0.5, based on efa(1)
 
-typeset -a arguments
-typeset -A argument_pairs argument_postfix
-typeset arg
+function _efa_include {
+	typeset -a types
+	types=(
+		'local:only take local trains (default)'
+		'ic:local trains + IC'
+		'ice:All kind of trains'
+	)
+	_describe 'train type' types
+}
 
-argument_pairs=(
-	time        t+
-	arrive      a+
-	date        d+
-	bike        b
-	exclude     e+
-	max-change  m+
-	prefer      P+
-	proximity   p
-	include     i+
-	walk-speed  w+
-	ignore-info I+
-	version     v
-)
-
-argument_postfix=(
-	time        '[Journey start time]:timestamp'
-	arrive      '[Journey end time]:timestamp'
-	date        '[Journey date]:date'
-	bike        '[Prefer connections where you can take a bike with you]'
-	exclude     '[Exclude transport types]:transport type:_efa_transports'
-	max-change  '[Maximum interchanges]:maximum interchange number'
-	prefer      '[Prefer connections]:connection type:(speed nowait nowalk)'
-	proximity   '[Take close stops into account]'
-	include     '[Include extra connection types]:connection type:(local ic ice)'
-	walk-speed  '[Walk speed]:walk speed:(normal fast slow)'
-	ignore-info '[Ignore additional information]:regex'
-	verison     '[Print version information]'
-)
-
-arguments=(
-	'--'{from,to,via}':city: :stop: '
-	'--'{from,to,via}'-type:type:(stop address poi)'
-	'(--depart --arrive)--time:time'
-	'(--depart --time)--arrive:time'
-	'(--arrive --time)--depart:time'
-	'*--post:POST key=value'
-)
-
-for arg in ${(k)argument_pairs}; {
-	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
-	arguments+='(-'${${argument_pairs[$arg]}[1]}')--'${arg}${argument_postfix[$arg]}
+function _efa_prefer {
+	typeset -a preferences
+	preferences=(
+		'speed:prefer fast connections'
+		'nowait:prefer connections with little interchanges'
+		'nowalk:prefer connections with little walking at interchanges'
+	)
+	_describe 'connection preference' preferences
 }
 
 function _efa_transports {
 	typeset -a keys used_prefixes
 	typeset prefix=''
-	keys=(zug s-bahn u-bahn stadtbahn tram stadtbus regionalbus schnellbus seilbahn schiff ast sonstige)
+	keys=(zug s-bahn u-bahn stadtbahn tram stadtbus regionalbus schnellbus
+		seilbahn schiff ast sonstige)
 
 	if [[ -prefix *, ]] {
 		prefix=${words[$CURRENT]%,*},
 		used_prefixes=(${(s:,:)prefix})
 	}
-	_wanted expression expl 'sort expression' \
+	_wanted expression expl 'mode of transportation' \
 	compadd -F used_prefixes -qS , -P "$prefix" $keys
 }
-_arguments -s $arguments
+
+function _efa {
+	_arguments -s \
+	{--from,--to,--via}':city: :stop: ' \
+	'(-t --time --depart)'{-t,--time,--depart}'[departure time]:HH\:MM' \
+	'(-a --arrive)'{-a,--arrive}'[arrival time]:HH\:MM' \
+	'(-d --date)'{-d,--date}'[journey date]:DD.MM.[YYYY]' \
+	'(-b --bike)'{-b,--bike}'[prefer connections allowing bike take-along]' \
+	'(-e --exclude)'{-e,--exclude}'[exclude transport types]: :_efa_transports' \
+	'(-m --max-change)'{-m,--max-change}'[maximum number of interchanges]:number' \
+	'(-P --prefer)'{-P,--prefer}'[set connection preference]:preference:_efa_prefer' \
+	'(-p --proximity)'{-p,--proximity}'[take close stops into account]' \
+	'(-i --include)'{-i,--include}'[use extra connection types]:type:_efa_include' \
+	'(-w --walk-speed)'{-w,--walk-speed}'[set walking speed]:speed:(normal fast slow)' \
+	'(-I --ignore-info)'{-I,--ignore-info}'[ignore information]:regular expression' \
+	'--timeout[set request timeout]:seconds' \
+	'--post[set custom POST key]:key=value' \
+	'(-v --version)'{-v,--version}'[show version information]'
+}
+
+_efa "$@"
