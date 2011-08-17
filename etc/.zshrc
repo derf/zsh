@@ -378,6 +378,7 @@ for i in ~/var/gtd/*(.N); {
 }
 
 alias lsi='feh --list'
+alias lsr='unrar l'
 alias lst='tar -tvf'
 alias lsz='unzip -l'
 
