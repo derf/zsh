@@ -299,6 +299,8 @@ alias fbi='fbi -readahead'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias pv='pv --progress --timer --eta --average-rate --bytes'
+
 alias pmount='pmount -A'
 
 alias exifprobe='exifprobe -Rc'
