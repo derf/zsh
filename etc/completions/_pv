@@ -1,0 +1,31 @@
+#compdef pv
+## completion for pv 1.2.0, based on pv(1)
+
+function _pv {
+	_arguments \
+	'(-p --progress)'{-p,--progress}'[turn on progress bar]' \
+	'(-t --timer)'{-t,--timer}'[turn on timer]' \
+	'(-e --eta)'{-e,--eta}'[turn on ETA timer]' \
+	'(-r --rate)'{-r,--rate}'[turn on rate counter]' \
+	'(-a --average-rate)'{-a,--average-rate}'[turn on average ratecounter]' \
+	'(-b --bytes)'{-b,--bytes}'[turn total byte counter on]' \
+	'(-n --numeric)'{-n,--numeric}'[numeric output]' \
+	'(-q --quiet)'{-q,--quiet}'[no output]' \
+	'(-W --wait)'{-W,--wait}'[wait until first byte was tarnsferred]' \
+	'(-s --size)'{-s,--size}'[set total transfer size]:size with suffix' \
+	'(-l --line-mode)'{-l,--line-mode}'[count lines, not bytes]' \
+	'(-i --interval)'{-i,--interval}'[set update interval]:seconds' \
+	'(-w --width)'{-w,--width}'[set terminal width]:width (characters)' \
+	'(-H --height)'{-H,--height}'[set terminal height]:height (rows)' \
+	'(-N --name)'{-N,--name}'[set output prefix]:string' \
+	'(-f --force)'{-f,--force}'[force output]' \
+	'(-c --cursor)'{-c,--cursor}'[use cursor positioning]' \
+	'(-L --rate-limit)'{-L,--rate-limit}'[limit transfer rate]:transfer rate' \
+	'(-B --buffer-size)'{-B,--buffer-size}'[set buffer size]:size with suffix' \
+	'(-R --remote)'{-R,--remote}'[attach to remote pv instance]:pid' \
+	'(- *)'{-h,--help}'[show help]' \
+	'(- *)'{-V,--version}'[show version]' \
+	'*:file:_files'
+}
+
+_pv "$@"
