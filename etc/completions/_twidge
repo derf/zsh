@@ -58,10 +58,11 @@ function _twidge_args {
 			_arguments $args_common :username
 			;;
 		dmsend)
-			_arguments :recipient :status
+			_arguments :recipient :message
 			;;
 		(un|)follow)
-			_message username
+			_arguments :username
+			# complete unfollow based on twidge lsfollowers?
 			;;
 		update)
 			_arguments $args_update
