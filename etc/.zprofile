@@ -18,7 +18,19 @@ pr_info "This is %F{cyan}$(uname -srm)%F{default} on %F{cyan}%y%F{default}"
 
 echo
 
-[[ -n $(echo Maildir/new/*(N)) ]] && pr_info "You have mail!"
+function {
+	typeset -a new_mail
+
+	setopt local_options
+	setopt hist_subst_pattern
+
+	new_mail=(~/Maildir/**/new(DF:h:s/*\\/Maildir\\/./))
+
+	if (( $#new_mail )); then
+		pr_info "Unread mail in: ${(j(, ))new_mail}"
+	fi
+}
+
 [[ -r ${ZDIR}/local-profile ]] && source ${ZDIR}/local-profile
 
 if [[ ${HOST} == (descent|saviour) && -z ${SSH_CONNECTION} && \
