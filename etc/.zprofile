@@ -24,7 +24,7 @@ function {
 	setopt local_options
 	setopt hist_subst_pattern
 
-	new_mail=(~/Maildir/**/new(DF:h:s/*\\/Maildir\\/./))
+	new_mail=(~/Maildir/**/new(DFN:h:s/*\\/Maildir\\/./))
 
 	if (( $#new_mail )); then
 		pr_info "Unread mail in: ${(j(, ))new_mail}"
