@@ -53,7 +53,7 @@ function _feh {
 	'(--font -e)'{--font,-e}'[set global font]:font' \
 	'(--fontpath -C)'{--fontpath,-C}'[set font path]:font path:_files -/' \
 	'--force-aliasing[disable antialiasing]' \
-	'(--fullindex -I)'{--fulindex,-I}'[index mode with additional information]' \
+	'(--fullindex -I)'{--fullindex,-I}'[index mode with additional information]' \
 	'(--fullscreen -F)'{--fullscreen,-F}'[enable fullscreen mode]' \
 	'(--geometry -g)'{--geometry,-g}'[set window geometry]:WxH[+X+Y]' \
 	'(--hide-pointer -Y)'{--hide-pointer,-Y}'[hide pointer]' \
@@ -80,7 +80,7 @@ function _feh {
 	'(--reload -R)'{--reload,-R}'[reload filelist/current image]:seconds' \
 	'(--reverse -n)'{--reverse,-n}'[reverse sort order]' \
 	'(--scale-down -.)'{--scale-down,-.}'[scale down too large images]' \
-	'(--slideshow-deplay -D)'{--slideshow-delay,-D}'[set slideshow delay]:seconds' \
+	'(--slideshow-delay -D)'{--slideshow-delay,-D}'[set slideshow delay]:seconds' \
 	'(--sort -S)'{--sort,-S}'[sort images]:sort type:(name filename width height pixels size format)' \
 	'(--start-at -|)'{--start-at,-'|'}'[start slideshow at file]:start file:_files' \
 	'(--theme -T)'{--theme,-T}'[set theme]: :_feh_theme' \
