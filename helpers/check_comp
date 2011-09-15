@@ -1,0 +1,60 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use 5.012;
+
+my ($file) = @ARGV;
+my $in_arguments = 0;
+
+open( my $fh, '<', $file ) or die("Cannot open $file: $!\n");
+
+while ( my $line = <$fh> ) {
+	chomp $line;
+
+	if ( $line =~ m{ ^ [[:space:]]+ _arguments }x ) {
+		$in_arguments = 1;
+		next;
+	}
+	if ( not $in_arguments ) {
+		next;
+	}
+
+	check_line($line);
+
+	if ( not( $line =~ m{ \\ $ }x ) ) {
+		$in_arguments = 0;
+	}
+}
+
+close($fh);
+
+sub check_line {
+	my ($line) = @_;
+
+	my $re_pair = qr{
+		^ [[:space:]]+ '
+		\( (?<ex_one> \S+) \s (?<ex_two> \S+) (?: \s [^)]+ )? \) '
+		\{ (?<in_one> \S+) ,  (?<in_two> \S+) (?: ,  [^)]+ )? \} '
+	}x;
+
+	$line =~ $re_pair or return;
+
+	my @ex = @+{qw{ex_one ex_two}};
+	my @in = @+{qw{in_one in_two}};
+
+	for my $param (@ex) {
+		if ( not( $param ~~ \@in ) ) {
+			printf( "Possible typo: %s not included in {%s,%s}\n", $param,
+				@in );
+		}
+	}
+
+	for my $param (@in) {
+		if ( not( $param ~~ \@ex ) ) {
+			printf( "Possible typo: %s not included in (%s %s)\n", $param,
+				@ex );
+		}
+	}
+
+	return;
+}
