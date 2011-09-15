@@ -1,196 +1,27 @@
 #compdef feh
-## completion for feh 1.8, based on feh(1)
-## Copyright (C) 2008-2010 by Daniel Friesel <derf@derf.homelinux.org>
-## License: WTFPL <http://sam.zoy.org/wtfpl>:
-##   0. You just DO WHAT THE FUCK YOU WANT TO.
-##
-## http://derf.homelinux.org/git/zsh/plain/etc/completions/_feh
-
-typeset -a arguments
-typeset -A argument_pairs argument_postfix
-typeset arg
-
-argument_pairs=(
-	'help'        'h'
-	'version'     'v'
-	'verbose'     'V'
-	'quiet'       'q'
-	'theme'       'T+'
-	'recursive'   'r'
-	'randomize'   'z'
-	'filelist'    'f+'
-	'preload'     'p'
-	'full-screen' 'F'
-	'geometry'    'g+'
-	'auto-zoom'   'Z'
-	'multiwindow' 'w'
-	'borderless'  'x'
-	'draw-filename' 'd'
-	'slideshow-delay' 'D+'
-	'reload'      'R+'
-	'keep-http'   'k'
-	'builtin'     'Q'
-	'list'        'l'
-	'customlist'  'L+'
-	'loadable'    'U'
-	'unloadable'  'u'
-	'sort'        'S+'
-	'reverse'     'n'
-	'action'      'A+'
-	'montage'     'm'
-	'collage'     'c'
-	'index'       'i'
-	'fullindex'   'I'
-	'thumbnails'  't'
-	'menu-font'   'M+'
-	'no-menus'    'N'
-	'reload-button' '0'
-	'pan-button'  '1+'
-	'zoom-button' '2+'
-	'menu-button' '3+'
-	'prev-button' '4+'
-	'next-button' '5+'
-	'rotate-button' '8+'
-	'blur-button' '9+'
-	'ignore-aspect' 'X'
-	'stretch'     's'
-	'thumb-width' 'y+'
-	'thumb-height' 'E+'
-	'limit-width' 'W+'
-	'limit-height' 'H+'
-	'bg'          'b+'
-	'alpha'       'a+'
-	'font'        'e+'
-	'scale-down'  '.'
-	'output-dir'  'j+'
-	'fontpath'    'C+'
-	'image-bg'    'B+'
-	'output'      'o'
-	'output-only' 'O'
-	'rcfile'      '_'
-	'thumb-title' '~'
-	'title'       '^'
-	'start-at'    '|'
-	'title-font'  '@'
-	'cache-thumbnails' 'P'
-	'caption-path' 'K+'
-	'draw-actions' 'G'
-	'thumb-redraw' 'J+'
-)
-
-argument_postfix=(
-	'help'        '[Show help]'
-	'version'     '[Show version information]'
-	'verbose'     '[Be verbose]'
-	'quiet'       '[Suppress non-fatal errors]'
-	'theme'       '[Load named options from config]:theme:_feh_theme'
-	'recursive'   '[Recurse into subdirectories]'
-	'randomize'   '[Randomize file list before displaying]'
-	'filelist'    '[Read file list from this file]:file:_files'
-	'preload'     '[Eliminate unlaodable images before displaying]'
-	'full-screen' '[Make the window fullscreen]'
-	'geometry'    '[Limit window size]:geometry: '
-	'auto-zoom'   '[Zoom picture to screen size]'
-	'multiwindow' '[Multiple windows, one image per window]'
-	'borderless'  '[Borderless windows]'
-	'draw-filename' '[Show filename in images]'
-	'reload'      '[Time delay for reloading]:time: '
-	'keep-http'   "[Don't delete cached files]"
-	'builtin'     '[Use builtin http client]'
-	'list'        '[List images, their size, etc.]'
-	'customlist'  '[Format list output]:format: '
-	'loadable'    '[Print loadable images]'
-	'unloadable'  '[Print unloadable images]'
-	'sort'        '[Sort images]:sort type:(name filename width height pixels size format)'
-	'reverse'     '[Reverse sort order]'
-	'action'      '[Action to perform on each image]:shell: '
-	'montage'     '[Enable montage mode]'
-	'collage'     '[Enable collage mode]'
-	'index'       '[Enable index mode]'
-	'fullindex'   '[Enable verbose index mode]'
-	'thumbnails'  '[Enable interactive index mode]'
-	'menu-font'   '[Set font in menus]:font: '
-	'no-menus'    "[Don't load or show any menus]"
-	'reload-button' '[Button to reload image]:button:_feh_button'
-	'pan-button'  '[Button to pan image]:button:_feh_button'
-	'zoom-button' '[Button to zoom image]:button:_feh_button'
-	'menu-button' '[Button to activate menu]:button:_feh_button'
-	'prev-button' '[Button to go to previous image]:button:_feh_button'
-	'next-button' '[Button to go to next image]:button:_feh_button'
-	'rotate-button' '[Ctrl+Button to rotate image]:button:_feh_button'
-	'blur-button' '[Ctrl+Button tu blur image]:button:_feh_button'
-	'ignore-aspect' "[montage mode: Don't preserve aspect ratio]"
-	'stretch'     '[montage mode: Enlarge images to fit thumbnail size]'
-	'thumb-width' '[montage mode: Thumbnail width]:pixels: '
-	'thumb-height' '[montage mode: Thumbnail height]:pixels: '
-	'limit-width' '[montage mode: Limit montage width]:pixels: '
-	'limit-height' '[montage mode: Limit montage heihgt]:pixels: '
-	'bg'          '[montage mode: Background image]:file:_files'
-	'alpha'       '[montage mode: Thumbnail transparency level]:integer: '
-	'font'        '[index mode: Thumbnail info font]:font: '
-	'slideshow-delay' '[slide change delay]:seconds'
-	'scale-down'  '[Scale down images which are too big]'
-	'output-dir'  '[Save files to DIR (with -k)]:directory:_files -/'
-	'fontpath'    '[Add paths to font path]:font path:_files -/'
-	'image-bg'    '[Set transparent image background]:background:(white black default)'
-	'output'      '[montage mode: Output file]:file:_files'
-	'output-only' "[montage mode: Output file, don't display montage]:file:_files"
-	'rcfile'      '[Specify config file]:file:_files'
-	'thumb-title' '[Window title in thumbnail mode]:format string'
-	'title'       '[Window title in slideshow mode]:format string'
-	'start-at'    '[Start slideshow at]:file:_files'
-	'title-font'  '[Title font for index mode]:font'
-	'cache-thumbnails' '[Enable thumbnail caching]'
-	'caption-path' '[Where to look for image captions]:relative directory: '
-	'draw-actions' '[Draw defined actions]'
-	'thumb-redraw' '[Set thumbnail image redraw frequency]:digit'
-)
-
-arguments=(
-	'--zoom[Zoom images]:percent: '
-	--action{1..9}':shell: '
-	'--bg-tile[Set tiled desktop background]:file:_files'
-	'--bg-center[Set centered desktop background]:file:_files'
-	'--bg-scale[Set scaled desktop background]:file:_files'
-	'--bg-seamless[Set desktop background with seamless borders]:file:_files'
-	'--bg-fill[Set scaled desktop background, preserving aspect ratio]:file:_files'
-	'--bg-max[Set scaled desktop background, like fill with borders]:file:_files'
-	'--info[Show additional information]:info command'
-	'--menu-style[Style descriptor for menu text]:file:_files'
-	'--menu-ctrl-mask[Use Ctrl+Button to display menu]'
-	'--no-rotate-ctrl-mask[Don'\''t require Ctrl for the rotate button]'
-	'--no-blur-ctrl-mask[Don'\''t require Ctrl for the blur button]'
-	'--no-xinerama[Disable xinerama support]'
-	'--no-screen-clip[Disable window clipping]'
-	'--hide-pointer[Hide mouse pointer in fullscreen mode]'
-	'*--fontpath[index mode: directory to search for fonts]:directory:_path_files -/'
-	'--index-name[Show image name in index/thumbnail mode]:bool:(0 1)'
-	'--index-size[Show image size in index/thumbnail mode]:bool:(0 1)'
-	'--index-dim[Show image dimensions in index/thumbnail mode]:bool:(0 1)'
-	'--no-jump-on-resort[Stay at current image after resorting the filelist]'
-	'--cycle-once[Quit after one loop through the slideshow]'
-	'--menu-bg[Background image in menus]: :_feh_background'
-	'--xinerama-screen[Set xinerama screen to work on]:digit'
-	'*:file:_files'
-)
-
-for arg in ${(k)argument_pairs}; {
-	arguments+='(--'${arg}')-'${argument_pairs[$arg]}${argument_postfix[$arg]}
-	arguments+='(-'${${argument_pairs[$arg]}[1]}')--'${arg}${argument_postfix[$arg]}
-}
+## completion for feh 1.16.1, based on feh(1)
 
 function _feh_theme {
-	if [[ -r ~/.fehrc ]]; then
-		typeset -a themes tmp
-		typeset theme IFS=$'\n'
-		for theme in $(grep "\w" ~/.fehrc | grep -v "^#"); do
-			tmp=(${(s: :)theme})
-			theme=${tmp[1]}
-			shift tmp
-			themes+=${theme}:${(j: :)tmp}
-		done
-		_describe 'theme' themes
-	fi
+	[[ -r ~/.config/feh/themes ]] || return
+	typeset -a themes
+	typeset -i cont=0
+	typeset cur_theme cur_desc
+
+	while read theme_name theme_options; do
+
+		if [[ ${theme_name} == '#'* ]] {
+			continue
+		}
+
+		if (( ! ${#theme_name} && ! ${#theme_options} )) {
+			continue
+		}
+
+		themes+="${theme_name}:${theme_options}"
+
+	done < ~/.config/feh/themes
+
+	_describe 'theme' themes
 }
 
 function _feh_button {
@@ -205,4 +36,85 @@ function _feh_background {
 	'mode:mode:(trans)'
 }
 
-_arguments -s ${arguments}
+function _feh {
+	_arguments -s \
+	'(--action -A)'{-A,--action}'[action to perform on images]:shell' \
+	--action{1..9}'[additional action]:shell' \
+	'(--auto-zoom -Z)'{-Z,--auto-zoom}'[aoom pictures to screen]' \
+	'(--borderless -x)'{-x,--borderless}'[areate borderless windows]' \
+	'(--cache-thumbnails -P)'{--cache-thumbnails,-P}'[cache thumbnails]' \
+	'(--caption-path -K)'{--caption-path,-K}'[enable caption mode]:caption directory:_files -/' \
+	'(--customlist -L)'{--customlist,-L}'[custom list mode]:feh format string' \
+	'--cycle-once[quit after one loop through slideshow]' \
+	'(--draw-actions -G)'{--draw-actions,-G}'[show defined actions]' \
+	'(--draw-filename -d)'{--draw-filename,-d}'[show filename]' \
+	'--draw-tinted[show overlay texts on tinted background]' \
+	'(--filelist -f)'{--filelist,-f}'[show images in filelist]' \
+	'(--font -e)'{--font,-e}'[set global font]:font' \
+	'(--fontpath -C)'{--fontpath,-C}'[set font path]:font path:_files -/' \
+	'--force-aliasing[disable antialiasing]' \
+	'(--fullindex -I)'{--fulindex,-I}'[index mode with additional information]' \
+	'(--fullscreen -F)'{--fullscreen,-F}'[enable fullscreen mode]' \
+	'(--geometry -g)'{--geometry,-g}'[set window geometry]:WxH[+X+Y]' \
+	'(--hide-pointer -Y)'{--hide-pointer,-Y}'[hide pointer]' \
+	'(--image-bg -B)'{--image-bg,-B}'[set image background]:background:(black white checks)' \
+	'(--index -i)'{--index,-i}'[index mode]' \
+	'--index-dim[toggle dimensions display in index mode]:bool:(0 1)' \
+	'--index-name[toggle filename display in index mode]:bool:(0 1)' \
+	'--index-size[toggle size display in index mode]:bool:(0 1)' \
+	'(--keep-http -k)'{--keep-http,-k}'[keep cached HTTP files]' \
+	'(--list -l)'{--list,-l}'[list mode]' \
+	'(--loadable -U)'{--loadable,-U}'[list loadable images]' \
+	'(--menu-font -M)'{--menu-font,-M}'[set menu font]:menu font' \
+	'(--montage -m)'{--montage,-m}'[montage mode]' \
+	'(--multiwindow -w)'{--multiwindow,-w}'[multiwindow mode]' \
+	'--no-jump-on-resort[do not jump to first image after resorting]' \
+	'(--no-menus -N)'{--no-menus,-N}'[disable menus]' \
+	'--no-screen-clip[disable window size limitations]' \
+	'--no-xinerama[disable Xinerama support]' \
+	'(--output-dir -j)'{--output-dir,-j}'[set temporary file location]:directory:_files -/' \
+	'(--preload -p)'{--preload,-p}'[eliminate unloadable images before starting]' \
+	'(--quiet -q)'{--quiet,-q}'[do not report non-fatal errors]' \
+	'(--randomize -z)'{--randomize,-z}'[randomize filelist]' \
+	'(--recursive -r)'{--recursive,-r}'[recurse into subdirectories]' \
+	'(--reload -R)'{--reload,-R}'[reload filelist/current image]:seconds' \
+	'(--reverse -n)'{--reverse,-n}'[reverse sort order]' \
+	'(--scale-down -.)'{--scale-down,-.}'[scale down too large images]' \
+	'(--slideshow-deplay -D)'{--slideshow-delay,-D}'[set slideshow delay]:seconds' \
+	'(--sort -S)'{--sort,-S}'[sort images]:sort type:(name filename width height pixels size format)' \
+	'(--start-at -|)'{--start-at,-'|'}'[start slideshow at file]:start file:_files' \
+	'(--theme -T)'{--theme,-T}'[set theme]: :_feh_theme' \
+	'(--thumbnails -t)'{--thumbnails,-t}'[thumbnail mode]' \
+	'(--thumb-title -~)'{--thumb-title,-'~'}'[set thumbnail window title]:feh format string' \
+	'(--title -^)'{--title,-'^'}'[set window title]:feh format string' \
+	'(--unloadable -u)'{--unloadable,-u}'[list unloadable images]' \
+	'(--verbose -V)'{--verbose,-V}'[verbose mode]' \
+	'--zoom[set zoom mode]:percent' \
+	\
+	'(-0 --reload-button)'{-0,--reload-button}'[set reload button]: :_feh_button' \
+	'(-1 --pan-button)'{-1,--pan-button}'[set pan button]: :_feh_button' \
+	'(-2 --zoom-button)'{-2,--zoom-button}'[set zoom button]: :_feh_button' \
+	'(-3 --menu-button)'{-3,--menu-button}'[set menu button]: :_feh_button' \
+	'(-4 --prev-button)'{-4,--prev-button}'[set prev button]: :_feh_button' \
+	'(-5 --next-button)'{-5,--next-button}'[set next button]: :_feh_button' \
+	'(-8 --rotate-button)'{-8,--rotate-button}'[set rotate button]: :_feh_button' \
+	'(-9 --blur-button)'{-9,--blur-button}'[set blur button]: :_feh_button' \
+	'--menu-ctrl-mask[require CTRL for menu button]' \
+	'--no-rotate-ctrl-mask[do not require CTRL for rotate button]' \
+	'--no-blur-ctrl-mask[do not require CTRL for blur button]' \
+	\
+	'(--alpha -a)'{--alpha,-a}'[set thumbnail transparency]:alpha level' \
+	'(--bg -b)'{--bg,-b}'[set montage background]: :_feh_background' \
+	'(--ignore-aspect -X)'{--ignore-aspect,-X}'[ignore aspect in montage mode]' \
+	'(--limit-height -H)'{--limit-height,-H}'[limit montage height]:pixels' \
+	'(--limit-width -W)'{--limit-width,-W}'[limit montage width]:pixels' \
+	'(--output -o)'{--output,-o}'[save created montage]:output file:_files' \
+	'(--output-only -O)'{--output-only,-O}'[only save created montage]:output file:_files' \
+	'(--stretch -s)'{--stretch,-s}'[enlarge too small images in montage mode]' \
+	'(--thumb-height -E)'{--thumb-height,-E}'[set montage mode thumbnail height]:pixels' \
+	'(--thumb-width -y)'{--thumb-width,-y}'[set montage mode thumbnail width]:pixels' \
+	'(--thumb-redraw -J)'{--thumb-redraw,-J}'[set thumbnail mode redraw interval]:interval' \
+	\
+	'(--title-font -@)'{--title-font,-'@'}'[set title font]:font' \
+	'*:image:_files'
+}
