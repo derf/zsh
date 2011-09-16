@@ -43,21 +43,21 @@ function _feh {
 	'(--auto-zoom -Z)'{-Z,--auto-zoom}'[aoom pictures to screen]' \
 	'(--borderless -x)'{-x,--borderless}'[areate borderless windows]' \
 	'(--cache-thumbnails -P)'{--cache-thumbnails,-P}'[cache thumbnails]' \
-	'(--caption-path -K)'{--caption-path,-K}'[enable caption mode]:caption directory:_files -/' \
+	'(--caption-path -K)'{--caption-path,-K+}'[enable caption mode]:caption directory:_files -/' \
 	'(--customlist -L)'{--customlist,-L}'[custom list mode]:feh format string' \
 	'--cycle-once[quit after one loop through slideshow]' \
 	'(--draw-actions -G)'{--draw-actions,-G}'[show defined actions]' \
 	'(--draw-filename -d)'{--draw-filename,-d}'[show filename]' \
 	'--draw-tinted[show overlay texts on tinted background]' \
 	'(--filelist -f)'{--filelist,-f}'[show images in filelist]' \
-	'(--font -e)'{--font,-e}'[set global font]:font' \
-	'(--fontpath -C)'{--fontpath,-C}'[set font path]:font path:_files -/' \
+	'(--font -e)'{--font,-e+}'[set global font]:font' \
+	'(--fontpath -C)'{--fontpath,-C+}'[set font path]:font path:_files -/' \
 	'--force-aliasing[disable antialiasing]' \
 	'(--fullindex -I)'{--fullindex,-I}'[index mode with additional information]' \
 	'(--fullscreen -F)'{--fullscreen,-F}'[enable fullscreen mode]' \
-	'(--geometry -g)'{--geometry,-g}'[set window geometry]:WxH[+X+Y]' \
+	'(--geometry -g)'{--geometry,-g+}'[set window geometry]:WxH[+X+Y]' \
 	'(--hide-pointer -Y)'{--hide-pointer,-Y}'[hide pointer]' \
-	'(--image-bg -B)'{--image-bg,-B}'[set image background]:background:(black white checks)' \
+	'(--image-bg -B)'{--image-bg,-B+}'[set image background]:background:(black white checks)' \
 	'(--index -i)'{--index,-i}'[index mode]' \
 	'--index-dim[toggle dimensions display in index mode]:bool:(0 1)' \
 	'--index-name[toggle filename display in index mode]:bool:(0 1)' \
@@ -65,27 +65,27 @@ function _feh {
 	'(--keep-http -k)'{--keep-http,-k}'[keep cached HTTP files]' \
 	'(--list -l)'{--list,-l}'[list mode]' \
 	'(--loadable -U)'{--loadable,-U}'[list loadable images]' \
-	'(--menu-font -M)'{--menu-font,-M}'[set menu font]:menu font' \
+	'(--menu-font -M)'{--menu-font,-M+}'[set menu font]:menu font' \
 	'(--montage -m)'{--montage,-m}'[montage mode]' \
 	'(--multiwindow -w)'{--multiwindow,-w}'[multiwindow mode]' \
 	'--no-jump-on-resort[do not jump to first image after resorting]' \
 	'(--no-menus -N)'{--no-menus,-N}'[disable menus]' \
 	'--no-screen-clip[disable window size limitations]' \
 	'--no-xinerama[disable Xinerama support]' \
-	'(--output-dir -j)'{--output-dir,-j}'[set temporary file location]:directory:_files -/' \
+	'(--output-dir -j)'{--output-dir,-j+}'[set temporary file location]:directory:_files -/' \
 	'(--preload -p)'{--preload,-p}'[eliminate unloadable images before starting]' \
 	'(--quiet -q)'{--quiet,-q}'[do not report non-fatal errors]' \
 	'(--randomize -z)'{--randomize,-z}'[randomize filelist]' \
 	'(--recursive -r)'{--recursive,-r}'[recurse into subdirectories]' \
-	'(--reload -R)'{--reload,-R}'[reload filelist/current image]:seconds' \
+	'(--reload -R)'{--reload,-R+}'[reload filelist/current image]:seconds' \
 	'(--reverse -n)'{--reverse,-n}'[reverse sort order]' \
 	'(--scale-down -.)'{--scale-down,-.}'[scale down too large images]' \
-	'(--slideshow-delay -D)'{--slideshow-delay,-D}'[set slideshow delay]:seconds' \
+	'(--slideshow-delay -D)'{--slideshow-delay,-D+}'[set slideshow delay]:seconds' \
 	'(--sort -S)'{--sort,-S}'[sort images]:sort type:(name filename width height pixels size format)' \
-	'(--start-at -|)'{--start-at,-'|'}'[start slideshow at file]:start file:_files' \
-	'(--theme -T)'{--theme,-T}'[set theme]: :_feh_theme' \
+	'(--start-at -|)'{--start-at,-'|'+}'[start slideshow at file]:start file:_files' \
+	'(--theme -T)'{--theme,-T+}'[set theme]: :_feh_theme' \
 	'(--thumbnails -t)'{--thumbnails,-t}'[thumbnail mode]' \
-	'(--thumb-title -~)'{--thumb-title,-'~'}'[set thumbnail window title]:feh format string' \
+	'(--thumb-title -~)'{--thumb-title,-'~'+}'[set thumbnail window title]:feh format string' \
 	'(--title -^)'{--title,-'^'}'[set window title]:feh format string' \
 	'(--unloadable -u)'{--unloadable,-u}'[list unloadable images]' \
 	'(--verbose -V)'{--verbose,-V}'[verbose mode]' \
