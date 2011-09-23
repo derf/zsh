@@ -469,11 +469,6 @@ if [[ ${HOST} == aneurysm ]] { #{{{
 
 	done < Maildir/maildirs
 
-# }}}
-} else { #{{{
-
-	alias icli='ssh aneurysm icli'
-
 } #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
