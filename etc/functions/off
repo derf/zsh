@@ -7,7 +7,7 @@
 typeset filesystem garbage file
 typeset -a filesystems
 typeset tune2fs
-typeset -i force reboot simulate exit_ok=1
+typeset -i force leave reboot simulate exit_ok=1
 
 function execute {
 	if (( simulate )) {
@@ -19,6 +19,7 @@ function execute {
 
 while [[ ${1} == -* ]] {
 	case ${1} in
+		-l) leave=1 ;;
 		-n) simulate=1 ;;
 		-r) reboot=1 ;;
 		--force) force=1 ;;
@@ -56,6 +57,12 @@ while read filesystem garbage; do
 		filesystems+=${filesystem}
 	fi
 done < /etc/fstab
+
+if (( leave )) {
+	execute unisync with-all
+	execute mra push
+	execute ct push
+}
 
 for filesystem in ${filesystems}; {
 	tune2fs=($(sudo tune2fs -l ${filesystem} | fgrep -i 'mount count' | grep -o '[0-9]*'))
