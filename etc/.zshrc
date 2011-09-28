@@ -475,7 +475,7 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	alias 4d=4chan-dl
 	alias 4v=4chan-view
 
-	alias feh='feh --quiet --verbose --action8 "nrm '\'%f\'\"
+	alias feh='feh --quiet --verbose'
 
 	# Alias structure:
 	# feh[theme][recursive?][slide-delay?]
