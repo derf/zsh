@@ -486,6 +486,8 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	#     x      - slideshow, seconds will be specified on commandline
 	#              (like "fehfrx 7 .")
 	# The themes are defined in ~/.fehrc
+	alias fehe='feh -Texif'
+	alias feher='feh -Texif --recursive'
 	alias fehf='feh -Tfs'
 	alias fehfr='feh -Tfs --recursive'
 	alias fehi='feh .fehindex.jpg'
