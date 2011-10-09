@@ -118,3 +118,5 @@ function _feh {
 	'(--title-font -@)'{--title-font,-'@'}'[set title font]:font' \
 	'*:image:_files'
 }
+
+_feh "$@"
