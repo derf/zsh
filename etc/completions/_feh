@@ -1,5 +1,5 @@
 #compdef feh
-## completion for feh 1.16.1, based on feh(1)
+## completion for feh 2.0, based on feh(1)
 
 function _feh_theme {
 	[[ -r ~/.config/feh/themes ]] || return
@@ -59,9 +59,7 @@ function _feh {
 	'(--hide-pointer -Y)'{--hide-pointer,-Y}'[hide pointer]' \
 	'(--image-bg -B)'{--image-bg,-B+}'[set image background]:background:(black white checks)' \
 	'(--index -i)'{--index,-i}'[index mode]' \
-	'--index-dim[toggle dimensions display in index mode]:bool:(0 1)' \
-	'--index-name[toggle filename display in index mode]:bool:(0 1)' \
-	'--index-size[toggle size display in index mode]:bool:(0 1)' \
+	'--index-info[image info for thumbnail/index mode]:format string' \
 	'(--keep-http -k)'{--keep-http,-k}'[keep cached HTTP files]' \
 	'(--list -l)'{--list,-l}'[list mode]' \
 	'(--loadable -U)'{--loadable,-U}'[list loadable images]' \
@@ -91,18 +89,6 @@ function _feh {
 	'(--verbose -V)'{--verbose,-V}'[verbose mode]' \
 	'--zoom[set zoom mode]:percent' \
 	\
-	'(-0 --reload-button)'{-0,--reload-button}'[set reload button]: :_feh_button' \
-	'(-1 --pan-button)'{-1,--pan-button}'[set pan button]: :_feh_button' \
-	'(-2 --zoom-button)'{-2,--zoom-button}'[set zoom button]: :_feh_button' \
-	'(-3 --menu-button)'{-3,--menu-button}'[set menu button]: :_feh_button' \
-	'(-4 --prev-button)'{-4,--prev-button}'[set prev button]: :_feh_button' \
-	'(-5 --next-button)'{-5,--next-button}'[set next button]: :_feh_button' \
-	'(-8 --rotate-button)'{-8,--rotate-button}'[set rotate button]: :_feh_button' \
-	'(-9 --blur-button)'{-9,--blur-button}'[set blur button]: :_feh_button' \
-	'--menu-ctrl-mask[require CTRL for menu button]' \
-	'--no-rotate-ctrl-mask[do not require CTRL for rotate button]' \
-	'--no-blur-ctrl-mask[do not require CTRL for blur button]' \
-	\
 	'(--alpha -a)'{--alpha,-a}'[set thumbnail transparency]:alpha level' \
 	'(--bg -b)'{--bg,-b}'[set montage background]: :_feh_background' \
 	'(--ignore-aspect -X)'{--ignore-aspect,-X}'[ignore aspect in montage mode]' \
@@ -114,6 +100,12 @@ function _feh {
 	'(--thumb-height -E)'{--thumb-height,-E}'[set montage mode thumbnail height]:pixels' \
 	'(--thumb-width -y)'{--thumb-width,-y}'[set montage mode thumbnail width]:pixels' \
 	'(--thumb-redraw -J)'{--thumb-redraw,-J}'[set thumbnail mode redraw interval]:interval' \
+	\
+	'--bg-center[set centered background]' \
+	'--bg-fill[set filled background (zoom until filled)]' \
+	'--bg-max[set maxed background (zoom until image fits)]' \
+	'--bg-scale[set background without preserving aspect ratio]' \
+	'--bg-tile[set tiled background]' \
 	\
 	'(--title-font -@)'{--title-font,-'@'}'[set title font]:font' \
 	'*:image:_files'
