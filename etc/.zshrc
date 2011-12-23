@@ -459,7 +459,8 @@ if [[ ${distro} == debian ]] { #{{{
 	alias dprc='sudo dpkg-reconfigure'
 
 } #}}}
-if [[ ${HOST} == aneurysm ]] { #{{{
+if [[ ${HOST} == aneurysm ]] #{{{
+then
 
 	alias m=mutt
 
@@ -469,7 +470,17 @@ if [[ ${HOST} == aneurysm ]] { #{{{
 
 	done < Maildir/maildirs
 
-} #}}}
+#}}}
+elif [[ ${HOST} == plutonium ]] #{{{
+then
+
+alias lpq-oh14='lpq -l -Pohs14pr1'
+alias lpq-oh16='lpq -l -Pps17oh'
+
+alias lpr-oh14='lpr -Pohs14pr1 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
+alias lpr-oh16='lpr -Pps17oh -Fa4g -Ksimplex -N1 -ALayout=lrtb'
+
+fi #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
 	alias 4d=4chan-dl
