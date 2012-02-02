@@ -476,9 +476,11 @@ then
 
 alias lpq-oh14='lpq -l -Pohs14pr1'
 alias lpq-oh16='lpq -l -Pps17oh'
+alias lpq-oh20-e14='lpq -l -Ppool07'
 
 alias lpr-oh14='lpr -Pohs14pr1 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
 alias lpr-oh16='lpr -Pps17oh -Fa4g -Ksimplex -N1 -ALayout=lrtb'
+alias lpr-oh20-e14='lpr -Ppool07 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
 
 fi #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
