@@ -4,4 +4,8 @@
 [[ -n $commands[todo]     ]] && [[ -r ~/var/gtd/waiting ]] && \
 	todo --database ~/var/gtd/waiting | fgrep "$(cat /tmp/.location)"
 [[ -n $commands[calendar] ]] && [[ -r ~/stuff/calendar  ]] && calendar
+
+ct pull
+ct push
+
 true
