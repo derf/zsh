@@ -4,9 +4,7 @@
 
 if [[ -f ${1} ]] {
 	case ${1} in
-		*.(tar.bz2|tbz2)) tar xvjf ${*} ;;
-		*.(tar.gz|tgz)) tar xvzf ${*} ;;
-		*.tar.lzma) unlzma ${1} | tar xv ;;
+		*.tar*) tar xvf ${*} ;;
 		*.ace) unace e ${1} ;;
 		*.rar) unrar x ${1} ;;
 		*.deb) ar -x ${1} ;;
