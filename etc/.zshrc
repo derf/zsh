@@ -474,10 +474,12 @@ then
 elif [[ ${HOST} == plutonium ]] #{{{
 then
 
+alias lpq-msw18='lpq -l -Ppool08'
 alias lpq-oh14='lpq -l -Pohs14pr1'
 alias lpq-oh16='lpq -l -Pps17oh'
 alias lpq-oh20-e14='lpq -l -Ppool07'
 
+alias lpr-msw18='lpr -Ppool08 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
 alias lpr-oh14='lpr -Pohs14pr1 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
 alias lpr-oh16='lpr -Pps17oh -Fa4g -Ksimplex -N1 -ALayout=lrtb'
 alias lpr-oh20-e14='lpr -Ppool07 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
