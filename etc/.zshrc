@@ -523,7 +523,8 @@ if [[ -e /tmp/.x-started ]] { #{{{
 
 	alias putscreen='put $(screenshot)'
 
-	alias lmplayer='mplayer -vfm ffmpeg -lavdopts lowres=1:fast:skiploopfilter=all'
+	alias mna='mplayer -ao null'
+	alias mnv='mplayer -vo null'
 } #}}}
 
 # }}}
