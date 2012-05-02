@@ -474,15 +474,33 @@ then
 elif [[ ${HOST} == plutonium ]] #{{{
 then
 
-alias lpq-msw18='lpq -l -Ppool08'
-alias lpq-oh14='lpq -l -Pohs14pr1'
-alias lpq-oh16='lpq -l -Pps17oh'
-alias lpq-oh20-e14='lpq -l -Ppool07'
+# ps17oh:  oh16 1xx
+# pool05:  oh14 u04   (closed)
+# pool04:  oh18 u01
+# pool00: msw16 u08
+# pool09: jvf23 e32
+# pool08: msw18 211
+# pool03: msw16 u12
+# pool07:  oh20 e14
+# lj4500: msw16 108 / 117 (Farb)
+#   nd50:  oh20 e06
+# ohs14pr1: oh14 e35
 
-alias lpr-msw18='lpr -Ppool08 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
-alias lpr-oh14='lpr -Pohs14pr1 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
-alias lpr-oh16='lpr -Pps17oh -Fa4g -Ksimplex -N1 -ALayout=lrtb'
-alias lpr-oh20-e14='lpr -Ppool07 -Fa4g -Ksimplex -N1 -ALayout=lrtb'
+for pair in \
+	pool00.msw16-u08 \
+	pool03.msw16-u12 \
+	pool04.oh18-u01 \
+	pool05.oh14-u04 \
+	pool07.oh20-e14 \
+	pool08.msw18-211 \
+	pool09.jvf23-e32 \
+	nd50.oh20-e06 \
+	ohs14pr1.oh14-e35 \
+	ps17oh.oh16-1og
+do
+	alias lpq-${pair:e}="lpq -l -P${pair:r}"
+	alias lpr-${pair:e}="lpr -P${pair:r} -Fa4g -Ksimplex -N1 -ALayout=lrtb"
+done
 
 fi #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
