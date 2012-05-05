@@ -6,6 +6,5 @@
 [[ -n $commands[calendar] ]] && [[ -r ~/stuff/calendar  ]] && calendar
 
 ct pull
-ct push
 
 true
