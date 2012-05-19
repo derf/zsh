@@ -393,6 +393,8 @@ alias rmake='make && sudo make install'
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin"\
 " --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
 
+alias s2mem='command s2mem; exit'
+
 alias safe='dtach -c /tmp/.dtach.$$'
 
 alias tw='twidge -c ~/packages/twitter/etc/derf-twitter'
