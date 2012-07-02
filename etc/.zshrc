@@ -288,6 +288,7 @@ alias ls='ls -h --color=auto'
 alias exec='exec '
 alias sudo='sudo '
 
+alias ncdu='ncdu -x'
 alias netstat='sudo netstat --program --all --tcp --extend'
 
 alias svstat='sudo svstat /etc/service/*'
