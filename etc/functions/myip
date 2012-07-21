@@ -6,4 +6,5 @@ else
 
 fi
 
-curl https://derf.homelinux.org/cgi-bin/clientinfo/ip.cgi
+curl http://ifconfig.me/ip
+curl http://ifconfig.me/host
