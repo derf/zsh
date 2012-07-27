@@ -1,0 +1,19 @@
+#compdef watch
+
+function _watch {
+	_arguments \
+	'(-d --difference)'{-d,--difference}'[highlight differences]' \
+	'(-n --interval)'{-n,--interval}'[update interval]:interval' \
+	'(-p --precise)'{-p,--precise}'[make update interval more precise]' \
+	'(-t --no-title)'{-t,--no-title}'[disable program header]' \
+	'(-b --beep)'{-b,--beep}'[beep on non-zero exit]' \
+	'(-e --errexit)'{-e,--errexit}'[freeze on command error]' \
+	'(-g --chgexit)'{-g,--chgexit}'[exit when command output changes]' \
+	'(-c --color)'{-c,--color}'[interpret ANSI color sequences]' \
+	'(-x --exec)'{-x,--exec}'[pass command through sh -c]' \
+	'(-)'{-h,--help}'[show help]' \
+	'(-)'{-v,--version}'[show version]' \
+	'*::program: _normal'
+}
+
+_watch "$@"
