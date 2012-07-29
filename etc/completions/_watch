@@ -3,7 +3,7 @@
 function _watch {
 	_arguments \
 	'(-d --difference)'{-d,--difference}'[highlight differences]' \
-	'(-n --interval)'{-n,--interval}'[update interval]:interval' \
+	'(-n --interval)'{-n,--interval}'[update interval]:interval (seconds)' \
 	'(-p --precise)'{-p,--precise}'[make update interval more precise]' \
 	'(-t --no-title)'{-t,--no-title}'[disable program header]' \
 	'(-b --beep)'{-b,--beep}'[beep on non-zero exit]' \
