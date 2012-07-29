@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+avail=($(echo ~/var/source/zsh/Completion/**/*(-.N:t)))
+
+for file in etc/completions/*(:t); do
+	if (( $avail[(I)$file] )); then
+		echo -n $'\e[0;32m'
+	else
+		echo -n $'\e[0;31m'
+	fi
+	echo ${file}
+done
