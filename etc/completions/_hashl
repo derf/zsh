@@ -59,6 +59,7 @@ for arg in ${(k)argument_pairs}; {
 }
 
 arguments+=(
+	\*{-e,--extra-db}'[additional hashl db]:file:_files'
 	':action:_hashl_action'
 	'*:arguments:_hashl_action_args'
 )
