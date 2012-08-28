@@ -372,6 +372,8 @@ for i in ~/var/gtd/*(.N); {
 	alias gtd-${i:t}='todo --database '${i}
 }
 
+alias hat='head -$((LINES-1))'
+
 alias irc='tmux attach'
 
 alias lasth='last | head -$((LINES-1))'
