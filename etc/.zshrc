@@ -380,7 +380,8 @@ alias lasth='last | head -$((LINES-1))'
 
 alias lssh='ssh -C -o CompressionLevel=9'
 
-alias mate='decrement ~/stuff/$(cat /tmp/.location)/mateguthaben'
+alias mate='echo $(( $(cat ~/stuff/chaosdorf/mateguthaben) - 150 )) | sponge ~/stuff/chaosdorf/mateguthaben'
+alias cola='echo $(( $(cat ~/stuff/chaosdorf/mateguthaben) - 100 )) | sponge ~/stuff/chaosdorf/mateguthaben'
 
 alias nb='newsbeuter'
 alias nbr='newsbeuter -r'
