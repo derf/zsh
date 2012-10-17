@@ -1,0 +1,12 @@
+local names patterns styles
+
+zstyle -g names
+for name in $names; do
+	zstyle -g patterns $name
+	for pattern in $patterns; do
+		zstyle -g styles $name $pattern
+		for style in $styles; do
+			echo "$name $pattern $style"
+		done
+	done
+done
