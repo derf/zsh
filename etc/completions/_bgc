@@ -1,3 +1,0 @@
-#compdef bgc
-
-compadd ~/lib/pics/wallpapers/1024x600/*(:t:r)
