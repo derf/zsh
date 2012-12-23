@@ -70,7 +70,7 @@ if (( EUID != 0)) {
 	path+=(/sbin /usr/sbin /usr/local/sbin)
 }
 
-export MAKEFLAGS=j$(grep -c '^processor' /proc/cpuinfo)
+export MAKEFLAGS=j$(grep -ic '^processor' /proc/cpuinfo)
 
 if [[ -n ${commands[clang]} ]] {
 	export CC=clang
@@ -465,7 +465,7 @@ if [[ ${distro} == debian ]] { #{{{
 	alias dprc='sudo dpkg-reconfigure'
 
 } #}}}
-if [[ ${HOST} == aneurysm ]] #{{{
+if [[ ${HOST} == flux ]] #{{{
 then
 
 	alias m=mutt
