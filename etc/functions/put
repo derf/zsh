@@ -18,11 +18,11 @@ if [[ -z ${commands[curl]} ]]; then
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
-function put_aneurysm {
-	hostname='aneurysm.derf0.net'
-	ssh_name='aneurysm'
-	target_dir='web/net.derf0.aneurysm/out/tmp'
-	server_prefix='http://aneurysm.derf0.net/tmp/'
+function put_flux {
+	hostname='flux.derf0.net'
+	ssh_name='flux'
+	target_dir='web/net.derf0.flux/out/tmp'
+	server_prefix='http://flux.derf0.net/tmp/'
 	max_size=700000
 }
 
@@ -50,7 +50,7 @@ function put_chaosdorf {
 	max_size=0
 }
 
-hosts=(aneurysm steel chaosdorf)
+hosts=(flux steel chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
