@@ -243,26 +243,6 @@ bindkey -e
 
 # }}}
 # {{{ Aliases
-# {{{ Suffix
-
-typeset -A alias_apps
-alias_apps=(
-	archive    extract
-	audio      mplayer
-	document   okular
-	image      feh
-	video      mplayer
-)
-
-for meta in ${parameters[(I)mime_*]#mime_}; {
-	for format in $(eval echo '$'mime_${meta}); {
-		alias -s ${format}=${alias_apps[$meta]}
-	}
-}
-
-unset filetypes meta format alias_apps
-
-# }}}
 # {{{ Defaults
 
 # To evade these defaults, use '=command' instead of 'command'
@@ -510,6 +490,27 @@ done
 
 fi #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
+
+	# {{{ Suffix
+
+	typeset -A alias_apps
+	alias_apps=(
+		archive    extract
+		audio      mplayer
+		document   okular
+		image      feh
+		video      mplayer
+	)
+
+	for meta in ${parameters[(I)mime_*]#mime_}; {
+		for format in $(eval echo '$'mime_${meta}); {
+			alias -s ${format}=${alias_apps[$meta]}
+		}
+	}
+
+	unset filetypes meta format alias_apps
+
+	# }}}
 
 	alias 4d=4chan-dl
 	alias 4v=4chan-view
