@@ -351,6 +351,7 @@ alias ghi='ghi -r ${PWD:t}'
 for i in ~/var/gtd/*(.N); {
 	alias gtd-${i:t}='todo --database '${i}
 }
+alias gtd-uni='todo --database /home/derf/var/gtd/uni --sort -text'
 
 alias hat='head -$((LINES-1))'
 
