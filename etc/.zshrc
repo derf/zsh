@@ -549,6 +549,7 @@ if [[ -e /tmp/.x-started ]] { #{{{
 
 	alias putscreen='put $(screenshot)'
 
+	alias mpa='mplayer -ao pulse:mpd'
 	alias mna='mplayer -ao null'
 	alias mnv='mplayer -vo null'
 } #}}}
