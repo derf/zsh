@@ -33,7 +33,7 @@ function {
 
 [[ -r ${ZDIR}/local-profile ]] && source ${ZDIR}/local-profile
 
-if [[ ${HOST} == (carbon|descent|saviour) && -z ${SSH_CONNECTION} && \
+if [[ ${HOST} == (carbon|descent|illusion|saviour) && -z ${SSH_CONNECTION} && \
 	! -e /tmp/.x-started ]] \
 {
 	touch /tmp/.x-started
