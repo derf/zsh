@@ -22,6 +22,8 @@ export LINES
 export DEBFULLNAME='Daniel Friesel'
 export DEBEMAIL='derf@chaosdorf.de'
 
+export PERLBREW_ROOT=${HOME}/var/perl5/perlbrew
+
 if [[ -n ${commands[lesspipe]} ]] {
 	export LESSOPEN='| lesspipe %s'
 	export LESSCLOSE='lesspipe %s %s'
