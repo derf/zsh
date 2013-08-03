@@ -374,6 +374,7 @@ alias rd='rmdir'
 alias rebuild='perl Build.PL && ./Build && ./Build manifest && ./Build test && sudo ./Build install'
 alias remake='make clean; make && sudo make install'
 alias rmake='make && sudo make install'
+alias pmake='make && sudo make program'
 
 alias rsync-serve="rsync --daemon --port=10873 --no-detach --config=/dev/stdin"\
 " --log-file=/dev/stdout -v <<< $'[.]\n\tpath = .\n\tuse chroot = no'"
