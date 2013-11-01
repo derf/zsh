@@ -26,6 +26,14 @@ function put_flux {
 	max_size=700000
 }
 
+function put_ghost {
+	hostname='ghost.derf0.net'
+	ssh_name='ghost'
+	target_dir='web/net.derf0.ghost/out/tmp'
+	server_prefix='http://ghost.derf0.net/tmp/'
+	max_size=0
+}
+
 function put_steel {
 	hostname='steel.derf0.net'
 	ssh_name='steel'
@@ -50,7 +58,7 @@ function put_chaosdorf {
 	max_size=0
 }
 
-hosts=(flux steel chaosdorf)
+hosts=(flux ghost steel chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
