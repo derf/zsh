@@ -1,10 +1,10 @@
 #compdef pkill pgrep
 ## completion for pkill and pgrep
-## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## Copyright (C) 2008 by Daniel Friesel <derf@finalrewind.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>:
 ##   0. You just DO WHAT THE FUCK YOU WANT TO.
 ##
-## http://derf.homelinux.org/git/zsh/plain/etc/completions/_pkill
+## http://finalrewind.org/git/zsh/plain/etc/completions/_pkill
 
 
 ## Not finished

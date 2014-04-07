@@ -1,10 +1,10 @@
 #compdef fbsetroot
 ## completion for fbsetroot (fluxbox 1.0.0+deb1-9), based on fbsetroot(1)
-## Daniel Friesel <derf@derf.homelinux.org>
+## Daniel Friesel <derf@finalrewind.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>:
 ##   0. You just DO WHAT THE FUCK YOU WANT TO.
 ##
-## http://derf.homelinux.org/git/zsh/plain/etc/completions/_fbsetroot
+## http://finalrewind.org/git/zsh/plain/etc/completions/_fbsetroot
 
 local arguments
 local texturestrings colors

@@ -1,6 +1,6 @@
 ## vim:ft=zsh
 ## reverse tabbing, useful in the prompt
-## Copyright (C) 2008, 2009 by Daniel Friesel <derf@derf.homelinux.org>
+## Copyright (C) 2008, 2009 by Daniel Friesel <derf@finalrewind.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 ## CAVEAT: directory-names containing two or more consecutive spaces

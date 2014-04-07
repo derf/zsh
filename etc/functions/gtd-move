@@ -1,7 +1,7 @@
 ## vim:ft=zsh
 ## Helper for my gtd system
 ## Usage: gtd-move <old-database> <index> <new-database>
-## Copyright (C) 2008 by Daniel Friesel <derf@derf.homelinux.org>
+## Copyright (C) 2008 by Daniel Friesel <derf@finalrewind.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 if [[ ${#*} != 3 ]] {

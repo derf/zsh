@@ -2,7 +2,7 @@
 ## put - make a file available via HTTP
 ## supports as many 'failover' hosts as an array can hold
 ## Usage: put <file>
-## Copyright © 2008 - 2010 by Daniel Friesel <derf@derf.homelinux.org>
+## Copyright © 2008 - 2010 by Daniel Friesel <derf@finalrewind.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
 typeset hostname ssh_name
