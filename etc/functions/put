@@ -58,7 +58,7 @@ function put_chaosdorf {
 	max_size=0
 }
 
-hosts=(flux ghost steel chaosdorf)
+hosts=(ghost steel chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
