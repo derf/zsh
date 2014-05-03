@@ -202,6 +202,7 @@ zle -N self-insert url-quote-magic
 typeset -A ps rps
 
 ps=(
+	user   "%n"
 	host   "%F{yellow}%m"
 	dir    "%F{default}%30<…<%2v%>>"
 	sign   "%(!.%F{red}.%F{green})%(?.%(!.#.>).%?)%F{default}"
@@ -213,7 +214,11 @@ rps=(
 	end      "%(1V.%F{yellow}]%F{default}.)"
 )
 
-PS1="${ps[host]} ${ps[dir]} ${ps[sign]} "
+if [[ ${USER} == derf ]]; then
+	PS1="${ps[host]} ${ps[dir]} ${ps[sign]} "
+else
+	PS1="${ps[user]}@${ps[host]} ${ps[dir]} ${ps[sign]} "
+fi
 
 RPS1="${rps[start]}${rps[dirinfo]}${rps[end]}"
 
