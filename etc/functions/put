@@ -112,10 +112,10 @@ while (( ${#hosts} )) {
 		if [[ ${remote_file} == ${~illegal} ]] {
 			remote_file=${remote_file:r}
 		}
-		lftp -c "connect sftp://${ssh_name}; cd ${target_dir}; put ${file}"\
-" -o ${remote_file}; chmod 644 ${remote_file}"
-		if $(curl -fI ${server_prefix}${remote_file} &> /dev/null); then
-			echo ${server_prefix}${remote_file}
+		lftp -c "connect sftp://${ssh_name}; cd ${target_dir}; put '${file}'"\
+" -o '${remote_file}'; chmod 644 '${remote_file}'"
+		if $(curl -fI ${server_prefix}${remote_file// /%20} &> /dev/null); then
+			echo ${server_prefix}${remote_file// /%20}
 			return 0
 		fi
 	}
