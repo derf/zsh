@@ -21,7 +21,7 @@ fi
 function put_flux {
 	hostname='flux.derf0.net'
 	ssh_name='flux'
-	target_dir='web/net.derf0.flux/out/tmp'
+	target_dir='web/default/out/tmp'
 	server_prefix='http://flux.derf0.net/tmp/'
 	max_size=700000
 }
@@ -29,7 +29,7 @@ function put_flux {
 function put_ghost {
 	hostname='ghost.derf0.net'
 	ssh_name='ghost'
-	target_dir='web/net.derf0.ghost/out/tmp'
+	target_dir='web/default/out/tmp'
 	server_prefix='http://ghost.derf0.net/tmp/'
 	max_size=0
 }
@@ -37,7 +37,7 @@ function put_ghost {
 function put_steel {
 	hostname='steel.derf0.net'
 	ssh_name='steel'
-	target_dir='web/net.derf0.steel/out/tmp/'
+	target_dir='web/default/out/tmp/'
 	server_prefix='http://steel.derf0.net/tmp/'
 	max_size=0
 }
