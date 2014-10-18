@@ -23,6 +23,7 @@ function {
 
 	setopt local_options
 	setopt hist_subst_pattern
+	setopt extended_glob
 
 	new_mail=(~/Maildir/**/new~*/.(spam|Trash)*(DFN:h:s/*\\/Maildir\\/./))
 
