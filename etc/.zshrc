@@ -454,7 +454,7 @@ if [[ ${distro} == debian ]] { #{{{
 	alias dprc='sudo dpkg-reconfigure'
 
 } #}}}
-if [[ ${HOST} == flux ]] #{{{
+if [[ ${HOST} == lastlight ]] #{{{
 then
 
 	alias m=mutt
