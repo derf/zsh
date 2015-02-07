@@ -497,8 +497,10 @@ do
 	alias lpr-${pair:e}="lpr -P${pair:r} -Fa4g -Ksimplex -N1 -ALayout=lrtb"
 done
 
-#}}}
-else #{{{
+fi #}}}
+
+if [[ ${HOST} != flux ]] #{{{
+then
 	alias derfmap='ssh flux derfmap'
 fi #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
