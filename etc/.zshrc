@@ -353,11 +353,6 @@ alias fbij='fbi -a -u'
 
 alias ghi='ghi -r ${PWD:t}'
 
-for i in ~/var/gtd/*(.N); {
-	alias gtd-${i:t}='todo --database '${i}
-}
-alias gtd-uni='todo --database /home/derf/var/gtd/uni --sort -text'
-
 alias hat='head -$((LINES-1))'
 
 alias helios-ipmi='ipmitool -I lanplus -H helios-ipmi.chaosdorf.dn42 -U derf -f ~/var/stuff/work/chaosdorf/helios/ipmi-password'
@@ -622,7 +617,6 @@ zstyle ':completion:*' group-name ''
 
 # Force menu completion since the input is just a stupid number
 zstyle ':completion:*:*:kill:*' menu yes
-zstyle ':completion:*:*:(todo|td*):*:items' menu yes
 
 zstyle ':completion:*:*:vi(m|):*' ignored-patterns \
 	'a.out|*.o'
