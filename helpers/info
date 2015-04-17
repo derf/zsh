@@ -1,8 +1,0 @@
-#!/usr/bin/env zsh
-[[ -n $commands[todo]     ]] && [[ -r ~/var/gtd/todo    ]] && \
-	todo --database /home/derf/var/gtd/todo
-[[ -n $commands[todo]     ]] && [[ -r ~/var/gtd/waiting ]] && \
-	todo --database ~/var/gtd/waiting | fgrep "$(cat /tmp/.location)"
-[[ -n $commands[calendar] ]] && [[ -r ~/stuff/calendar  ]] && calendar
-
-true
