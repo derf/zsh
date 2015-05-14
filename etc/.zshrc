@@ -573,12 +573,6 @@ if ((UID)) {
 }
 chpwd
 
-# Show infos if requested (.xinitrc)
-
-if ((SHOW_INFO)) {
-	${ZDIR}/../helpers/info
-}
-
 # }}}
 # {{{ Includes
 
