@@ -14,7 +14,7 @@ typeset -i pic make_random
 zmodload zsh/stat
 
 if [[ -z ${commands[curl]} ]]; then
-	function curl {return 0}
+	function curl { return 0; }
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
