@@ -18,14 +18,6 @@ if [[ -z ${commands[curl]} ]]; then
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
-function put_flux {
-	hostname='flux.derf0.net'
-	ssh_name='flux'
-	target_dir='web/default/out/tmp'
-	server_prefix='http://flux.derf0.net/tmp/'
-	max_size=700000
-}
-
 function put_ghost {
 	hostname='ghost.derf0.net'
 	ssh_name='ghost'
@@ -42,23 +34,7 @@ function put_steel {
 	max_size=0
 }
 
-function put_steel_pic {
-	hostname='steel.derf0.net'
-	ssh_name='steel'
-	target_dir='web/org.finalrewind.lib/out/p/'
-	server_prefix='http://lib.finalrewind.org/p/'
-	max_size=0
-}
-
-function put_chaosdorf {
-	hostname='frontend.chaosdorf.de'
-	ssh_name='chaosdorf-web'
-	target_dir='public_html/tmp/'
-	server_prefix='http://www.chaosdorf.de/~derf/tmp/'
-	max_size=0
-}
-
-hosts=(ghost steel chaosdorf)
+hosts=(ghost steel)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
