@@ -494,9 +494,9 @@ done
 
 fi #}}}
 
-if [[ ${HOST} != flux ]] #{{{
+if [[ ${HOST} != teleconnect ]] #{{{
 then
-	alias derfmap='ssh flux derfmap'
+	alias derfmap='ssh teleconnect derfmap'
 fi #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
