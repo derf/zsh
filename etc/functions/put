@@ -22,7 +22,7 @@ function put_ghost {
 	hostname='ghost.derf0.net'
 	ssh_name='ghost'
 	target_dir='web/default/out/tmp'
-	server_prefix='http://ghost.derf0.net/tmp/'
+	server_prefix='https://ghost.derf0.net/tmp/'
 	max_size=0
 }
 
@@ -30,7 +30,7 @@ function put_steel {
 	hostname='steel.derf0.net'
 	ssh_name='steel'
 	target_dir='web/default/out/tmp/'
-	server_prefix='http://steel.derf0.net/tmp/'
+	server_prefix='https://steel.derf0.net/tmp/'
 	max_size=0
 }
 
