@@ -1,1 +1,0 @@
-pdflatex $1 && okular ${1:r}.pdf
