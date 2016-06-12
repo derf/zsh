@@ -175,9 +175,9 @@ function xhashd {
 }
 
 function Status Start Stop Restart Reload {
-	typeset script
-	for script in ${*}; {
-		sudo /etc/init.d/${script} ${0:l}
+	typeset service
+	for service in "${@}"; {
+		sudo systemctl ${0:l} ${service}
 	}
 }
 
