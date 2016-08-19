@@ -423,24 +423,19 @@ if [[ ${distro} == debian ]] { #{{{
 	alias apsh='aptitude show'
 	alias dps='dpkg --status'
 
-	alias agu='sudo apt-get update'
-	alias apu='sudo aptitude update'
+	alias agu='sudo apt update'
+	alias ags='sudo apt upgrade'
+	alias agf='sudo apt full-upgrade'
 
-	alias ags='sudo apt-get upgrade'
-	alias agf='sudo apt-get dist-upgrade'
-	alias aps='sudo aptitude safe-upgrade'
-	alias apf='sudo aptitude full-upgrade'
-
-	alias agi='sudo apt-get install'
-	alias api='sudo aptitude install'
+	alias agi='sudo apt install'
 	alias dpi='sudo dpkg --install'
 
 	alias agc='sudo apt-get clean'
 	alias apc='sudo aptitude clean'
 
-	alias agar='sudo apt-get autoremove'
-	alias agp='sudo apt-get purge'
-	alias agr='sudo apt-get remove'
+	alias agar='sudo apt autoremove'
+	alias agp='sudo apt purge'
+	alias agr='sudo apt remove'
 	alias dpp='sudo dpkg --purge'
 	alias dpr='sudo dpkg --remove'
 
