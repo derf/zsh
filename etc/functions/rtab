@@ -3,9 +3,6 @@
 ## Copyright (C) 2008, 2009 by Daniel Friesel <derf@finalrewind.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>
 
-## CAVEAT: directory-names containing two or more consecutive spaces
-## are not yet supported
-
 setopt localoptions
 setopt rc_quotes null_glob
 
@@ -13,6 +10,7 @@ typeset -i lastfull=0
 typeset -i short=0
 typeset -i tilde=0
 typeset -i named=0
+typeset IFS=$'\n'
 
 if zstyle -t ':prompt:rtab' fish; then
 	lastfull=1
