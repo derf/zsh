@@ -491,7 +491,7 @@ fi #}}}
 
 if [[ ${HOST} != teleconnect ]] #{{{
 then
-	alias derfmap='ssh teleconnect derfmap'
+	alias derfmap='ssh teleconnect /home/derf/bin/derfmap'
 fi #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
