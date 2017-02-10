@@ -308,6 +308,9 @@ alias vim='vim -p'
 alias font-present='echo -en '\
 '"\033]50;-*-terminus-medium-*-*-*-*-320-*-*-*-*-*-*\007"'
 
+alias font-huge='echo -en '\
+'"\033]50;-*-terminus-medium-*-*-*-*-400-*-*-*-*-*-*\007"'
+
 alias font-default='echo -en '\
 '"\033]50;-misc-fixed-medium-r-semicondensed--13-*-*-*-*-*-iso10646-1\007"'
 
@@ -553,6 +556,7 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	alias putscreen='put $(screenshot)'
 
 	alias mpa='mplayer -ao pulse:pulse'
+	alias mph='mplayer -ao alsa:device=hw=1.9'
 	alias mna='mplayer -ao null'
 	alias mnv='mplayer -vo null'
 } #}}}
