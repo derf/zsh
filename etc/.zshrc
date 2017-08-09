@@ -317,6 +317,9 @@ alias font-default='echo -en '\
 alias font-t='echo -en '\
 '"\033]50;-*-terminus-medium-*-*-*-*-150-*-*-*-*-*-*\007"'
 
+alias font-v='echo -en '\
+'"\033]50;-*-terminus-medium-*-*-*-*-105-*-*-*-*-*-*\007"'
+
 # }}}
 # {{{ Global
 
