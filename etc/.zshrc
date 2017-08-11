@@ -379,7 +379,7 @@ alias pdftopng='pdftoppm -png'
 
 alias rd='rmdir'
 
-alias rebuild='perl Build.PL && ./Build && ./Build manifest && prove -b && sudo ./Build install'
+alias rebuild='perl Build.PL && ./Build && ./Build manifest && prove -b && sudo ./Build install && sudo chmod -R a+rX /usr/local'
 alias remake='make clean; make && sudo make install'
 alias rmake='make && sudo make install'
 alias pmake='make && make program'
