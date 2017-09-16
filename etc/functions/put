@@ -18,23 +18,15 @@ if [[ -z ${commands[curl]} ]]; then
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
-function put_ghost {
-	hostname='ghost.derf0.net'
-	ssh_name='ghost'
+function put_strata {
+	hostname='strata.derf0.net'
+	ssh_name='strata'
 	target_dir='web/default/out/tmp'
-	server_prefix='https://ghost.derf0.net/tmp/'
+	server_prefix='https://strata.derf0.net/tmp/'
 	max_size=0
 }
 
-function put_steel {
-	hostname='steel.derf0.net'
-	ssh_name='steel'
-	target_dir='web/default/out/tmp/'
-	server_prefix='https://steel.derf0.net/tmp/'
-	max_size=0
-}
-
-hosts=(ghost steel)
+hosts=(strata steel)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
