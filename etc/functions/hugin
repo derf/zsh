@@ -1,3 +1,0 @@
-mkdir ~/tmp
-MAKEFLAGS= command hugin
-rm -rv ~/tmp
