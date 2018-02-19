@@ -1,10 +1,10 @@
 #!/bin/zsh
 
-lastloc=$(tail -n 1 ~/var/log/location)
+lastloc=$(tail -n 1 ~/var/local/.location-log)
 newloc=$1
 
 if echo $lastloc | fgrep -q $newloc; then
 	exit 0
 fi
 
-printf "%s   %-10s  %s\n" "$(date -R)" $newloc $SSH_CLIENT[(w)1] >> ~/var/log/location
+printf "%s   %-10s  %s\n" "$(date -R)" $newloc $SSH_CLIENT[(w)1] >> ~/var/local/.location-log
