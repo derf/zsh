@@ -482,7 +482,7 @@ if [[ ${distro} == debian ]] { #{{{
 	alias dprc='sudo dpkg-reconfigure'
 
 } #}}}
-if [[ ${HOST} == lastlight ]] #{{{
+if [[ -e ~/mailfilter ]] #{{{
 then
 
 	alias m=mutt
