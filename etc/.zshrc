@@ -297,6 +297,9 @@ alias df='df -h'
 
 alias du='du -shH'
 
+alias ip='ip --color'
+alias ipb='ip --brief --color'
+
 alias ls='ls -h --color=auto'
 
 [[ -n ${commands[bsdtar]} ]] && alias tar=bsdtar
