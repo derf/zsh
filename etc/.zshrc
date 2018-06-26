@@ -311,11 +311,7 @@ alias sudo='sudo '
 alias ncdu='ncdu -x'
 alias netstat='sudo netstat --program --all --tcp --extend'
 
-alias svstat='sudo svstat /etc/service/*'
-
 alias bc='bc -l'
-
-alias fbi='fbi -readahead'
 
 alias cp='cp -i'
 alias mv='mv -i'
@@ -330,10 +326,8 @@ alias find='noglob find'
 
 alias man='man -a'
 
-# ps -C foo is better than ps aux | fgrep foo ;-)
+# ps -C foo is more conscise than ps aux | fgrep foo
 alias ps='ps -F'
-
-alias todo='noglob todo -f +children'
 
 alias vim='vim -p'
 
@@ -384,15 +378,7 @@ alias allr='for i in **/*;'
 # }}}
 # {{{ Misc
 
-alias dent='twidge -c ~/packages/twitter/etc/derf-identica update'
-alias dent-cccd='twidge -c ~/packages/twitter/etc/chaosdorf-identica update'
-
 alias dua='du --apparent-size'
-
-alias fbif='fbi -a'
-alias fbij='fbi -a -u'
-
-alias ghi='ghi -r ${PWD:t}'
 
 alias hat='head -$((LINES-1))'
 
@@ -406,9 +392,6 @@ alias lssh='ssh -C -o CompressionLevel=9'
 
 alias mate='echo $(( $(cat ~/stuff/chaosdorf/mateguthaben) - 150 )) | sponge ~/stuff/chaosdorf/mateguthaben'
 alias cola='echo $(( $(cat ~/stuff/chaosdorf/mateguthaben) - 100 )) | sponge ~/stuff/chaosdorf/mateguthaben'
-
-alias nb='newsbeuter'
-alias nbr='newsbeuter -r'
 
 alias pdftopng='pdftoppm -png'
 
@@ -496,44 +479,8 @@ then
 
 	done < Maildir/maildirs
 
-#}}}
-elif [[ ${HOST} == plutonium ]] #{{{
-then
-
-# ps17oh:  oh16 1xx
-# pool05:  oh14 u04   (closed)
-# pool04:  oh18 u01
-# pool00: msw16 u08
-# pool09: jvf23 e32
-# pool08: msw18 211
-# pool03: msw16 u12
-# pool07:  oh20 e14
-# lj4500: msw16 108 / 117 (Farb)
-#   nd50:  oh20 e06
-# ohs14pr1: oh14 e35
-
-for pair in \
-	pool00.msw16-u08 \
-	pool03.msw16-u12 \
-	pool04.oh18-u01 \
-	pool05.oh14-u04 \
-	pool07.oh20-e14 \
-	pool08.msw18-211 \
-	pool09.jvf23-e32 \
-	nd50.oh20-e06 \
-	ohs14pr1.oh14-e35 \
-	ps17oh.oh16-1og
-do
-	alias lpq-${pair:e}="lpq -l -P${pair:r}"
-	alias lpr-${pair:e}="lpr -P${pair:r} -Fa4g -Ksimplex -N1 -ALayout=lrtb"
-done
-
 fi #}}}
 
-if [[ ${HOST} != teleconnect ]] #{{{
-then
-	alias derfmap='ssh teleconnect /home/derf/bin/derfmap'
-fi #}}}
 if [[ -e /tmp/.x-started ]] { #{{{
 
 	# {{{ Suffix
@@ -556,9 +503,6 @@ if [[ -e /tmp/.x-started ]] { #{{{
 	unset filetypes meta format alias_apps
 
 	# }}}
-
-	alias 4d=4chan-dl
-	alias 4v=4chan-view
 
 	alias feh='feh --quiet --verbose --cache-size 2047'
 
