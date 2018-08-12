@@ -213,6 +213,12 @@ function mkcd {
 	cd ${1}
 }
 
+function rwdo {
+	sudo mount -o remount,rw /
+	"$@"
+	sudo mount -o remount,ro /
+}
+
 function world-readable {
 	chmod -R a+rX .
 }
