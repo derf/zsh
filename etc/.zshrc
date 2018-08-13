@@ -504,7 +504,7 @@ if [[ -e /tmp/.x-started ]] { #{{{
 
 	# }}}
 
-	alias feh='feh --quiet --verbose --cache-size 2047'
+	alias feh='feh --quiet --verbose --cache-size 1500'
 
 	# Alias structure:
 	# feh[theme][recursive?][slide-delay?]
