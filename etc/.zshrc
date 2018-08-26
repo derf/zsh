@@ -219,6 +219,24 @@ function rwdo {
 	sudo mount -o remount,ro /
 }
 
+function update-zshrc {
+	local readonly_root=0
+	if [[ -L ~/.zshrc ]]; then
+		echo "zshrc is managed via caretaker -- please run 'ct f'"
+	else
+		if findmnt --raw --noheadings --output options --target ${HOME} | grep -qE '(^|,)ro($|,)'; then
+			readonly_root=1
+		fi
+		if (( readonly_root )); then
+			sudo mount -o remount,rw /
+		fi
+		wget -O ~/.zshrc.new https://git.finalrewind.org/zsh/plain/etc/.zshrc && mv ~/.zshrc.new ~/.zshrc
+		if (( readonly_root )); then
+			sudo mount -o remount,ro /
+		fi
+	fi
+}
+
 function world-readable {
 	chmod -R a+rX .
 }
