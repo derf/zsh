@@ -331,6 +331,7 @@ alias ls='ls -h --color=auto'
 ## enable alias expansion
 alias exec='exec '
 alias sudo='sudo '
+alias rwdo='rwdo '
 
 alias ncdu='ncdu -x'
 alias netstat='sudo netstat --program --all --tcp --extend'
