@@ -26,7 +26,23 @@ function put_strata {
 	max_size=0
 }
 
-hosts=(strata steel)
+function put_epicentre {
+	hostname='epicentre.derf0.net'
+	ssh_name='epicentre'
+	target_dir='web/default/out/tmp'
+	server_prefix='https://epicentre.derf0.net/tmp/'
+	max_size=0
+}
+
+function put_chaosdorf {
+	hostname='extern.chaosdorf.de'
+	ssh_name='extern.chaosdorf.de'
+	target_dir='public_html/tmp'
+	server_prefix='https://chaosdorf.de/~derf/tmp/'
+	max_size=0
+}
+
+hosts=(strata epicentre chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
