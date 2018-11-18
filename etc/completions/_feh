@@ -1,5 +1,5 @@
 #compdef feh
-## completion for feh 2.0, based on feh(1)
+## completion for feh 3.0, based on feh(1)
 
 function _feh_theme {
 	[[ -r ~/.config/feh/themes ]] || return
@@ -37,49 +37,61 @@ function _feh_background {
 }
 
 function _feh {
-	_arguments -s \
-	'(--action -A)'{-A,--action}'[action to perform on images]:shell' \
-	--action{1..9}'[additional action]:shell' \
-	'(--auto-zoom -Z)'{-Z,--auto-zoom}'[aoom pictures to screen]' \
-	'(--borderless -x)'{-x,--borderless}'[areate borderless windows]' \
+	_arguments -s -S \
+	'(--action -A)'{-A,--action}'[action to perform on images]:shell command:_cmdstring' \
+	--action{1..9}'[additional action]:shell command:_cmdstring' \
+	'--auto-rotate[automatically rotate images based on EXIF data]' \
+	'(--auto-zoom -Z)'{-Z,--auto-zoom}'[zoom pictures to screen]' \
+	'(--borderless -x)'{-x,--borderless}'[create borderless windows]' \
+	'--cache-size[Imlib2 in-memory cache size]:cache size in MiB' \
 	'(--cache-thumbnails -P)'{--cache-thumbnails,-P}'[cache thumbnails]' \
 	'(--caption-path -K)'{--caption-path,-K+}'[enable caption mode]:caption directory:_files -/' \
+	'--conversion-timeout[set ImageMagick conversion timeout for unlodable files]:timeout in seconds (-1 to disable)' \
 	'(--customlist -L)'{--customlist,-L}'[custom list mode]:feh format string' \
-	'--cycle-once[quit after one loop through slideshow]' \
 	'(--draw-actions -G)'{--draw-actions,-G}'[show defined actions]' \
+	'--draw-exif[show EXIF data]' \
 	'(--draw-filename -d)'{--draw-filename,-d}'[show filename]' \
 	'--draw-tinted[show overlay texts on tinted background]' \
-	'(--filelist -f)'{--filelist,-f}'[show images in filelist]' \
+	'--edit[change files in-place when using rotate and mirror keys]' \
+	'(--filelist -f)'{--filelist,-f}'[load from/save to filelist]:filelist:_files' \
 	'(--font -e)'{--font,-e+}'[set global font]:font' \
 	'(--fontpath -C)'{--fontpath,-C+}'[set font path]:font path:_files -/' \
 	'--force-aliasing[disable antialiasing]' \
 	'(--fullindex -I)'{--fullindex,-I}'[index mode with additional information]' \
-	'(--fullscreen -F)'{--fullscreen,-F}'[enable fullscreen mode]' \
+	'(--fullscreen -F)'{--fullscreen,-F}'[start in fullscreen mode]' \
 	'(--geometry -g)'{--geometry,-g+}'[set window geometry]:WxH[+X+Y]' \
 	'(--hide-pointer -Y)'{--hide-pointer,-Y}'[hide pointer]' \
-	'(--image-bg -B)'{--image-bg,-B+}'[set image background]:background:(black white checks)' \
+	'(--image-bg -B)'{--image-bg,-B+}'[set image background]:background style or X11 colour:(default checks)' \
 	'(--index -i)'{--index,-i}'[index mode]' \
 	'--index-info[image info for thumbnail/index mode]:format string' \
+	'--info[filo info command]:shell command:_cmdstring' \
+	'--insecure[disable HTTPS certificate checks]' \
 	'(--keep-http -k)'{--keep-http,-k}'[keep cached HTTP files]' \
+	'--keep-zoom-vp[keep zoom and viewport when switching images]' \
 	'(--list -l)'{--list,-l}'[list mode]' \
 	'(--loadable -U)'{--loadable,-U}'[list loadable images]' \
+	'--max-dimension[set maximum image dimensions]:WxH' \
 	'(--menu-font -M)'{--menu-font,-M+}'[set menu font]:menu font' \
+	'--min-dimension[set minimum image dimensions]:WxH' \
 	'(--montage -m)'{--montage,-m}'[montage mode]' \
 	'(--multiwindow -w)'{--multiwindow,-w}'[multiwindow mode]' \
 	'--no-jump-on-resort[do not jump to first image after resorting]' \
 	'(--no-menus -N)'{--no-menus,-N}'[disable menus]' \
-	'--no-screen-clip[disable window size limitations]' \
+	'--no-screen-clip[disable window size limits]' \
 	'--no-xinerama[disable Xinerama support]' \
+	'--on-last-slide[set behaviour when advancing past the last slide]:behaviour:(hold quit resume)' \
 	'(--output-dir -j)'{--output-dir,-j+}'[set temporary file location]:directory:_files -/' \
 	'(--preload -p)'{--preload,-p}'[eliminate unloadable images before starting]' \
 	'(--quiet -q)'{--quiet,-q}'[do not report non-fatal errors]' \
 	'(--randomize -z)'{--randomize,-z}'[randomize filelist]' \
 	'(--recursive -r)'{--recursive,-r}'[recurse into subdirectories]' \
-	'(--reload -R)'{--reload,-R+}'[reload filelist/current image]:seconds' \
+	'--no-recursive[do not recurse into subdirectories]' \
+	'(--reload -R)'{--reload,-R+}'[regularly reload filelist and current image]:seconds' \
 	'(--reverse -n)'{--reverse,-n}'[reverse sort order]' \
 	'(--scale-down -.)'{--scale-down,-.}'[scale down too large images]' \
+	'--scroll-step[set scroll granularity]:pixels per scroll step' \
 	'(--slideshow-delay -D)'{--slideshow-delay,-D+}'[set slideshow delay]:seconds' \
-	'(--sort -S)'{--sort,-S}'[sort images]:sort type:(name filename width height pixels size format)' \
+	'(--sort -S)'{--sort,-S}'[sort images]:sort key:(name filename dirname mtime width height pixels size format)' \
 	'(--start-at -|)'{--start-at,-'|'+}'[start slideshow at file]:start file:_files' \
 	'(--theme -T)'{--theme,-T+}'[set theme]: :_feh_theme' \
 	'(--thumbnails -t)'{--thumbnails,-t}'[thumbnail mode]' \
@@ -87,7 +99,8 @@ function _feh {
 	'(--title -^)'{--title,-'^'}'[set window title]:feh format string' \
 	'(--unloadable -u)'{--unloadable,-u}'[list unloadable images]' \
 	'(--verbose -V)'{--verbose,-V}'[verbose mode]' \
-	'--zoom[set zoom mode]:percent' \
+	'--version-sort[use natural sorting for --sort]' \
+	'--zoom[set default zoom level]:percent' \
 	\
 	'(--alpha -a)'{--alpha,-a}'[set thumbnail transparency]:alpha level' \
 	'(--bg -b)'{--bg,-b}'[set montage background]: :_feh_background' \
@@ -108,7 +121,7 @@ function _feh {
 	'--bg-tile[set tiled background]' \
 	\
 	'(--title-font -@)'{--title-font,-'@'}'[set title font]:font' \
-	'*:image:_files'
+	'*:image, directory or URL:_files'
 }
 
 _feh "$@"
