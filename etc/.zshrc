@@ -407,7 +407,7 @@ alias dua='du --apparent-size'
 
 alias hat='head -$((LINES-1))'
 
-alias helios-ipmi='ipmitool -I lanplus -H helios-ipmi.chaosdorf.dn42 -U derf -f ~/var/stuff/work/chaosdorf/helios/ipmi-password'
+alias helios-ipmi='ipmitool -I lanplus -H 192.168.0.241 -U derf -f ~/var/stuff/work/chaosdorf/helios/ipmi-password'
 
 alias irc='tmux attach'
 
