@@ -355,6 +355,7 @@ alias man='man -a'
 alias ps='ps -F'
 
 alias vim='vim -p'
+alias view='view -p'
 
 # }}}
 # {{{ Font
