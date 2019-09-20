@@ -342,6 +342,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias pv='pv --progress --timer --eta --average-rate --bytes'
+alias rsync='rsync -a --info=progress2'
 
 alias pmount='pmount -A'
 
