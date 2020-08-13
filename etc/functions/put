@@ -98,8 +98,11 @@ while (( ${#hosts} )) {
 		}
 		lftp -c "connect sftp://${ssh_name}; cd ${target_dir}; put '${file}'"\
 " -o '${remote_file}'; chmod 644 '${remote_file}'"
-		if $(curl -fI ${server_prefix}${remote_file// /%20} &> /dev/null); then
-			echo ${server_prefix}${remote_file// /%20}
+		remote_file=${remote_file// /%20}
+		remote_file=${remote_file//\#/%23}
+		url=${server_prefix}${remote_file}
+		if $(curl -fI ${server_prefix}${remote_file} &> /dev/null); then
+			echo ${server_prefix}${remote_file}
 			return 0
 		fi
 	}
