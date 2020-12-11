@@ -355,6 +355,7 @@ alias man='man -a'
 # ps -C foo is more conscise than ps aux | fgrep foo
 alias ps='ps -F'
 
+alias gvim='gvim -p'
 alias vim='vim -p'
 alias view='view -p'
 
