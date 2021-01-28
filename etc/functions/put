@@ -18,14 +18,6 @@ if [[ -z ${commands[curl]} ]]; then
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
-function put_strata {
-	hostname='strata.derf0.net'
-	ssh_name='strata'
-	target_dir='web/default/out/tmp'
-	server_prefix='https://strata.derf0.net/tmp/'
-	max_size=0
-}
-
 function put_epicentre {
 	hostname='epicentre.derf0.net'
 	ssh_name='epicentre'
@@ -42,7 +34,7 @@ function put_chaosdorf {
 	max_size=0
 }
 
-hosts=(strata epicentre chaosdorf)
+hosts=(epicentre chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
