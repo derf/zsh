@@ -18,6 +18,14 @@ if [[ -z ${commands[curl]} ]]; then
 	print -P "%B%F{yellow}curl not present, won't be able to check upload success%f%b"
 fi
 
+function put_arclight {
+	hostname='arclight.derf0.net'
+	ssh_name='arclight'
+	target_dir='web/default/out/tmp'
+	server_prefix='https://arclight.derf0.net/tmp/'
+	max_size=0
+}
+
 function put_epicentre {
 	hostname='epicentre.derf0.net'
 	ssh_name='epicentre'
@@ -34,12 +42,11 @@ function put_chaosdorf {
 	max_size=0
 }
 
-hosts=(epicentre chaosdorf)
+hosts=(arclight epicentre chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
 		-|--) shift; break ;;
-		-p)   pic=1 ;;
 		-r)   make_random=1 ;;
 		*)
 			if [[ -n ${functions[put_${1#-}]} ]]; then
@@ -65,10 +72,6 @@ if [[ -d ${1} ]] {
 }
 
 remote_file=${file:t}
-
-if (( pic )) {
-	hosts=(steel_pic)
-}
 
 if (( make_random )) {
 	remote_file=$(mktemp -u XXXXXX)
