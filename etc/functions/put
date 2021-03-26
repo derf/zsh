@@ -26,12 +26,20 @@ function put_arclight {
 	max_size=0
 }
 
+function put_lib {
+	hostname='ccc-derendorf.de'
+	ssh_name='lib'
+	target_dir='web/default/out/tmp'
+	server_prefix='https://ccc-derendorf.de/tmp/'
+	max_size=0
+}
+
 function put_epicentre {
 	hostname='epicentre.derf0.net'
 	ssh_name='epicentre'
 	target_dir='web/default/out/tmp'
 	server_prefix='https://epicentre.derf0.net/tmp/'
-	max_size=0
+	max_size=10485760
 }
 
 function put_chaosdorf {
@@ -42,7 +50,7 @@ function put_chaosdorf {
 	max_size=0
 }
 
-hosts=(arclight epicentre chaosdorf)
+hosts=(epicentre arclight lib epicentre chaosdorf)
 
 while [[ ${1} == -* ]] {
 	case ${1} in
