@@ -321,8 +321,8 @@ alias df='df -h'
 
 alias du='du -shH'
 
-alias ip='ip --color'
-alias ipb='ip --brief --color'
+alias ip='ip --color=auto'
+alias ipb='ip --brief --color=auto'
 
 alias ls='ls -h --color=auto'
 
