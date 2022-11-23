@@ -440,8 +440,6 @@ alias safe='dtach -c /tmp/.dtach.$$'
 alias tw='twidge -c ~/packages/twitter/etc/derf-twitter'
 alias twc='twidge -c ~/packages/twitter/etc/chaosdorf-twitter'
 
-alias x='unsetopt bg_nice; startx &! exit'
-
 alias xxz='xz -v -9 -M 800M'
 
 alias yd='youtube-dl -t'
