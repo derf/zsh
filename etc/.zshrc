@@ -288,8 +288,9 @@ zstyle ':prompt:rtab' nameddirs yes
 # {{{ Named directories
 
 xhashd code=~/var/code
+xhashd transit=~/var/projects/transitfoo
 xhashd vcs=~/var/svn
-xhashd web=~/web/org.homelinux.derf
+xhashd web=~/var/projects/finalrewind.org
 
 # }}}
 # {{{ Keys
