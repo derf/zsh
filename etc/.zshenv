@@ -19,7 +19,7 @@ export HOST
 export COLUMNS
 export LINES
 
-export DEBFULLNAME='Daniel Friesel'
+export DEBFULLNAME='Birte Friesel'
 export DEBEMAIL='derf@chaosdorf.de'
 
 export PERLBREW_ROOT=${HOME}/var/perl5/perlbrew
