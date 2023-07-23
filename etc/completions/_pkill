@@ -1,6 +1,6 @@
 #compdef pkill pgrep
 ## completion for pkill and pgrep
-## Copyright (C) 2008 by Daniel Friesel <derf@finalrewind.org>
+## Copyright (C) 2008 by Birte Friesel <derf@finalrewind.org>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>:
 ##   0. You just DO WHAT THE FUCK YOU WANT TO.
 ##

@@ -1,6 +1,6 @@
 #compdef modprobe
 ## completion for modprobe x.y, based on modprobe(1)
-## Copyright (C) 2010 by Daniel Friesel <derf@chaosdorf.de>
+## Copyright (C) 2010 by Birte Friesel <derf@chaosdorf.de>
 ## License: WTFPL <http://sam.zoy.org/wtfpl>:
 ##   0. You just DO WHAT THE FUCK YOU WANT TO.
 ##

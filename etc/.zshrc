@@ -1,5 +1,5 @@
 ## vim:ft=zsh:foldmethod=marker
-## Copyright (c) 2008, 2009 by Daniel Friesel <derf@finalrewind.org>
+## Copyright (c) 2008, 2009 by Birte Friesel <derf@finalrewind.org>
 ## Licence:
 ##   0. You just DO WHAT THE FUCK YOU WANT TO.
 ##
