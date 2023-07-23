@@ -87,6 +87,8 @@ while (( ${#hosts} )) {
 " -o '${remote_file}'; chmod 644 '${remote_file}'"
 		remote_file=${remote_file// /%20}
 		remote_file=${remote_file//\#/%23}
+		remote_file=${remote_file//\[/%5B}
+		remote_file=${remote_file//\]/%5D}
 		url=${server_prefix}${remote_file}
 		if $(curl -fI ${server_prefix}${remote_file} &> /dev/null); then
 			echo ${server_prefix}${remote_file}
