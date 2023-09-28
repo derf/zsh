@@ -1,5 +1,10 @@
-if [[ ${PS1} == '%F{black}'* ]] {
-	PS1=${${${PS1//\%K/%F}//white/default}#\%K\{black\}}
-} else {
-	PS1='%F{black}'${${PS1//\%F/%K}//default/white}
-}
+#if [[ ${PS1} == '%F{black}'* ]] {
+#	PS1=${${${PS1//\%K/%F}//white/default}#\%K\{black\}}
+#} else {
+#	PS1='%F{black}'${${PS1//\%F/%K}//default/white}
+#}
+
+printf '\033]10;black\007'
+printf '\033]11;white\007'
+unset LS_COLORS
+zstyle ':completion:*' list-colors ''
