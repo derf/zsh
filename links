@@ -1,0 +1,4 @@
+soft .zlogout packages/zsh/etc/.zlogout
+soft .zprofile packages/zsh/etc/.zprofile
+soft .zshenv packages/zsh/etc/.zshenv
+soft .zshrc packages/zsh/etc/.zshrc
