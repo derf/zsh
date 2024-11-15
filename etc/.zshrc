@@ -573,7 +573,6 @@ if [[ -e /tmp/.x-started ]] { #{{{
 # }}}
 # {{{ Misc
 
-mesg n
 if ((UID)) {
 	umask 077
 } else {
